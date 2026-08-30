@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Practicals - StudyHub Pakistan</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:65px;
+    background:white;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.home-btn{
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:10px 17px;
+    border-radius:7px;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:65px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:16px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+/* FILTER */
+
+.filter-box{
+    background:white;
+    padding:22px;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+    margin-bottom:35px;
+}
+
+.filter-box h2{
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:1fr 1fr 1.5fr;
+    gap:12px;
+}
+
+.filters select,
+.filters input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d9deea;
+    border-radius:7px;
+    outline:none;
+    background:white;
+    font-size:14px;
+}
+
+/* PRACTICAL GRID */
+
+.practical-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.practical{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+    transition:.2s;
+}
+
+.practical:hover{
+    transform:translateY(-4px);
+}
+
+.practical-top{
+    height:125px;
+    background:#eff6ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:52px;
+}
+
+.practical-content{
+    padding:20px;
+}
+
+.tag{
+    display:inline-block;
+    background:#dbeafe;
+    color:#2563eb;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.number{
+    color:#7c3aed;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.practical h2{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.subject{
+    color:#2563eb;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:9px;
+}
+
+.practical p{
+    color:#697386;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:17px;
+}
+
+.view-btn,
+.download-btn{
+    text-align:center;
+    text-decoration:none;
+    padding:10px;
+    border-radius:7px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.view-btn{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.download-btn{
+    background:#2563eb;
+    color:white;
+}
+
+/* NO RESULTS */
+
+.no-results{
+    display:none;
+    text-align:center;
+    background:white;
+    padding:35px;
+    border-radius:10px;
+    color:#697386;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:45px;
+}
+
+footer p{
+    color:#aeb7c7;
+    font-size:13px;
+    margin:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .practical-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Study<span>Hub</span> Pakistan
+    </div>
+
+    <a href="index.html" class="home-btn">
+        Home
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>💻 Practical Work</h1>
+
+    <p>
+        Practice programming and computer practicals easily.
+    </p>
+
+</section>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- FILTER -->
+
+    <div class="filter-box">
+
+        <h2>🔎 Find a Practical</h2>
+
+        <div class="filters">
+
+            <select id="classFilter">
+
+                <option value="">All Classes / Courses</option>
+
+                <option value="9th">9th Class</option>
+                <option value="10th">10th Class</option>
+                <option value="11th">11th Class</option>
+                <option value="12th">12th Class</option>
+
+                <option value="matric">Matric</option>
+                <option value="intermediate">Intermediate</option>
+
+                <option value="cit">CIT</option>
+                <option value="dit">DIT</option>
+
+                <option value="other">Other</option>
+
+            </select>
+
+
+            <select id="subjectFilter">
+
+                <option value="">All Subjects</option>
+
+                <option value="computer">Computer</option>
+                <option value="cpp">C++</option>
+                <option value="html">HTML</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+
+                <option value="other">Other</option>
+
+            </select>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search practical..."
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- PRACTICALS -->
+
+    <div class="practical-grid" id="practicalGrid">
+
+
+        <!-- PRACTICAL 1 -->
+
+        <div
+            class="practical"
+            data-class="cit"
+            data-subject="cpp"
+        >
+
+            <div class="practical-top">
+                💻
+            </div>
+
+            <div class="practical-content">
+
+                <span class="tag">
+                    CIT
+                </span>
+
+                <div class="number">
+                    PRACTICAL #01
+                </div>
+
+                <h2>
+                    Basic C++ Program
+                </h2>
+
+                <div class="subject">
+                    C++ Programming
+                </div>
+
+                <p>
+                    Write and run your first basic
+                    C++ program and understand its structure.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#" class="view-btn">
+                        👁 View
+                    </a>
+
+                    <a href="#" class="download-btn">
+                        📥 Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRACTICAL 2 -->
+
+        <div
+            class="practical"
+            data-class="cit"
+            data-subject="cpp"
+        >
+
+            <div class="practical-top">
+                🔢
+            </div>
+
+            <div class="practical-content">
+
+                <span class="tag">
+                    CIT
+                </span>
+
+                <div class="number">
+                    PRACTICAL #02
+                </div>
+
+                <h2>
+                    Addition of Two Numbers
+                </h2>
+
+                <div class="subject">
+                    C++ Programming
+                </div>
+
+                <p>
+                    Create a program that takes two
+                    numbers and displays their sum.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#" class="view-btn">
+                        👁 View
+                    </a>
+
+                    <a href="#" class="download-btn">
+                        📥 Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRACTICAL 3 -->
+
+        <div
+            class="practical"
+            data-class="10th"
+            data-subject="html"
+        >
+
+            <div class="practical-top">
+                🌐
+            </div>
+
+            <div class="practical-content">
+
+                <span class="tag">
+                    10TH CLASS
+                </span>
+
+                <div class="number">
+                    PRACTICAL #01
+                </div>
+
+                <h2>
+                    Create a Web Page
+                </h2>
+
+                <div class="subject">
+                    HTML
+                </div>
+
+                <p>
+                    Create a basic webpage using
+                    HTML headings, paragraphs and links.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#" class="view-btn">
+                        👁 View
+                    </a>
+
+                    <a href="#" class="download-btn">
+                        📥 Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRACTICAL 4 -->
+
+        <div
+            class="practical"
+            data-class="11th"
+            data-subject="computer"
+        >
+
+            <div class="practical-top">
+                🖥️
+            </div>
+
+            <div class="practical-content">
+
+                <span class="tag">
+                    11TH CLASS
+                </span>
+
+                <div class="number">
+                    PRACTICAL #01
+                </div>
+
+                <h2>
+                    Computer Fundamentals
+                </h2>
+
+                <div class="subject">
+                    Computer
+                </div>
+
+                <p>
+                    Learn practical computer concepts
+                    and basic operations.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#" class="view-btn">
+                        👁 View
+                    </a>
+
+                    <a href="#" class="download-btn">
+                        📥 Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRACTICAL 5 -->
+
+        <div
+            class="practical"
+            data-class="12th"
+            data-subject="python"
+        >
+
+            <div class="practical-top">
+                🐍
+            </div>
+
+            <div class="practical-content">
+
+                <span class="tag">
+                    12TH CLASS
+                </span>
+
+                <div class="number">
+                    PRACTICAL #01
+                </div>
+
+                <h2>
+                    Python Basics
+                </h2>
+
+                <div class="subject">
+                    Python
+                </div>
+
+                <p>
+                    Learn variables, input and output
+                    with a simple Python program.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#" class="view-btn">
+                        👁 View
+                    </a>
+
+                    <a href="#" class="download-btn">
+                        📥 Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRACTICAL 6 -->
+
+        <div
+            class="practical"
+            data-class="other"
+            data-subject="javascript"
+        >
+
+            <div class="practical-top">
+                ⚡
+            </div>
+
+            <div class="practical-content">
+
+                <span class="tag">
+                    OTHER
+                </span>
+
+                <div class="number">
+                    PRACTICAL #01
+                </div>
+
+                <h2>
+                    JavaScript Basics
+                </h2>
+
+                <div class="subject">
+                    JavaScript
+                </div>
+
+                <p>
+                    Create a simple interactive
+                    webpage using JavaScript.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#" class="view-btn">
+                        👁 View
+                    </a>
+
+                    <a href="#" class="download-btn">
+                        📥 Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="no-results" id="noResults">
+
+        <h2>No Practical Found</h2>
+
+        <p>
+            Try another class, subject or search term.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        StudyHub Pakistan
+    </p>
+
+    <p>
+        Learn • Practice • Succeed
+    </p>
+
+    <p>
+        © 2026 StudyHub Pakistan
+    </p>
+
+</footer>
+
+
+<script>
+
+function filterPracticals(){
+
+    let selectedClass =
+        document.getElementById("classFilter").value.toLowerCase();
+
+    let selectedSubject =
+        document.getElementById("subjectFilter").value.toLowerCase();
+
+    let search =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    let practicals =
+        document.querySelectorAll(".practical");
+
+    let found = 0;
+
+    practicals.forEach(function(practical){
+
+        let practicalClass =
+            practical.dataset.class.toLowerCase();
+
+        let practicalSubject =
+            practical.dataset.subject.toLowerCase();
+
+        let practicalText =
+            practical.innerText.toLowerCase();
+
+        let classMatch =
+            selectedClass === "" ||
+            practicalClass === selectedClass;
+
+        let subjectMatch =
+            selectedSubject === "" ||
+            practicalSubject === selectedSubject;
+
+        let searchMatch =
+            search === "" ||
+            practicalText.includes(search);
+
+        if(
+            classMatch &&
+            subjectMatch &&
+            searchMatch
+        ){
+
+            practical.style.display = "block";
+
+            found++;
+
+        }else{
+
+            practical.style.display = "none";
+
+        }
+
+    });
+
+
+    if(found === 0){
+
+        document.getElementById("noResults").style.display = "block";
+
+    }else{
+
+        document.getElementById("noResults").style.display = "none";
+
+    }
+
+}
+
+
+document
+.getElementById("classFilter")
+.addEventListener("change",filterPracticals);
+
+document
+.getElementById("subjectFilter")
+.addEventListener("change",filterPracticals);
+
+document
+.getElementById("searchInput")
+.addEventListener("keyup",filterPracticals);
+
+</script>
+
+
+</body>
+  </html>
