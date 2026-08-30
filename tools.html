@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Tools - StudyHub Pakistan</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:65px;
+    background:white;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.home-btn{
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:10px 17px;
+    border-radius:7px;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:65px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:16px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+/* TOOLS GRID */
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+/* TOOL CARD */
+
+.tool{
+    background:white;
+    padding:25px;
+    border-radius:13px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+.tool-icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.tool h2{
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.tool-description{
+    color:#697386;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+/* INPUT */
+
+.input-group{
+    margin-bottom:12px;
+}
+
+.input-group label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+    width:100%;
+    padding:11px;
+    border:1px solid #d9deea;
+    border-radius:7px;
+    outline:none;
+    font-size:14px;
+}
+
+.input-group textarea{
+    height:120px;
+    resize:vertical;
+}
+
+/* BUTTON */
+
+.calculate-btn{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:11px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.calculate-btn:hover{
+    background:#1d4ed8;
+}
+
+/* RESULT */
+
+.result{
+    margin-top:15px;
+    padding:13px;
+    background:#eff6ff;
+    color:#2563eb;
+    border-radius:7px;
+    font-size:14px;
+    font-weight:bold;
+    display:none;
+}
+
+/* CALCULATOR */
+
+.calc-display{
+    width:100%;
+    padding:15px;
+    font-size:24px;
+    text-align:right;
+    border:1px solid #d9deea;
+    border-radius:7px;
+    margin-bottom:10px;
+    background:#f8fafc;
+}
+
+.calc-buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+}
+
+.calc-buttons button{
+    padding:14px 5px;
+    border:0;
+    border-radius:6px;
+    background:#eef2f7;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.calc-buttons button:hover{
+    background:#dbeafe;
+}
+
+.calc-buttons .operator{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.calc-buttons .equal{
+    background:#2563eb;
+    color:white;
+}
+
+.calc-buttons .clear{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* NUMBER CONVERTER */
+
+.converter-result{
+    margin-top:15px;
+    padding:15px;
+    background:#f0fdf4;
+    color:#15803d;
+    border-radius:7px;
+    display:none;
+    word-break:break-word;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:45px;
+}
+
+footer p{
+    color:#aeb7c7;
+    font-size:13px;
+    margin:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .tools-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .tools-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Study<span>Hub</span> Pakistan
+    </div>
+
+    <a href="index.html" class="home-btn">
+        Home
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>🛠️ Student Tools</h1>
+
+    <p>
+        Useful tools to make your study easier.
+    </p>
+
+</section>
+
+
+<!-- TOOLS -->
+
+<main class="container">
+
+    <div class="tools-grid">
+
+
+        <!-- PERCENTAGE -->
+
+        <div class="tool">
+
+            <div class="tool-icon">🧮</div>
+
+            <h2>Percentage Calculator</h2>
+
+            <p class="tool-description">
+                Calculate percentage easily.
+            </p>
+
+            <div class="input-group">
+
+                <label>Total Marks</label>
+
+                <input
+                    type="number"
+                    id="totalMarks"
+                    placeholder="e.g. 1100"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Obtained Marks</label>
+
+                <input
+                    type="number"
+                    id="obtainedMarks"
+                    placeholder="e.g. 850"
+                >
+
+            </div>
+
+            <button
+                class="calculate-btn"
+                onclick="calculatePercentage()"
+            >
+                Calculate
+            </button>
+
+            <div
+                class="result"
+                id="percentageResult"
+            ></div>
+
+        </div>
+
+
+        <!-- AGE -->
+
+        <div class="tool">
+
+            <div class="tool-icon">🎂</div>
+
+            <h2>Age Calculator</h2>
+
+            <p class="tool-description">
+                Calculate your exact age.
+            </p>
+
+            <div class="input-group">
+
+                <label>Date of Birth</label>
+
+                <input
+                    type="date"
+                    id="birthDate"
+                >
+
+            </div>
+
+            <button
+                class="calculate-btn"
+                onclick="calculateAge()"
+            >
+                Calculate Age
+            </button>
+
+            <div
+                class="result"
+                id="ageResult"
+            ></div>
+
+        </div>
+
+
+        <!-- BASIC CALCULATOR -->
+
+        <div class="tool">
+
+            <div class="tool-icon">🔢</div>
+
+            <h2>Calculator</h2>
+
+            <p class="tool-description">
+                Perform basic calculations.
+            </p>
+
+            <input
+                type="text"
+                class="calc-display"
+                id="calcDisplay"
+                readonly
+            >
+
+            <div class="calc-buttons">
+
+                <button
+                    class="clear"
+                    onclick="clearCalculator()"
+                >
+                    C
+                </button>
+
+                <button onclick="deleteNumber()">
+                    DEL
+                </button>
+
+                <button
+                    class="operator"
+                    onclick="addCalculator('/')"
+                >
+                    ÷
+                </button>
+
+                <button
+                    class="operator"
+                    onclick="addCalculator('*')"
+                >
+                    ×
+                </button>
+
+
+                <button onclick="addCalculator('7')">7</button>
+                <button onclick="addCalculator('8')">8</button>
+                <button onclick="addCalculator('9')">9</button>
+
+                <button
+                    class="operator"
+                    onclick="addCalculator('-')"
+                >
+                    −
+                </button>
+
+
+                <button onclick="addCalculator('4')">4</button>
+                <button onclick="addCalculator('5')">5</button>
+                <button onclick="addCalculator('6')">6</button>
+
+                <button
+                    class="operator"
+                    onclick="addCalculator('+')"
+                >
+                    +
+                </button>
+
+
+                <button onclick="addCalculator('1')">1</button>
+                <button onclick="addCalculator('2')">2</button>
+                <button onclick="addCalculator('3')">3</button>
+
+                <button
+                    class="equal"
+                    onclick="calculateExpression()"
+                >
+                    =
+                </button>
+
+
+                <button onclick="addCalculator('0')">
+                    0
+                </button>
+
+                <button onclick="addCalculator('.')">
+                    .
+                </button>
+
+                <button onclick="addCalculator('00')">
+                    00
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- WORD COUNTER -->
+
+        <div class="tool">
+
+            <div class="tool-icon">📝</div>
+
+            <h2>Word Counter</h2>
+
+            <p class="tool-description">
+                Count words and characters in your text.
+            </p>
+
+            <div class="input-group">
+
+                <textarea
+                    id="wordText"
+                    placeholder="Type or paste your text here..."
+                    oninput="countWords()"
+                ></textarea>
+
+            </div>
+
+            <div
+                class="result"
+                id="wordResult"
+                style="display:block;"
+            >
+                Words: 0 | Characters: 0
+            </div>
+
+        </div>
+
+
+        <!-- GRADE CALCULATOR -->
+
+        <div class="tool">
+
+            <div class="tool-icon">🎓</div>
+
+            <h2>Grade Calculator</h2>
+
+            <p class="tool-description">
+                Find your grade from percentage.
+            </p>
+
+            <div class="input-group">
+
+                <label>Percentage</label>
+
+                <input
+                    type="number"
+                    id="gradePercentage"
+                    placeholder="e.g. 85"
+                >
+
+            </div>
+
+            <button
+                class="calculate-btn"
+                onclick="calculateGrade()"
+            >
+                Find Grade
+            </button>
+
+            <div
+                class="result"
+                id="gradeResult"
+            ></div>
+
+        </div>
+
+
+        <!-- NUMBER CONVERTER -->
+
+        <div class="tool">
+
+            <div class="tool-icon">🔄</div>
+
+            <h2>Number Converter</h2>
+
+            <p class="tool-description">
+                Convert decimal numbers into binary,
+                octal and hexadecimal.
+            </p>
+
+            <div class="input-group">
+
+                <label>Decimal Number</label>
+
+                <input
+                    type="number"
+                    id="decimalNumber"
+                    placeholder="e.g. 100"
+                >
+
+            </div>
+
+            <button
+                class="calculate-btn"
+                onclick="convertNumber()"
+            >
+                Convert
+            </button>
+
+            <div
+                class="converter-result"
+                id="converterResult"
+            ></div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        StudyHub Pakistan
+    </p>
+
+    <p>
+        Learn • Practice • Succeed
+    </p>
+
+    <p>
+        © 2026 StudyHub Pakistan
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   PERCENTAGE
+========================= */
+
+function calculatePercentage(){
+
+    let total =
+        Number(document.getElementById("totalMarks").value);
+
+    let obtained =
+        Number(document.getElementById("obtainedMarks").value);
+
+    let result =
+        document.getElementById("percentageResult");
+
+
+    if(total <= 0 || obtained < 0){
+
+        result.innerText =
+            "Please enter valid marks.";
+
+        result.style.display =
+            "block";
+
+        return;
+
+    }
+
+    if(obtained > total){
+
+        result.innerText =
+            "Obtained marks cannot be greater than total marks.";
+
+        result.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    let percentage =
+        (obtained / total) * 100;
+
+
+    result.innerText =
+        "Your Percentage: " +
+        percentage.toFixed(2) +
+        "%";
+
+    result.style.display =
+        "block";
+
+}
+
+
+/* =========================
+   AGE CALCULATOR
+========================= */
+
+function calculateAge(){
+
+    let birth =
+        document.getElementById("birthDate").value;
+
+    let result =
+        document.getElementById("ageResult");
+
+
+    if(birth === ""){
+
+        result.innerText =
+            "Please select your date of birth.";
+
+        result.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    let dob =
+        new Date(birth);
+
+    let today =
+        new Date();
+
+
+    if(dob > today){
+
+        result.innerText =
+            "Date of birth cannot be in the future.";
+
+        result.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    let years =
+        today.getFullYear() -
+        dob.getFullYear();
+
+    let months =
+        today.getMonth() -
+        dob.getMonth();
+
+    let days =
+        today.getDate() -
+        dob.getDate();
+
+
+    if(days < 0){
+
+        months--;
+
+        let previousMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                0
+            );
+
+        days +=
+            previousMonth.getDate();
+
+    }
+
+
+    if(months < 0){
+
+        years--;
+
+        months += 12;
+
+    }
+
+
+    result.innerText =
+        "Your Age: " +
+        years +
+        " Years, " +
+        months +
+        " Months, " +
+        days +
+        " Days";
+
+    result.style.display =
+        "block";
+
+}
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+function addCalculator(value){
+
+    document.getElementById("calcDisplay").value += value;
+
+}
+
+
+function clearCalculator(){
+
+    document.getElementById("calcDisplay").value = "";
+
+}
+
+
+function deleteNumber(){
+
+    let display =
+        document.getElementById("calcDisplay");
+
+    display.value =
+        display.value.slice(0,-1);
+
+}
+
+
+function calculateExpression(){
+
+    let display =
+        document.getElementById("calcDisplay");
+
+    let expression =
+        display.value;
+
+
+    if(expression === ""){
+
+        return;
+
+    }
+
+
+    try{
+
+        /*
+        Basic calculator only.
+        */
+
+        let result =
+            Function(
+                '"use strict";return (' +
+                expression +
+                ')'
+            )();
+
+
+        if(
+            typeof result !== "number" ||
+            !isFinite(result)
+        ){
+
+            throw new Error();
+
+        }
+
+
+        display.value =
+            result;
+
+    }catch(error){
+
+        display.value =
+            "Error";
+
+    }
+
+}
+
+
+/* =========================
+   WORD COUNTER
+========================= */
+
+function countWords(){
+
+    let text =
+        document.getElementById("wordText").value;
+
+    let words =
+        text.trim() === ""
+        ? 0
+        : text.trim().split(/\s+/).length;
+
+    let characters =
+        text.length;
+
+
+    document.getElementById("wordResult").innerText =
+        "Words: " +
+        words +
+        " | Characters: " +
+        characters;
+
+}
+
+
+/* =========================
+   GRADE
+========================= */
+
+function calculateGrade(){
+
+    let percentage =
+        Number(
+            document.getElementById("gradePercentage").value
+        );
+
+    let result =
+        document.getElementById("gradeResult");
+
+
+    if(
+        percentage < 0 ||
+        percentage > 100 ||
+        isNaN(percentage)
+    ){
+
+        result.innerText =
+            "Enter a percentage between 0 and 100.";
+
+        result.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    let grade;
+
+
+    if(percentage >= 90){
+
+        grade = "A+";
+
+    }else if(percentage >= 80){
+
+        grade = "A";
+
+    }else if(percentage >= 70){
+
+        grade = "B";
+
+    }else if(percentage >= 60){
+
+        grade = "C";
+
+    }else if(percentage >= 50){
+
+        grade = "D";
+
+    }else{
+
+        grade = "F";
+
+    }
+
+
+    result.innerText =
+        "Your Grade: " +
+        grade;
+
+    result.style.display =
+        "block";
+
+}
+
+
+/* =========================
+   NUMBER CONVERTER
+========================= */
+
+function convertNumber(){
+
+    let number =
+        Number(
+            document.getElementById("decimalNumber").value
+        );
+
+    let result =
+        document.getElementById("converterResult");
+
+
+    if(
+        document.getElementById("decimalNumber").value === "" ||
+        !Number.isInteger(number) ||
+        number < 0
+    ){
+
+        result.innerText =
+            "Please enter a positive whole number.";
+
+        result.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    result.innerHTML =
+        "Binary: " +
+        number.toString(2) +
+        "<br><br>" +
+
+        "Octal: " +
+        number.toString(8) +
+        "<br><br>" +
+
+        "Hexadecimal: " +
+        number.toString(16).toUpperCase();
+
+
+    result.style.display =
+        "block";
+
+}
+
+</script>
+
+
+</body>
+  </html>
