@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notes & Study Material - StudyHub Pakistan</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:65px;
+    background:white;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.navbar a{
+    text-decoration:none;
+    color:#333;
+    margin-left:15px;
+    font-size:14px;
+}
+
+.home-btn{
+    background:#2563eb;
+    color:white !important;
+    padding:10px 16px;
+    border-radius:7px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:65px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:16px;
+    opacity:.9;
+}
+
+/* MAIN */
+
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+/* FILTER */
+
+.filter-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+    margin-bottom:35px;
+}
+
+.filter-box h2{
+    font-size:20px;
+    margin-bottom:18px;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.filters select,
+.filters input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d9deea;
+    border-radius:7px;
+    outline:none;
+    background:white;
+}
+
+.search-btn{
+    background:#2563eb !important;
+    color:white;
+    border:0 !important;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* MATERIAL GRID */
+
+.material-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.material{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+    transition:.2s;
+}
+
+.material:hover{
+    transform:translateY(-4px);
+}
+
+.material-top{
+    height:120px;
+    background:#eff6ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+}
+
+.material-content{
+    padding:20px;
+}
+
+.tag{
+    display:inline-block;
+    background:#dbeafe;
+    color:#2563eb;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.material h2{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.subject{
+    color:#2563eb;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.material p{
+    color:#697386;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.download-btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:11px;
+    border-radius:7px;
+    margin-top:16px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* EMPTY */
+
+.no-results{
+    display:none;
+    text-align:center;
+    background:white;
+    padding:35px;
+    border-radius:10px;
+    color:#697386;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:40px;
+}
+
+footer p{
+    color:#aeb7c7;
+    font-size:13px;
+    margin:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .material-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .navbar a:not(.home-btn){
+        display:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Study<span>Hub</span> Pakistan
+    </div>
+
+    <div>
+        <a href="index.html" class="home-btn">
+            Home
+        </a>
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>📚 Notes & Study Material</h1>
+
+    <p>
+        Find notes and learning material for your class and subject.
+    </p>
+
+</section>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- FILTER -->
+
+    <div class="filter-box">
+
+        <h2>🔎 Find Your Study Material</h2>
+
+        <div class="filters">
+
+            <select id="classFilter">
+
+                <option value="">All Classes</option>
+
+                <option value="9th">9th Class</option>
+                <option value="10th">10th Class</option>
+                <option value="11th">11th Class</option>
+                <option value="12th">12th Class</option>
+
+                <option value="matric">Matric</option>
+                <option value="intermediate">Intermediate</option>
+
+                <option value="cit">CIT</option>
+                <option value="dit">DIT</option>
+
+                <option value="other">Other</option>
+
+            </select>
+
+
+            <select id="subjectFilter">
+
+                <option value="">All Subjects</option>
+
+                <option value="computer">Computer</option>
+                <option value="english">English</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="physics">Physics</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+
+                <option value="other">Other</option>
+
+            </select>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search material..."
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- MATERIAL -->
+
+    <div class="material-grid" id="materialGrid">
+
+
+        <!-- MATERIAL 1 -->
+
+        <div
+            class="material"
+            data-class="9th"
+            data-subject="computer"
+        >
+
+            <div class="material-top">
+                💻
+            </div>
+
+            <div class="material-content">
+
+                <span class="tag">
+                    9TH CLASS
+                </span>
+
+                <h2>
+                    Computer Fundamentals
+                </h2>
+
+                <div class="subject">
+                    Computer Science
+                </div>
+
+                <p>
+                    Computer basics, hardware,
+                    software and important concepts.
+                </p>
+
+                <a href="#" class="download-btn">
+                    📥 Download Notes
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATERIAL 2 -->
+
+        <div
+            class="material"
+            data-class="10th"
+            data-subject="mathematics"
+        >
+
+            <div class="material-top">
+                🧮
+            </div>
+
+            <div class="material-content">
+
+                <span class="tag">
+                    10TH CLASS
+                </span>
+
+                <h2>
+                    Mathematics Notes
+                </h2>
+
+                <div class="subject">
+                    Mathematics
+                </div>
+
+                <p>
+                    Important formulas, examples
+                    and exam preparation material.
+                </p>
+
+                <a href="#" class="download-btn">
+                    📥 Download Notes
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATERIAL 3 -->
+
+        <div
+            class="material"
+            data-class="11th"
+            data-subject="physics"
+        >
+
+            <div class="material-top">
+                ⚡
+            </div>
+
+            <div class="material-content">
+
+                <span class="tag">
+                    11TH CLASS
+                </span>
+
+                <h2>
+                    Physics Notes
+                </h2>
+
+                <div class="subject">
+                    Physics
+                </div>
+
+                <p>
+                    Important physics concepts,
+                    formulas and study material.
+                </p>
+
+                <a href="#" class="download-btn">
+                    📥 Download Notes
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATERIAL 4 -->
+
+        <div
+            class="material"
+            data-class="12th"
+            data-subject="chemistry"
+        >
+
+            <div class="material-top">
+                🧪
+            </div>
+
+            <div class="material-content">
+
+                <span class="tag">
+                    12TH CLASS
+                </span>
+
+                <h2>
+                    Chemistry Notes
+                </h2>
+
+                <div class="subject">
+                    Chemistry
+                </div>
+
+                <p>
+                    Chapters, reactions and
+                    important examination material.
+                </p>
+
+                <a href="#" class="download-btn">
+                    📥 Download Notes
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATERIAL 5 -->
+
+        <div
+            class="material"
+            data-class="cit"
+            data-subject="computer"
+        >
+
+            <div class="material-top">
+                🖥️
+            </div>
+
+            <div class="material-content">
+
+                <span class="tag">
+                    CIT
+                </span>
+
+                <h2>
+                    Computer Course Material
+                </h2>
+
+                <div class="subject">
+                    Computer
+                </div>
+
+                <p>
+                    CIT theory, practicals and
+                    examination preparation material.
+                </p>
+
+                <a href="#" class="download-btn">
+                    📥 Download Notes
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATERIAL 6 -->
+
+        <div
+            class="material"
+            data-class="other"
+            data-subject="other"
+        >
+
+            <div class="material-top">
+                📖
+            </div>
+
+            <div class="material-content">
+
+                <span class="tag">
+                    OTHER
+                </span>
+
+                <h2>
+                    General Study Material
+                </h2>
+
+                <div class="subject">
+                    Other
+                </div>
+
+                <p>
+                    Useful educational material
+                    for different classes and subjects.
+                </p>
+
+                <a href="#" class="download-btn">
+                    📥 Download Material
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="no-results" id="noResults">
+
+        <h2>No Material Found</h2>
+
+        <p>
+            Try another class, subject or search term.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        StudyHub Pakistan
+    </p>
+
+    <p>
+        Learn • Practice • Succeed
+    </p>
+
+    <p>
+        © 2026 StudyHub Pakistan
+    </p>
+
+</footer>
+
+
+<script>
+
+function filterMaterial(){
+
+    let selectedClass =
+        document.getElementById("classFilter").value.toLowerCase();
+
+    let selectedSubject =
+        document.getElementById("subjectFilter").value.toLowerCase();
+
+    let search =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    let materials =
+        document.querySelectorAll(".material");
+
+    let found = 0;
+
+    materials.forEach(function(material){
+
+        let materialClass =
+            material.dataset.class.toLowerCase();
+
+        let materialSubject =
+            material.dataset.subject.toLowerCase();
+
+        let materialText =
+            material.innerText.toLowerCase();
+
+        let classMatch =
+            selectedClass === "" ||
+            materialClass === selectedClass;
+
+        let subjectMatch =
+            selectedSubject === "" ||
+            materialSubject === selectedSubject;
+
+        let searchMatch =
+            search === "" ||
+            materialText.includes(search);
+
+        if(
+            classMatch &&
+            subjectMatch &&
+            searchMatch
+        ){
+
+            material.style.display = "block";
+
+            found++;
+
+        }else{
+
+            material.style.display = "none";
+
+        }
+
+    });
+
+
+    if(found === 0){
+
+        document.getElementById("noResults").style.display = "block";
+
+    }else{
+
+        document.getElementById("noResults").style.display = "none";
+
+    }
+
+}
+
+
+document
+.getElementById("classFilter")
+.addEventListener("change",filterMaterial);
+
+document
+.getElementById("subjectFilter")
+.addEventListener("change",filterMaterial);
+
+document
+.getElementById("searchInput")
+.addEventListener("keyup",filterMaterial);
+
+</script>
+
+
+</body>
+                  </html>
