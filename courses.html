@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Courses - StudyHub Pakistan</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:white;
+    height:65px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.navbar a{
+    text-decoration:none;
+    color:#333;
+    margin-left:18px;
+    font-size:14px;
+}
+
+.home-btn{
+    background:#2563eb;
+    color:white !important;
+    padding:10px 16px;
+    border-radius:7px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:65px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:16px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+/* SEARCH */
+
+.search{
+    background:white;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+    display:flex;
+    margin-bottom:40px;
+}
+
+.search input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:13px;
+    font-size:15px;
+}
+
+.search button{
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:0 22px;
+    border-radius:7px;
+    font-weight:bold;
+}
+
+/* COURSES */
+
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.course{
+    background:white;
+    border-radius:13px;
+    overflow:hidden;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+    transition:.2s;
+}
+
+.course:hover{
+    transform:translateY(-5px);
+}
+
+.course-icon{
+    height:150px;
+    background:#eff6ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+}
+
+.course-content{
+    padding:22px;
+}
+
+.badge{
+    display:inline-block;
+    background:#dcfce7;
+    color:#15803d;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.course h2{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.course p{
+    color:#697386;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.course-btn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:11px;
+    margin-top:18px;
+    border-radius:7px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:30px;
+}
+
+footer p{
+    color:#aeb7c7;
+    font-size:13px;
+    margin:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .course-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .navbar a:not(.home-btn){
+        display:none;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Study<span>Hub</span> Pakistan
+    </div>
+
+    <div>
+        <a href="index.html" class="home-btn">
+            Home
+        </a>
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>📚 Our Courses</h1>
+
+    <p>
+        Learn computer skills from beginner to advanced level.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+    <div class="search">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search courses..."
+            onkeyup="searchCourses()"
+        >
+
+        <button>
+            Search
+        </button>
+
+    </div>
+
+
+    <div class="course-grid" id="courseGrid">
+
+
+        <!-- HTML -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                🌐
+            </div>
+
+            <div class="course-content">
+
+                <span class="badge">
+                    BEGINNER
+                </span>
+
+                <h2>HTML & CSS</h2>
+
+                <p>
+                    Learn how to create websites using
+                    HTML and CSS from the beginning.
+                </p>
+
+                <a href="#" class="course-btn">
+                    Start Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- C++ -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                💻
+            </div>
+
+            <div class="course-content">
+
+                <span class="badge">
+                    BEGINNER
+                </span>
+
+                <h2>C++ Programming</h2>
+
+                <p>
+                    Learn programming fundamentals,
+                    variables, loops, arrays and functions.
+                </p>
+
+                <a href="#" class="course-btn">
+                    Start Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- JAVASCRIPT -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                ⚡
+            </div>
+
+            <div class="course-content">
+
+                <span class="badge">
+                    BEGINNER
+                </span>
+
+                <h2>JavaScript</h2>
+
+                <p>
+                    Learn JavaScript and make your
+                    websites interactive.
+                </p>
+
+                <a href="#" class="course-btn">
+                    Start Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPUTER BASICS -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                🖥️
+            </div>
+
+            <div class="course-content">
+
+                <span class="badge">
+                    BASIC
+                </span>
+
+                <h2>Computer Basics</h2>
+
+                <p>
+                    Learn computer fundamentals,
+                    hardware, software and operating systems.
+                </p>
+
+                <a href="#" class="course-btn">
+                    Start Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MS OFFICE -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                📊
+            </div>
+
+            <div class="course-content">
+
+                <span class="badge">
+                    BEGINNER
+                </span>
+
+                <h2>MS Office</h2>
+
+                <p>
+                    Learn Word, Excel and PowerPoint
+                    for everyday computer work.
+                </p>
+
+                <a href="#" class="course-btn">
+                    Start Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- WEB DEVELOPMENT -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                🚀
+            </div>
+
+            <div class="course-content">
+
+                <span class="badge">
+                    INTERMEDIATE
+                </span>
+
+                <h2>Web Development</h2>
+
+                <p>
+                    Learn how websites work and build
+                    complete web projects.
+                </p>
+
+                <a href="#" class="course-btn">
+                    Start Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        StudyHub Pakistan
+    </p>
+
+    <p>
+        Learn • Practice • Succeed
+    </p>
+
+    <p>
+        © 2026 StudyHub Pakistan
+    </p>
+
+</footer>
+
+
+<script>
+
+function searchCourses(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let courses =
+        document.querySelectorAll(".course");
+
+    courses.forEach(function(course){
+
+        let text =
+            course.innerText.toLowerCase();
+
+        if(text.includes(input)){
+
+            course.style.display = "block";
+
+        }else{
+
+            course.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
