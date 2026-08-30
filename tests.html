@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Online Tests - StudyHub Pakistan</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:65px;
+    background:white;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.home-btn{
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:10px 17px;
+    border-radius:7px;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:65px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    font-size:16px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+/* TEST SELECTOR */
+
+.test-selector{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+    margin-bottom:25px;
+}
+
+.test-selector h2{
+    margin-bottom:18px;
+}
+
+.test-selector select{
+    width:100%;
+    padding:13px;
+    border:1px solid #d9deea;
+    border-radius:7px;
+    outline:none;
+    font-size:14px;
+}
+
+.start-btn{
+    width:100%;
+    margin-top:15px;
+    padding:13px;
+    border:0;
+    border-radius:7px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* TEST BOX */
+
+.test-box{
+    display:none;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+/* PROGRESS */
+
+.progress-area{
+    margin-bottom:25px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#697386;
+    margin-bottom:8px;
+}
+
+.progress{
+    height:8px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    transition:.3s;
+}
+
+/* QUESTION */
+
+.question-number{
+    color:#2563eb;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.question{
+    font-size:22px;
+    line-height:1.5;
+    margin-bottom:25px;
+}
+
+/* OPTIONS */
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    border:1px solid #d9deea;
+    padding:15px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+    background:white;
+}
+
+.option:hover{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+.option.selected{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+.option.correct{
+    border-color:#16a34a;
+    background:#dcfce7;
+}
+
+.option.wrong{
+    border-color:#dc2626;
+    background:#fee2e2;
+}
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:25px;
+}
+
+.prev-btn,
+.next-btn{
+    border:0;
+    padding:12px 22px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.prev-btn{
+    background:#e5e7eb;
+    color:#333;
+}
+
+.next-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.prev-btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+/* RESULT */
+
+.result{
+    display:none;
+    background:white;
+    text-align:center;
+    padding:40px 25px;
+    border-radius:12px;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+.result-icon{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+.result h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.score{
+    font-size:45px;
+    color:#2563eb;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.result p{
+    color:#697386;
+    margin-bottom:20px;
+}
+
+.restart-btn{
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:13px 25px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+    margin-top:45px;
+}
+
+footer p{
+    color:#aeb7c7;
+    font-size:13px;
+    margin:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .question{
+        font-size:19px;
+    }
+
+    .test-box{
+        padding:20px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .prev-btn,
+    .next-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Study<span>Hub</span> Pakistan
+    </div>
+
+    <a href="index.html" class="home-btn">
+        Home
+    </a>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>🧪 Online Tests</h1>
+
+    <p>
+        Test your knowledge and improve your skills.
+    </p>
+
+</section>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- TEST SELECTOR -->
+
+    <div class="test-selector" id="testSelector">
+
+        <h2>🎯 Choose a Test</h2>
+
+        <select id="testSelect">
+
+            <option value="computer">
+                Computer Basics
+            </option>
+
+            <option value="cpp">
+                C++ Programming
+            </option>
+
+            <option value="html">
+                HTML & CSS
+            </option>
+
+        </select>
+
+        <button
+            class="start-btn"
+            onclick="startTest()"
+        >
+            Start Test
+        </button>
+
+    </div>
+
+
+    <!-- TEST -->
+
+    <div class="test-box" id="testBox">
+
+        <div class="progress-area">
+
+            <div class="progress-info">
+
+                <span id="questionCounter">
+                    Question 1 of 10
+                </span>
+
+                <span id="percent">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-number" id="questionNumber">
+            QUESTION 1
+        </div>
+
+
+        <div class="question" id="questionText">
+            Question
+        </div>
+
+
+        <div class="options" id="options">
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="prev-btn"
+                id="prevBtn"
+                onclick="previousQuestion()"
+            >
+                ← Previous
+            </button>
+
+            <button
+                class="next-btn"
+                id="nextBtn"
+                onclick="nextQuestion()"
+            >
+                Next →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div class="result" id="result">
+
+        <div class="result-icon">
+            🏆
+        </div>
+
+        <h2>Test Completed!</h2>
+
+        <div class="score" id="score">
+            0/10
+        </div>
+
+        <p id="resultText">
+            Your result will appear here.
+        </p>
+
+        <button
+            class="restart-btn"
+            onclick="restartTest()"
+        >
+            🔄 Try Again
+        </button>
+
+    </div>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        StudyHub Pakistan
+    </p>
+
+    <p>
+        Learn • Practice • Succeed
+    </p>
+
+    <p>
+        © 2026 StudyHub Pakistan
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   TEST QUESTIONS
+========================= */
+
+const tests = {
+
+    computer: [
+
+        {
+            question:"What does CPU stand for?",
+            options:[
+                "Central Processing Unit",
+                "Computer Personal Unit",
+                "Central Program Utility",
+                "Computer Processing Utility"
+            ],
+            answer:0
+        },
+
+        {
+            question:"Which device is used to type text?",
+            options:[
+                "Monitor",
+                "Keyboard",
+                "Speaker",
+                "Printer"
+            ],
+            answer:1
+        },
+
+        {
+            question:"Which one is an input device?",
+            options:[
+                "Monitor",
+                "Printer",
+                "Keyboard",
+                "Speaker"
+            ],
+            answer:2
+        },
+
+        {
+            question:"What is the brain of the computer?",
+            options:[
+                "RAM",
+                "Hard Disk",
+                "CPU",
+                "Monitor"
+            ],
+            answer:2
+        },
+
+        {
+            question:"Which memory is temporary?",
+            options:[
+                "ROM",
+                "RAM",
+                "Hard Disk",
+                "DVD"
+            ],
+            answer:1
+        }
+
+    ],
+
+
+    cpp: [
+
+        {
+            question:"Which language is C++ based on?",
+            options:[
+                "C",
+                "Java",
+                "Python",
+                "HTML"
+            ],
+            answer:0
+        },
+
+        {
+            question:"Which symbol is used to end a C++ statement?",
+            options:[
+                ".",
+                ":",
+                ";",
+                ","
+            ],
+            answer:2
+        },
+
+        {
+            question:"Which function is the starting point of a C++ program?",
+            options:[
+                "start()",
+                "main()",
+                "run()",
+                "begin()"
+            ],
+            answer:1
+        },
+
+        {
+            question:"Which data type is used for whole numbers?",
+            options:[
+                "float",
+                "char",
+                "int",
+                "string"
+            ],
+            answer:2
+        },
+
+        {
+            question:"Which symbol is used for single-line comments in C++?",
+            options:[
+                "//",
+                "##",
+                "<!--",
+                "**"
+            ],
+            answer:0
+        }
+
+    ],
+
+
+    html: [
+
+        {
+            question:"What does HTML stand for?",
+            options:[
+                "Hyper Text Markup Language",
+                "High Text Machine Language",
+                "Hyperlink Text Management Language",
+                "Home Tool Markup Language"
+            ],
+            answer:0
+        },
+
+        {
+            question:"Which tag is used for the largest heading?",
+            options:[
+                "<h6>",
+                "<heading>",
+                "<h1>",
+                "<head>"
+            ],
+            answer:2
+        },
+
+        {
+            question:"Which tag is used to create a paragraph?",
+            options:[
+                "<p>",
+                "<para>",
+                "<text>",
+                "<paragraph>"
+            ],
+            answer:0
+        },
+
+        {
+            question:"Which language is mainly used for webpage styling?",
+            options:[
+                "HTML",
+                "CSS",
+                "C++",
+                "SQL"
+            ],
+            answer:1
+        },
+
+        {
+            question:"Which tag is used to create a link?",
+            options:[
+                "<link>",
+                "<a>",
+                "<url>",
+                "<href>"
+            ],
+            answer:1
+        }
+
+    ]
+
+};
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentTest = [];
+
+let currentQuestion = 0;
+
+let userAnswers = [];
+
+let score = 0;
+
+
+/* =========================
+   START TEST
+========================= */
+
+function startTest(){
+
+    let selected =
+        document.getElementById("testSelect").value;
+
+    currentTest = tests[selected];
+
+    currentQuestion = 0;
+
+    userAnswers =
+        new Array(currentTest.length).fill(null);
+
+    score = 0;
+
+    document.getElementById("testSelector").style.display =
+        "none";
+
+    document.getElementById("testBox").style.display =
+        "block";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    showQuestion();
+
+}
+
+
+/* =========================
+   SHOW QUESTION
+========================= */
+
+function showQuestion(){
+
+    let q = currentTest[currentQuestion];
+
+    document.getElementById("questionNumber").innerText =
+        "QUESTION " + (currentQuestion + 1);
+
+    document.getElementById("questionCounter").innerText =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        currentTest.length;
+
+    document.getElementById("questionText").innerText =
+        q.question;
+
+
+    let percent =
+        Math.round(
+            ((currentQuestion + 1) /
+            currentTest.length) * 100
+        );
+
+    document.getElementById("percent").innerText =
+        percent + "%";
+
+    document.getElementById("progressBar").style.width =
+        percent + "%";
+
+
+    let optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+
+    q.options.forEach(function(option,index){
+
+        let div =
+            document.createElement("div");
+
+        div.className = "option";
+
+        div.innerText =
+            option;
+
+
+        if(userAnswers[currentQuestion] === index){
+
+            div.classList.add("selected");
+
+        }
+
+
+        div.onclick = function(){
+
+            selectOption(index);
+
+        };
+
+
+        optionsContainer.appendChild(div);
+
+    });
+
+
+    document.getElementById("prevBtn").disabled =
+        currentQuestion === 0;
+
+
+    if(currentQuestion === currentTest.length - 1){
+
+        document.getElementById("nextBtn").innerText =
+            "Finish Test ✓";
+
+    }else{
+
+        document.getElementById("nextBtn").innerText =
+            "Next →";
+
+    }
+
+}
+
+
+/* =========================
+   SELECT OPTION
+========================= */
+
+function selectOption(index){
+
+    userAnswers[currentQuestion] = index;
+
+    let options =
+        document.querySelectorAll(".option");
+
+    options.forEach(function(option,i){
+
+        option.classList.remove("selected");
+
+        if(i === index){
+
+            option.classList.add("selected");
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   NEXT QUESTION
+========================= */
+
+function nextQuestion(){
+
+    if(
+        userAnswers[currentQuestion] === null
+    ){
+
+        alert("Please select an answer first.");
+
+        return;
+
+    }
+
+
+    if(
+        currentQuestion <
+        currentTest.length - 1
+    ){
+
+        currentQuestion++;
+
+        showQuestion();
+
+    }else{
+
+        finishTest();
+
+    }
+
+}
+
+
+/* =========================
+   PREVIOUS QUESTION
+========================= */
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =========================
+   FINISH TEST
+========================= */
+
+function finishTest(){
+
+    score = 0;
+
+
+    currentTest.forEach(function(question,index){
+
+        if(
+            userAnswers[index] ===
+            question.answer
+        ){
+
+            score++;
+
+        }
+
+    });
+
+
+    let total =
+        currentTest.length;
+
+    let percentage =
+        Math.round(
+            (score / total) * 100
+        );
+
+
+    document.getElementById("testBox").style.display =
+        "none";
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    document.getElementById("score").innerText =
+        score + "/" + total;
+
+
+    let message = "";
+
+
+    if(percentage >= 80){
+
+        message =
+            "Excellent! 🎉 You have a great understanding.";
+
+    }else if(percentage >= 60){
+
+        message =
+            "Good job! 👍 Keep practicing to improve.";
+
+    }else if(percentage >= 40){
+
+        message =
+            "Not bad! 📚 More practice will help you.";
+
+    }else{
+
+        message =
+            "Keep learning! 💪 Try the test again.";
+
+    }
+
+
+    document.getElementById("resultText").innerText =
+        "You scored " +
+        percentage +
+        "%. " +
+        message;
+
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+function restartTest(){
+
+    document.getElementById("result").style.display =
+        "none";
+
+    document.getElementById("testSelector").style.display =
+        "block";
+
+    document.getElementById("testBox").style.display =
+        "none";
+
+}
+
+</script>
+
+
+</body>
+  </html>
