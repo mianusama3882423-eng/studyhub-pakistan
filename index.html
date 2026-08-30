@@ -1,288 +1,1145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyHub Pakistan</title>
+<title>StudyHub Pakistan</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-        body {
-            background: #f5f7fb;
-            color: #222;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        header {
-            background: #ffffff;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
+/* NAVBAR */
+.navbar{
+    background:#ffffff;
+    height:65px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
 
-        .logo span {
-            color: #2563eb;
-        }
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    color:#172033;
+}
 
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin-left: 15px;
-            font-size: 14px;
-        }
+.logo span{
+    color:#2563eb;
+}
 
-        .hero {
-            text-align: center;
-            padding: 70px 20px;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: white;
-        }
+.menu{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
 
-        .hero h1 {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
+.menu a{
+    text-decoration:none;
+    color:#333;
+    font-size:14px;
+    font-weight:500;
+}
 
-        .hero p {
-            font-size: 17px;
-            max-width: 600px;
-            margin: auto;
-            line-height: 1.6;
-        }
+.menu a:hover{
+    color:#2563eb;
+}
 
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 13px 25px;
-            background: white;
-            color: #2563eb;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
+.login-btn{
+    background:#2563eb;
+    color:white !important;
+    padding:10px 18px;
+    border-radius:7px;
+}
 
-        .section {
-            padding: 45px 20px;
-            max-width: 1100px;
-            margin: auto;
-        }
+/* HERO */
+.hero{
+    min-height:470px;
+    padding:75px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    background:linear-gradient(135deg,#eff6ff,#f5f3ff);
+}
 
-        .section h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
+.hero-text{
+    max-width:650px;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+.badge{
+    display:inline-block;
+    background:#dbeafe;
+    color:#2563eb;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-        }
+.hero h1{
+    font-size:48px;
+    line-height:1.15;
+    margin-bottom:18px;
+}
 
-        .card .icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
+.hero h1 span{
+    color:#2563eb;
+}
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+.hero p{
+    color:#5d6678;
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
 
-        .card p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.5;
-        }
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
 
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 30px;
-        }
+.primary-btn,
+.secondary-btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:8px;
+    font-weight:bold;
+}
 
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 30px;
-            }
+.primary-btn{
+    background:#2563eb;
+    color:white;
+}
 
-            nav a {
-                margin-left: 8px;
-                font-size: 12px;
-            }
-        }
-    </style>
+.secondary-btn{
+    background:white;
+    color:#2563eb;
+    border:1px solid #d5dbe7;
+}
+
+.hero-box{
+    width:330px;
+    min-height:300px;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 35px rgba(37,99,235,.15);
+}
+
+.hero-box h2{
+    margin-bottom:20px;
+}
+
+.study-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    margin-bottom:10px;
+    background:#f5f7fb;
+    border-radius:9px;
+}
+
+.study-icon{
+    font-size:25px;
+}
+
+/* SEARCH */
+.search-area{
+    max-width:900px;
+    margin:-28px auto 0;
+    padding:0 20px;
+    position:relative;
+}
+
+.search-box{
+    background:white;
+    padding:10px;
+    border-radius:12px;
+    box-shadow:0 5px 25px rgba(0,0,0,.1);
+    display:flex;
+}
+
+.search-box input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:14px;
+    font-size:15px;
+}
+
+.search-box button{
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:0 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* SECTIONS */
+.section{
+    max-width:1150px;
+    margin:auto;
+    padding:65px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:#697386;
+}
+
+/* CATEGORIES */
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.category{
+    background:white;
+    padding:25px 15px;
+    border-radius:12px;
+    text-align:center;
+    text-decoration:none;
+    color:#172033;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-4px);
+}
+
+.category-icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.category h3{
+    margin-bottom:7px;
+}
+
+.category p{
+    color:#737b8c;
+    font-size:13px;
+}
+
+/* COURSES */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:13px;
+    overflow:hidden;
+    box-shadow:0 3px 15px rgba(0,0,0,.07);
+}
+
+.card-top{
+    height:130px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+    font-size:55px;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.level{
+    display:inline-block;
+    background:#dcfce7;
+    color:#15803d;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#697386;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.card-btn{
+    display:block;
+    text-align:center;
+    margin-top:17px;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:7px;
+    font-size:14px;
+}
+
+/* STATS */
+.stats{
+    background:#172033;
+    color:white;
+}
+
+.stats-container{
+    max-width:1000px;
+    margin:auto;
+    padding:45px 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    text-align:center;
+}
+
+.stat h2{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.stat p{
+    color:#b9c1d0;
+    font-size:13px;
+}
+
+/* NOTES */
+.notes{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.note{
+    background:white;
+    padding:22px;
+    border-radius:12px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.note-icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.note h3{
+    margin-bottom:8px;
+}
+
+.note p{
+    color:#697386;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.note a{
+    display:inline-block;
+    margin-top:15px;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:13px;
+}
+
+/* TOOLS */
+.tools{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.tool{
+    background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:10px;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
+.tool-icon{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.tool h3{
+    font-size:16px;
+}
+
+.tool p{
+    color:#777;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* CTA */
+.cta{
+    margin:0 20px 60px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    border-radius:18px;
+    text-align:center;
+    padding:50px 20px;
+}
+
+.cta h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.cta p{
+    margin-bottom:20px;
+    opacity:.9;
+}
+
+/* FOOTER */
+footer{
+    background:#0f172a;
+    color:white;
+    padding:45px 6% 20px;
+}
+
+.footer-grid{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:35px;
+}
+
+.footer-logo{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.footer-logo span{
+    color:#60a5fa;
+}
+
+footer p{
+    color:#aeb7c7;
+    font-size:13px;
+    line-height:1.6;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer a{
+    display:block;
+    color:#aeb7c7;
+    text-decoration:none;
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.copyright{
+    max-width:1100px;
+    margin:35px auto 0;
+    padding-top:20px;
+    border-top:1px solid #293348;
+    text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    .menu{
+        gap:10px;
+    }
+
+    .menu a:not(.login-btn){
+        display:none;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:55px 20px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-box{
+        width:100%;
+        max-width:380px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .stats-container{
+        grid-template-columns:repeat(2,1fr);
+        gap:30px;
+    }
+
+    .notes{
+        grid-template-columns:1fr;
+    }
+
+    .tools{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:450px){
+
+    .logo{
+        font-size:18px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .categories{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-box button{
+        padding:0 14px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<!-- NAVBAR -->
+
+<header class="navbar">
 
     <div class="logo">
         Study<span>Hub</span> Pakistan
     </div>
 
-    <nav>
+    <nav class="menu">
         <a href="#">Home</a>
         <a href="#courses">Courses</a>
         <a href="#notes">Notes</a>
+        <a href="#tools">Tools</a>
+        <a href="#" class="login-btn">Login</a>
     </nav>
 
 </header>
 
 
+<!-- HERO -->
+
 <section class="hero">
 
-    <h1>Welcome to StudyHub Pakistan</h1>
+    <div class="hero-text">
+
+        <div class="badge">
+            🇵🇰 Made for Pakistani Students
+        </div>
+
+        <h1>
+            Learn Today.<br>
+            <span>Build Your Future.</span>
+        </h1>
+
+        <p>
+            StudyHub Pakistan is your simple learning platform
+            for courses, notes, practicals, online tests and
+            useful student tools.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#courses" class="primary-btn">
+                Explore Courses
+            </a>
+
+            <a href="#notes" class="secondary-btn">
+                View Notes
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-box">
+
+        <h2>📚 Start Learning</h2>
+
+        <div class="study-item">
+            <div class="study-icon">💻</div>
+            <div>Computer Courses</div>
+        </div>
+
+        <div class="study-item">
+            <div class="study-icon">📝</div>
+            <div>Study Notes</div>
+        </div>
+
+        <div class="study-item">
+            <div class="study-icon">🧪</div>
+            <div>Online Tests</div>
+        </div>
+
+        <div class="study-item">
+            <div class="study-icon">🛠️</div>
+            <div>Student Tools</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-area">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search courses, notes, practicals..."
+        >
+
+        <button onclick="searchSite()">
+            Search
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>Explore Categories</h2>
+
+        <p>
+            Find the learning material you need
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+        <a href="#courses" class="category">
+            <div class="category-icon">💻</div>
+            <h3>Computer</h3>
+            <p>Programming & IT</p>
+        </a>
+
+        <a href="#notes" class="category">
+            <div class="category-icon">📚</div>
+            <h3>Notes</h3>
+            <p>Study Material</p>
+        </a>
+
+        <a href="#courses" class="category">
+            <div class="category-icon">🧪</div>
+            <h3>Practicals</h3>
+            <p>Programs & Labs</p>
+        </a>
+
+        <a href="#tests" class="category">
+            <div class="category-icon">🎯</div>
+            <h3>Tests</h3>
+            <p>MCQs & Quizzes</p>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- COURSES -->
+
+<section class="section" id="courses">
+
+    <div class="section-title">
+
+        <h2>Popular Courses</h2>
+
+        <p>
+            Start learning useful computer skills
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-top">🌐</div>
+
+            <div class="card-content">
+
+                <span class="level">BEGINNER</span>
+
+                <h3>HTML & CSS</h3>
+
+                <p>
+                    Learn how to create beautiful
+                    websites from scratch.
+                </p>
+
+                <a href="#" class="card-btn">
+                    View Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-top">💻</div>
+
+            <div class="card-content">
+
+                <span class="level">BEGINNER</span>
+
+                <h3>C++ Programming</h3>
+
+                <p>
+                    Learn programming fundamentals
+                    and create useful programs.
+                </p>
+
+                <a href="#" class="card-btn">
+                    View Course
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-top">⚡</div>
+
+            <div class="card-content">
+
+                <span class="level">BEGINNER</span>
+
+                <h3>JavaScript</h3>
+
+                <p>
+                    Make your websites interactive
+                    with JavaScript.
+                </p>
+
+                <a href="#" class="card-btn">
+                    View Course
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+    <div class="stats-container">
+
+        <div class="stat">
+            <h2>100+</h2>
+            <p>Lessons</p>
+        </div>
+
+        <div class="stat">
+            <h2>500+</h2>
+            <p>MCQs</p>
+        </div>
+
+        <div class="stat">
+            <h2>50+</h2>
+            <p>Practicals</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Learning</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTES -->
+
+<section class="section" id="notes">
+
+    <div class="section-title">
+
+        <h2>Latest Study Material</h2>
+
+        <p>
+            Notes and practical material for students
+        </p>
+
+    </div>
+
+
+    <div class="notes">
+
+        <div class="note">
+
+            <div class="note-icon">📘</div>
+
+            <h3>CIT Computer Notes</h3>
+
+            <p>
+                Important computer fundamentals,
+                theory and exam preparation notes.
+            </p>
+
+            <a href="#">Read Notes →</a>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-icon">💻</div>
+
+            <h3>C++ Practicals</h3>
+
+            <p>
+                Easy C++ programs with explanations
+                for practical preparation.
+            </p>
+
+            <a href="#">View Practicals →</a>
+
+        </div>
+
+
+        <div class="note">
+
+            <div class="note-icon">📝</div>
+
+            <h3>Computer MCQs</h3>
+
+            <p>
+                Practice important computer science
+                multiple-choice questions.
+            </p>
+
+            <a href="#">Start Test →</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TOOLS -->
+
+<section class="section" id="tools">
+
+    <div class="section-title">
+
+        <h2>Student Tools</h2>
+
+        <p>
+            Useful tools for everyday study
+        </p>
+
+    </div>
+
+
+    <div class="tools">
+
+        <div class="tool">
+            <div class="tool-icon">🧮</div>
+            <h3>Percentage</h3>
+            <p>Calculate percentage</p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">🔢</div>
+            <h3>Calculator</h3>
+            <p>Quick calculations</p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">📅</div>
+            <h3>Age Calculator</h3>
+            <p>Calculate your age</p>
+        </div>
+
+        <div class="tool">
+            <div class="tool-icon">📄</div>
+            <h3>Word Counter</h3>
+            <p>Count your words</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTS -->
+
+<section class="section" id="tests">
+
+    <div class="section-title">
+
+        <h2>Online Tests</h2>
+
+        <p>
+            Test your knowledge and improve your skills
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-top">🎯</div>
+
+            <div class="card-content">
+
+                <span class="level">10 QUESTIONS</span>
+
+                <h3>Computer Basics</h3>
+
+                <p>
+                    Test your basic computer knowledge.
+                </p>
+
+                <a href="#" class="card-btn">
+                    Start Test
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-top">💻</div>
+
+            <div class="card-content">
+
+                <span class="level">10 QUESTIONS</span>
+
+                <h3>C++ Basics</h3>
+
+                <p>
+                    Check your C++ programming knowledge.
+                </p>
+
+                <a href="#" class="card-btn">
+                    Start Test
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-top">🌐</div>
+
+            <div class="card-content">
+
+                <span class="level">10 QUESTIONS</span>
+
+                <h3>HTML Basics</h3>
+
+                <p>
+                    Test your HTML knowledge.
+                </p>
+
+                <a href="#" class="card-btn">
+                    Start Test
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <h2>Ready to Start Learning?</h2>
 
     <p>
-        Learn Computer Skills, Get Notes, Practice Programs
-        and Test Your Knowledge — All in One Place.
+        Explore courses, notes and practicals today.
     </p>
 
-    <a href="#courses" class="btn">
+    <a href="#courses" class="primary-btn">
         Start Learning
     </a>
 
 </section>
 
 
-<section class="section" id="courses">
-
-    <h2>Our Learning Sections</h2>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="icon">📚</div>
-
-            <h3>Courses</h3>
-
-            <p>
-                Learn HTML, CSS, C++, JavaScript
-                and other computer skills.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">📝</div>
-
-            <h3>Notes</h3>
-
-            <p>
-                Get useful educational notes
-                and study material.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">💻</div>
-
-            <h3>Practicals</h3>
-
-            <p>
-                Practice programming examples
-                and CIT practicals.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">🧪</div>
-
-            <h3>Online Tests</h3>
-
-            <p>
-                Test your knowledge with
-                online quizzes and MCQs.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="section" id="notes">
-
-    <h2>Why StudyHub Pakistan?</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="icon">🎓</div>
-            <h3>For Students</h3>
-            <p>
-                Simple and useful learning material
-                for Pakistani students.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="icon">📱</div>
-            <h3>Mobile Friendly</h3>
-            <p>
-                Website mobile, tablet and
-                computer sab par chalegi.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🚀</div>
-            <h3>Learn & Grow</h3>
-            <p>
-                Improve your computer skills
-                and build your future.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
+<!-- FOOTER -->
 
 <footer>
 
-    <p>© 2026 StudyHub Pakistan</p>
+    <div class="footer-grid">
 
-    <p>Learn • Practice • Succeed</p>
+        <div>
+
+            <div class="footer-logo">
+                Study<span>Hub</span> Pakistan
+            </div>
+
+            <p>
+                A learning platform designed to help
+                Pakistani students learn, practice and grow.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <a href="#">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#notes">Notes</a>
+            <a href="#tools">Tools</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Learning</h3>
+
+            <a href="#">Practicals</a>
+            <a href="#tests">Online Tests</a>
+            <a href="#">Downloads</a>
+            <a href="#">Login</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        <p>
+            © 2026 StudyHub Pakistan. All rights reserved.
+        </p>
+
+    </div>
 
 </footer>
 
+
+<script>
+
+function searchSite(){
+
+    let input =
+        document.getElementById("searchInput").value.trim();
+
+    if(input === ""){
+
+        alert("Please enter something to search.");
+
+        return;
+    }
+
+    alert(
+        "Search system will be connected to the database soon.\n\nYou searched for: "
+        + input
+    );
+}
+
+</script>
+
 </body>
-          </html>
+    </html>
