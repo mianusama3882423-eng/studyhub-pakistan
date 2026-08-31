@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>StudyHub Pakistan</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -28,10 +23,8 @@ body{
     color:#172033;
 }
 
-/* NAVBAR */
-
 .navbar{
-    background:#ffffff;
+    background:white;
     height:65px;
     padding:0 6%;
     display:flex;
@@ -46,7 +39,6 @@ body{
 .logo{
     font-size:22px;
     font-weight:bold;
-    color:#172033;
 }
 
 .logo span{
@@ -55,29 +47,35 @@ body{
 
 .menu{
     display:flex;
-    gap:25px;
+    gap:12px;
     align-items:center;
 }
 
-.menu a{
+.menu a,
+.menu button{
+    border:0;
+    background:none;
     text-decoration:none;
     color:#333;
     font-size:14px;
     font-weight:500;
-}
-
-.menu a:hover{
-    color:#2563eb;
+    cursor:pointer;
 }
 
 .login-btn{
-    background:#2563eb;
+    background:#2563eb !important;
     color:white !important;
     padding:10px 18px;
     border-radius:7px;
 }
 
-/* HERO */
+.logout-btn{
+    background:#dc2626 !important;
+    color:white !important;
+    padding:10px 15px;
+    border-radius:7px;
+    display:none;
+}
 
 .hero{
     min-height:470px;
@@ -147,8 +145,6 @@ body{
     border:1px solid #d5dbe7;
 }
 
-/* HERO BOX */
-
 .hero-box{
     width:330px;
     min-height:300px;
@@ -175,8 +171,6 @@ body{
 .study-icon{
     font-size:25px;
 }
-
-/* SEARCH */
 
 .search-area{
     max-width:900px;
@@ -212,68 +206,11 @@ body{
     font-weight:bold;
 }
 
-/* SEARCH RESULTS */
-
 .search-results{
     max-width:900px;
-    margin:20px auto 0;
+    margin:20px auto;
     padding:0 20px;
 }
-
-.search-result-card{
-    background:white;
-    padding:18px;
-    border-radius:12px;
-    margin-bottom:12px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
-}
-
-.search-result-card h3{
-    margin-bottom:7px;
-}
-
-.search-result-card p{
-    color:#697386;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.result-info{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin:10px 0;
-}
-
-.result-tag{
-    background:#eff6ff;
-    color:#2563eb;
-    padding:5px 9px;
-    border-radius:5px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.result-btn{
-    display:inline-block;
-    background:#2563eb;
-    color:white;
-    padding:9px 14px;
-    border-radius:7px;
-    text-decoration:none;
-    font-size:13px;
-    margin-top:8px;
-}
-
-.no-result{
-    background:white;
-    padding:25px;
-    text-align:center;
-    border-radius:12px;
-    color:#697386;
-}
-
-/* SECTIONS */
 
 .section{
     max-width:1150px;
@@ -295,8 +232,6 @@ body{
     color:#697386;
 }
 
-/* CATEGORIES */
-
 .categories{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -311,11 +246,6 @@ body{
     text-decoration:none;
     color:#172033;
     box-shadow:0 3px 15px rgba(0,0,0,.06);
-    transition:.2s;
-}
-
-.category:hover{
-    transform:translateY(-4px);
 }
 
 .category-icon{
@@ -331,8 +261,6 @@ body{
     color:#737b8c;
     font-size:13px;
 }
-
-/* MATERIALS */
 
 .materials{
     display:grid;
@@ -406,9 +334,14 @@ body{
     text-decoration:none;
     border-radius:7px;
     font-size:14px;
+    border:0;
+    width:100%;
+    cursor:pointer;
 }
 
-/* STATS */
+.delete-btn{
+    background:#dc2626;
+}
 
 .stats{
     background:#172033;
@@ -433,8 +366,6 @@ body{
     color:#b9c1d0;
     font-size:13px;
 }
-
-/* TOOLS */
 
 .tools{
     display:grid;
@@ -474,8 +405,6 @@ body{
     font-weight:bold;
 }
 
-/* CTA */
-
 .cta{
     margin:0 20px 60px;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
@@ -492,10 +421,7 @@ body{
 
 .cta p{
     margin-bottom:20px;
-    opacity:.9;
 }
-
-/* FOOTER */
 
 footer{
     background:#0f172a;
@@ -547,15 +473,153 @@ footer a{
     text-align:center;
 }
 
-/* MOBILE */
+/* LOGIN MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:5000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:420px;
+    padding:30px;
+    border-radius:16px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:12px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#697386;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.form-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d5dbe7;
+    border-radius:7px;
+    outline:none;
+}
+
+.form-btn{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:13px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.auth-message{
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+}
+
+/* ADMIN */
+
+#adminPanel{
+    display:none;
+    background:#eaf2ff;
+    padding:50px 20px;
+}
+
+.admin-box{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 25px rgba(0,0,0,.08);
+}
+
+.admin-box h2{
+    margin-bottom:8px;
+}
+
+.admin-box .subtitle{
+    color:#697386;
+    margin-bottom:25px;
+    font-size:13px;
+}
+
+.admin-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.admin-form .full{
+    grid-column:1/-1;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d5dbe7;
+    border-radius:7px;
+    outline:none;
+}
+
+.admin-form textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.add-btn{
+    background:#16a34a;
+    color:white;
+    border:0;
+    padding:13px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.admin-status{
+    margin-top:15px;
+    font-size:13px;
+}
 
 @media(max-width:800px){
 
-    .menu{
-        gap:10px;
-    }
-
-    .menu a:not(.login-btn){
+    .menu a:not(.login-btn),
+    .menu button:not(.login-btn){
         display:none;
     }
 
@@ -598,6 +662,14 @@ footer a{
     .footer-grid{
         grid-template-columns:1fr;
     }
+
+    .admin-form{
+        grid-template-columns:1fr;
+    }
+
+    .admin-form .full{
+        grid-column:auto;
+    }
 }
 
 @media(max-width:450px){
@@ -614,25 +686,14 @@ footer a{
         font-size:15px;
     }
 
-    .categories{
-        grid-template-columns:1fr 1fr;
-    }
-
     .search-box button{
         padding:0 14px;
     }
-
 }
-
 </style>
-
 </head>
 
-
 <body>
-
-
-<!-- NAVBAR -->
 
 <header class="navbar">
 
@@ -656,16 +717,24 @@ footer a{
             Tests
         </a>
 
-        <a href="#" class="login-btn">
+        <button
+            id="loginButton"
+            class="login-btn"
+            onclick="openLogin()">
             Login
-        </a>
+        </button>
+
+        <button
+            id="logoutButton"
+            class="logout-btn"
+            onclick="logout()">
+            Logout
+        </button>
 
     </nav>
 
 </header>
 
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -690,16 +759,12 @@ footer a{
 
             <a href="#materials"
                class="primary-btn">
-
                 Explore Materials
-
             </a>
 
             <a href="#tools"
                class="secondary-btn">
-
                 Student Tools
-
             </a>
 
         </div>
@@ -712,62 +777,29 @@ footer a{
         <h2>📚 Start Learning</h2>
 
         <div class="study-item">
-
-            <div class="study-icon">
-                📘
-            </div>
-
-            <div>
-                Notes & Books
-            </div>
-
+            <div class="study-icon">📘</div>
+            <div>Notes & Books</div>
         </div>
 
-
         <div class="study-item">
-
-            <div class="study-icon">
-                💻
-            </div>
-
-            <div>
-                Practical Programs
-            </div>
-
+            <div class="study-icon">💻</div>
+            <div>Practical Programs</div>
         </div>
 
-
         <div class="study-item">
-
-            <div class="study-icon">
-                🧪
-            </div>
-
-            <div>
-                Online Tests
-            </div>
-
+            <div class="study-icon">🧪</div>
+            <div>Online Tests</div>
         </div>
 
-
         <div class="study-item">
-
-            <div class="study-icon">
-                🛠️
-            </div>
-
-            <div>
-                Student Tools
-            </div>
-
+            <div class="study-icon">🛠️</div>
+            <div>Student Tools</div>
         </div>
 
     </div>
 
 </section>
 
-
-<!-- SEARCH -->
 
 <div class="search-area">
 
@@ -776,8 +808,7 @@ footer a{
         <input
             type="text"
             id="searchInput"
-            placeholder="Search class, subject, notes, practicals..."
-        >
+            placeholder="Search class, subject, notes, practicals...">
 
         <button onclick="searchSite()">
             Search
@@ -788,101 +819,45 @@ footer a{
 </div>
 
 
-<!-- SEARCH RESULTS -->
-
 <div id="searchResults"
      class="search-results">
 </div>
 
 
-<!-- CATEGORIES -->
-
 <section class="section">
 
     <div class="section-title">
 
-        <h2>
-            Explore Categories
-        </h2>
+        <h2>Explore Categories</h2>
 
-        <p>
-            Find study material for any class
-        </p>
+        <p>Find study material for any class</p>
 
     </div>
 
-
     <div class="categories">
 
-        <a href="#materials"
-           class="category">
-
-            <div class="category-icon">
-                🎓
-            </div>
-
-            <h3>
-                School
-            </h3>
-
-            <p>
-                Classes 9th to 12th
-            </p>
-
+        <a href="#materials" class="category">
+            <div class="category-icon">🎓</div>
+            <h3>School</h3>
+            <p>Classes 9th to 12th</p>
         </a>
 
-
-        <a href="#materials"
-           class="category">
-
-            <div class="category-icon">
-                💻
-            </div>
-
-            <h3>
-                Computer
-            </h3>
-
-            <p>
-                CIT, DIT & IT
-            </p>
-
+        <a href="#materials" class="category">
+            <div class="category-icon">💻</div>
+            <h3>Computer</h3>
+            <p>CIT, DIT & IT</p>
         </a>
 
-
-        <a href="#materials"
-           class="category">
-
-            <div class="category-icon">
-                📚
-            </div>
-
-            <h3>
-                Notes
-            </h3>
-
-            <p>
-                Study Material
-            </p>
-
+        <a href="#materials" class="category">
+            <div class="category-icon">📚</div>
+            <h3>Notes</h3>
+            <p>Study Material</p>
         </a>
 
-
-        <a href="#tests"
-           class="category">
-
-            <div class="category-icon">
-                🎯
-            </div>
-
-            <h3>
-                Tests
-            </h3>
-
-            <p>
-                MCQs & Quizzes
-            </p>
-
+        <a href="#tests" class="category">
+            <div class="category-icon">🎯</div>
+            <h3>Tests</h3>
+            <p>MCQs & Quizzes</p>
         </a>
 
     </div>
@@ -890,32 +865,22 @@ footer a{
 </section>
 
 
-<!-- MATERIALS -->
-
-<section class="section"
-         id="materials">
+<section class="section" id="materials">
 
     <div class="section-title">
 
-        <h2>
-            Latest Study Material
-        </h2>
+        <h2>Latest Study Material</h2>
 
-        <p>
-            Notes and material uploaded to StudyHub
-        </p>
+        <p>Notes and material uploaded to StudyHub</p>
 
     </div>
-
 
     <div id="materialsContainer"
          class="materials">
 
         <div class="material-card">
 
-            <div class="material-top">
-                📚
-            </div>
+            <div class="material-top">⏳</div>
 
             <div class="material-content">
 
@@ -928,7 +893,7 @@ footer a{
                 </h3>
 
                 <p>
-                    Supabase se study material load ho raha hai.
+                    Please wait...
                 </p>
 
             </div>
@@ -939,62 +904,29 @@ footer a{
 
 </section>
 
-
-<!-- STATS -->
 
 <section class="stats">
 
     <div class="stats-container">
 
         <div class="stat">
-
-            <h2 id="materialCount">
-                0
-            </h2>
-
-            <p>
-                Materials
-            </p>
-
+            <h2 id="materialCount">0</h2>
+            <p>Materials</p>
         </div>
 
-
         <div class="stat">
-
-            <h2>
-                500+
-            </h2>
-
-            <p>
-                MCQs
-            </p>
-
+            <h2>500+</h2>
+            <p>MCQs</p>
         </div>
 
-
         <div class="stat">
-
-            <h2>
-                50+
-            </h2>
-
-            <p>
-                Practicals
-            </p>
-
+            <h2>50+</h2>
+            <p>Practicals</p>
         </div>
 
-
         <div class="stat">
-
-            <h2>
-                24/7
-            </h2>
-
-            <p>
-                Learning
-            </p>
-
+            <h2>24/7</h2>
+            <p>Learning</p>
         </div>
 
     </div>
@@ -1002,108 +934,44 @@ footer a{
 </section>
 
 
-<!-- TOOLS -->
-
-<section class="section"
-         id="tools">
+<section class="section" id="tools">
 
     <div class="section-title">
 
-        <h2>
-            Student Tools
-        </h2>
+        <h2>Student Tools</h2>
 
-        <p>
-            Useful tools for everyday study
-        </p>
+        <p>Useful tools for everyday study</p>
 
     </div>
-
 
     <div class="tools">
 
-
         <div class="tool">
-
-            <div class="tool-icon">
-                🧮
-            </div>
-
-            <h3>
-                Percentage
-            </h3>
-
-            <p>
-                Calculate percentage
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
+            <div class="tool-icon">🧮</div>
+            <h3>Percentage</h3>
+            <p>Calculate percentage</p>
+            <a href="tools.html">Open Tool →</a>
         </div>
 
-
         <div class="tool">
-
-            <div class="tool-icon">
-                🔢
-            </div>
-
-            <h3>
-                Calculator
-            </h3>
-
-            <p>
-                Quick calculations
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
+            <div class="tool-icon">🔢</div>
+            <h3>Calculator</h3>
+            <p>Quick calculations</p>
+            <a href="tools.html">Open Tool →</a>
         </div>
 
-
         <div class="tool">
-
-            <div class="tool-icon">
-                📅
-            </div>
-
-            <h3>
-                Age Calculator
-            </h3>
-
-            <p>
-                Calculate your age
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
+            <div class="tool-icon">📅</div>
+            <h3>Age Calculator</h3>
+            <p>Calculate your age</p>
+            <a href="tools.html">Open Tool →</a>
         </div>
 
-
         <div class="tool">
-
-            <div class="tool-icon">
-                📄
-            </div>
-
-            <h3>
-                Word Counter
-            </h3>
-
-            <p>
-                Count your words
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
+            <div class="tool-icon">📄</div>
+            <h3>Word Counter</h3>
+            <p>Count your words</p>
+            <a href="tools.html">Open Tool →</a>
         </div>
 
     </div>
@@ -1111,32 +979,20 @@ footer a{
 </section>
 
 
-<!-- TESTS -->
-
-<section class="section"
-         id="tests">
+<section class="section" id="tests">
 
     <div class="section-title">
 
-        <h2>
-            Online Tests
-        </h2>
+        <h2>Online Tests</h2>
 
-        <p>
-            Test your knowledge and improve your skills
-        </p>
+        <p>Test your knowledge and improve your skills</p>
 
     </div>
 
-
     <div class="materials">
 
-
         <div class="material-card">
-
-            <div class="material-top">
-                🎯
-            </div>
+            <div class="material-top">🎯</div>
 
             <div class="material-content">
 
@@ -1144,31 +1000,21 @@ footer a{
                     10 QUESTIONS
                 </span>
 
-                <h3>
-                    Computer Basics
-                </h3>
+                <h3>Computer Basics</h3>
 
                 <p>
                     Test your basic computer knowledge.
                 </p>
 
-                <a href="#"
-                   class="material-btn">
-
+                <button class="material-btn">
                     Start Test
-
-                </a>
+                </button>
 
             </div>
-
         </div>
 
-
         <div class="material-card">
-
-            <div class="material-top">
-                💻
-            </div>
+            <div class="material-top">💻</div>
 
             <div class="material-content">
 
@@ -1176,31 +1022,21 @@ footer a{
                     10 QUESTIONS
                 </span>
 
-                <h3>
-                    C++ Basics
-                </h3>
+                <h3>C++ Basics</h3>
 
                 <p>
                     Check your C++ programming knowledge.
                 </p>
 
-                <a href="#"
-                   class="material-btn">
-
+                <button class="material-btn">
                     Start Test
-
-                </a>
+                </button>
 
             </div>
-
         </div>
 
-
         <div class="material-card">
-
-            <div class="material-top">
-                🌐
-            </div>
+            <div class="material-top">🌐</div>
 
             <div class="material-content">
 
@@ -1208,23 +1044,17 @@ footer a{
                     10 QUESTIONS
                 </span>
 
-                <h3>
-                    HTML Basics
-                </h3>
+                <h3>HTML Basics</h3>
 
                 <p>
                     Test your HTML knowledge.
                 </p>
 
-                <a href="#"
-                   class="material-btn">
-
+                <button class="material-btn">
                     Start Test
-
-                </a>
+                </button>
 
             </div>
-
         </div>
 
     </div>
@@ -1232,13 +1062,128 @@ footer a{
 </section>
 
 
-<!-- CTA -->
+<!-- ADMIN PANEL -->
+
+<section id="adminPanel">
+
+    <div class="admin-box">
+
+        <h2>👨‍💼 Admin Panel</h2>
+
+        <p class="subtitle">
+            Yahan se StudyHub Pakistan par study material add karo.
+        </p>
+
+        <form id="materialForm"
+              class="admin-form">
+
+            <div class="form-group">
+
+                <label>Material Title</label>
+
+                <input
+                    id="title"
+                    type="text"
+                    placeholder="C++ Practical No. 1"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Class</label>
+
+                <input
+                    id="className"
+                    type="text"
+                    placeholder="CIT 1st Year"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Subject</label>
+
+                <input
+                    id="subject"
+                    type="text"
+                    placeholder="Computer"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Material Type</label>
+
+                <select id="materialType">
+
+                    <option>Notes</option>
+                    <option>Practical</option>
+                    <option>Book</option>
+                    <option>PDF</option>
+                    <option>Assignment</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>Description</label>
+
+                <textarea
+                    id="description"
+                    placeholder="Material ke bare mein description..."
+                    required></textarea>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>File / PDF URL</label>
+
+                <input
+                    id="fileUrl"
+                    type="url"
+                    placeholder="https://example.com/file.pdf">
+
+            </div>
+
+
+            <div class="full">
+
+                <button
+                    type="submit"
+                    class="add-btn">
+
+                    ➕ Add Material
+
+                </button>
+
+            </div>
+
+        </form>
+
+        <div id="adminStatus"
+             class="admin-status">
+        </div>
+
+    </div>
+
+</section>
+
 
 <section class="cta">
 
-    <h2>
-        Ready to Start Learning?
-    </h2>
+    <h2>Ready to Start Learning?</h2>
 
     <p>
         Find notes, practicals and study material for your class.
@@ -1246,90 +1191,51 @@ footer a{
 
     <a href="#materials"
        class="primary-btn">
-
         Start Learning
-
     </a>
 
 </section>
 
 
-<!-- FOOTER -->
-
 <footer>
 
     <div class="footer-grid">
 
-
         <div>
 
             <div class="footer-logo">
-
                 Study<span>Hub</span> Pakistan
-
             </div>
 
             <p>
-
                 A learning platform designed to help
                 Pakistani students learn, practice and grow.
-
             </p>
 
         </div>
 
-
         <div>
 
-            <h3>
-                Quick Links
-            </h3>
+            <h3>Quick Links</h3>
 
-            <a href="#">
-                Home
-            </a>
-
-            <a href="#materials">
-                Materials
-            </a>
-
-            <a href="#tools">
-                Tools
-            </a>
-
-            <a href="#tests">
-                Tests
-            </a>
+            <a href="#">Home</a>
+            <a href="#materials">Materials</a>
+            <a href="#tools">Tools</a>
+            <a href="#tests">Tests</a>
 
         </div>
 
-
         <div>
 
-            <h3>
-                Learning
-            </h3>
+            <h3>Learning</h3>
 
-            <a href="#materials">
-                Notes
-            </a>
-
-            <a href="#materials">
-                Practicals
-            </a>
-
-            <a href="#tests">
-                Online Tests
-            </a>
-
-            <a href="#">
-                Downloads
-            </a>
+            <a href="#materials">Notes</a>
+            <a href="#materials">Practicals</a>
+            <a href="#tests">Online Tests</a>
 
         </div>
 
     </div>
-
 
     <div class="copyright">
 
@@ -1342,9 +1248,76 @@ footer a{
 </footer>
 
 
-<!-- SUPABASE -->
+<!-- LOGIN -->
+
+<div id="loginModal"
+     class="modal">
+
+    <div class="modal-box">
+
+        <div class="close"
+             onclick="closeLogin()">
+            ×
+        </div>
+
+        <h2>🔐 StudyHub Login</h2>
+
+        <p>
+            Admin account se login karein.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="admin@example.com"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    required>
+
+            </div>
+
+            <button
+                class="form-btn"
+                type="submit">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <div id="authMessage"
+             class="auth-message">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+/* ==============================
+   SUPABASE
+============================== */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -1352,10 +1325,205 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
 
+const db =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-/* ============================
+
+/* ==============================
+   LOGIN MODAL
+============================== */
+
+function openLogin(){
+
+    document.getElementById(
+        "loginModal"
+    ).style.display="flex";
+
+}
+
+function closeLogin(){
+
+    document.getElementById(
+        "loginModal"
+    ).style.display="none";
+
+}
+
+
+/* ==============================
+   LOGIN
+============================== */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+"submit",
+async function(e){
+
+    e.preventDefault();
+
+    const email =
+        document.getElementById(
+            "email"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "authMessage"
+        );
+
+    message.textContent =
+        "⏳ Logging in...";
+
+
+    const {
+        data,
+        error
+    } =
+    await db.auth.signInWithPassword({
+
+        email:email,
+        password:password
+
+    });
+
+
+    if(error){
+
+        message.style.color="red";
+
+        message.textContent =
+            "❌ " + error.message;
+
+        return;
+
+    }
+
+
+    message.style.color="green";
+
+    message.textContent =
+        "✅ Login successful!";
+
+
+    setTimeout(
+        closeLogin,
+        800
+    );
+
+});
+
+
+/* ==============================
+   LOGOUT
+============================== */
+
+async function logout(){
+
+    await db.auth.signOut();
+
+    document.getElementById(
+        "adminPanel"
+    ).style.display="none";
+
+    document.getElementById(
+        "loginButton"
+    ).style.display="block";
+
+    document.getElementById(
+        "logoutButton"
+    ).style.display="none";
+
+}
+
+
+/* ==============================
+   CHECK LOGIN
+============================== */
+
+async function checkUser(){
+
+    const {
+        data
+    } =
+    await db.auth.getSession();
+
+
+    if(data.session){
+
+        showAdmin();
+
+    }else{
+
+        hideAdmin();
+
+    }
+
+}
+
+
+function showAdmin(){
+
+    document.getElementById(
+        "adminPanel"
+    ).style.display="block";
+
+    document.getElementById(
+        "loginButton"
+    ).style.display="none";
+
+    document.getElementById(
+        "logoutButton"
+    ).style.display="block";
+
+}
+
+
+function hideAdmin(){
+
+    document.getElementById(
+        "adminPanel"
+    ).style.display="none";
+
+    document.getElementById(
+        "loginButton"
+    ).style.display="block";
+
+    document.getElementById(
+        "logoutButton"
+    ).style.display="none";
+
+}
+
+
+db.auth.onAuthStateChange(
+    function(event,session){
+
+        if(session){
+
+            showAdmin();
+
+        }else{
+
+            hideAdmin();
+
+        }
+
+    }
+);
+
+
+/* ==============================
    LOAD MATERIALS
-============================ */
+============================== */
 
 async function loadMaterials(){
 
@@ -1364,123 +1532,102 @@ async function loadMaterials(){
             "materialsContainer"
         );
 
-    try{
 
-        const response =
-            await fetch(
-
-                SUPABASE_URL +
-                "/rest/v1/materials?select=*&order=id.desc",
-
-                {
-
-                    method:"GET",
-
-                    headers:{
-                        "apikey":SUPABASE_KEY,
-                        "Authorization":
-                        "Bearer " +
-                        SUPABASE_KEY
-                    }
-
-                }
-
-            );
+    const {
+        data,
+        error
+    } =
+    await db
+    .from("materials")
+    .select("*")
+    .order("id",{ascending:false});
 
 
-        if(!response.ok){
-
-            throw new Error(
-                "Database connection failed"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        document.getElementById(
-            "materialCount"
-        ).textContent = data.length;
-
-
-        if(data.length === 0){
-
-            container.innerHTML = `
-
-                <div class="no-result">
-
-                    <h3>
-                        📚 No Material Yet
-                    </h3>
-
-                    <p>
-                        Abhi database mein koi study
-                        material upload nahi hua.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        container.innerHTML = "";
-
-
-        data.forEach(
-            material => {
-
-                container.innerHTML +=
-                createMaterialCard(material);
-
-            }
-        );
-
-
-    }catch(error){
+    if(error){
 
         console.error(error);
 
         container.innerHTML = `
 
-            <div class="no-result">
+            <div class="material-card">
 
-                <h3>
-                    ⚠️ Material Load Nahi Ho Saka
-                </h3>
+                <div class="material-content">
 
-                <p>
-                    Supabase table, RLS ya column names
-                    check karein.
-                </p>
+                    <h3>⚠️ Materials Load Error</h3>
+
+                    <p>
+                        ${escapeHTML(error.message)}
+                    </p>
+
+                </div>
 
             </div>
 
         `;
 
+        return;
+
     }
+
+
+    document.getElementById(
+        "materialCount"
+    ).textContent=data.length;
+
+
+    if(data.length===0){
+
+        container.innerHTML=`
+
+            <div class="material-card">
+
+                <div class="material-content">
+
+                    <h3>📚 No Material Yet</h3>
+
+                    <p>
+                        Admin panel se pehla material add karein.
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML="";
+
+
+    data.forEach(
+        material => {
+
+            container.innerHTML +=
+            createMaterialCard(material);
+
+        }
+    );
 
 }
 
 
-/* ============================
-   MATERIAL CARD
-============================ */
+/* ==============================
+   CREATE CARD
+============================== */
 
 function createMaterialCard(material){
 
     const title =
-        material.title || "Untitled Material";
+        material.title ||
+        "Untitled Material";
 
     const description =
         material.description ||
-        "Study material available on StudyHub Pakistan.";
+        "Study material available.";
 
     const className =
         material.class ||
@@ -1499,7 +1646,7 @@ function createMaterialCard(material){
     const fileUrl =
         material.file_url ||
         material.url ||
-        "#";
+        "";
 
 
     return `
@@ -1539,22 +1686,20 @@ function createMaterialCard(material){
                 </div>
 
                 ${
-                    fileUrl !== "#"
+                    fileUrl
                     ?
-
-                    `<a
+                    `
+                    <a
                         href="${escapeAttribute(fileUrl)}"
                         target="_blank"
                         class="material-btn">
 
                         📥 View / Download
 
-                    </a>`
-
+                    </a>
+                    `
                     :
-
                     ""
-
                 }
 
             </div>
@@ -1566,9 +1711,131 @@ function createMaterialCard(material){
 }
 
 
-/* ============================
+/* ==============================
+   ADD MATERIAL
+============================== */
+
+document
+.getElementById("materialForm")
+.addEventListener(
+"submit",
+async function(e){
+
+    e.preventDefault();
+
+
+    const status =
+        document.getElementById(
+            "adminStatus"
+        );
+
+
+    status.style.color="#2563eb";
+
+    status.textContent =
+        "⏳ Material add ho raha hai...";
+
+
+    const {
+        data:{
+            user
+        }
+    } =
+    await db.auth.getUser();
+
+
+    if(!user){
+
+        status.style.color="red";
+
+        status.textContent =
+            "❌ Pehle login karein.";
+
+        return;
+
+    }
+
+
+    const material = {
+
+        title:
+            document.getElementById(
+                "title"
+            ).value.trim(),
+
+        description:
+            document.getElementById(
+                "description"
+            ).value.trim(),
+
+        class:
+            document.getElementById(
+                "className"
+            ).value.trim(),
+
+        subject:
+            document.getElementById(
+                "subject"
+            ).value.trim(),
+
+        material_type:
+            document.getElementById(
+                "materialType"
+            ).value,
+
+        file_url:
+            document.getElementById(
+                "fileUrl"
+            ).value.trim()
+
+    };
+
+
+    const {
+        error
+    } =
+    await db
+    .from("materials")
+    .insert([material]);
+
+
+    if(error){
+
+        console.error(error);
+
+        status.style.color="red";
+
+        status.textContent =
+            "❌ " + error.message;
+
+        return;
+
+    }
+
+
+    status.style.color="green";
+
+    status.textContent =
+        "✅ Material successfully add ho gaya!";
+
+
+    document
+    .getElementById("materialForm")
+    .reset();
+
+
+    loadMaterials();
+
+    document
+    .getElementById("materials")
+    .scrollIntoView();
+
+});
+
+
+/* ==============================
    SEARCH
-============================ */
+============================== */
 
 async function searchSite(){
 
@@ -1580,109 +1847,87 @@ async function searchSite(){
         .value
         .trim();
 
-
     const results =
         document.getElementById(
             "searchResults"
         );
 
 
-    if(input === ""){
+    if(input===""){
 
-        results.innerHTML = "";
+        results.innerHTML="";
 
         return;
 
     }
 
 
-    results.innerHTML = `
+    results.innerHTML=`
 
-        <div class="no-result">
+        <div class="material-card">
 
-            🔎 Searching...
+            <div class="material-content">
+
+                <h3>🔎 Searching...</h3>
+
+            </div>
 
         </div>
 
     `;
 
 
-    try{
-
-        const search =
-            encodeURIComponent(
-                "*" + input + "*"
-            );
+    const safe =
+        input
+        .replace(/,/g,"");
 
 
-        const url =
-            SUPABASE_URL +
-            "/rest/v1/materials" +
-            "?or=(" +
-
-            "title.ilike." +
-            search +
-
-            ",description.ilike." +
-            search +
-
-            ",class.ilike." +
-            search +
-
-            ",subject.ilike." +
-            search +
-
-            ",material_type.ilike." +
-            search +
-
-            ")";
+    const {
+        data,
+        error
+    } =
+    await db
+    .from("materials")
+    .select("*")
+    .or(
+        `title.ilike.%${safe}%,description.ilike.%${safe}%,class.ilike.%${safe}%,subject.ilike.%${safe}%,material_type.ilike.%${safe}%`
+    );
 
 
-        const response =
-            await fetch(
+    if(error){
 
-                url,
+        results.innerHTML=`
 
-                {
+            <div class="material-card">
 
-                    method:"GET",
+                <div class="material-content">
 
-                    headers:{
-                        "apikey":
-                        SUPABASE_KEY,
+                    <h3>⚠️ Search Error</h3>
 
-                        "Authorization":
-                        "Bearer " +
-                        SUPABASE_KEY
-                    }
+                    <p>
+                        ${escapeHTML(error.message)}
+                    </p>
 
-                }
+                </div>
 
-            );
+            </div>
 
+        `;
 
-        if(!response.ok){
+        return;
 
-            throw new Error(
-                "Search failed"
-            );
-
-        }
+    }
 
 
-        const data =
-            await response.json();
+    if(!data || data.length===0){
 
+        results.innerHTML=`
 
-        if(data.length === 0){
+            <div class="material-card">
 
-            results.innerHTML = `
+                <div class="material-content">
 
-                <div class="no-result">
-
-                    <h3>
-                        😕 Material Not Found
-                    </h3>
+                    <h3>😕 Material Not Found</h3>
 
                     <p>
                         "${escapeHTML(input)}"
@@ -1691,134 +1936,61 @@ async function searchSite(){
 
                 </div>
 
-            `;
-
-            return;
-
-        }
-
-
-        results.innerHTML = "";
-
-
-        data.forEach(
-            material => {
-
-                results.innerHTML += `
-
-                    <div class="search-result-card">
-
-                        <h3>
-                            📚
-                            ${escapeHTML(
-                                material.title ||
-                                "Untitled"
-                            )}
-                        </h3>
-
-                        <p>
-                            ${escapeHTML(
-                                material.description ||
-                                ""
-                            )}
-                        </p>
-
-                        <div class="result-info">
-
-                            <span class="result-tag">
-
-                                Class:
-                                ${escapeHTML(
-                                    material.class ||
-                                    material.class_name ||
-                                    "All"
-                                )}
-
-                            </span>
-
-                            <span class="result-tag">
-
-                                Subject:
-                                ${escapeHTML(
-                                    material.subject ||
-                                    "General"
-                                )}
-
-                            </span>
-
-                            <span class="result-tag">
-
-                                ${escapeHTML(
-                                    material.material_type ||
-                                    material.type ||
-                                    "Material"
-                                )}
-
-                            </span>
-
-                        </div>
-
-                        ${
-                            material.file_url
-
-                            ?
-
-                            `<a
-                                href="${escapeAttribute(
-                                    material.file_url
-                                )}"
-                                target="_blank"
-                                class="result-btn">
-
-                                📥 View / Download
-
-                            </a>`
-
-                            :
-
-                            ""
-
-                        }
-
-                    </div>
-
-                `;
-
-            }
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
-        results.innerHTML = `
-
-            <div class="no-result">
-
-                ⚠️ Search system mein problem aa gayi.
-
             </div>
 
         `;
 
+        return;
+
     }
+
+
+    results.innerHTML="";
+
+
+    data.forEach(
+        material => {
+
+            results.innerHTML +=
+            createMaterialCard(material);
+
+        }
+    );
 
 }
 
 
-/* ============================
-   SECURITY HELPERS
-============================ */
+/* ==============================
+   ENTER SEARCH
+============================== */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"keydown",
+function(e){
+
+    if(e.key==="Enter"){
+
+        searchSite();
+
+    }
+
+});
+
+
+/* ==============================
+   SECURITY
+============================== */
 
 function escapeHTML(value){
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
@@ -1826,42 +1998,22 @@ function escapeHTML(value){
 function escapeAttribute(value){
 
     return String(value)
-        .replace(/"/g,"%22")
-        .replace(/</g,"%3C")
-        .replace(/>/g,"%3E");
+    .replace(/"/g,"%22")
+    .replace(/</g,"%3C")
+    .replace(/>/g,"%3E");
 
 }
 
 
-/* ============================
-   ENTER KEY
-============================ */
-
-document
-.getElementById("searchInput")
-.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Enter"){
-
-            searchSite();
-
-        }
-
-    }
-);
-
-
-/* ============================
+/* ==============================
    START
-============================ */
+============================== */
+
+checkUser();
 
 loadMaterials();
 
 </script>
 
-
 </body>
-
             </html>
