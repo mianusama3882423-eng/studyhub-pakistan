@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudyHub Pakistan - Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:#172033;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#60a5fa;
+}
+
+.logout{
+    border:0;
+    background:#ef4444;
+    color:white;
+    padding:9px 16px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    margin-bottom:7px;
+}
+
+.welcome p{
+    color:#687386;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.stat-icon{
+    font-size:28px;
+}
+
+.stat h2{
+    margin-top:8px;
+}
+
+.stat p{
+    color:#687386;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.panel{
+    background:white;
+    padding:24px;
+    border-radius:12px;
+    margin-bottom:22px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.panel h2{
+    margin-bottom:18px;
+}
+
+.form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d8dde7;
+    border-radius:7px;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.add-btn{
+    background:#2563eb;
+    color:white;
+    border:0;
+    padding:12px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.message{
+    margin-top:12px;
+    padding:10px;
+    border-radius:7px;
+    display:none;
+}
+
+.success{
+    display:block;
+    background:#dcfce7;
+    color:#166534;
+}
+
+.error{
+    display:block;
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.items{
+    display:grid;
+    gap:10px;
+}
+
+.item{
+    border:1px solid #e1e5ec;
+    padding:15px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.item h3{
+    margin-bottom:5px;
+}
+
+.item p{
+    color:#687386;
+    font-size:13px;
+}
+
+.delete{
+    background:#fee2e2;
+    color:#dc2626;
+    border:0;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#checking{
+    max-width:500px;
+    margin:80px auto;
+    text-align:center;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+
+#adminPanel{
+    display:none;
+}
+
+@media(max-width:750px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .item{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:450px){
+
+    header{
+        padding:14px 18px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .container{
+        padding:22px 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Study<span>Hub</span> Admin
+    </div>
+
+    <button class="logout" onclick="logout()">
+        Logout
+    </button>
+
+</header>
+
+
+<div id="checking">
+    <h2>🔐 Checking Admin...</h2>
+    <p>Please wait...</p>
+</div>
+
+
+<main id="adminPanel" class="container">
+
+    <div class="welcome">
+
+        <h1>Welcome Admin 👋</h1>
+
+        <p>
+            StudyHub Pakistan Content Management
+        </p>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-icon">📚</div>
+            <h2 id="courseCount">0</h2>
+            <p>Courses</p>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">📘</div>
+            <h2 id="noteCount">0</h2>
+            <p>Notes</p>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🧪</div>
+            <h2 id="practicalCount">0</h2>
+            <p>Practicals</p>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🎯</div>
+            <h2 id="testCount">0</h2>
+            <p>Tests</p>
+        </div>
+
+    </div>
+
+
+    <!-- COURSE -->
+
+    <div class="panel">
+
+        <h2>📚 Add Course</h2>
+
+        <div class="form">
+
+            <input
+                id="courseTitle"
+                placeholder="Course title"
+            >
+
+            <input
+                id="courseLevel"
+                value="BEGINNER"
+                placeholder="Level"
+            >
+
+            <input
+                id="courseIcon"
+                value="📚"
+                placeholder="Icon"
+            >
+
+            <textarea
+                id="courseDescription"
+                class="full"
+                placeholder="Course description"
+            ></textarea>
+
+            <button
+                class="add-btn"
+                onclick="addCourse()"
+            >
+                Add Course
+            </button>
+
+        </div>
+
+        <div id="courseMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    <div class="panel">
+
+        <h2>📘 Add Note</h2>
+
+        <div class="form">
+
+            <input
+                id="noteTitle"
+                placeholder="Note title"
+            >
+
+            <input
+                id="noteIcon"
+                value="📘"
+                placeholder="Icon"
+            >
+
+            <textarea
+                id="noteDescription"
+                class="full"
+                placeholder="Note description"
+            ></textarea>
+
+            <button
+                class="add-btn"
+                onclick="addNote()"
+            >
+                Add Note
+            </button>
+
+        </div>
+
+        <div id="noteMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- PRACTICAL -->
+
+    <div class="panel">
+
+        <h2>🧪 Add Practical</h2>
+
+        <div class="form">
+
+            <input
+                id="practicalTitle"
+                placeholder="Practical title"
+            >
+
+            <input
+                id="practicalIcon"
+                value="💻"
+                placeholder="Icon"
+            >
+
+            <textarea
+                id="practicalDescription"
+                class="full"
+                placeholder="Practical description"
+            ></textarea>
+
+            <button
+                class="add-btn"
+                onclick="addPractical()"
+            >
+                Add Practical
+            </button>
+
+        </div>
+
+        <div id="practicalMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- TEST -->
+
+    <div class="panel">
+
+        <h2>🎯 Add Test</h2>
+
+        <div class="form">
+
+            <input
+                id="testTitle"
+                placeholder="Test title"
+            >
+
+            <input
+                id="testQuestions"
+                type="number"
+                value="10"
+                placeholder="Questions"
+            >
+
+            <textarea
+                id="testDescription"
+                class="full"
+                placeholder="Test description"
+            ></textarea>
+
+            <button
+                class="add-btn"
+                onclick="addTest()"
+            >
+                Add Test
+            </button>
+
+        </div>
+
+        <div id="testMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- COURSES -->
+
+    <div class="panel">
+
+        <h2>📚 All Courses</h2>
+
+        <div id="coursesList" class="items">
+            Loading...
+        </div>
+
+    </div>
+
+
+    <!-- NOTES -->
+
+    <div class="panel">
+
+        <h2>📘 All Notes</h2>
+
+        <div id="notesList" class="items">
+            Loading...
+        </div>
+
+    </div>
+
+
+    <!-- PRACTICALS -->
+
+    <div class="panel">
+
+        <h2>🧪 All Practicals</h2>
+
+        <div id="practicalsList" class="items">
+            Loading...
+        </div>
+
+    </div>
+
+
+    <!-- TESTS -->
+
+    <div class="panel">
+
+        <h2>🎯 All Tests</h2>
+
+        <div id="testsList" class="items">
+            Loading...
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* SUPABASE */
+
+const SUPABASE_URL =
+"https://kwkxdvevtxyvjywiqkcv.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
+
+const client =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ADMIN CHECK */
+
+async function checkAdmin(){
+
+    const {
+        data:{user}
+    } = await client.auth.getUser();
+
+    if(!user){
+
+        document.getElementById("checking").innerHTML = `
+            <h2>🔐 Login Required</h2>
+            <p>Please login first.</p>
+        `;
+
+        return;
+    }
+
+
+    const {
+        data:profile,
+        error
+    } = await client
+        .from("profiles")
+        .select("role")
+        .eq("id",user.id)
+        .single();
+
+
+    if(error || !profile || profile.role !== "admin"){
+
+        document.getElementById("checking").innerHTML = `
+            <h2>🚫 Access Denied</h2>
+            <p>You are not an administrator.</p>
+        `;
+
+        return;
+    }
+
+
+    document.getElementById("checking").style.display="none";
+
+    document.getElementById("adminPanel").style.display="block";
+
+    loadAll();
+
+}
+
+
+/* MESSAGE */
+
+function showMessage(id,text,success=true){
+
+    const box =
+        document.getElementById(id);
+
+    box.textContent=text;
+
+    box.className =
+        "message " +
+        (success ? "success":"error");
+
+    setTimeout(()=>{
+        box.className="message";
+        box.style.display="none";
+    },3000);
+
+}
+
+
+/* ADD COURSE */
+
+async function addCourse(){
+
+    const title =
+        document.getElementById("courseTitle").value.trim();
+
+    const description =
+        document.getElementById("courseDescription").value.trim();
+
+    const level =
+        document.getElementById("courseLevel").value.trim();
+
+    const icon =
+        document.getElementById("courseIcon").value.trim();
+
+
+    if(!title){
+
+        showMessage(
+            "courseMessage",
+            "Course title required.",
+            false
+        );
+
+        return;
+    }
+
+
+    const {error} =
+        await client
+        .from("courses")
+        .insert({
+            title,
+            description,
+            level,
+            icon
+        });
+
+
+    if(error){
+
+        showMessage(
+            "courseMessage",
+            error.message,
+            false
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "courseMessage",
+        "Course added successfully!"
+    );
+
+
+    document.getElementById("courseTitle").value="";
+    document.getElementById("courseDescription").value="";
+
+    loadCourses();
+
+}
+
+
+/* ADD NOTE */
+
+async function addNote(){
+
+    const title =
+        document.getElementById("noteTitle").value.trim();
+
+    const description =
+        document.getElementById("noteDescription").value.trim();
+
+    const icon =
+        document.getElementById("noteIcon").value.trim();
+
+
+    if(!title){
+
+        showMessage(
+            "noteMessage",
+            "Note title required.",
+            false
+        );
+
+        return;
+    }
+
+
+    const {error} =
+        await client
+        .from("notes")
+        .insert({
+            title,
+            description,
+            icon
+        });
+
+
+    if(error){
+
+        showMessage(
+            "noteMessage",
+            error.message,
+            false
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "noteMessage",
+        "Note added successfully!"
+    );
+
+
+    document.getElementById("noteTitle").value="";
+    document.getElementById("noteDescription").value="";
+
+    loadNotes();
+
+}
+
+
+/* ADD PRACTICAL */
+
+async function addPractical(){
+
+    const title =
+        document.getElementById("practicalTitle").value.trim();
+
+    const description =
+        document.getElementById("practicalDescription").value.trim();
+
+
+    if(!title){
+
+        showMessage(
+            "practicalMessage",
+            "Practical title required.",
+            false
+        );
+
+        return;
+    }
+
+
+    const {error} =
+        await client
+        .from("practicals")
+        .insert({
+            title,
+            description
+        });
+
+
+    if(error){
+
+        showMessage(
+            "practicalMessage",
+            error.message,
+            false
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "practicalMessage",
+        "Practical added successfully!"
+    );
+
+
+    document.getElementById("practicalTitle").value="";
+    document.getElementById("practicalDescription").value="";
+
+    loadPracticals();
+
+}
+
+
+/* ADD TEST */
+
+async function addTest(){
+
+    const title =
+        document.getElementById("testTitle").value.trim();
+
+    const description =
+        document.getElementById("testDescription").value.trim();
+
+    const questions =
+        Number(
+            document.getElementById("testQuestions").value
+        );
+
+
+    if(!title){
+
+        showMessage(
+            "testMessage",
+            "Test title required.",
+            false
+        );
+
+        return;
+    }
+
+
+    const {error} =
+        await client
+        .from("tests")
+        .insert({
+            title,
+            description,
+            questions
+        });
+
+
+    if(error){
+
+        showMessage(
+            "testMessage",
+            error.message,
+            false
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "testMessage",
+        "Test added successfully!"
+    );
+
+
+    document.getElementById("testTitle").value="";
+    document.getElementById("testDescription").value="";
+
+    loadTests();
+
+}
+
+
+/* LOAD COURSES */
+
+async function loadCourses(){
+
+    const {data,error} =
+        await client
+        .from("courses")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        document.getElementById("coursesList").innerHTML =
+            `<p>${error.message}</p>`;
+
+        return;
+    }
+
+
+    document.getElementById("courseCount").textContent =
+        data.length;
+
+
+    if(data.length===0){
+
+        document.getElementById("coursesList").innerHTML =
+            "<p>No courses yet.</p>";
+
+        return;
+    }
+
+
+    document.getElementById("coursesList").innerHTML =
+        data.map(item=>`
+
+            <div class="item">
+
+                <div>
+
+                    <h3>
+                        ${item.icon || "📚"}
+                        ${safe(item.title)}
+                    </h3>
+
+                    <p>
+                        ${safe(item.description || "")}
+                    </p>
+
+                </div>
+
+                <button
+                    class="delete"
+                    onclick="deleteItem('courses','${item.id}',loadCourses)"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* LOAD NOTES */
+
+async function loadNotes(){
+
+    const {data,error} =
+        await client
+        .from("notes")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        document.getElementById("notesList").innerHTML =
+            `<p>${error.message}</p>`;
+
+        return;
+    }
+
+
+    document.getElementById("noteCount").textContent =
+        data.length;
+
+
+    if(data.length===0){
+
+        document.getElementById("notesList").innerHTML =
+            "<p>No notes yet.</p>";
+
+        return;
+    }
+
+
+    document.getElementById("notesList").innerHTML =
+        data.map(item=>`
+
+            <div class="item">
+
+                <div>
+
+                    <h3>
+                        ${item.icon || "📘"}
+                        ${safe(item.title)}
+                    </h3>
+
+                    <p>
+                        ${safe(item.description || "")}
+                    </p>
+
+                </div>
+
+                <button
+                    class="delete"
+                    onclick="deleteItem('notes','${item.id}',loadNotes)"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* LOAD PRACTICALS */
+
+async function loadPracticals(){
+
+    const {data,error} =
+        await client
+        .from("practicals")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        document.getElementById("practicalsList").innerHTML =
+            `<p>${error.message}</p>`;
+
+        return;
+    }
+
+
+    document.getElementById("practicalCount").textContent =
+        data.length;
+
+
+    if(data.length===0){
+
+        document.getElementById("practicalsList").innerHTML =
+            "<p>No practicals yet.</p>";
+
+        return;
+    }
+
+
+    document.getElementById("practicalsList").innerHTML =
+        data.map(item=>`
+
+            <div class="item">
+
+                <div>
+
+                    <h3>
+                        🧪 ${safe(item.title)}
+                    </h3>
+
+                    <p>
+                        ${safe(item.description || "")}
+                    </p>
+
+                </div>
+
+                <button
+                    class="delete"
+                    onclick="deleteItem('practicals','${item.id}',loadPracticals)"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* LOAD TESTS */
+
+async function loadTests(){
+
+    const {data,error} =
+        await client
+        .from("tests")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        document.getElementById("testsList").innerHTML =
+            `<p>${error.message}</p>`;
+
+        return;
+    }
+
+
+    document.getElementById("testCount").textContent =
+        data.length;
+
+
+    if(data.length===0){
+
+        document.getElementById("testsList").innerHTML =
+            "<p>No tests yet.</p>";
+
+        return;
+    }
+
+
+    document.getElementById("testsList").innerHTML =
+        data.map(item=>`
+
+            <div class="item">
+
+                <div>
+
+                    <h3>
+                        🎯 ${safe(item.title)}
+                    </h3>
+
+                    <p>
+                        ${item.questions} Questions —
+                        ${safe(item.description || "")}
+                    </p>
+
+                </div>
+
+                <button
+                    class="delete"
+                    onclick="deleteItem('tests','${item.id}',loadTests)"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* DELETE */
+
+async function deleteItem(table,id,reload){
+
+    if(!confirm("Delete this item?")){
+        return;
+    }
+
+
+    const {error} =
+        await client
+        .from(table)
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+
+    reload();
+
+}
+
+
+/* SECURITY */
+
+function safe(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* LOGOUT */
+
+async function logout(){
+
+    await client.auth.signOut();
+
+    location.reload();
+
+}
+
+
+/* START */
+
+checkAdmin();
+
+</script>
+
+</body>
+                        </html>
