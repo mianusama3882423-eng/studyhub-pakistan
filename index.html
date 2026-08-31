@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>StudyHub Pakistan</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -24,6 +29,7 @@ body{
 }
 
 /* NAVBAR */
+
 .navbar{
     background:#ffffff;
     height:65px;
@@ -72,6 +78,7 @@ body{
 }
 
 /* HERO */
+
 .hero{
     min-height:470px;
     padding:75px 6%;
@@ -140,6 +147,8 @@ body{
     border:1px solid #d5dbe7;
 }
 
+/* HERO BOX */
+
 .hero-box{
     width:330px;
     min-height:300px;
@@ -168,11 +177,13 @@ body{
 }
 
 /* SEARCH */
+
 .search-area{
     max-width:900px;
     margin:-28px auto 0;
     padding:0 20px;
     position:relative;
+    z-index:10;
 }
 
 .search-box{
@@ -201,7 +212,69 @@ body{
     font-weight:bold;
 }
 
+/* SEARCH RESULTS */
+
+.search-results{
+    max-width:900px;
+    margin:20px auto 0;
+    padding:0 20px;
+}
+
+.search-result-card{
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:12px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.search-result-card h3{
+    margin-bottom:7px;
+}
+
+.search-result-card p{
+    color:#697386;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.result-info{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:10px 0;
+}
+
+.result-tag{
+    background:#eff6ff;
+    color:#2563eb;
+    padding:5px 9px;
+    border-radius:5px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.result-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:9px 14px;
+    border-radius:7px;
+    text-decoration:none;
+    font-size:13px;
+    margin-top:8px;
+}
+
+.no-result{
+    background:white;
+    padding:25px;
+    text-align:center;
+    border-radius:12px;
+    color:#697386;
+}
+
 /* SECTIONS */
+
 .section{
     max-width:1150px;
     margin:auto;
@@ -223,6 +296,7 @@ body{
 }
 
 /* CATEGORIES */
+
 .categories{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -258,21 +332,22 @@ body{
     font-size:13px;
 }
 
-/* COURSES */
-.cards{
+/* MATERIALS */
+
+.materials{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:20px;
 }
 
-.card{
+.material-card{
     background:white;
     border-radius:13px;
     overflow:hidden;
     box-shadow:0 3px 15px rgba(0,0,0,.07);
 }
 
-.card-top{
+.material-top{
     height:130px;
     display:flex;
     align-items:center;
@@ -281,11 +356,11 @@ body{
     font-size:55px;
 }
 
-.card-content{
+.material-content{
     padding:20px;
 }
 
-.level{
+.material-type{
     display:inline-block;
     background:#dcfce7;
     color:#15803d;
@@ -296,17 +371,32 @@ body{
     margin-bottom:10px;
 }
 
-.card h3{
+.material-content h3{
     margin-bottom:8px;
 }
 
-.card p{
+.material-content p{
     color:#697386;
     font-size:13px;
     line-height:1.5;
 }
 
-.card-btn{
+.material-tags{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+.material-tag{
+    background:#f1f5f9;
+    color:#475569;
+    padding:5px 8px;
+    border-radius:5px;
+    font-size:11px;
+}
+
+.material-btn{
     display:block;
     text-align:center;
     margin-top:17px;
@@ -319,6 +409,7 @@ body{
 }
 
 /* STATS */
+
 .stats{
     background:#172033;
     color:white;
@@ -343,45 +434,8 @@ body{
     font-size:13px;
 }
 
-/* NOTES */
-.notes{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.note{
-    background:white;
-    padding:22px;
-    border-radius:12px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
-}
-
-.note-icon{
-    font-size:35px;
-    margin-bottom:12px;
-}
-
-.note h3{
-    margin-bottom:8px;
-}
-
-.note p{
-    color:#697386;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.note a{
-    display:inline-block;
-    margin-top:15px;
-    color:#2563eb;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:13px;
-}
-
 /* TOOLS */
+
 .tools{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -411,7 +465,17 @@ body{
     margin-top:5px;
 }
 
+.tool a{
+    display:block;
+    margin-top:12px;
+    text-decoration:none;
+    color:#2563eb;
+    font-size:13px;
+    font-weight:bold;
+}
+
 /* CTA */
+
 .cta{
     margin:0 20px 60px;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
@@ -432,6 +496,7 @@ body{
 }
 
 /* FOOTER */
+
 footer{
     background:#0f172a;
     color:white;
@@ -483,6 +548,7 @@ footer a{
 }
 
 /* MOBILE */
+
 @media(max-width:800px){
 
     .menu{
@@ -516,17 +582,13 @@ footer a{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .cards{
+    .materials{
         grid-template-columns:1fr;
     }
 
     .stats-container{
         grid-template-columns:repeat(2,1fr);
         gap:30px;
-    }
-
-    .notes{
-        grid-template-columns:1fr;
     }
 
     .tools{
@@ -559,11 +621,16 @@ footer a{
     .search-box button{
         padding:0 14px;
     }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- NAVBAR -->
 
@@ -574,11 +641,25 @@ footer a{
     </div>
 
     <nav class="menu">
+
         <a href="#">Home</a>
-        <a href="#courses">Courses</a>
-        <a href="#notes">Notes</a>
-        <a href="#tools">Tools</a>
-        <a href="#" class="login-btn">Login</a>
+
+        <a href="#materials">
+            Materials
+        </a>
+
+        <a href="#tools">
+            Tools
+        </a>
+
+        <a href="#tests">
+            Tests
+        </a>
+
+        <a href="#" class="login-btn">
+            Login
+        </a>
+
     </nav>
 
 </header>
@@ -600,19 +681,25 @@ footer a{
         </h1>
 
         <p>
-            StudyHub Pakistan is your simple learning platform
-            for courses, notes, practicals, online tests and
+            StudyHub Pakistan is your learning platform
+            for notes, courses, practicals, tests and
             useful student tools.
         </p>
 
         <div class="hero-buttons">
 
-            <a href="#courses" class="primary-btn">
-                Explore Courses
+            <a href="#materials"
+               class="primary-btn">
+
+                Explore Materials
+
             </a>
 
-            <a href="#notes" class="secondary-btn">
-                View Notes
+            <a href="#tools"
+               class="secondary-btn">
+
+                Student Tools
+
             </a>
 
         </div>
@@ -625,23 +712,54 @@ footer a{
         <h2>📚 Start Learning</h2>
 
         <div class="study-item">
-            <div class="study-icon">💻</div>
-            <div>Computer Courses</div>
+
+            <div class="study-icon">
+                📘
+            </div>
+
+            <div>
+                Notes & Books
+            </div>
+
         </div>
 
-        <div class="study-item">
-            <div class="study-icon">📝</div>
-            <div>Study Notes</div>
-        </div>
 
         <div class="study-item">
-            <div class="study-icon">🧪</div>
-            <div>Online Tests</div>
+
+            <div class="study-icon">
+                💻
+            </div>
+
+            <div>
+                Practical Programs
+            </div>
+
         </div>
 
+
         <div class="study-item">
-            <div class="study-icon">🛠️</div>
-            <div>Student Tools</div>
+
+            <div class="study-icon">
+                🧪
+            </div>
+
+            <div>
+                Online Tests
+            </div>
+
+        </div>
+
+
+        <div class="study-item">
+
+            <div class="study-icon">
+                🛠️
+            </div>
+
+            <div>
+                Student Tools
+            </div>
+
         </div>
 
     </div>
@@ -658,7 +776,7 @@ footer a{
         <input
             type="text"
             id="searchInput"
-            placeholder="Search courses, notes, practicals..."
+            placeholder="Search class, subject, notes, practicals..."
         >
 
         <button onclick="searchSite()">
@@ -670,16 +788,25 @@ footer a{
 </div>
 
 
+<!-- SEARCH RESULTS -->
+
+<div id="searchResults"
+     class="search-results">
+</div>
+
+
 <!-- CATEGORIES -->
 
 <section class="section">
 
     <div class="section-title">
 
-        <h2>Explore Categories</h2>
+        <h2>
+            Explore Categories
+        </h2>
 
         <p>
-            Find the learning material you need
+            Find study material for any class
         </p>
 
     </div>
@@ -687,28 +814,75 @@ footer a{
 
     <div class="categories">
 
-        <a href="#courses" class="category">
-            <div class="category-icon">💻</div>
-            <h3>Computer</h3>
-            <p>Programming & IT</p>
+        <a href="#materials"
+           class="category">
+
+            <div class="category-icon">
+                🎓
+            </div>
+
+            <h3>
+                School
+            </h3>
+
+            <p>
+                Classes 9th to 12th
+            </p>
+
         </a>
 
-        <a href="#notes" class="category">
-            <div class="category-icon">📚</div>
-            <h3>Notes</h3>
-            <p>Study Material</p>
+
+        <a href="#materials"
+           class="category">
+
+            <div class="category-icon">
+                💻
+            </div>
+
+            <h3>
+                Computer
+            </h3>
+
+            <p>
+                CIT, DIT & IT
+            </p>
+
         </a>
 
-        <a href="#courses" class="category">
-            <div class="category-icon">🧪</div>
-            <h3>Practicals</h3>
-            <p>Programs & Labs</p>
+
+        <a href="#materials"
+           class="category">
+
+            <div class="category-icon">
+                📚
+            </div>
+
+            <h3>
+                Notes
+            </h3>
+
+            <p>
+                Study Material
+            </p>
+
         </a>
 
-        <a href="#tests" class="category">
-            <div class="category-icon">🎯</div>
-            <h3>Tests</h3>
-            <p>MCQs & Quizzes</p>
+
+        <a href="#tests"
+           class="category">
+
+            <div class="category-icon">
+                🎯
+            </div>
+
+            <h3>
+                Tests
+            </h3>
+
+            <p>
+                MCQs & Quizzes
+            </p>
+
         </a>
 
     </div>
@@ -716,89 +890,46 @@ footer a{
 </section>
 
 
-<!-- COURSES -->
+<!-- MATERIALS -->
 
-<section class="section" id="courses">
+<section class="section"
+         id="materials">
 
     <div class="section-title">
 
-        <h2>Popular Courses</h2>
+        <h2>
+            Latest Study Material
+        </h2>
 
         <p>
-            Start learning useful computer skills
+            Notes and material uploaded to StudyHub
         </p>
 
     </div>
 
 
-    <div class="cards">
+    <div id="materialsContainer"
+         class="materials">
 
-        <div class="card">
+        <div class="material-card">
 
-            <div class="card-top">🌐</div>
-
-            <div class="card-content">
-
-                <span class="level">BEGINNER</span>
-
-                <h3>HTML & CSS</h3>
-
-                <p>
-                    Learn how to create beautiful
-                    websites from scratch.
-                </p>
-
-                <a href="#" class="card-btn">
-                    View Course
-                </a>
-
+            <div class="material-top">
+                📚
             </div>
 
-        </div>
+            <div class="material-content">
 
+                <span class="material-type">
+                    LOADING
+                </span>
 
-        <div class="card">
-
-            <div class="card-top">💻</div>
-
-            <div class="card-content">
-
-                <span class="level">BEGINNER</span>
-
-                <h3>C++ Programming</h3>
+                <h3>
+                    Loading Material...
+                </h3>
 
                 <p>
-                    Learn programming fundamentals
-                    and create useful programs.
+                    Supabase se study material load ho raha hai.
                 </p>
-
-                <a href="#" class="card-btn">
-                    View Course
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-top">⚡</div>
-
-            <div class="card-content">
-
-                <span class="level">BEGINNER</span>
-
-                <h3>JavaScript</h3>
-
-                <p>
-                    Make your websites interactive
-                    with JavaScript.
-                </p>
-
-                <a href="#" class="card-btn">
-                    View Course
-                </a>
 
             </div>
 
@@ -816,91 +947,53 @@ footer a{
     <div class="stats-container">
 
         <div class="stat">
-            <h2>100+</h2>
-            <p>Lessons</p>
-        </div>
 
-        <div class="stat">
-            <h2>500+</h2>
-            <p>MCQs</p>
-        </div>
-
-        <div class="stat">
-            <h2>50+</h2>
-            <p>Practicals</p>
-        </div>
-
-        <div class="stat">
-            <h2>24/7</h2>
-            <p>Learning</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- NOTES -->
-
-<section class="section" id="notes">
-
-    <div class="section-title">
-
-        <h2>Latest Study Material</h2>
-
-        <p>
-            Notes and practical material for students
-        </p>
-
-    </div>
-
-
-    <div class="notes">
-
-        <div class="note">
-
-            <div class="note-icon">📘</div>
-
-            <h3>CIT Computer Notes</h3>
+            <h2 id="materialCount">
+                0
+            </h2>
 
             <p>
-                Important computer fundamentals,
-                theory and exam preparation notes.
+                Materials
             </p>
-
-            <a href="#">Read Notes →</a>
 
         </div>
 
 
-        <div class="note">
+        <div class="stat">
 
-            <div class="note-icon">💻</div>
-
-            <h3>C++ Practicals</h3>
+            <h2>
+                500+
+            </h2>
 
             <p>
-                Easy C++ programs with explanations
-                for practical preparation.
+                MCQs
             </p>
-
-            <a href="#">View Practicals →</a>
 
         </div>
 
 
-        <div class="note">
+        <div class="stat">
 
-            <div class="note-icon">📝</div>
-
-            <h3>Computer MCQs</h3>
+            <h2>
+                50+
+            </h2>
 
             <p>
-                Practice important computer science
-                multiple-choice questions.
+                Practicals
             </p>
 
-            <a href="#">Start Test →</a>
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                24/7
+            </h2>
+
+            <p>
+                Learning
+            </p>
 
         </div>
 
@@ -911,11 +1004,14 @@ footer a{
 
 <!-- TOOLS -->
 
-<section class="section" id="tools">
+<section class="section"
+         id="tools">
 
     <div class="section-title">
 
-        <h2>Student Tools</h2>
+        <h2>
+            Student Tools
+        </h2>
 
         <p>
             Useful tools for everyday study
@@ -926,28 +1022,88 @@ footer a{
 
     <div class="tools">
 
-        <div class="tool">
-            <div class="tool-icon">🧮</div>
-            <h3>Percentage</h3>
-            <p>Calculate percentage</p>
-        </div>
 
         <div class="tool">
-            <div class="tool-icon">🔢</div>
-            <h3>Calculator</h3>
-            <p>Quick calculations</p>
+
+            <div class="tool-icon">
+                🧮
+            </div>
+
+            <h3>
+                Percentage
+            </h3>
+
+            <p>
+                Calculate percentage
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
         </div>
 
-        <div class="tool">
-            <div class="tool-icon">📅</div>
-            <h3>Age Calculator</h3>
-            <p>Calculate your age</p>
-        </div>
 
         <div class="tool">
-            <div class="tool-icon">📄</div>
-            <h3>Word Counter</h3>
-            <p>Count your words</p>
+
+            <div class="tool-icon">
+                🔢
+            </div>
+
+            <h3>
+                Calculator
+            </h3>
+
+            <p>
+                Quick calculations
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
+        </div>
+
+
+        <div class="tool">
+
+            <div class="tool-icon">
+                📅
+            </div>
+
+            <h3>
+                Age Calculator
+            </h3>
+
+            <p>
+                Calculate your age
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
+        </div>
+
+
+        <div class="tool">
+
+            <div class="tool-icon">
+                📄
+            </div>
+
+            <h3>
+                Word Counter
+            </h3>
+
+            <p>
+                Count your words
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
         </div>
 
     </div>
@@ -957,11 +1113,14 @@ footer a{
 
 <!-- TESTS -->
 
-<section class="section" id="tests">
+<section class="section"
+         id="tests">
 
     <div class="section-title">
 
-        <h2>Online Tests</h2>
+        <h2>
+            Online Tests
+        </h2>
 
         <p>
             Test your knowledge and improve your skills
@@ -970,24 +1129,34 @@ footer a{
     </div>
 
 
-    <div class="cards">
+    <div class="materials">
 
-        <div class="card">
 
-            <div class="card-top">🎯</div>
+        <div class="material-card">
 
-            <div class="card-content">
+            <div class="material-top">
+                🎯
+            </div>
 
-                <span class="level">10 QUESTIONS</span>
+            <div class="material-content">
 
-                <h3>Computer Basics</h3>
+                <span class="material-type">
+                    10 QUESTIONS
+                </span>
+
+                <h3>
+                    Computer Basics
+                </h3>
 
                 <p>
                     Test your basic computer knowledge.
                 </p>
 
-                <a href="#" class="card-btn">
+                <a href="#"
+                   class="material-btn">
+
                     Start Test
+
                 </a>
 
             </div>
@@ -995,22 +1164,31 @@ footer a{
         </div>
 
 
-        <div class="card">
+        <div class="material-card">
 
-            <div class="card-top">💻</div>
+            <div class="material-top">
+                💻
+            </div>
 
-            <div class="card-content">
+            <div class="material-content">
 
-                <span class="level">10 QUESTIONS</span>
+                <span class="material-type">
+                    10 QUESTIONS
+                </span>
 
-                <h3>C++ Basics</h3>
+                <h3>
+                    C++ Basics
+                </h3>
 
                 <p>
                     Check your C++ programming knowledge.
                 </p>
 
-                <a href="#" class="card-btn">
+                <a href="#"
+                   class="material-btn">
+
                     Start Test
+
                 </a>
 
             </div>
@@ -1018,22 +1196,31 @@ footer a{
         </div>
 
 
-        <div class="card">
+        <div class="material-card">
 
-            <div class="card-top">🌐</div>
+            <div class="material-top">
+                🌐
+            </div>
 
-            <div class="card-content">
+            <div class="material-content">
 
-                <span class="level">10 QUESTIONS</span>
+                <span class="material-type">
+                    10 QUESTIONS
+                </span>
 
-                <h3>HTML Basics</h3>
+                <h3>
+                    HTML Basics
+                </h3>
 
                 <p>
                     Test your HTML knowledge.
                 </p>
 
-                <a href="#" class="card-btn">
+                <a href="#"
+                   class="material-btn">
+
                     Start Test
+
                 </a>
 
             </div>
@@ -1049,14 +1236,19 @@ footer a{
 
 <section class="cta">
 
-    <h2>Ready to Start Learning?</h2>
+    <h2>
+        Ready to Start Learning?
+    </h2>
 
     <p>
-        Explore courses, notes and practicals today.
+        Find notes, practicals and study material for your class.
     </p>
 
-    <a href="#courses" class="primary-btn">
+    <a href="#materials"
+       class="primary-btn">
+
         Start Learning
+
     </a>
 
 </section>
@@ -1068,15 +1260,20 @@ footer a{
 
     <div class="footer-grid">
 
+
         <div>
 
             <div class="footer-logo">
+
                 Study<span>Hub</span> Pakistan
+
             </div>
 
             <p>
+
                 A learning platform designed to help
                 Pakistani students learn, practice and grow.
+
             </p>
 
         </div>
@@ -1084,24 +1281,50 @@ footer a{
 
         <div>
 
-            <h3>Quick Links</h3>
+            <h3>
+                Quick Links
+            </h3>
 
-            <a href="#">Home</a>
-            <a href="#courses">Courses</a>
-            <a href="#notes">Notes</a>
-            <a href="#tools">Tools</a>
+            <a href="#">
+                Home
+            </a>
+
+            <a href="#materials">
+                Materials
+            </a>
+
+            <a href="#tools">
+                Tools
+            </a>
+
+            <a href="#tests">
+                Tests
+            </a>
 
         </div>
 
 
         <div>
 
-            <h3>Learning</h3>
+            <h3>
+                Learning
+            </h3>
 
-            <a href="#">Practicals</a>
-            <a href="#tests">Online Tests</a>
-            <a href="#">Downloads</a>
-            <a href="#">Login</a>
+            <a href="#materials">
+                Notes
+            </a>
+
+            <a href="#materials">
+                Practicals
+            </a>
+
+            <a href="#tests">
+                Online Tests
+            </a>
+
+            <a href="#">
+                Downloads
+            </a>
 
         </div>
 
@@ -1119,27 +1342,526 @@ footer a{
 </footer>
 
 
+<!-- SUPABASE -->
+
 <script>
 
-function searchSite(){
+const SUPABASE_URL =
+"https://kwkxdvevtxyvjywiqkcv.supabase.co";
 
-    let input =
-        document.getElementById("searchInput").value.trim();
+const SUPABASE_KEY =
+"sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
+
+
+/* ============================
+   LOAD MATERIALS
+============================ */
+
+async function loadMaterials(){
+
+    const container =
+        document.getElementById(
+            "materialsContainer"
+        );
+
+    try{
+
+        const response =
+            await fetch(
+
+                SUPABASE_URL +
+                "/rest/v1/materials?select=*&order=id.desc",
+
+                {
+
+                    method:"GET",
+
+                    headers:{
+                        "apikey":SUPABASE_KEY,
+                        "Authorization":
+                        "Bearer " +
+                        SUPABASE_KEY
+                    }
+
+                }
+
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Database connection failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        document.getElementById(
+            "materialCount"
+        ).textContent = data.length;
+
+
+        if(data.length === 0){
+
+            container.innerHTML = `
+
+                <div class="no-result">
+
+                    <h3>
+                        📚 No Material Yet
+                    </h3>
+
+                    <p>
+                        Abhi database mein koi study
+                        material upload nahi hua.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML = "";
+
+
+        data.forEach(
+            material => {
+
+                container.innerHTML +=
+                createMaterialCard(material);
+
+            }
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML = `
+
+            <div class="no-result">
+
+                <h3>
+                    ⚠️ Material Load Nahi Ho Saka
+                </h3>
+
+                <p>
+                    Supabase table, RLS ya column names
+                    check karein.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ============================
+   MATERIAL CARD
+============================ */
+
+function createMaterialCard(material){
+
+    const title =
+        material.title || "Untitled Material";
+
+    const description =
+        material.description ||
+        "Study material available on StudyHub Pakistan.";
+
+    const className =
+        material.class ||
+        material.class_name ||
+        "All Classes";
+
+    const subject =
+        material.subject ||
+        "General";
+
+    const type =
+        material.material_type ||
+        material.type ||
+        "Notes";
+
+    const fileUrl =
+        material.file_url ||
+        material.url ||
+        "#";
+
+
+    return `
+
+        <div class="material-card">
+
+            <div class="material-top">
+                📚
+            </div>
+
+            <div class="material-content">
+
+                <span class="material-type">
+                    ${escapeHTML(type)}
+                </span>
+
+                <h3>
+                    ${escapeHTML(title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(description)}
+                </p>
+
+                <div class="material-tags">
+
+                    <span class="material-tag">
+                        Class:
+                        ${escapeHTML(className)}
+                    </span>
+
+                    <span class="material-tag">
+                        Subject:
+                        ${escapeHTML(subject)}
+                    </span>
+
+                </div>
+
+                ${
+                    fileUrl !== "#"
+                    ?
+
+                    `<a
+                        href="${escapeAttribute(fileUrl)}"
+                        target="_blank"
+                        class="material-btn">
+
+                        📥 View / Download
+
+                    </a>`
+
+                    :
+
+                    ""
+
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ============================
+   SEARCH
+============================ */
+
+async function searchSite(){
+
+    const input =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .trim();
+
+
+    const results =
+        document.getElementById(
+            "searchResults"
+        );
+
 
     if(input === ""){
 
-        alert("Please enter something to search.");
+        results.innerHTML = "";
 
         return;
+
     }
 
-    alert(
-        "Search system will be connected to the database soon.\n\nYou searched for: "
-        + input
-    );
+
+    results.innerHTML = `
+
+        <div class="no-result">
+
+            🔎 Searching...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const search =
+            encodeURIComponent(
+                "*" + input + "*"
+            );
+
+
+        const url =
+            SUPABASE_URL +
+            "/rest/v1/materials" +
+            "?or=(" +
+
+            "title.ilike." +
+            search +
+
+            ",description.ilike." +
+            search +
+
+            ",class.ilike." +
+            search +
+
+            ",subject.ilike." +
+            search +
+
+            ",material_type.ilike." +
+            search +
+
+            ")";
+
+
+        const response =
+            await fetch(
+
+                url,
+
+                {
+
+                    method:"GET",
+
+                    headers:{
+                        "apikey":
+                        SUPABASE_KEY,
+
+                        "Authorization":
+                        "Bearer " +
+                        SUPABASE_KEY
+                    }
+
+                }
+
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Search failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(data.length === 0){
+
+            results.innerHTML = `
+
+                <div class="no-result">
+
+                    <h3>
+                        😕 Material Not Found
+                    </h3>
+
+                    <p>
+                        "${escapeHTML(input)}"
+                        ke liye koi material nahi mila.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        results.innerHTML = "";
+
+
+        data.forEach(
+            material => {
+
+                results.innerHTML += `
+
+                    <div class="search-result-card">
+
+                        <h3>
+                            📚
+                            ${escapeHTML(
+                                material.title ||
+                                "Untitled"
+                            )}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                material.description ||
+                                ""
+                            )}
+                        </p>
+
+                        <div class="result-info">
+
+                            <span class="result-tag">
+
+                                Class:
+                                ${escapeHTML(
+                                    material.class ||
+                                    material.class_name ||
+                                    "All"
+                                )}
+
+                            </span>
+
+                            <span class="result-tag">
+
+                                Subject:
+                                ${escapeHTML(
+                                    material.subject ||
+                                    "General"
+                                )}
+
+                            </span>
+
+                            <span class="result-tag">
+
+                                ${escapeHTML(
+                                    material.material_type ||
+                                    material.type ||
+                                    "Material"
+                                )}
+
+                            </span>
+
+                        </div>
+
+                        ${
+                            material.file_url
+
+                            ?
+
+                            `<a
+                                href="${escapeAttribute(
+                                    material.file_url
+                                )}"
+                                target="_blank"
+                                class="result-btn">
+
+                                📥 View / Download
+
+                            </a>`
+
+                            :
+
+                            ""
+
+                        }
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        results.innerHTML = `
+
+            <div class="no-result">
+
+                ⚠️ Search system mein problem aa gayi.
+
+            </div>
+
+        `;
+
+    }
+
 }
+
+
+/* ============================
+   SECURITY HELPERS
+============================ */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(value)
+        .replace(/"/g,"%22")
+        .replace(/</g,"%3C")
+        .replace(/>/g,"%3E");
+
+}
+
+
+/* ============================
+   ENTER KEY
+============================ */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            searchSite();
+
+        }
+
+    }
+);
+
+
+/* ============================
+   START
+============================ */
+
+loadMaterials();
 
 </script>
 
+
 </body>
-    </html>
+
+            </html>
