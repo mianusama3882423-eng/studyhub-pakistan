@@ -6,7 +6,10 @@
 
 <title>StudyHub Pakistan</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -25,7 +28,7 @@ body{
 
 .navbar{
     background:white;
-    height:65px;
+    min-height:65px;
     padding:0 6%;
     display:flex;
     align-items:center;
@@ -51,30 +54,18 @@ body{
     align-items:center;
 }
 
-.menu a,
-.menu button{
-    border:0;
-    background:none;
+.menu a{
     text-decoration:none;
     color:#333;
     font-size:14px;
     font-weight:500;
-    cursor:pointer;
 }
 
 .login-btn{
-    background:#2563eb !important;
+    background:#2563eb;
     color:white !important;
     padding:10px 18px;
     border-radius:7px;
-}
-
-.logout-btn{
-    background:#dc2626 !important;
-    color:white !important;
-    padding:10px 15px;
-    border-radius:7px;
-    display:none;
 }
 
 .hero{
@@ -212,6 +203,14 @@ body{
     padding:0 20px;
 }
 
+.search-result{
+    background:white;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:8px;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
+
 .section{
     max-width:1150px;
     margin:auto;
@@ -309,21 +308,6 @@ body{
     line-height:1.5;
 }
 
-.material-tags{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-top:12px;
-}
-
-.material-tag{
-    background:#f1f5f9;
-    color:#475569;
-    padding:5px 8px;
-    border-radius:5px;
-    font-size:11px;
-}
-
 .material-btn{
     display:block;
     text-align:center;
@@ -339,8 +323,11 @@ body{
     cursor:pointer;
 }
 
-.delete-btn{
-    background:#dc2626;
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#697386;
+    grid-column:1/-1;
 }
 
 .stats{
@@ -473,153 +460,9 @@ footer a{
     text-align:center;
 }
 
-/* LOGIN MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    z-index:5000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal-box{
-    background:white;
-    width:100%;
-    max-width:420px;
-    padding:30px;
-    border-radius:16px;
-    position:relative;
-}
-
-.close{
-    position:absolute;
-    right:18px;
-    top:12px;
-    font-size:28px;
-    cursor:pointer;
-}
-
-.modal-box h2{
-    margin-bottom:8px;
-}
-
-.modal-box p{
-    color:#697386;
-    font-size:13px;
-    margin-bottom:20px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:6px;
-}
-
-.form-group input{
-    width:100%;
-    padding:12px;
-    border:1px solid #d5dbe7;
-    border-radius:7px;
-    outline:none;
-}
-
-.form-btn{
-    width:100%;
-    border:0;
-    background:#2563eb;
-    color:white;
-    padding:13px;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.auth-message{
-    margin-top:15px;
-    text-align:center;
-    font-size:13px;
-}
-
-/* ADMIN */
-
-#adminPanel{
-    display:none;
-    background:#eaf2ff;
-    padding:50px 20px;
-}
-
-.admin-box{
-    max-width:800px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 25px rgba(0,0,0,.08);
-}
-
-.admin-box h2{
-    margin-bottom:8px;
-}
-
-.admin-box .subtitle{
-    color:#697386;
-    margin-bottom:25px;
-    font-size:13px;
-}
-
-.admin-form{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.admin-form .full{
-    grid-column:1/-1;
-}
-
-.admin-form input,
-.admin-form textarea,
-.admin-form select{
-    width:100%;
-    padding:12px;
-    border:1px solid #d5dbe7;
-    border-radius:7px;
-    outline:none;
-}
-
-.admin-form textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-.add-btn{
-    background:#16a34a;
-    color:white;
-    border:0;
-    padding:13px;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.admin-status{
-    margin-top:15px;
-    font-size:13px;
-}
-
 @media(max-width:800px){
 
-    .menu a:not(.login-btn),
-    .menu button:not(.login-btn){
+    .menu a:not(.login-btn){
         display:none;
     }
 
@@ -662,17 +505,13 @@ footer a{
     .footer-grid{
         grid-template-columns:1fr;
     }
-
-    .admin-form{
-        grid-template-columns:1fr;
-    }
-
-    .admin-form .full{
-        grid-column:auto;
-    }
 }
 
 @media(max-width:450px){
+
+    .navbar{
+        padding:0 18px;
+    }
 
     .logo{
         font-size:18px;
@@ -690,10 +529,13 @@ footer a{
         padding:0 14px;
     }
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- NAVBAR -->
 
 <header class="navbar">
 
@@ -715,25 +557,23 @@ footer a{
 
         <a href="#tests">
             Tests
-        <a
-    id="loginButton"
-    class="login-btn"
-    href="login.html">
-    Login
         </a>
-        
 
-        <button
-            id="logoutButton"
-            class="logout-btn"
-            onclick="logout()">
-            Logout
-        </button>
+        <!-- IMPORTANT: SEPARATE LOGIN PAGE -->
+
+        <a
+            id="loginButton"
+            class="login-btn"
+            href="login.html">
+            Login
+        </a>
 
     </nav>
 
 </header>
 
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -756,13 +596,15 @@ footer a{
 
         <div class="hero-buttons">
 
-            <a href="#materials"
-               class="primary-btn">
+            <a
+                href="#materials"
+                class="primary-btn">
                 Explore Materials
             </a>
 
-            <a href="#tools"
-               class="secondary-btn">
+            <a
+                href="#tools"
+                class="secondary-btn">
                 Student Tools
             </a>
 
@@ -800,6 +642,8 @@ footer a{
 </section>
 
 
+<!-- SEARCH -->
+
 <div class="search-area">
 
     <div class="search-box">
@@ -807,7 +651,7 @@ footer a{
         <input
             type="text"
             id="searchInput"
-            placeholder="Search class, subject, notes, practicals...">
+            placeholder="Search courses, notes, practicals, tests...">
 
         <button onclick="searchSite()">
             Search
@@ -817,11 +661,13 @@ footer a{
 
 </div>
 
-
-<div id="searchResults"
-     class="search-results">
+<div
+    id="searchResults"
+    class="search-results">
 </div>
 
+
+<!-- CATEGORIES -->
 
 <section class="section">
 
@@ -829,34 +675,71 @@ footer a{
 
         <h2>Explore Categories</h2>
 
-        <p>Find study material for any class</p>
+        <p>
+            Find study material for any class
+        </p>
 
     </div>
 
     <div class="categories">
 
         <a href="#materials" class="category">
-            <div class="category-icon">🎓</div>
+
+            <div class="category-icon">
+                🎓
+            </div>
+
             <h3>School</h3>
-            <p>Classes 9th to 12th</p>
+
+            <p>
+                Classes 9th to 12th
+            </p>
+
         </a>
 
+
         <a href="#materials" class="category">
-            <div class="category-icon">💻</div>
+
+            <div class="category-icon">
+                💻
+            </div>
+
             <h3>Computer</h3>
-            <p>CIT, DIT & IT</p>
+
+            <p>
+                CIT, DIT & IT
+            </p>
+
         </a>
 
+
         <a href="#materials" class="category">
-            <div class="category-icon">📚</div>
+
+            <div class="category-icon">
+                📚
+            </div>
+
             <h3>Notes</h3>
-            <p>Study Material</p>
+
+            <p>
+                Study Material
+            </p>
+
         </a>
+
 
         <a href="#tests" class="category">
-            <div class="category-icon">🎯</div>
+
+            <div class="category-icon">
+                🎯
+            </div>
+
             <h3>Tests</h3>
-            <p>MCQs & Quizzes</p>
+
+            <p>
+                MCQs & Quizzes
+            </p>
+
         </a>
 
     </div>
@@ -864,68 +747,92 @@ footer a{
 </section>
 
 
-<section class="section" id="materials">
+<!-- MATERIALS -->
+
+<section
+    class="section"
+    id="materials">
 
     <div class="section-title">
 
-        <h2>Latest Study Material</h2>
+        <h2>
+            Latest Study Material
+        </h2>
 
-        <p>Notes and material uploaded to StudyHub</p>
+        <p>
+            Material uploaded to StudyHub
+        </p>
 
     </div>
 
-    <div id="materialsContainer"
-         class="materials">
+    <div
+        id="materialsContainer"
+        class="materials">
 
-        <div class="material-card">
-
-            <div class="material-top">⏳</div>
-
-            <div class="material-content">
-
-                <span class="material-type">
-                    LOADING
-                </span>
-
-                <h3>
-                    Loading Material...
-                </h3>
-
-                <p>
-                    Please wait...
-                </p>
-
-            </div>
-
+        <div class="loading">
+            ⏳ Loading materials...
         </div>
 
     </div>
 
 </section>
 
+
+<!-- STATS -->
 
 <section class="stats">
 
     <div class="stats-container">
 
         <div class="stat">
-            <h2 id="materialCount">0</h2>
-            <p>Materials</p>
+
+            <h2 id="materialCount">
+                0
+            </h2>
+
+            <p>
+                Materials
+            </p>
+
         </div>
 
-        <div class="stat">
-            <h2>500+</h2>
-            <p>MCQs</p>
-        </div>
 
         <div class="stat">
-            <h2>50+</h2>
-            <p>Practicals</p>
+
+            <h2 id="courseCount">
+                0
+            </h2>
+
+            <p>
+                Courses
+            </p>
+
         </div>
 
+
         <div class="stat">
-            <h2>24/7</h2>
-            <p>Learning</p>
+
+            <h2 id="practicalCount">
+                0
+            </h2>
+
+            <p>
+                Practicals
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2 id="testCount">
+                0
+            </h2>
+
+            <p>
+                Tests
+            </p>
+
         </div>
 
     </div>
@@ -933,44 +840,108 @@ footer a{
 </section>
 
 
-<section class="section" id="tools">
+<!-- TOOLS -->
+
+<section
+    class="section"
+    id="tools">
 
     <div class="section-title">
 
-        <h2>Student Tools</h2>
+        <h2>
+            Student Tools
+        </h2>
 
-        <p>Useful tools for everyday study</p>
+        <p>
+            Useful tools for everyday study
+        </p>
 
     </div>
+
 
     <div class="tools">
 
         <div class="tool">
-            <div class="tool-icon">🧮</div>
-            <h3>Percentage</h3>
-            <p>Calculate percentage</p>
-            <a href="tools.html">Open Tool →</a>
+
+            <div class="tool-icon">
+                🧮
+            </div>
+
+            <h3>
+                Percentage
+            </h3>
+
+            <p>
+                Calculate percentage
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
         </div>
 
-        <div class="tool">
-            <div class="tool-icon">🔢</div>
-            <h3>Calculator</h3>
-            <p>Quick calculations</p>
-            <a href="tools.html">Open Tool →</a>
-        </div>
 
         <div class="tool">
-            <div class="tool-icon">📅</div>
-            <h3>Age Calculator</h3>
-            <p>Calculate your age</p>
-            <a href="tools.html">Open Tool →</a>
+
+            <div class="tool-icon">
+                🔢
+            </div>
+
+            <h3>
+                Calculator
+            </h3>
+
+            <p>
+                Quick calculations
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
         </div>
 
+
         <div class="tool">
-            <div class="tool-icon">📄</div>
-            <h3>Word Counter</h3>
-            <p>Count your words</p>
-            <a href="tools.html">Open Tool →</a>
+
+            <div class="tool-icon">
+                📅
+            </div>
+
+            <h3>
+                Age Calculator
+            </h3>
+
+            <p>
+                Calculate your age
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
+        </div>
+
+
+        <div class="tool">
+
+            <div class="tool-icon">
+                📄
+            </div>
+
+            <h3>
+                Word Counter
+            </h3>
+
+            <p>
+                Count your words
+            </p>
+
+            <a href="tools.html">
+                Open Tool →
+            </a>
+
         </div>
 
     </div>
@@ -978,223 +949,61 @@ footer a{
 </section>
 
 
-<section class="section" id="tests">
+<!-- TESTS -->
+
+<section
+    class="section"
+    id="tests">
 
     <div class="section-title">
 
-        <h2>Online Tests</h2>
+        <h2>
+            Online Tests
+        </h2>
 
-        <p>Test your knowledge and improve your skills</p>
-
-    </div>
-
-    <div class="materials">
-
-        <div class="material-card">
-            <div class="material-top">🎯</div>
-
-            <div class="material-content">
-
-                <span class="material-type">
-                    10 QUESTIONS
-                </span>
-
-                <h3>Computer Basics</h3>
-
-                <p>
-                    Test your basic computer knowledge.
-                </p>
-
-                <button class="material-btn">
-                    Start Test
-                </button>
-
-            </div>
-        </div>
-
-        <div class="material-card">
-            <div class="material-top">💻</div>
-
-            <div class="material-content">
-
-                <span class="material-type">
-                    10 QUESTIONS
-                </span>
-
-                <h3>C++ Basics</h3>
-
-                <p>
-                    Check your C++ programming knowledge.
-                </p>
-
-                <button class="material-btn">
-                    Start Test
-                </button>
-
-            </div>
-        </div>
-
-        <div class="material-card">
-            <div class="material-top">🌐</div>
-
-            <div class="material-content">
-
-                <span class="material-type">
-                    10 QUESTIONS
-                </span>
-
-                <h3>HTML Basics</h3>
-
-                <p>
-                    Test your HTML knowledge.
-                </p>
-
-                <button class="material-btn">
-                    Start Test
-                </button>
-
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ADMIN PANEL -->
-
-<section id="adminPanel">
-
-    <div class="admin-box">
-
-        <h2>👨‍💼 Admin Panel</h2>
-
-        <p class="subtitle">
-            Yahan se StudyHub Pakistan par study material add karo.
+        <p>
+            Test your knowledge and improve your skills
         </p>
 
-        <form id="materialForm"
-              class="admin-form">
-
-            <div class="form-group">
-
-                <label>Material Title</label>
-
-                <input
-                    id="title"
-                    type="text"
-                    placeholder="C++ Practical No. 1"
-                    required>
-
-            </div>
+    </div>
 
 
-            <div class="form-group">
+    <div
+        id="testsContainer"
+        class="materials">
 
-                <label>Class</label>
-
-                <input
-                    id="className"
-                    type="text"
-                    placeholder="CIT 1st Year"
-                    required>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>Subject</label>
-
-                <input
-                    id="subject"
-                    type="text"
-                    placeholder="Computer"
-                    required>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>Material Type</label>
-
-                <select id="materialType">
-
-                    <option>Notes</option>
-                    <option>Practical</option>
-                    <option>Book</option>
-                    <option>PDF</option>
-                    <option>Assignment</option>
-                    <option>Other</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>Description</label>
-
-                <textarea
-                    id="description"
-                    placeholder="Material ke bare mein description..."
-                    required></textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>File / PDF URL</label>
-
-                <input
-                    id="fileUrl"
-                    type="url"
-                    placeholder="https://example.com/file.pdf">
-
-            </div>
-
-
-            <div class="full">
-
-                <button
-                    type="submit"
-                    class="add-btn">
-
-                    ➕ Add Material
-
-                </button>
-
-            </div>
-
-        </form>
-
-        <div id="adminStatus"
-             class="admin-status">
+        <div class="loading">
+            ⏳ Loading tests...
         </div>
 
     </div>
 
 </section>
 
+
+<!-- CTA -->
 
 <section class="cta">
 
-    <h2>Ready to Start Learning?</h2>
+    <h2>
+        Ready to Start Learning?
+    </h2>
 
     <p>
-        Find notes, practicals and study material for your class.
+        Find notes, practicals and study material
+        for your class.
     </p>
 
-    <a href="#materials"
-       class="primary-btn">
+    <a
+        href="#materials"
+        class="primary-btn">
         Start Learning
     </a>
 
 </section>
 
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -1213,33 +1022,60 @@ footer a{
 
         </div>
 
+
         <div>
 
-            <h3>Quick Links</h3>
+            <h3>
+                Quick Links
+            </h3>
 
-            <a href="#">Home</a>
-            <a href="#materials">Materials</a>
-            <a href="#tools">Tools</a>
-            <a href="#tests">Tests</a>
+            <a href="#">
+                Home
+            </a>
+
+            <a href="#materials">
+                Materials
+            </a>
+
+            <a href="#tools">
+                Tools
+            </a>
+
+            <a href="#tests">
+                Tests
+            </a>
 
         </div>
 
+
         <div>
 
-            <h3>Learning</h3>
+            <h3>
+                Learning
+            </h3>
 
-            <a href="#materials">Notes</a>
-            <a href="#materials">Practicals</a>
-            <a href="#tests">Online Tests</a>
+            <a href="#materials">
+                Notes
+            </a>
+
+            <a href="#materials">
+                Practicals
+            </a>
+
+            <a href="#tests">
+                Online Tests
+            </a>
 
         </div>
 
     </div>
 
+
     <div class="copyright">
 
         <p>
-            © 2026 StudyHub Pakistan. All rights reserved.
+            © 2026 StudyHub Pakistan.
+            All rights reserved.
         </p>
 
     </div>
@@ -1247,76 +1083,11 @@ footer a{
 </footer>
 
 
-<!-- LOGIN -->
-
-<div id="loginModal"
-     class="modal">
-
-    <div class="modal-box">
-
-        <div class="close"
-             onclick="closeLogin()">
-            ×
-        </div>
-
-        <h2>🔐 StudyHub Login</h2>
-
-        <p>
-            Admin account se login karein.
-        </p>
-
-        <form id="loginForm">
-
-            <div class="form-group">
-
-                <label>Email</label>
-
-                <input
-                    id="email"
-                    type="email"
-                    placeholder="admin@example.com"
-                    required>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>Password</label>
-
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
-                    required>
-
-            </div>
-
-            <button
-                class="form-btn"
-                type="submit">
-
-                Login
-
-            </button>
-
-        </form>
-
-        <div id="authMessage"
-             class="auth-message">
-        </div>
-
-    </div>
-
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 
-/* ==============================
+/* ============================
    SUPABASE
-============================== */
+============================ */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -1331,200 +1102,177 @@ supabase.createClient(
 );
 
 
-/* ==============================
-   LOGIN MODAL
-============================== */
+/* ============================
+   SAFE TEXT
+============================ */
 
-function openLogin(){
+function safe(value){
 
-    document.getElementById(
-        "loginModal"
-    ).style.display="flex";
-
-}
-
-function closeLogin(){
-
-    document.getElementById(
-        "loginModal"
-    ).style.display="none";
-
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 }
 
 
-/* ==============================
-   LOGIN
-============================== */
+/* ============================
+   LOAD COURSES
+============================ */
 
-document
-.getElementById("loginForm")
-.addEventListener(
-"submit",
-async function(e){
-
-    e.preventDefault();
-
-    const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
-    const password =
-        document.getElementById(
-            "password"
-        ).value;
-
-    const message =
-        document.getElementById(
-            "authMessage"
-        );
-
-    message.textContent =
-        "⏳ Logging in...";
-
+async function loadCourses(){
 
     const {
         data,
         error
     } =
-    await db.auth.signInWithPassword({
-
-        email:email,
-        password:password
-
-    });
+    await db
+        .from("courses")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
 
 
     if(error){
 
-        message.style.color="red";
+        console.log(
+            "Courses error:",
+            error.message
+        );
 
-        message.textContent =
-            "❌ " + error.message;
-
-        return;
-
+        return [];
     }
 
 
-    message.style.color="green";
-
-    message.textContent =
-        "✅ Login successful!";
-
-
-    setTimeout(
-        closeLogin,
-        800
-    );
-
-});
-
-
-/* ==============================
-   LOGOUT
-============================== */
-
-async function logout(){
-
-    await db.auth.signOut();
-
     document.getElementById(
-        "adminPanel"
-    ).style.display="none";
+        "courseCount"
+    ).textContent = data.length;
 
-    document.getElementById(
-        "loginButton"
-    ).style.display="block";
 
-    document.getElementById(
-        "logoutButton"
-    ).style.display="none";
-
+    return data || [];
 }
 
 
-/* ==============================
-   CHECK LOGIN
-============================== */
+/* ============================
+   LOAD NOTES
+============================ */
 
-async function checkUser(){
+async function loadNotes(){
 
     const {
-        data
+        data,
+        error
     } =
-    await db.auth.getSession();
+    await db
+        .from("notes")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
 
 
-    if(data.session){
+    if(error){
 
-        showAdmin();
+        console.log(
+            "Notes error:",
+            error.message
+        );
 
-    }else{
-
-        hideAdmin();
-
+        return [];
     }
 
+
+    return data || [];
 }
 
 
-function showAdmin(){
+/* ============================
+   LOAD PRACTICALS
+============================ */
 
-    document.getElementById(
-        "adminPanel"
-    ).style.display="block";
+async function loadPracticals(){
 
-    document.getElementById(
-        "loginButton"
-    ).style.display="none";
-
-    document.getElementById(
-        "logoutButton"
-    ).style.display="block";
-
-}
-
-
-function hideAdmin(){
-
-    document.getElementById(
-        "adminPanel"
-    ).style.display="none";
-
-    document.getElementById(
-        "loginButton"
-    ).style.display="block";
-
-    document.getElementById(
-        "logoutButton"
-    ).style.display="none";
-
-}
+    const {
+        data,
+        error
+    } =
+    await db
+        .from("practicals")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
 
 
-db.auth.onAuthStateChange(
-    function(event,session){
+    if(error){
 
-        if(session){
+        console.log(
+            "Practicals error:",
+            error.message
+        );
 
-            showAdmin();
-
-        }else{
-
-            hideAdmin();
-
-        }
-
+        return [];
     }
-);
 
 
-/* ==============================
-   LOAD MATERIALS
-============================== */
+    document.getElementById(
+        "practicalCount"
+    ).textContent = data.length;
 
-async function loadMaterials(){
+
+    return data || [];
+}
+
+
+/* ============================
+   LOAD TESTS
+============================ */
+
+async function loadTests(){
+
+    const {
+        data,
+        error
+    } =
+    await db
+        .from("tests")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
+
+
+    if(error){
+
+        console.log(
+            "Tests error:",
+            error.message
+        );
+
+        return [];
+    }
+
+
+    document.getElementById(
+        "testCount"
+    ).textContent = data.length;
+
+
+    return data || [];
+}
+
+
+/* ============================
+   SHOW MATERIALS
+============================ */
+
+async function showMaterials(){
 
     const container =
         document.getElementById(
@@ -1532,319 +1280,229 @@ async function loadMaterials(){
         );
 
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("materials")
-    .select("*")
-    .order("id",{ascending:false});
+    container.innerHTML =
+        `<div class="loading">
+            ⏳ Loading...
+        </div>`;
 
 
-    if(error){
+    const notes =
+        await loadNotes();
 
-        console.error(error);
+    const practicals =
+        await loadPracticals();
 
-        container.innerHTML = `
+    const courses =
+        await loadCourses();
 
-            <div class="material-card">
 
-                <div class="material-content">
+    const materials = [];
 
-                    <h3>⚠️ Materials Load Error</h3>
 
-                    <p>
-                        ${escapeHTML(error.message)}
-                    </p>
+    notes.forEach(item => {
 
-                </div>
+        materials.push({
 
-            </div>
+            title:item.title,
 
-        `;
+            description:item.description,
 
-        return;
+            icon:item.icon || "📘",
 
-    }
+            type:"NOTE",
+
+            url:item.file_url || item.url || ""
+
+        });
+
+    });
+
+
+    practicals.forEach(item => {
+
+        materials.push({
+
+            title:item.title,
+
+            description:item.description,
+
+            icon:"🧪",
+
+            type:"PRACTICAL",
+
+            url:item.file_url || item.url || ""
+
+        });
+
+    });
+
+
+    courses.forEach(item => {
+
+        materials.push({
+
+            title:item.title,
+
+            description:item.description,
+
+            icon:item.icon || "📚",
+
+            type:"COURSE",
+
+            url:"courses.html"
+
+        });
+
+    });
 
 
     document.getElementById(
         "materialCount"
-    ).textContent=data.length;
+    ).textContent = materials.length;
 
 
-    if(data.length===0){
+    if(materials.length === 0){
 
-        container.innerHTML=`
+        container.innerHTML =
+            `<div class="loading">
+                📚 No study material available yet.
+            </div>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        materials.slice(0,12).map(item => `
 
             <div class="material-card">
 
+                <div class="material-top">
+                    ${safe(item.icon)}
+                </div>
+
                 <div class="material-content">
 
-                    <h3>📚 No Material Yet</h3>
+                    <span class="material-type">
+                        ${safe(item.type)}
+                    </span>
+
+                    <h3>
+                        ${safe(item.title)}
+                    </h3>
 
                     <p>
-                        Admin panel se pehla material add karein.
+                        ${safe(item.description)}
                     </p>
 
+                    ${
+                        item.url
+                        ?
+                        `<a
+                            class="material-btn"
+                            href="${safe(item.url)}"
+                            target="_blank">
+                            Open Material →
+                        </a>`
+                        :
+                        `<a
+                            class="material-btn"
+                            href="#"
+                            onclick="return false;">
+                            Available Soon
+                        </a>`
+                    }
+
                 </div>
 
             </div>
 
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML="";
-
-
-    data.forEach(
-        material => {
-
-            container.innerHTML +=
-            createMaterialCard(material);
-
-        }
-    );
+        `).join("");
 
 }
 
 
-/* ==============================
-   CREATE CARD
-============================== */
+/* ============================
+   SHOW TESTS
+============================ */
 
-function createMaterialCard(material){
+async function showTests(){
 
-    const title =
-        material.title ||
-        "Untitled Material";
-
-    const description =
-        material.description ||
-        "Study material available.";
-
-    const className =
-        material.class ||
-        material.class_name ||
-        "All Classes";
-
-    const subject =
-        material.subject ||
-        "General";
-
-    const type =
-        material.material_type ||
-        material.type ||
-        "Notes";
-
-    const fileUrl =
-        material.file_url ||
-        material.url ||
-        "";
-
-
-    return `
-
-        <div class="material-card">
-
-            <div class="material-top">
-                📚
-            </div>
-
-            <div class="material-content">
-
-                <span class="material-type">
-                    ${escapeHTML(type)}
-                </span>
-
-                <h3>
-                    ${escapeHTML(title)}
-                </h3>
-
-                <p>
-                    ${escapeHTML(description)}
-                </p>
-
-                <div class="material-tags">
-
-                    <span class="material-tag">
-                        Class:
-                        ${escapeHTML(className)}
-                    </span>
-
-                    <span class="material-tag">
-                        Subject:
-                        ${escapeHTML(subject)}
-                    </span>
-
-                </div>
-
-                ${
-                    fileUrl
-                    ?
-                    `
-                    <a
-                        href="${escapeAttribute(fileUrl)}"
-                        target="_blank"
-                        class="material-btn">
-
-                        📥 View / Download
-
-                    </a>
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ==============================
-   ADD MATERIAL
-============================== */
-
-document
-.getElementById("materialForm")
-.addEventListener(
-"submit",
-async function(e){
-
-    e.preventDefault();
-
-
-    const status =
+    const container =
         document.getElementById(
-            "adminStatus"
+            "testsContainer"
         );
 
 
-    status.style.color="#2563eb";
-
-    status.textContent =
-        "⏳ Material add ho raha hai...";
+    const tests =
+        await loadTests();
 
 
-    const {
-        data:{
-            user
-        }
-    } =
-    await db.auth.getUser();
+    if(tests.length === 0){
 
-
-    if(!user){
-
-        status.style.color="red";
-
-        status.textContent =
-            "❌ Pehle login karein.";
+        container.innerHTML =
+            `<div class="loading">
+                🎯 No tests available yet.
+            </div>`;
 
         return;
-
     }
 
 
-    const material = {
+    container.innerHTML =
+        tests.map(item => `
 
-        title:
-            document.getElementById(
-                "title"
-            ).value.trim(),
+            <div class="material-card">
 
-        description:
-            document.getElementById(
-                "description"
-            ).value.trim(),
+                <div class="material-top">
+                    🎯
+                </div>
 
-        class:
-            document.getElementById(
-                "className"
-            ).value.trim(),
+                <div class="material-content">
 
-        subject:
-            document.getElementById(
-                "subject"
-            ).value.trim(),
+                    <span class="material-type">
+                        ${Number(item.questions) || 0}
+                        QUESTIONS
+                    </span>
 
-        material_type:
-            document.getElementById(
-                "materialType"
-            ).value,
+                    <h3>
+                        ${safe(item.title)}
+                    </h3>
 
-        file_url:
-            document.getElementById(
-                "fileUrl"
-            ).value.trim()
+                    <p>
+                        ${safe(item.description)}
+                    </p>
 
-    };
+                    <button
+                        class="material-btn"
+                        onclick="startTest('${safe(item.id)}')">
 
+                        Start Test →
 
-    const {
-        error
-    } =
-    await db
-    .from("materials")
-    .insert([material]);
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
 
 
-    if(error){
-
-        console.error(error);
-
-        status.style.color="red";
-
-        status.textContent =
-            "❌ " + error.message;
-
-        return;
-
-    }
-
-
-    status.style.color="green";
-
-    status.textContent =
-        "✅ Material successfully add ho gaya!";
-
-
-    document
-    .getElementById("materialForm")
-    .reset();
-
-
-    loadMaterials();
-
-    document
-    .getElementById("materials")
-    .scrollIntoView();
-
-});
-
-
-/* ==============================
+/* ============================
    SEARCH
-============================== */
+============================ */
 
 async function searchSite(){
 
-    const input =
+    const query =
         document
-        .getElementById(
-            "searchInput"
-        )
+        .getElementById("searchInput")
         .value
-        .trim();
+        .trim()
+        .toLowerCase();
+
 
     const results =
         document.getElementById(
@@ -1852,167 +1510,138 @@ async function searchSite(){
         );
 
 
-    if(input===""){
+    if(!query){
 
-        results.innerHTML="";
+        results.innerHTML = "";
 
         return;
-
     }
 
 
-    results.innerHTML=`
+    const courses =
+        await loadCourses();
 
-        <div class="material-card">
+    const notes =
+        await loadNotes();
 
-            <div class="material-content">
+    const practicals =
+        await loadPracticals();
 
-                <h3>🔎 Searching...</h3>
+    const tests =
+        await loadTests();
+
+
+    const all = [
+
+        ...courses.map(x => ({
+            title:x.title,
+            description:x.description,
+            type:"Course"
+        })),
+
+        ...notes.map(x => ({
+            title:x.title,
+            description:x.description,
+            type:"Note"
+        })),
+
+        ...practicals.map(x => ({
+            title:x.title,
+            description:x.description,
+            type:"Practical"
+        })),
+
+        ...tests.map(x => ({
+            title:x.title,
+            description:x.description,
+            type:"Test"
+        }))
+
+    ];
+
+
+    const found =
+        all.filter(item =>
+
+            String(item.title || "")
+            .toLowerCase()
+            .includes(query)
+
+            ||
+
+            String(item.description || "")
+            .toLowerCase()
+            .includes(query)
+
+        );
+
+
+    if(found.length === 0){
+
+        results.innerHTML =
+            `<div class="search-result">
+                ❌ No result found.
+            </div>`;
+
+        return;
+    }
+
+
+    results.innerHTML =
+        found.map(item => `
+
+            <div class="search-result">
+
+                <strong>
+                    ${safe(item.type)}
+                </strong>
+
+                <h3>
+                    ${safe(item.title)}
+                </h3>
+
+                <p>
+                    ${safe(item.description)}
+                </p>
 
             </div>
 
-        </div>
+        `).join("");
 
-    `;
-
-
-    const safe =
-        input
-        .replace(/,/g,"");
+}
 
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("materials")
-    .select("*")
-    .or(
-        `title.ilike.%${safe}%,description.ilike.%${safe}%,class.ilike.%${safe}%,subject.ilike.%${safe}%,material_type.ilike.%${safe}%`
+/* ============================
+   START TEST
+============================ */
+
+function startTest(id){
+
+    alert(
+        "Test system will be connected next."
     );
 
-
-    if(error){
-
-        results.innerHTML=`
-
-            <div class="material-card">
-
-                <div class="material-content">
-
-                    <h3>⚠️ Search Error</h3>
-
-                    <p>
-                        ${escapeHTML(error.message)}
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+}
 
 
-    if(!data || data.length===0){
+/* ============================
+   START WEBSITE
+============================ */
 
-        results.innerHTML=`
+async function start(){
 
-            <div class="material-card">
+    await showMaterials();
 
-                <div class="material-content">
-
-                    <h3>😕 Material Not Found</h3>
-
-                    <p>
-                        "${escapeHTML(input)}"
-                        ke liye koi material nahi mila.
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    results.innerHTML="";
-
-
-    data.forEach(
-        material => {
-
-            results.innerHTML +=
-            createMaterialCard(material);
-
-        }
-    );
+    await showTests();
 
 }
 
 
-/* ==============================
-   ENTER SEARCH
-============================== */
+/* START */
 
-document
-.getElementById("searchInput")
-.addEventListener(
-"keydown",
-function(e){
-
-    if(e.key==="Enter"){
-
-        searchSite();
-
-    }
-
-});
-
-
-/* ==============================
-   SECURITY
-============================== */
-
-function escapeHTML(value){
-
-    return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeAttribute(value){
-
-    return String(value)
-    .replace(/"/g,"%22")
-    .replace(/</g,"%3C")
-    .replace(/>/g,"%3E");
-
-}
-
-
-/* ==============================
-   START
-============================== */
-
-checkUser();
-
-loadMaterials();
+start();
 
 </script>
 
 </body>
-            </html>
+</html>
