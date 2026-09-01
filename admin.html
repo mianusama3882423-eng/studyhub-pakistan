@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -70,7 +71,7 @@ header{
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(5,1fr);
     gap:16px;
     margin-bottom:25px;
 }
@@ -188,6 +189,16 @@ textarea{
 .item p{
     color:#687386;
     font-size:13px;
+    margin-top:4px;
+}
+
+.item a{
+    display:inline-block;
+    margin-top:8px;
+    color:#2563eb;
+    font-size:13px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 .delete{
@@ -216,6 +227,14 @@ textarea{
 
 .loading{
     color:#687386;
+}
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
 }
 
 @media(max-width:750px){
@@ -260,6 +279,7 @@ textarea{
 
 <body>
 
+
 <header>
 
     <div class="logo">
@@ -300,87 +320,73 @@ textarea{
     </div>
 
 
-    <!-- STATS -->
+    <!-- ================= STATS ================= -->
 
     <div class="stats">
 
         <div class="stat">
 
-            <div class="stat-icon">
-                📚
-            </div>
+            <div class="stat-icon">📚</div>
 
-            <h2 id="courseCount">
-                0
-            </h2>
+            <h2 id="courseCount">0</h2>
 
-            <p>
-                Courses
-            </p>
+            <p>Courses</p>
 
         </div>
 
 
         <div class="stat">
 
-            <div class="stat-icon">
-                📘
-            </div>
+            <div class="stat-icon">📘</div>
 
-            <h2 id="noteCount">
-                0
-            </h2>
+            <h2 id="noteCount">0</h2>
 
-            <p>
-                Notes
-            </p>
+            <p>Notes</p>
 
         </div>
 
 
         <div class="stat">
 
-            <div class="stat-icon">
-                🧪
-            </div>
+            <div class="stat-icon">🧪</div>
 
-            <h2 id="practicalCount">
-                0
-            </h2>
+            <h2 id="practicalCount">0</h2>
 
-            <p>
-                Practicals
-            </p>
+            <p>Practicals</p>
 
         </div>
 
 
         <div class="stat">
 
-            <div class="stat-icon">
-                🎯
-            </div>
+            <div class="stat-icon">🎯</div>
 
-            <h2 id="testCount">
-                0
-            </h2>
+            <h2 id="testCount">0</h2>
 
-            <p>
-                Tests
-            </p>
+            <p>Tests</p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">📄</div>
+
+            <h2 id="pastPaperCount">0</h2>
+
+            <p>Past Papers</p>
 
         </div>
 
     </div>
 
 
-    <!-- ADD COURSE -->
+
+    <!-- ================= ADD COURSE ================= -->
 
     <div class="panel">
 
-        <h2>
-            📚 Add Course
-        </h2>
+        <h2>📚 Add Course</h2>
 
         <div class="form">
 
@@ -408,7 +414,6 @@ textarea{
             ></textarea>
 
             <button
-                id="courseBtn"
                 class="add-btn"
                 onclick="addCourse()"
             >
@@ -417,21 +422,17 @@ textarea{
 
         </div>
 
-        <div
-            id="courseMessage"
-            class="message">
-        </div>
+        <div id="courseMessage" class="message"></div>
 
     </div>
 
 
-    <!-- ADD NOTE -->
+
+    <!-- ================= ADD NOTE ================= -->
 
     <div class="panel">
 
-        <h2>
-            📘 Add Note
-        </h2>
+        <h2>📘 Add Note</h2>
 
         <div class="form">
 
@@ -452,8 +453,13 @@ textarea{
                 placeholder="Note description"
             ></textarea>
 
+            <input
+                id="noteFileUrl"
+                class="full"
+                placeholder="PDF/File URL"
+            >
+
             <button
-                id="noteBtn"
                 class="add-btn"
                 onclick="addNote()"
             >
@@ -462,21 +468,17 @@ textarea{
 
         </div>
 
-        <div
-            id="noteMessage"
-            class="message">
-        </div>
+        <div id="noteMessage" class="message"></div>
 
     </div>
 
 
-    <!-- ADD PRACTICAL -->
+
+    <!-- ================= ADD PRACTICAL ================= -->
 
     <div class="panel">
 
-        <h2>
-            🧪 Add Practical
-        </h2>
+        <h2>🧪 Add Practical</h2>
 
         <div class="form">
 
@@ -497,8 +499,13 @@ textarea{
                 placeholder="Practical description"
             ></textarea>
 
+            <input
+                id="practicalFileUrl"
+                class="full"
+                placeholder="File/PDF URL"
+            >
+
             <button
-                id="practicalBtn"
                 class="add-btn"
                 onclick="addPractical()"
             >
@@ -507,21 +514,17 @@ textarea{
 
         </div>
 
-        <div
-            id="practicalMessage"
-            class="message">
-        </div>
+        <div id="practicalMessage" class="message"></div>
 
     </div>
 
 
-    <!-- ADD TEST -->
+
+    <!-- ================= ADD TEST ================= -->
 
     <div class="panel">
 
-        <h2>
-            🎯 Add Test
-        </h2>
+        <h2>🎯 Add Test</h2>
 
         <div class="form">
 
@@ -544,7 +547,6 @@ textarea{
             ></textarea>
 
             <button
-                id="testBtn"
                 class="add-btn"
                 onclick="addTest()"
             >
@@ -553,85 +555,126 @@ textarea{
 
         </div>
 
-        <div
-            id="testMessage"
-            class="message">
+        <div id="testMessage" class="message"></div>
+
+    </div>
+
+
+
+    <!-- ================= ADD PAST PAPER ================= -->
+
+    <div class="panel">
+
+        <h2>📄 Add Past Paper</h2>
+
+        <div class="form">
+
+            <input
+                id="pastPaperTitle"
+                placeholder="Past paper title e.g. CIT 1st Year 2025"
+            >
+
+            <input
+                id="pastPaperSubject"
+                placeholder="Subject e.g. Computer Science"
+            >
+
+            <input
+                id="pastPaperYear"
+                type="number"
+                placeholder="Year e.g. 2025"
+            >
+
+            <input
+                id="pastPaperFileUrl"
+                placeholder="PDF/File URL"
+            >
+
+            <textarea
+                id="pastPaperDescription"
+                class="full"
+                placeholder="Past paper description"
+            ></textarea>
+
+            <button
+                class="add-btn"
+                onclick="addPastPaper()"
+            >
+                Add Past Paper
+            </button>
+
+        </div>
+
+        <div id="pastPaperMessage" class="message"></div>
+
+    </div>
+
+
+
+    <!-- ================= COURSES ================= -->
+
+    <div class="panel">
+
+        <h2>📚 All Courses</h2>
+
+        <div id="coursesList" class="items">
+            Loading...
         </div>
 
     </div>
 
 
-    <!-- COURSES -->
+
+    <!-- ================= NOTES ================= -->
 
     <div class="panel">
 
-        <h2>
-            📚 All Courses
-        </h2>
+        <h2>📘 All Notes</h2>
 
-        <div
-            id="coursesList"
-            class="items">
-
+        <div id="notesList" class="items">
             Loading...
-
         </div>
 
     </div>
 
 
-    <!-- NOTES -->
+
+    <!-- ================= PRACTICALS ================= -->
 
     <div class="panel">
 
-        <h2>
-            📘 All Notes
-        </h2>
+        <h2>🧪 All Practicals</h2>
 
-        <div
-            id="notesList"
-            class="items">
-
+        <div id="practicalsList" class="items">
             Loading...
-
         </div>
 
     </div>
 
 
-    <!-- PRACTICALS -->
+
+    <!-- ================= TESTS ================= -->
 
     <div class="panel">
 
-        <h2>
-            🧪 All Practicals
-        </h2>
+        <h2>🎯 All Tests</h2>
 
-        <div
-            id="practicalsList"
-            class="items">
-
+        <div id="testsList" class="items">
             Loading...
-
         </div>
 
     </div>
 
 
-    <!-- TESTS -->
+
+    <!-- ================= PAST PAPERS ================= -->
 
     <div class="panel">
 
-        <h2>
-            🎯 All Tests
-        </h2>
+        <h2>📄 All Past Papers</h2>
 
-        <div
-            id="testsList"
-            class="items">
-
+        <div id="pastPapersList" class="items">
             Loading...
-
         </div>
 
     </div>
@@ -640,7 +683,9 @@ textarea{
 </main>
 
 
+
 <script>
+
 
 /* =================================
    SUPABASE
@@ -658,6 +703,24 @@ supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+
+
+
+/* =================================
+   SAFE
+================================= */
+
+function safe(value){
+
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
 
 
 /* =================================
@@ -687,8 +750,6 @@ async function checkAdmin(){
 
         }
 
-
-        /* CHECK USER */
 
         const userResponse =
             await fetch(
@@ -724,8 +785,6 @@ async function checkAdmin(){
         const user =
             await userResponse.json();
 
-
-        /* CHECK PROFILE */
 
         const profileResponse =
             await fetch(
@@ -787,8 +846,6 @@ async function checkAdmin(){
         }
 
 
-        /* ADMIN OK */
-
         document.getElementById(
             "checking"
         ).style.display="none";
@@ -834,6 +891,7 @@ async function checkAdmin(){
 }
 
 
+
 /* =================================
    LOGIN REQUIRED
 ================================= */
@@ -863,6 +921,7 @@ function showLoginRequired(){
     `;
 
 }
+
 
 
 /* =================================
@@ -896,8 +955,9 @@ function showAccessDenied(){
 }
 
 
+
 /* =================================
-   GO LOGIN
+   LOGIN
 ================================= */
 
 function goLogin(){
@@ -906,6 +966,7 @@ function goLogin(){
         "login.html";
 
 }
+
 
 
 /* =================================
@@ -942,9 +1003,10 @@ function showMessage(
 
         box.style.display="none";
 
-    },3000);
+    },4000);
 
 }
+
 
 
 /* =================================
@@ -990,20 +1052,15 @@ async function addCourse(){
     }
 
 
-    const {
-        error
-    } =
-    await db
+    const {error} =
+        await db
         .from("courses")
         .insert({
 
-            title:title,
-
-            description:description,
-
-            level:level,
-
-            icon:icon
+            title,
+            description,
+            level,
+            icon
 
         });
 
@@ -1042,6 +1099,7 @@ async function addCourse(){
 }
 
 
+
 /* =================================
    ADD NOTE
 ================================= */
@@ -1066,6 +1124,12 @@ async function addNote(){
         ).value.trim();
 
 
+    const file_url =
+        document.getElementById(
+            "noteFileUrl"
+        ).value.trim();
+
+
     if(!title){
 
         showMessage(
@@ -1079,18 +1143,15 @@ async function addNote(){
     }
 
 
-    const {
-        error
-    } =
-    await db
+    const {error} =
+        await db
         .from("notes")
         .insert({
 
-            title:title,
-
-            description:description,
-
-            icon:icon
+            title,
+            description,
+            icon,
+            file_url
 
         });
 
@@ -1124,9 +1185,15 @@ async function addNote(){
     ).value="";
 
 
+    document.getElementById(
+        "noteFileUrl"
+    ).value="";
+
+
     loadNotes();
 
 }
+
 
 
 /* =================================
@@ -1147,6 +1214,12 @@ async function addPractical(){
         ).value.trim();
 
 
+    const file_url =
+        document.getElementById(
+            "practicalFileUrl"
+        ).value.trim();
+
+
     if(!title){
 
         showMessage(
@@ -1160,16 +1233,14 @@ async function addPractical(){
     }
 
 
-    const {
-        error
-    } =
-    await db
+    const {error} =
+        await db
         .from("practicals")
         .insert({
 
-            title:title,
-
-            description:description
+            title,
+            description,
+            file_url
 
         });
 
@@ -1203,9 +1274,15 @@ async function addPractical(){
     ).value="";
 
 
+    document.getElementById(
+        "practicalFileUrl"
+    ).value="";
+
+
     loadPracticals();
 
 }
+
 
 
 /* =================================
@@ -1247,18 +1324,14 @@ async function addTest(){
     }
 
 
-    const {
-        error
-    } =
-    await db
+    const {error} =
+        await db
         .from("tests")
         .insert({
 
-            title:title,
-
-            description:description,
-
-            questions:questions
+            title,
+            description,
+            questions
 
         });
 
@@ -1297,6 +1370,161 @@ async function addTest(){
 }
 
 
+
+/* =================================
+   ADD PAST PAPER
+================================= */
+
+async function addPastPaper(){
+
+    const title =
+        document.getElementById(
+            "pastPaperTitle"
+        ).value.trim();
+
+
+    const subject =
+        document.getElementById(
+            "pastPaperSubject"
+        ).value.trim();
+
+
+    const year =
+        Number(
+            document.getElementById(
+                "pastPaperYear"
+            ).value
+        );
+
+
+    const description =
+        document.getElementById(
+            "pastPaperDescription"
+        ).value.trim();
+
+
+    const file_url =
+        document.getElementById(
+            "pastPaperFileUrl"
+        ).value.trim();
+
+
+    if(!title){
+
+        showMessage(
+            "pastPaperMessage",
+            "Past paper title required.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    if(!subject){
+
+        showMessage(
+            "pastPaperMessage",
+            "Subject required.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    if(!year){
+
+        showMessage(
+            "pastPaperMessage",
+            "Year required.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    if(!file_url){
+
+        showMessage(
+            "pastPaperMessage",
+            "PDF/File URL required.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    const {error} =
+        await db
+        .from("past_papers")
+        .insert({
+
+            title,
+            subject,
+            year,
+            description,
+            file_url
+
+        });
+
+
+    if(error){
+
+        showMessage(
+            "pastPaperMessage",
+            error.message,
+            false
+        );
+
+        return;
+
+    }
+
+
+    showMessage(
+        "pastPaperMessage",
+        "✅ Past paper added successfully!"
+    );
+
+
+    document.getElementById(
+        "pastPaperTitle"
+    ).value="";
+
+
+    document.getElementById(
+        "pastPaperSubject"
+    ).value="";
+
+
+    document.getElementById(
+        "pastPaperYear"
+    ).value="";
+
+
+    document.getElementById(
+        "pastPaperDescription"
+    ).value="";
+
+
+    document.getElementById(
+        "pastPaperFileUrl"
+    ).value="";
+
+
+    loadPastPapers();
+
+}
+
+
+
 /* =================================
    LOAD ALL
 ================================= */
@@ -1311,11 +1539,14 @@ async function loadAll(){
 
         loadPracticals(),
 
-        loadTests()
+        loadTests(),
+
+        loadPastPapers()
 
     ]);
 
 }
+
 
 
 /* =================================
@@ -1324,11 +1555,8 @@ async function loadAll(){
 
 async function loadCourses(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("courses")
         .select("*")
         .order(
@@ -1355,7 +1583,7 @@ async function loadCourses(){
         data.length;
 
 
-    if(data.length === 0){
+    if(data.length===0){
 
         document.getElementById(
             "coursesList"
@@ -1395,13 +1623,7 @@ async function loadCourses(){
 
             <button
                 class="delete"
-                onclick="
-                    deleteItem(
-                        'courses',
-                        '${item.id}',
-                        loadCourses
-                    )
-                "
+                onclick="deleteItem('courses','${safe(item.id)}',loadCourses)"
             >
                 Delete
             </button>
@@ -1413,17 +1635,15 @@ async function loadCourses(){
 }
 
 
+
 /* =================================
    LOAD NOTES
 ================================= */
 
 async function loadNotes(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("notes")
         .select("*")
         .order(
@@ -1450,7 +1670,7 @@ async function loadNotes(){
         data.length;
 
 
-    if(data.length === 0){
+    if(data.length===0){
 
         document.getElementById(
             "notesList"
@@ -1481,17 +1701,23 @@ async function loadNotes(){
                     ${safe(item.description || "")}
                 </p>
 
+                ${
+                    item.file_url
+                    ?
+                    `<a
+                        href="${safe(item.file_url)}"
+                        target="_blank">
+                        📄 Open File
+                    </a>`
+                    :
+                    ""
+                }
+
             </div>
 
             <button
                 class="delete"
-                onclick="
-                    deleteItem(
-                        'notes',
-                        '${item.id}',
-                        loadNotes
-                    )
-                "
+                onclick="deleteItem('notes','${safe(item.id)}',loadNotes)"
             >
                 Delete
             </button>
@@ -1503,17 +1729,15 @@ async function loadNotes(){
 }
 
 
+
 /* =================================
    LOAD PRACTICALS
 ================================= */
 
 async function loadPracticals(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("practicals")
         .select("*")
         .order(
@@ -1540,7 +1764,7 @@ async function loadPracticals(){
         data.length;
 
 
-    if(data.length === 0){
+    if(data.length===0){
 
         document.getElementById(
             "practicalsList"
@@ -1570,17 +1794,23 @@ async function loadPracticals(){
                     ${safe(item.description || "")}
                 </p>
 
+                ${
+                    item.file_url
+                    ?
+                    `<a
+                        href="${safe(item.file_url)}"
+                        target="_blank">
+                        📄 Open File
+                    </a>`
+                    :
+                    ""
+                }
+
             </div>
 
             <button
                 class="delete"
-                onclick="
-                    deleteItem(
-                        'practicals',
-                        '${item.id}',
-                        loadPracticals
-                    )
-                "
+                onclick="deleteItem('practicals','${safe(item.id)}',loadPracticals)"
             >
                 Delete
             </button>
@@ -1592,17 +1822,15 @@ async function loadPracticals(){
 }
 
 
+
 /* =================================
    LOAD TESTS
 ================================= */
 
 async function loadTests(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("tests")
         .select("*")
         .order(
@@ -1629,7 +1857,7 @@ async function loadTests(){
         data.length;
 
 
-    if(data.length === 0){
+    if(data.length===0){
 
         document.getElementById(
             "testsList"
@@ -1665,13 +1893,7 @@ async function loadTests(){
 
             <button
                 class="delete"
-                onclick="
-                    deleteItem(
-                        'tests',
-                        '${item.id}',
-                        loadTests
-                    )
-                "
+                onclick="deleteItem('tests','${safe(item.id)}',loadTests)"
             >
                 Delete
             </button>
@@ -1681,6 +1903,110 @@ async function loadTests(){
     `).join("");
 
 }
+
+
+
+/* =================================
+   LOAD PAST PAPERS
+================================= */
+
+async function loadPastPapers(){
+
+    const {data,error} =
+        await db
+        .from("past_papers")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
+
+
+    if(error){
+
+        document.getElementById(
+            "pastPapersList"
+        ).innerHTML =
+            `<p>❌ ${safe(error.message)}</p>`;
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "pastPaperCount"
+    ).textContent =
+        data.length;
+
+
+    if(data.length===0){
+
+        document.getElementById(
+            "pastPapersList"
+        ).innerHTML =
+            "<p>No past papers yet.</p>";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "pastPapersList"
+    ).innerHTML =
+
+    data.map(item=>`
+
+        <div class="item">
+
+            <div>
+
+                <h3>
+                    📄 ${safe(item.title)}
+                </h3>
+
+                <p>
+                    Subject:
+                    ${safe(item.subject || "")}
+                </p>
+
+                <p>
+                    Year:
+                    ${safe(item.year || "")}
+                </p>
+
+                <p>
+                    ${safe(item.description || "")}
+                </p>
+
+                ${
+                    item.file_url
+                    ?
+                    `<a
+                        href="${safe(item.file_url)}"
+                        target="_blank">
+                        📄 Open Past Paper
+                    </a>`
+                    :
+                    ""
+                }
+
+            </div>
+
+            <button
+                class="delete"
+                onclick="deleteItem('past_papers','${safe(item.id)}',loadPastPapers)"
+            >
+                Delete
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
 
 
 /* =================================
@@ -1704,10 +2030,8 @@ async function deleteItem(
     }
 
 
-    const {
-        error
-    } =
-    await db
+    const {error} =
+        await db
         .from(table)
         .delete()
         .eq("id",id);
@@ -1724,45 +2048,10 @@ async function deleteItem(
     }
 
 
-    reload();
+    await reload();
 
 }
 
-
-/* =================================
-   SECURITY
-================================= */
-
-function safe(value){
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
 
 
 /* =================================
@@ -1801,6 +2090,7 @@ async function logout(){
 }
 
 
+
 /* =================================
    START
 ================================= */
@@ -1810,4 +2100,4 @@ checkAdmin();
 </script>
 
 </body>
-</html>
+                </html>
