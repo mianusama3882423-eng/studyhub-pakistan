@@ -551,6 +551,10 @@ footer a{
             Materials
         </a>
 
+        <a href="#pastPapers">
+            Past Papers
+        </a>
+
         <a href="#tools">
             Tools
         </a>
@@ -558,8 +562,6 @@ footer a{
         <a href="#tests">
             Tests
         </a>
-
-        <!-- IMPORTANT: SEPARATE LOGIN PAGE -->
 
         <a
             id="loginButton"
@@ -633,8 +635,8 @@ footer a{
         </div>
 
         <div class="study-item">
-            <div class="study-icon">🛠️</div>
-            <div>Student Tools</div>
+            <div class="study-icon">📄</div>
+            <div>Past Papers</div>
         </div>
 
     </div>
@@ -651,7 +653,7 @@ footer a{
         <input
             type="text"
             id="searchInput"
-            placeholder="Search courses, notes, practicals, tests...">
+            placeholder="Search courses, notes, practicals, past papers...">
 
         <button onclick="searchSite()">
             Search
@@ -728,16 +730,16 @@ footer a{
         </a>
 
 
-        <a href="#tests" class="category">
+        <a href="#pastPapers" class="category">
 
             <div class="category-icon">
-                🎯
+                📄
             </div>
 
-            <h3>Tests</h3>
+            <h3>Past Papers</h3>
 
             <p>
-                MCQs & Quizzes
+                Previous Papers
             </p>
 
         </a>
@@ -771,6 +773,37 @@ footer a{
 
         <div class="loading">
             ⏳ Loading materials...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PAST PAPERS -->
+
+<section
+    class="section"
+    id="pastPapers">
+
+    <div class="section-title">
+
+        <h2>
+            📄 Past Papers
+        </h2>
+
+        <p>
+            Previous years ke papers yahan se access karein
+        </p>
+
+    </div>
+
+    <div
+        id="pastPapersContainer"
+        class="materials">
+
+        <div class="loading">
+            ⏳ Loading past papers...
         </div>
 
     </div>
@@ -825,12 +858,12 @@ footer a{
 
         <div class="stat">
 
-            <h2 id="testCount">
+            <h2 id="paperCount">
                 0
             </h2>
 
             <p>
-                Tests
+                Past Papers
             </p>
 
         </div>
@@ -990,7 +1023,7 @@ footer a{
     </h2>
 
     <p>
-        Find notes, practicals and study material
+        Find notes, practicals and past papers
         for your class.
     </p>
 
@@ -1037,6 +1070,10 @@ footer a{
                 Materials
             </a>
 
+            <a href="#pastPapers">
+                Past Papers
+            </a>
+
             <a href="#tools">
                 Tools
             </a>
@@ -1060,6 +1097,10 @@ footer a{
 
             <a href="#materials">
                 Practicals
+            </a>
+
+            <a href="#pastPapers">
+                Past Papers
             </a>
 
             <a href="#tests">
@@ -1259,8 +1300,42 @@ async function loadTests(){
     }
 
 
+    return data || [];
+}
+
+
+/* ============================
+   LOAD PAST PAPERS
+============================ */
+
+async function loadPastPapers(){
+
+    const {
+        data,
+        error
+    } =
+    await db
+        .from("past_papers")
+        .select("*")
+        .order(
+            "created_at",
+            {ascending:false}
+        );
+
+
+    if(error){
+
+        console.log(
+            "Past Papers error:",
+            error.message
+        );
+
+        return [];
+    }
+
+
     document.getElementById(
-        "testCount"
+        "paperCount"
     ).textContent = data.length;
 
 
@@ -1401,16 +1476,129 @@ async function showMaterials(){
                         `<a
                             class="material-btn"
                             href="${safe(item.url)}"
-                            target="_blank">
+                            target="_blank"
+                            rel="noopener">
                             Open Material →
                         </a>`
                         :
+                        `<button
+                            class="material-btn"
+                            disabled>
+                            Available Soon
+                        </button>`
+                    }
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* ============================
+   SHOW PAST PAPERS
+============================ */
+
+async function showPastPapers(){
+
+    const container =
+        document.getElementById(
+            "pastPapersContainer"
+        );
+
+
+    const papers =
+        await loadPastPapers();
+
+
+    if(papers.length === 0){
+
+        container.innerHTML =
+            `<div class="loading">
+                📄 No past papers available yet.
+            </div>`;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        papers.map(item => `
+
+            <div class="material-card">
+
+                <div class="material-top">
+                    📄
+                </div>
+
+                <div class="material-content">
+
+                    <span class="material-type">
+                        ${safe(item.year || "PAST PAPER")}
+                    </span>
+
+                    <h3>
+                        ${safe(item.title)}
+                    </h3>
+
+                    ${
+                        item.class_name
+                        ?
+                        `<p>
+                            🎓 ${safe(item.class_name)}
+                        </p>`
+                        :
+                        ""
+                    }
+
+                    ${
+                        item.subject
+                        ?
+                        `<p>
+                            📚 ${safe(item.subject)}
+                        </p>`
+                        :
+                        ""
+                    }
+
+                    ${
+                        item.board
+                        ?
+                        `<p>
+                            🏫 ${safe(item.board)}
+                        </p>`
+                        :
+                        ""
+                    }
+
+                    ${
+                        item.description
+                        ?
+                        `<p style="margin-top:8px;">
+                            ${safe(item.description)}
+                        </p>`
+                        :
+                        ""
+                    }
+
+                    ${
+                        item.file_url
+                        ?
                         `<a
                             class="material-btn"
-                            href="#"
-                            onclick="return false;">
-                            Available Soon
+                            href="${safe(item.file_url)}"
+                            target="_blank"
+                            rel="noopener">
+                            📥 Open Paper →
                         </a>`
+                        :
+                        `<button
+                            class="material-btn"
+                            disabled>
+                            File Not Available
+                        </button>`
                     }
 
                 </div>
@@ -1530,6 +1718,9 @@ async function searchSite(){
     const tests =
         await loadTests();
 
+    const papers =
+        await loadPastPapers();
+
 
     const all = [
 
@@ -1555,6 +1746,21 @@ async function searchSite(){
             title:x.title,
             description:x.description,
             type:"Test"
+        })),
+
+        ...papers.map(x => ({
+            title:x.title,
+            description:
+                [
+                    x.description,
+                    x.class_name,
+                    x.subject,
+                    x.board,
+                    x.year
+                ]
+                .filter(Boolean)
+                .join(" "),
+            type:"Past Paper"
         }))
 
     ];
@@ -1632,6 +1838,8 @@ async function start(){
 
     await showMaterials();
 
+    await showPastPapers();
+
     await showTests();
 
 }
@@ -1644,4 +1852,4 @@ start();
 </script>
 
 </body>
-</html>
+    </html>
