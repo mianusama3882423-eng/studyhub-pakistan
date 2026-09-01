@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyHub Pakistan - Admin Login</title>
+<title>StudyHub Pakistan - Login</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -91,13 +91,8 @@ button{
     cursor:pointer;
 }
 
-button:hover{
-    background:#1d4ed8;
-}
-
 button:disabled{
     opacity:.6;
-    cursor:not-allowed;
 }
 
 .message{
@@ -130,28 +125,15 @@ button:disabled{
     font-size:14px;
 }
 
-.back:hover{
-    text-decoration:underline;
-}
-
-.loading{
-    text-align:center;
-    margin-top:15px;
-    color:#697386;
-    font-size:13px;
+.debug{
+    margin-top:12px;
+    padding:10px;
+    background:#f1f5f9;
+    border-radius:7px;
+    font-size:11px;
+    color:#475569;
+    word-break:break-word;
     display:none;
-}
-
-@media(max-width:450px){
-
-    .login-box{
-        padding:25px 20px;
-    }
-
-    .logo{
-        font-size:23px;
-    }
-
 }
 
 </style>
@@ -159,7 +141,6 @@ button:disabled{
 </head>
 
 <body>
-
 
 <div class="login-box">
 
@@ -171,41 +152,31 @@ button:disabled{
         🔐 Admin Login
     </div>
 
-
     <form id="loginForm">
 
-
         <div class="form-group">
 
-            <label for="email">
-                Email
-            </label>
+            <label>Email</label>
 
             <input
-                type="email"
                 id="email"
-                placeholder="Enter your email"
-                autocomplete="email"
+                type="email"
+                placeholder="Enter admin email"
                 required>
 
         </div>
-
 
         <div class="form-group">
 
-            <label for="password">
-                Password
-            </label>
+            <label>Password</label>
 
             <input
-                type="password"
                 id="password"
-                placeholder="Enter your password"
-                autocomplete="current-password"
+                type="password"
+                placeholder="Enter password"
                 required>
 
         </div>
-
 
         <button
             id="loginBtn"
@@ -215,24 +186,17 @@ button:disabled{
 
         </button>
 
-
     </form>
-
-
-    <div
-        id="loading"
-        class="loading">
-
-        Please wait...
-
-    </div>
-
 
     <div
         id="message"
         class="message">
     </div>
 
+    <div
+        id="debug"
+        class="debug">
+    </div>
 
     <a
         href="index.html"
@@ -245,12 +209,11 @@ button:disabled{
 </div>
 
 
-
 <script>
 
-/* =====================================
-   SUPABASE CONFIGURATION
-===================================== */
+/* =========================================
+   SUPABASE
+========================================= */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -259,10 +222,6 @@ const SUPABASE_KEY =
 "sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
 
 
-/* =====================================
-   CREATE SUPABASE CLIENT
-===================================== */
-
 const db =
 supabase.createClient(
     SUPABASE_URL,
@@ -270,9 +229,9 @@ supabase.createClient(
 );
 
 
-/* =====================================
-   GET HTML ELEMENTS
-===================================== */
+/* =========================================
+   ELEMENTS
+========================================= */
 
 const form =
 document.getElementById("loginForm");
@@ -289,13 +248,13 @@ document.getElementById("loginBtn");
 const message =
 document.getElementById("message");
 
-const loading =
-document.getElementById("loading");
+const debug =
+document.getElementById("debug");
 
 
-/* =====================================
-   SHOW MESSAGE
-===================================== */
+/* =========================================
+   MESSAGE
+========================================= */
 
 function showMessage(text,type){
 
@@ -307,9 +266,22 @@ function showMessage(text,type){
 }
 
 
-/* =====================================
-   LOGIN FORM
-===================================== */
+/* =========================================
+   DEBUG MESSAGE
+========================================= */
+
+function showDebug(text){
+
+    debug.style.display = "block";
+
+    debug.textContent = text;
+
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
 
 form.addEventListener(
     "submit",
@@ -318,13 +290,12 @@ form.addEventListener(
         e.preventDefault();
 
 
-        /* Clear old message */
-
         message.className = "message";
         message.textContent = "";
 
+        debug.style.display = "none";
+        debug.textContent = "";
 
-        /* Get values */
 
         const email =
             emailInput.value.trim();
@@ -333,12 +304,10 @@ form.addEventListener(
             passwordInput.value;
 
 
-        /* Check fields */
-
         if(!email || !password){
 
             showMessage(
-                "Please enter email and password.",
+                "Email aur password enter karein.",
                 "error"
             );
 
@@ -346,23 +315,18 @@ form.addEventListener(
         }
 
 
-        /* Disable button */
-
         loginBtn.disabled = true;
 
         loginBtn.textContent =
             "⏳ Logging in...";
 
-        loading.style.display =
-            "block";
-
 
         try{
 
 
-            /* =================================
-               SUPABASE LOGIN
-            ================================= */
+            /* =========================
+               SUPABASE AUTH LOGIN
+            ========================= */
 
             const {
                 data,
@@ -370,28 +334,27 @@ form.addEventListener(
             } =
             await db.auth.signInWithPassword({
 
-                email:email,
+                email: email,
 
-                password:password
+                password: password
 
             });
 
 
-            /* Login error */
-
             if(error){
 
-                throw error;
+                throw new Error(
+                    "Login error: " +
+                    error.message
+                );
 
             }
 
 
-            /* Check user */
-
-            if(!data || !data.user){
+            if(!data.user){
 
                 throw new Error(
-                    "User account not found."
+                    "User account nahi mila."
                 );
 
             }
@@ -401,9 +364,9 @@ form.addEventListener(
                 data.user.id;
 
 
-            /* =================================
-               CHECK ADMIN ROLE
-            ================================= */
+            /* =========================
+               GET PROFILE
+            ========================= */
 
             const {
                 data:profile,
@@ -413,58 +376,117 @@ form.addEventListener(
             .from("profiles")
             .select("id,email,role")
             .eq("id",userId)
-            .maybeSingle();
+            .single();
 
 
-            /* Profile error */
+            /* =========================
+               PROFILE ERROR
+            ========================= */
 
             if(profileError){
 
                 console.error(
-                    "Profile error:",
+                    "PROFILE ERROR:",
                     profileError
                 );
 
+
                 await db.auth.signOut();
 
-                throw new Error(
-                    "Could not check admin profile."
+
+                showMessage(
+                    "❌ Profile check failed.",
+                    "error"
                 );
+
+
+                showDebug(
+                    "Supabase Error: " +
+                    profileError.message +
+                    " | Code: " +
+                    (profileError.code || "unknown")
+                );
+
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "🔐 Login";
+
+                return;
 
             }
 
 
-            /* Profile doesn't exist */
+            /* =========================
+               PROFILE NOT FOUND
+            ========================= */
 
             if(!profile){
 
                 await db.auth.signOut();
 
-                throw new Error(
-                    "Your profile was not found."
+
+                showMessage(
+                    "❌ Profile not found.",
+                    "error"
                 );
+
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "🔐 Login";
+
+                return;
 
             }
 
 
-            /* =================================
-               CHECK ROLE
-            ================================= */
+            console.log(
+                "PROFILE:",
+                profile
+            );
 
-            if(profile.role !== "admin"){
+
+            /* =========================
+               ADMIN CHECK
+            ========================= */
+
+            if(
+                String(profile.role)
+                .toLowerCase()
+                !== "admin"
+            ){
 
                 await db.auth.signOut();
 
-                throw new Error(
-                    "This account is not an admin."
+
+                showMessage(
+                    "❌ This account is not an admin.",
+                    "error"
                 );
+
+
+                showDebug(
+                    "Your role: " +
+                    profile.role
+                );
+
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "🔐 Login";
+
+                return;
 
             }
 
 
-            /* =================================
+            /* =========================
                ADMIN LOGIN SUCCESS
-            ================================= */
+            ========================= */
 
             showMessage(
                 "✅ Login successful! Opening Admin Panel...",
@@ -472,12 +494,11 @@ form.addEventListener(
             );
 
 
-            /* Save information */
-
             localStorage.setItem(
                 "studyhub_user_id",
                 userId
             );
+
 
             localStorage.setItem(
                 "studyhub_role",
@@ -485,9 +506,9 @@ form.addEventListener(
             );
 
 
-            /* =================================
-               OPEN ADMIN PAGE
-            ================================= */
+            /* =========================
+               OPEN ADMIN.HTML
+            ========================= */
 
             setTimeout(function(){
 
@@ -496,8 +517,8 @@ form.addEventListener(
 
             },800);
 
-
         }
+
 
         catch(error){
 
@@ -515,96 +536,21 @@ form.addEventListener(
             );
 
 
-            loginBtn.disabled =
-                false;
+            showDebug(
+                "Error: " +
+                (error.message || error)
+            );
+
+
+            loginBtn.disabled = false;
 
             loginBtn.textContent =
                 "🔐 Login";
-
-            loading.style.display =
-                "none";
 
         }
 
     }
 );
-
-
-/* =====================================
-   CHECK EXISTING SESSION
-===================================== */
-
-async function checkExistingLogin(){
-
-    try{
-
-        const {
-            data
-        } =
-        await db.auth.getSession();
-
-
-        if(
-            data &&
-            data.session &&
-            data.session.user
-        ){
-
-            const userId =
-                data.session.user.id;
-
-
-            const {
-                data:profile
-            } =
-            await db
-            .from("profiles")
-            .select("role")
-            .eq("id",userId)
-            .maybeSingle();
-
-
-            if(
-                profile &&
-                profile.role === "admin"
-            ){
-
-                showMessage(
-                    "Already logged in. Opening Admin Panel...",
-                    "success"
-                );
-
-
-                setTimeout(function(){
-
-                    window.location.href =
-                        "admin.html";
-
-                },700);
-
-            }
-
-        }
-
-    }
-
-    catch(error){
-
-        console.log(
-            "Session check:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =====================================
-   START
-===================================== */
-
-checkExistingLogin();
 
 </script>
 
