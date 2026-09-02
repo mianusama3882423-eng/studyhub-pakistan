@@ -130,6 +130,11 @@ textarea:focus{
     border-color:#2563eb;
 }
 
+input[type="file"]{
+    background:#f8fafc;
+    cursor:pointer;
+}
+
 textarea{
     min-height:90px;
     resize:vertical;
@@ -137,6 +142,32 @@ textarea{
 
 .full{
     grid-column:1/-1;
+}
+
+.upload-box{
+    grid-column:1/-1;
+    border:1px dashed #b9c3d3;
+    padding:15px;
+    border-radius:8px;
+    background:#f8fafc;
+}
+
+.upload-title{
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.or{
+    text-align:center;
+    color:#687386;
+    font-size:13px;
+    margin:4px 0;
+}
+
+.help{
+    color:#687386;
+    font-size:12px;
+    margin-top:6px;
 }
 
 .add-btn{
@@ -151,6 +182,7 @@ textarea{
 
 .add-btn:disabled{
     opacity:.6;
+    cursor:not-allowed;
 }
 
 .message{
@@ -206,6 +238,15 @@ textarea{
     font-weight:bold;
 }
 
+.item img{
+    max-width:150px;
+    max-height:100px;
+    object-fit:cover;
+    border-radius:7px;
+    margin-top:10px;
+    display:block;
+}
+
 .delete{
     background:#fee2e2;
     color:#dc2626;
@@ -256,6 +297,10 @@ textarea{
         grid-column:auto;
     }
 
+    .upload-box{
+        grid-column:auto;
+    }
+
     .item{
         flex-direction:column;
         align-items:flex-start;
@@ -275,6 +320,10 @@ textarea{
 
     .container{
         padding:22px 14px;
+    }
+
+    .panel{
+        padding:18px;
     }
 
 }
@@ -415,9 +464,28 @@ textarea{
                       class="full"
                       placeholder="Note description"></textarea>
 
-            <input id="noteFileUrl"
-                   class="full"
-                   placeholder="PDF/File URL">
+            <div class="upload-box">
+
+                <div class="upload-title">
+                    📷 Upload Picture
+                </div>
+
+                <input id="noteFile"
+                       type="file"
+                       accept="image/*">
+
+                <p class="help">
+                    Gallery se picture select karo.
+                </p>
+
+                <div class="or">
+                    — OR —
+                </div>
+
+                <input id="noteFileUrl"
+                       placeholder="🔗 YouTube / PDF / File URL">
+
+            </div>
 
             <button class="add-btn"
                     onclick="addNote()">
@@ -451,9 +519,28 @@ textarea{
                       class="full"
                       placeholder="Practical description"></textarea>
 
-            <input id="practicalFileUrl"
-                   class="full"
-                   placeholder="File/PDF URL">
+            <div class="upload-box">
+
+                <div class="upload-title">
+                    📷 Upload Picture
+                </div>
+
+                <input id="practicalFile"
+                       type="file"
+                       accept="image/*">
+
+                <p class="help">
+                    Gallery se practical ki picture select karo.
+                </p>
+
+                <div class="or">
+                    — OR —
+                </div>
+
+                <input id="practicalFileUrl"
+                       placeholder="🔗 YouTube / PDF / File URL">
+
+            </div>
 
             <button class="add-btn"
                     onclick="addPractical()">
@@ -519,12 +606,32 @@ textarea{
                    type="number"
                    placeholder="Year e.g. 2025">
 
-            <input id="pastPaperFileUrl"
-                   placeholder="PDF/File URL">
-
             <textarea id="pastPaperDescription"
                       class="full"
                       placeholder="Past paper description"></textarea>
+
+            <div class="upload-box">
+
+                <div class="upload-title">
+                    📷 Upload Picture
+                </div>
+
+                <input id="pastPaperFile"
+                       type="file"
+                       accept="image/*">
+
+                <p class="help">
+                    Past paper ki picture gallery se select karo.
+                </p>
+
+                <div class="or">
+                    — OR —
+                </div>
+
+                <input id="pastPaperFileUrl"
+                       placeholder="🔗 YouTube / PDF / File URL">
+
+            </div>
 
             <button class="add-btn"
                     onclick="addPastPaper()">
@@ -621,12 +728,6 @@ async function checkAdmin(){
 
     try{
 
-        /*
-          IMPORTANT:
-          Supabase ka actual session
-          use ho raha hai.
-        */
-
         const {
             data: { session },
             error:sessionError
@@ -652,10 +753,6 @@ async function checkAdmin(){
         const user =
             session.user;
 
-
-        /* =========================
-           PROFILE
-        ========================= */
 
         const {
             data:profile,
@@ -698,10 +795,6 @@ async function checkAdmin(){
 
         }
 
-
-        /* =========================
-           ADMIN OPEN
-        ========================= */
 
         document.getElementById(
             "checking"
@@ -850,7 +943,158 @@ function showMessage(
 
         box.style.display="none";
 
-    },4000);
+    },5000);
+
+}
+
+
+/* =================================
+   UPLOAD FILE
+================================= */
+
+async function uploadFile(file){
+
+    if(!file){
+
+        throw new Error(
+            "Please select a picture."
+        );
+
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        throw new Error(
+            "Only image files are allowed."
+        );
+
+    }
+
+
+    const maxSize =
+        10 * 1024 * 1024;
+
+
+    if(file.size > maxSize){
+
+        throw new Error(
+            "Picture must be smaller than 10 MB."
+        );
+
+    }
+
+
+    const {
+        data:{user}
+    } = await db.auth.getUser();
+
+
+    if(!user){
+
+        throw new Error(
+            "Please login again."
+        );
+
+    }
+
+
+    const extension =
+        file.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+
+    const fileName =
+        `${user.id}/${Date.now()}-${Math.random()
+        .toString(36)
+        .substring(2)}.${extension}`;
+
+
+    const {
+        error:uploadError
+    } =
+        await db.storage
+        .from("studyhub-files")
+        .upload(
+            fileName,
+            file,
+            {
+                cacheControl:"3600",
+                upsert:false
+            }
+        );
+
+
+    if(uploadError){
+
+        throw uploadError;
+
+    }
+
+
+    const {
+        data:{publicUrl}
+    } =
+        db.storage
+        .from("studyhub-files")
+        .getPublicUrl(fileName);
+
+
+    return publicUrl;
+
+}
+
+
+/* =================================
+   GET FILE URL
+================================= */
+
+async function getFileUrl(
+    fileInputId,
+    urlInputId
+){
+
+    const file =
+        document.getElementById(
+            fileInputId
+        ).files[0];
+
+
+    const url =
+        document.getElementById(
+            urlInputId
+        ).value.trim();
+
+
+    /*
+      Agar picture upload hui hai
+      to upload wali picture use hogi.
+    */
+
+    if(file){
+
+        return await uploadFile(file);
+
+    }
+
+
+    /*
+      Agar URL diya gaya hai
+      to wahi URL use hoga.
+    */
+
+    if(url){
+
+        return url;
+
+    }
+
+
+    throw new Error(
+        "Please upload a picture OR enter a URL."
+    );
 
 }
 
@@ -935,7 +1179,8 @@ async function addCourse(){
         "courseDescription"
     ).value="";
 
-    loadCourses();
+
+    await loadCourses();
 
 }
 
@@ -961,11 +1206,6 @@ async function addNote(){
             "noteIcon"
         ).value.trim();
 
-    const file_url =
-        document.getElementById(
-            "noteFileUrl"
-        ).value.trim();
-
 
     if(!title){
 
@@ -980,51 +1220,89 @@ async function addNote(){
     }
 
 
-    const {error} =
-        await db
-        .from("notes")
-        .insert({
+    const button =
+        event.target;
 
-            title,
-            description,
-            icon,
-            file_url
+    button.disabled=true;
 
-        });
+    button.textContent =
+        "⏳ Uploading...";
 
 
-    if(error){
+    try{
+
+        const file_url =
+            await getFileUrl(
+                "noteFile",
+                "noteFileUrl"
+            );
+
+
+        const {error} =
+            await db
+            .from("notes")
+            .insert({
+
+                title,
+                description,
+                icon,
+                file_url
+
+            });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
 
         showMessage(
             "noteMessage",
-            error.message,
-            false
+            "✅ Note added successfully!"
         );
 
-        return;
+
+        document.getElementById(
+            "noteTitle"
+        ).value="";
+
+        document.getElementById(
+            "noteDescription"
+        ).value="";
+
+        document.getElementById(
+            "noteFile"
+        ).value="";
+
+        document.getElementById(
+            "noteFileUrl"
+        ).value="";
+
+
+        await loadNotes();
 
     }
 
+    catch(error){
 
-    showMessage(
-        "noteMessage",
-        "✅ Note added successfully!"
-    );
+        showMessage(
+            "noteMessage",
+            "❌ " + error.message,
+            false
+        );
 
+    }
 
-    document.getElementById(
-        "noteTitle"
-    ).value="";
+    finally{
 
-    document.getElementById(
-        "noteDescription"
-    ).value="";
+        button.disabled=false;
 
-    document.getElementById(
-        "noteFileUrl"
-    ).value="";
+        button.textContent =
+            "Add Note";
 
-    loadNotes();
+    }
 
 }
 
@@ -1045,11 +1323,6 @@ async function addPractical(){
             "practicalDescription"
         ).value.trim();
 
-    const file_url =
-        document.getElementById(
-            "practicalFileUrl"
-        ).value.trim();
-
 
     if(!title){
 
@@ -1064,50 +1337,88 @@ async function addPractical(){
     }
 
 
-    const {error} =
-        await db
-        .from("practicals")
-        .insert({
+    const button =
+        event.target;
 
-            title,
-            description,
-            file_url
+    button.disabled=true;
 
-        });
+    button.textContent =
+        "⏳ Uploading...";
 
 
-    if(error){
+    try{
+
+        const file_url =
+            await getFileUrl(
+                "practicalFile",
+                "practicalFileUrl"
+            );
+
+
+        const {error} =
+            await db
+            .from("practicals")
+            .insert({
+
+                title,
+                description,
+                file_url
+
+            });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
 
         showMessage(
             "practicalMessage",
-            error.message,
-            false
+            "✅ Practical added successfully!"
         );
 
-        return;
+
+        document.getElementById(
+            "practicalTitle"
+        ).value="";
+
+        document.getElementById(
+            "practicalDescription"
+        ).value="";
+
+        document.getElementById(
+            "practicalFile"
+        ).value="";
+
+        document.getElementById(
+            "practicalFileUrl"
+        ).value="";
+
+
+        await loadPracticals();
 
     }
 
+    catch(error){
 
-    showMessage(
-        "practicalMessage",
-        "✅ Practical added successfully!"
-    );
+        showMessage(
+            "practicalMessage",
+            "❌ " + error.message,
+            false
+        );
 
+    }
 
-    document.getElementById(
-        "practicalTitle"
-    ).value="";
+    finally{
 
-    document.getElementById(
-        "practicalDescription"
-    ).value="";
+        button.disabled=false;
 
-    document.getElementById(
-        "practicalFileUrl"
-    ).value="";
+        button.textContent =
+            "Add Practical";
 
-    loadPracticals();
+    }
 
 }
 
@@ -1188,7 +1499,8 @@ async function addTest(){
         "testDescription"
     ).value="";
 
-    loadTests();
+
+    await loadTests();
 
 }
 
@@ -1219,11 +1531,6 @@ async function addPastPaper(){
     const description =
         document.getElementById(
             "pastPaperDescription"
-        ).value.trim();
-
-    const file_url =
-        document.getElementById(
-            "pastPaperFileUrl"
         ).value.trim();
 
 
@@ -1266,73 +1573,98 @@ async function addPastPaper(){
     }
 
 
-    if(!file_url){
+    const button =
+        event.target;
+
+    button.disabled=true;
+
+    button.textContent =
+        "⏳ Uploading...";
+
+
+    try{
+
+        const file_url =
+            await getFileUrl(
+                "pastPaperFile",
+                "pastPaperFileUrl"
+            );
+
+
+        const {error} =
+            await db
+            .from("past_papers")
+            .insert({
+
+                title,
+                subject,
+                year,
+                description,
+                file_url
+
+            });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
 
         showMessage(
             "pastPaperMessage",
-            "PDF/File URL required.",
-            false
+            "✅ Past paper added successfully!"
         );
 
-        return;
+
+        document.getElementById(
+            "pastPaperTitle"
+        ).value="";
+
+        document.getElementById(
+            "pastPaperSubject"
+        ).value="";
+
+        document.getElementById(
+            "pastPaperYear"
+        ).value="";
+
+        document.getElementById(
+            "pastPaperDescription"
+        ).value="";
+
+        document.getElementById(
+            "pastPaperFile"
+        ).value="";
+
+        document.getElementById(
+            "pastPaperFileUrl"
+        ).value="";
+
+
+        await loadPastPapers();
 
     }
 
-
-    const {error} =
-        await db
-        .from("past_papers")
-        .insert({
-
-            title,
-            subject,
-            year,
-            description,
-            file_url
-
-        });
-
-
-    if(error){
+    catch(error){
 
         showMessage(
             "pastPaperMessage",
-            error.message,
+            "❌ " + error.message,
             false
         );
 
-        return;
-
     }
 
+    finally{
 
-    showMessage(
-        "pastPaperMessage",
-        "✅ Past paper added successfully!"
-    );
+        button.disabled=false;
 
+        button.textContent =
+            "Add Past Paper";
 
-    document.getElementById(
-        "pastPaperTitle"
-    ).value="";
-
-    document.getElementById(
-        "pastPaperSubject"
-    ).value="";
-
-    document.getElementById(
-        "pastPaperYear"
-    ).value="";
-
-    document.getElementById(
-        "pastPaperDescription"
-    ).value="";
-
-    document.getElementById(
-        "pastPaperFileUrl"
-    ).value="";
-
-    loadPastPapers();
+    }
 
 }
 
@@ -1509,10 +1841,24 @@ async function loadNotes(){
                 ${
                     item.file_url
                     ?
-                    `<a href="${safe(item.file_url)}"
-                        target="_blank">
-                        📄 Open File
-                    </a>`
+                    `
+                    <a href="${safe(item.file_url)}"
+                       target="_blank">
+                        🔗 Open File / Video
+                    </a>
+
+                    <br>
+
+                    ${
+                        item.file_url
+                        .match(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i)
+                        ?
+                        `<img src="${safe(item.file_url)}"
+                              alt="Note Image">`
+                        :
+                        ""
+                    }
+                    `
                     :
                     ""
                 }
@@ -1599,10 +1945,24 @@ async function loadPracticals(){
                 ${
                     item.file_url
                     ?
-                    `<a href="${safe(item.file_url)}"
-                        target="_blank">
-                        📄 Open File
-                    </a>`
+                    `
+                    <a href="${safe(item.file_url)}"
+                       target="_blank">
+                        🔗 Open File / Video
+                    </a>
+
+                    <br>
+
+                    ${
+                        item.file_url
+                        .match(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i)
+                        ?
+                        `<img src="${safe(item.file_url)}"
+                              alt="Practical Image">`
+                        :
+                        ""
+                    }
+                    `
                     :
                     ""
                 }
@@ -1780,10 +2140,24 @@ async function loadPastPapers(){
                 ${
                     item.file_url
                     ?
-                    `<a href="${safe(item.file_url)}"
-                        target="_blank">
-                        📄 Open Past Paper
-                    </a>`
+                    `
+                    <a href="${safe(item.file_url)}"
+                       target="_blank">
+                        🔗 Open Past Paper
+                    </a>
+
+                    <br>
+
+                    ${
+                        item.file_url
+                        .match(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i)
+                        ?
+                        `<img src="${safe(item.file_url)}"
+                              alt="Past Paper Image">`
+                        :
+                        ""
+                    }
+                    `
                     :
                     ""
                 }
@@ -1857,7 +2231,9 @@ async function logout(){
 
         await db.auth.signOut();
 
-    }catch(error){
+    }
+
+    catch(error){
 
         console.error(error);
 
@@ -1878,4 +2254,4 @@ checkAdmin();
 </script>
 
 </body>
-                </html>
+    </html>
