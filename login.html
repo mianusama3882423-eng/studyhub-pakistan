@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,7 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -93,6 +91,7 @@ button{
 
 button:disabled{
     opacity:.6;
+    cursor:not-allowed;
 }
 
 .message{
@@ -135,9 +134,7 @@ button:disabled{
     word-break:break-word;
     display:none;
 }
-
 </style>
-
 </head>
 
 <body>
@@ -155,65 +152,48 @@ button:disabled{
     <form id="loginForm">
 
         <div class="form-group">
-
             <label>Email</label>
 
             <input
                 id="email"
                 type="email"
                 placeholder="Enter admin email"
+                autocomplete="email"
                 required>
-
         </div>
 
         <div class="form-group">
-
             <label>Password</label>
 
             <input
                 id="password"
                 type="password"
                 placeholder="Enter password"
+                autocomplete="current-password"
                 required>
-
         </div>
 
-        <button
-            id="loginBtn"
-            type="submit">
-
+        <button id="loginBtn" type="submit">
             🔐 Login
-
         </button>
 
     </form>
 
-    <div
-        id="message"
-        class="message">
-    </div>
+    <div id="message" class="message"></div>
 
-    <div
-        id="debug"
-        class="debug">
-    </div>
+    <div id="debug" class="debug"></div>
 
-    <a
-        href="index.html"
-        class="back">
-
+    <a href="index.html" class="back">
         ← Back to StudyHub
-
     </a>
 
 </div>
 
-
 <script>
 
-/* =========================================
+/* ================================
    SUPABASE
-========================================= */
+================================ */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -221,17 +201,15 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
 
-
-const db =
-supabase.createClient(
+const db = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
 
-/* =========================================
+/* ================================
    ELEMENTS
-========================================= */
+================================ */
 
 const form =
 document.getElementById("loginForm");
@@ -252,9 +230,9 @@ const debug =
 document.getElementById("debug");
 
 
-/* =========================================
+/* ================================
    MESSAGE
-========================================= */
+================================ */
 
 function showMessage(text,type){
 
@@ -262,26 +240,82 @@ function showMessage(text,type){
 
     message.className =
         "message " + type;
-
 }
 
 
-/* =========================================
-   DEBUG MESSAGE
-========================================= */
+/* ================================
+   DEBUG
+================================ */
 
 function showDebug(text){
 
-    debug.style.display = "block";
-
     debug.textContent = text;
 
+    debug.style.display = "block";
 }
 
 
-/* =========================================
+/* ================================
+   CHECK EXISTING SESSION
+================================ */
+
+async function checkExistingSession(){
+
+    try{
+
+        const {
+            data: { session }
+        } = await db.auth.getSession();
+
+        if(!session){
+            return;
+        }
+
+        const user = session.user;
+
+        const {
+            data: profile,
+            error
+        } = await db
+            .from("profiles")
+            .select("id,email,role")
+            .eq("id",user.id)
+            .maybeSingle();
+
+        if(error){
+            console.log("Profile check:",error);
+            return;
+        }
+
+        if(
+            profile &&
+            String(profile.role).toLowerCase() === "admin"
+        ){
+
+            showMessage(
+                "✅ Already logged in. Opening Admin Panel...",
+                "success"
+            );
+
+            setTimeout(function(){
+
+                window.location.href =
+                    "admin.html";
+
+            },600);
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+}
+
+
+/* ================================
    LOGIN
-========================================= */
+================================ */
 
 form.addEventListener(
     "submit",
@@ -289,20 +323,17 @@ form.addEventListener(
 
         e.preventDefault();
 
-
         message.className = "message";
         message.textContent = "";
 
         debug.style.display = "none";
         debug.textContent = "";
 
-
         const email =
             emailInput.value.trim();
 
         const password =
             passwordInput.value;
-
 
         if(!email || !password){
 
@@ -314,124 +345,111 @@ form.addEventListener(
             return;
         }
 
-
         loginBtn.disabled = true;
 
         loginBtn.textContent =
             "⏳ Logging in...";
 
-
         try{
 
-
             /* =========================
-               SUPABASE AUTH LOGIN
+               AUTH LOGIN
             ========================= */
 
             const {
                 data,
                 error
-            } =
-            await db.auth.signInWithPassword({
+            } = await db.auth.signInWithPassword({
 
-                email: email,
+                email:email,
 
-                password: password
+                password:password
 
             });
 
-
             if(error){
 
-                throw new Error(
-                    "Login error: " +
+                showMessage(
+                    "❌ " + error.message,
+                    "error"
+                );
+
+                showDebug(
+                    "Supabase Auth: " +
                     error.message
                 );
 
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "🔐 Login";
+
+                return;
             }
 
-
-            if(!data.user){
+            if(!data || !data.user){
 
                 throw new Error(
                     "User account nahi mila."
                 );
-
             }
 
+
+            /* =========================
+               GET ADMIN PROFILE
+            ========================= */
 
             const userId =
                 data.user.id;
 
-
-            /* =========================
-               GET PROFILE
-            ========================= */
-
             const {
                 data:profile,
                 error:profileError
-            } =
-            await db
-            .from("profiles")
-            .select("id,email,role")
-            .eq("id",userId)
-            .single();
+            } = await db
+                .from("profiles")
+                .select("id,email,role")
+                .eq("id",userId)
+                .maybeSingle();
 
-
-            /* =========================
-               PROFILE ERROR
-            ========================= */
 
             if(profileError){
 
-                console.error(
-                    "PROFILE ERROR:",
-                    profileError
-                );
-
-
                 await db.auth.signOut();
-
 
                 showMessage(
                     "❌ Profile check failed.",
                     "error"
                 );
 
-
                 showDebug(
-                    "Supabase Error: " +
+                    "Profile Error: " +
                     profileError.message +
                     " | Code: " +
                     (profileError.code || "unknown")
                 );
 
-
                 loginBtn.disabled = false;
 
                 loginBtn.textContent =
                     "🔐 Login";
 
                 return;
-
             }
 
-
-            /* =========================
-               PROFILE NOT FOUND
-            ========================= */
 
             if(!profile){
 
                 await db.auth.signOut();
 
-
                 showMessage(
-                    "❌ Profile not found.",
+                    "❌ Admin profile not found.",
                     "error"
                 );
 
+                showDebug(
+                    "No profile found for user ID: " +
+                    userId
+                );
 
                 loginBtn.disabled = false;
 
@@ -439,40 +457,30 @@ form.addEventListener(
                     "🔐 Login";
 
                 return;
-
             }
 
 
-            console.log(
-                "PROFILE:",
-                profile
-            );
-
-
             /* =========================
-               ADMIN CHECK
+               ADMIN ROLE
             ========================= */
 
             if(
                 String(profile.role)
-                .toLowerCase()
-                !== "admin"
+                .trim()
+                .toLowerCase() !== "admin"
             ){
 
                 await db.auth.signOut();
-
 
                 showMessage(
                     "❌ This account is not an admin.",
                     "error"
                 );
 
-
                 showDebug(
                     "Your role: " +
                     profile.role
                 );
-
 
                 loginBtn.disabled = false;
 
@@ -480,12 +488,11 @@ form.addEventListener(
                     "🔐 Login";
 
                 return;
-
             }
 
 
             /* =========================
-               ADMIN LOGIN SUCCESS
+               SUCCESS
             ========================= */
 
             showMessage(
@@ -494,31 +501,21 @@ form.addEventListener(
             );
 
 
-            localStorage.setItem(
-                "studyhub_user_id",
-                userId
-            );
+            /*
+              IMPORTANT:
+              Supabase automatically keeps
+              the authenticated session.
+            */
 
-
-            localStorage.setItem(
-                "studyhub_role",
-                "admin"
-            );
-
-
-            /* =========================
-               OPEN ADMIN.HTML
-            ========================= */
 
             setTimeout(function(){
 
                 window.location.href =
                     "admin.html";
 
-            },800);
+            },700);
 
         }
-
 
         catch(error){
 
@@ -527,30 +524,31 @@ form.addEventListener(
                 error
             );
 
-
             showMessage(
-                "❌ " +
-                (error.message ||
-                "Login failed."),
+                "❌ Login failed.",
                 "error"
             );
 
-
             showDebug(
-                "Error: " +
-                (error.message || error)
+                error.message ||
+                String(error)
             );
-
 
             loginBtn.disabled = false;
 
             loginBtn.textContent =
                 "🔐 Login";
-
         }
 
     }
 );
+
+
+/* ================================
+   START
+================================ */
+
+checkExistingSession();
 
 </script>
 
