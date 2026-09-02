@@ -125,6 +125,11 @@ textarea{
     font-size:14px;
 }
 
+input:focus,
+textarea:focus{
+    border-color:#2563eb;
+}
+
 textarea{
     min-height:90px;
     resize:vertical;
@@ -279,7 +284,6 @@ textarea{
 
 <body>
 
-
 <header>
 
     <div class="logo">
@@ -306,7 +310,6 @@ textarea{
 
 <main id="adminPanel" class="container">
 
-
     <div class="welcome">
 
         <h1>
@@ -320,69 +323,44 @@ textarea{
     </div>
 
 
-    <!-- ================= STATS ================= -->
+    <!-- STATS -->
 
     <div class="stats">
 
         <div class="stat">
-
             <div class="stat-icon">📚</div>
-
             <h2 id="courseCount">0</h2>
-
             <p>Courses</p>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-icon">📘</div>
-
             <h2 id="noteCount">0</h2>
-
             <p>Notes</p>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-icon">🧪</div>
-
             <h2 id="practicalCount">0</h2>
-
             <p>Practicals</p>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-icon">🎯</div>
-
             <h2 id="testCount">0</h2>
-
             <p>Tests</p>
-
         </div>
 
-
         <div class="stat">
-
             <div class="stat-icon">📄</div>
-
             <h2 id="pastPaperCount">0</h2>
-
             <p>Past Papers</p>
-
         </div>
 
     </div>
 
 
-
-    <!-- ================= ADD COURSE ================= -->
+    <!-- COURSE -->
 
     <div class="panel">
 
@@ -390,45 +368,35 @@ textarea{
 
         <div class="form">
 
-            <input
-                id="courseTitle"
-                placeholder="Course title"
-            >
+            <input id="courseTitle"
+                   placeholder="Course title">
 
-            <input
-                id="courseLevel"
-                value="BEGINNER"
-                placeholder="Level"
-            >
+            <input id="courseLevel"
+                   value="BEGINNER"
+                   placeholder="Level">
 
-            <input
-                id="courseIcon"
-                value="📚"
-                placeholder="Icon"
-            >
+            <input id="courseIcon"
+                   value="📚"
+                   placeholder="Icon">
 
-            <textarea
-                id="courseDescription"
-                class="full"
-                placeholder="Course description"
-            ></textarea>
+            <textarea id="courseDescription"
+                      class="full"
+                      placeholder="Course description"></textarea>
 
-            <button
-                class="add-btn"
-                onclick="addCourse()"
-            >
+            <button class="add-btn"
+                    onclick="addCourse()">
                 Add Course
             </button>
 
         </div>
 
-        <div id="courseMessage" class="message"></div>
+        <div id="courseMessage"
+             class="message"></div>
 
     </div>
 
 
-
-    <!-- ================= ADD NOTE ================= -->
+    <!-- NOTES -->
 
     <div class="panel">
 
@@ -436,45 +404,35 @@ textarea{
 
         <div class="form">
 
-            <input
-                id="noteTitle"
-                placeholder="Note title"
-            >
+            <input id="noteTitle"
+                   placeholder="Note title">
 
-            <input
-                id="noteIcon"
-                value="📘"
-                placeholder="Icon"
-            >
+            <input id="noteIcon"
+                   value="📘"
+                   placeholder="Icon">
 
-            <textarea
-                id="noteDescription"
-                class="full"
-                placeholder="Note description"
-            ></textarea>
+            <textarea id="noteDescription"
+                      class="full"
+                      placeholder="Note description"></textarea>
 
-            <input
-                id="noteFileUrl"
-                class="full"
-                placeholder="PDF/File URL"
-            >
+            <input id="noteFileUrl"
+                   class="full"
+                   placeholder="PDF/File URL">
 
-            <button
-                class="add-btn"
-                onclick="addNote()"
-            >
+            <button class="add-btn"
+                    onclick="addNote()">
                 Add Note
             </button>
 
         </div>
 
-        <div id="noteMessage" class="message"></div>
+        <div id="noteMessage"
+             class="message"></div>
 
     </div>
 
 
-
-    <!-- ================= ADD PRACTICAL ================= -->
+    <!-- PRACTICAL -->
 
     <div class="panel">
 
@@ -482,45 +440,35 @@ textarea{
 
         <div class="form">
 
-            <input
-                id="practicalTitle"
-                placeholder="Practical title"
-            >
+            <input id="practicalTitle"
+                   placeholder="Practical title">
 
-            <input
-                id="practicalIcon"
-                value="💻"
-                placeholder="Icon"
-            >
+            <input id="practicalIcon"
+                   value="💻"
+                   placeholder="Icon">
 
-            <textarea
-                id="practicalDescription"
-                class="full"
-                placeholder="Practical description"
-            ></textarea>
+            <textarea id="practicalDescription"
+                      class="full"
+                      placeholder="Practical description"></textarea>
 
-            <input
-                id="practicalFileUrl"
-                class="full"
-                placeholder="File/PDF URL"
-            >
+            <input id="practicalFileUrl"
+                   class="full"
+                   placeholder="File/PDF URL">
 
-            <button
-                class="add-btn"
-                onclick="addPractical()"
-            >
+            <button class="add-btn"
+                    onclick="addPractical()">
                 Add Practical
             </button>
 
         </div>
 
-        <div id="practicalMessage" class="message"></div>
+        <div id="practicalMessage"
+             class="message"></div>
 
     </div>
 
 
-
-    <!-- ================= ADD TEST ================= -->
+    <!-- TEST -->
 
     <div class="panel">
 
@@ -528,40 +476,32 @@ textarea{
 
         <div class="form">
 
-            <input
-                id="testTitle"
-                placeholder="Test title"
-            >
+            <input id="testTitle"
+                   placeholder="Test title">
 
-            <input
-                id="testQuestions"
-                type="number"
-                value="10"
-                placeholder="Questions"
-            >
+            <input id="testQuestions"
+                   type="number"
+                   value="10"
+                   placeholder="Questions">
 
-            <textarea
-                id="testDescription"
-                class="full"
-                placeholder="Test description"
-            ></textarea>
+            <textarea id="testDescription"
+                      class="full"
+                      placeholder="Test description"></textarea>
 
-            <button
-                class="add-btn"
-                onclick="addTest()"
-            >
+            <button class="add-btn"
+                    onclick="addTest()">
                 Add Test
             </button>
 
         </div>
 
-        <div id="testMessage" class="message"></div>
+        <div id="testMessage"
+             class="message"></div>
 
     </div>
 
 
-
-    <!-- ================= ADD PAST PAPER ================= -->
+    <!-- PAST PAPERS -->
 
     <div class="panel">
 
@@ -569,123 +509,77 @@ textarea{
 
         <div class="form">
 
-            <input
-                id="pastPaperTitle"
-                placeholder="Past paper title e.g. CIT 1st Year 2025"
-            >
+            <input id="pastPaperTitle"
+                   placeholder="Past paper title e.g. CIT 1st Year 2025">
 
-            <input
-                id="pastPaperSubject"
-                placeholder="Subject e.g. Computer Science"
-            >
+            <input id="pastPaperSubject"
+                   placeholder="Subject e.g. Computer Science">
 
-            <input
-                id="pastPaperYear"
-                type="number"
-                placeholder="Year e.g. 2025"
-            >
+            <input id="pastPaperYear"
+                   type="number"
+                   placeholder="Year e.g. 2025">
 
-            <input
-                id="pastPaperFileUrl"
-                placeholder="PDF/File URL"
-            >
+            <input id="pastPaperFileUrl"
+                   placeholder="PDF/File URL">
 
-            <textarea
-                id="pastPaperDescription"
-                class="full"
-                placeholder="Past paper description"
-            ></textarea>
+            <textarea id="pastPaperDescription"
+                      class="full"
+                      placeholder="Past paper description"></textarea>
 
-            <button
-                class="add-btn"
-                onclick="addPastPaper()"
-            >
+            <button class="add-btn"
+                    onclick="addPastPaper()">
                 Add Past Paper
             </button>
 
         </div>
 
-        <div id="pastPaperMessage" class="message"></div>
+        <div id="pastPaperMessage"
+             class="message"></div>
 
     </div>
 
 
-
-    <!-- ================= COURSES ================= -->
+    <!-- LISTS -->
 
     <div class="panel">
-
         <h2>📚 All Courses</h2>
-
         <div id="coursesList" class="items">
             Loading...
         </div>
-
     </div>
 
-
-
-    <!-- ================= NOTES ================= -->
-
     <div class="panel">
-
         <h2>📘 All Notes</h2>
-
         <div id="notesList" class="items">
             Loading...
         </div>
-
     </div>
 
-
-
-    <!-- ================= PRACTICALS ================= -->
-
     <div class="panel">
-
         <h2>🧪 All Practicals</h2>
-
         <div id="practicalsList" class="items">
             Loading...
         </div>
-
     </div>
 
-
-
-    <!-- ================= TESTS ================= -->
-
     <div class="panel">
-
         <h2>🎯 All Tests</h2>
-
         <div id="testsList" class="items">
             Loading...
         </div>
-
     </div>
 
-
-
-    <!-- ================= PAST PAPERS ================= -->
-
     <div class="panel">
-
         <h2>📄 All Past Papers</h2>
-
         <div id="pastPapersList" class="items">
             Loading...
         </div>
-
     </div>
-
 
 </main>
 
 
-
 <script>
-
 
 /* =================================
    SUPABASE
@@ -697,13 +591,11 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
 
-
 const db =
 supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
 
 
 /* =================================
@@ -718,9 +610,7 @@ function safe(value){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
-
 }
-
 
 
 /* =================================
@@ -731,49 +621,26 @@ async function checkAdmin(){
 
     try{
 
-        const token =
-            localStorage.getItem(
-                "studyhub_access_token"
-            );
+        /*
+          IMPORTANT:
+          Supabase ka actual session
+          use ho raha hai.
+        */
 
-        const userId =
-            localStorage.getItem(
-                "studyhub_user_id"
-            );
+        const {
+            data: { session },
+            error:sessionError
+        } = await db.auth.getSession();
 
 
-        if(!token || !userId){
+        if(sessionError){
 
-            showLoginRequired();
-
-            return;
+            throw sessionError;
 
         }
 
 
-        const userResponse =
-            await fetch(
-
-                SUPABASE_URL +
-                "/auth/v1/user",
-
-                {
-                    method:"GET",
-
-                    headers:{
-                        "apikey":SUPABASE_KEY,
-
-                        "Authorization":
-                        "Bearer " + token
-                    }
-                }
-
-            );
-
-
-        if(!userResponse.ok){
-
-            localStorage.clear();
+        if(!session){
 
             showLoginRequired();
 
@@ -783,49 +650,34 @@ async function checkAdmin(){
 
 
         const user =
-            await userResponse.json();
+            session.user;
 
 
-        const profileResponse =
-            await fetch(
+        /* =========================
+           PROFILE
+        ========================= */
 
-                SUPABASE_URL +
-                "/rest/v1/profiles" +
-                "?select=id,email,role" +
-                "&id=eq." +
-                encodeURIComponent(user.id),
-
-                {
-                    method:"GET",
-
-                    headers:{
-                        "apikey":SUPABASE_KEY,
-
-                        "Authorization":
-                        "Bearer " + token
-                    }
-                }
-
-            );
+        const {
+            data:profile,
+            error:profileError
+        } = await db
+            .from("profiles")
+            .select("id,email,role")
+            .eq("id",user.id)
+            .maybeSingle();
 
 
-        if(!profileResponse.ok){
+        if(profileError){
 
             throw new Error(
-                "Could not check admin profile."
+                "Could not check admin profile: " +
+                profileError.message
             );
 
         }
 
 
-        const profiles =
-            await profileResponse.json();
-
-
-        if(
-            !profiles ||
-            profiles.length === 0
-        ){
+        if(!profile){
 
             showAccessDenied();
 
@@ -835,7 +687,8 @@ async function checkAdmin(){
 
 
         if(
-            String(profiles[0].role)
+            String(profile.role)
+            .trim()
             .toLowerCase() !== "admin"
         ){
 
@@ -845,6 +698,10 @@ async function checkAdmin(){
 
         }
 
+
+        /* =========================
+           ADMIN OPEN
+        ========================= */
 
         document.getElementById(
             "checking"
@@ -862,7 +719,11 @@ async function checkAdmin(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "ADMIN CHECK ERROR:",
+            error
+        );
+
 
         document.getElementById(
             "checking"
@@ -879,9 +740,7 @@ async function checkAdmin(){
             <button
                 onclick="goLogin()"
                 class="add-btn">
-
                 Go to Login
-
             </button>
 
         `;
@@ -889,7 +748,6 @@ async function checkAdmin(){
     }
 
 }
-
 
 
 /* =================================
@@ -913,15 +771,12 @@ function showLoginRequired(){
         <button
             onclick="goLogin()"
             class="add-btn">
-
             Go to Login
-
         </button>
 
     `;
 
 }
-
 
 
 /* =================================
@@ -945,9 +800,7 @@ function showAccessDenied(){
         <button
             onclick="logout()"
             class="delete">
-
             Logout
-
         </button>
 
     `;
@@ -955,9 +808,8 @@ function showAccessDenied(){
 }
 
 
-
 /* =================================
-   LOGIN
+   GO LOGIN
 ================================= */
 
 function goLogin(){
@@ -966,7 +818,6 @@ function goLogin(){
         "login.html";
 
 }
-
 
 
 /* =================================
@@ -982,10 +833,8 @@ function showMessage(
     const box =
         document.getElementById(id);
 
-
     box.textContent =
         text;
-
 
     box.className =
         "message " +
@@ -995,9 +844,7 @@ function showMessage(
             : "error"
         );
 
-
     box.style.display="block";
-
 
     setTimeout(()=>{
 
@@ -1006,7 +853,6 @@ function showMessage(
     },4000);
 
 }
-
 
 
 /* =================================
@@ -1020,18 +866,15 @@ async function addCourse(){
             "courseTitle"
         ).value.trim();
 
-
     const description =
         document.getElementById(
             "courseDescription"
         ).value.trim();
 
-
     const level =
         document.getElementById(
             "courseLevel"
         ).value.trim();
-
 
     const icon =
         document.getElementById(
@@ -1088,16 +931,13 @@ async function addCourse(){
         "courseTitle"
     ).value="";
 
-
     document.getElementById(
         "courseDescription"
     ).value="";
 
-
     loadCourses();
 
 }
-
 
 
 /* =================================
@@ -1111,18 +951,15 @@ async function addNote(){
             "noteTitle"
         ).value.trim();
 
-
     const description =
         document.getElementById(
             "noteDescription"
         ).value.trim();
 
-
     const icon =
         document.getElementById(
             "noteIcon"
         ).value.trim();
-
 
     const file_url =
         document.getElementById(
@@ -1179,21 +1016,17 @@ async function addNote(){
         "noteTitle"
     ).value="";
 
-
     document.getElementById(
         "noteDescription"
     ).value="";
-
 
     document.getElementById(
         "noteFileUrl"
     ).value="";
 
-
     loadNotes();
 
 }
-
 
 
 /* =================================
@@ -1207,12 +1040,10 @@ async function addPractical(){
             "practicalTitle"
         ).value.trim();
 
-
     const description =
         document.getElementById(
             "practicalDescription"
         ).value.trim();
-
 
     const file_url =
         document.getElementById(
@@ -1268,21 +1099,17 @@ async function addPractical(){
         "practicalTitle"
     ).value="";
 
-
     document.getElementById(
         "practicalDescription"
     ).value="";
-
 
     document.getElementById(
         "practicalFileUrl"
     ).value="";
 
-
     loadPracticals();
 
 }
-
 
 
 /* =================================
@@ -1296,12 +1123,10 @@ async function addTest(){
             "testTitle"
         ).value.trim();
 
-
     const description =
         document.getElementById(
             "testDescription"
         ).value.trim();
-
 
     const questions =
         Number(
@@ -1359,16 +1184,13 @@ async function addTest(){
         "testTitle"
     ).value="";
 
-
     document.getElementById(
         "testDescription"
     ).value="";
 
-
     loadTests();
 
 }
-
 
 
 /* =================================
@@ -1382,12 +1204,10 @@ async function addPastPaper(){
             "pastPaperTitle"
         ).value.trim();
 
-
     const subject =
         document.getElementById(
             "pastPaperSubject"
         ).value.trim();
-
 
     const year =
         Number(
@@ -1396,12 +1216,10 @@ async function addPastPaper(){
             ).value
         );
 
-
     const description =
         document.getElementById(
             "pastPaperDescription"
         ).value.trim();
-
 
     const file_url =
         document.getElementById(
@@ -1498,31 +1316,25 @@ async function addPastPaper(){
         "pastPaperTitle"
     ).value="";
 
-
     document.getElementById(
         "pastPaperSubject"
     ).value="";
-
 
     document.getElementById(
         "pastPaperYear"
     ).value="";
 
-
     document.getElementById(
         "pastPaperDescription"
     ).value="";
-
 
     document.getElementById(
         "pastPaperFileUrl"
     ).value="";
 
-
     loadPastPapers();
 
 }
-
 
 
 /* =================================
@@ -1534,19 +1346,14 @@ async function loadAll(){
     await Promise.all([
 
         loadCourses(),
-
         loadNotes(),
-
         loadPracticals(),
-
         loadTests(),
-
         loadPastPapers()
 
     ]);
 
 }
-
 
 
 /* =================================
@@ -1623,8 +1430,7 @@ async function loadCourses(){
 
             <button
                 class="delete"
-                onclick="deleteItem('courses','${safe(item.id)}',loadCourses)"
-            >
+                onclick="deleteItem('courses','${safe(item.id)}',loadCourses)">
                 Delete
             </button>
 
@@ -1633,7 +1439,6 @@ async function loadCourses(){
     `).join("");
 
 }
-
 
 
 /* =================================
@@ -1704,8 +1509,7 @@ async function loadNotes(){
                 ${
                     item.file_url
                     ?
-                    `<a
-                        href="${safe(item.file_url)}"
+                    `<a href="${safe(item.file_url)}"
                         target="_blank">
                         📄 Open File
                     </a>`
@@ -1717,8 +1521,7 @@ async function loadNotes(){
 
             <button
                 class="delete"
-                onclick="deleteItem('notes','${safe(item.id)}',loadNotes)"
-            >
+                onclick="deleteItem('notes','${safe(item.id)}',loadNotes)">
                 Delete
             </button>
 
@@ -1727,7 +1530,6 @@ async function loadNotes(){
     `).join("");
 
 }
-
 
 
 /* =================================
@@ -1797,8 +1599,7 @@ async function loadPracticals(){
                 ${
                     item.file_url
                     ?
-                    `<a
-                        href="${safe(item.file_url)}"
+                    `<a href="${safe(item.file_url)}"
                         target="_blank">
                         📄 Open File
                     </a>`
@@ -1810,8 +1611,7 @@ async function loadPracticals(){
 
             <button
                 class="delete"
-                onclick="deleteItem('practicals','${safe(item.id)}',loadPracticals)"
-            >
+                onclick="deleteItem('practicals','${safe(item.id)}',loadPracticals)">
                 Delete
             </button>
 
@@ -1820,7 +1620,6 @@ async function loadPracticals(){
     `).join("");
 
 }
-
 
 
 /* =================================
@@ -1893,8 +1692,7 @@ async function loadTests(){
 
             <button
                 class="delete"
-                onclick="deleteItem('tests','${safe(item.id)}',loadTests)"
-            >
+                onclick="deleteItem('tests','${safe(item.id)}',loadTests)">
                 Delete
             </button>
 
@@ -1903,7 +1701,6 @@ async function loadTests(){
     `).join("");
 
 }
-
 
 
 /* =================================
@@ -1983,8 +1780,7 @@ async function loadPastPapers(){
                 ${
                     item.file_url
                     ?
-                    `<a
-                        href="${safe(item.file_url)}"
+                    `<a href="${safe(item.file_url)}"
                         target="_blank">
                         📄 Open Past Paper
                     </a>`
@@ -1996,8 +1792,7 @@ async function loadPastPapers(){
 
             <button
                 class="delete"
-                onclick="deleteItem('past_papers','${safe(item.id)}',loadPastPapers)"
-            >
+                onclick="deleteItem('past_papers','${safe(item.id)}',loadPastPapers)">
                 Delete
             </button>
 
@@ -2006,7 +1801,6 @@ async function loadPastPapers(){
     `).join("");
 
 }
-
 
 
 /* =================================
@@ -2053,7 +1847,6 @@ async function deleteItem(
 }
 
 
-
 /* =================================
    LOGOUT
 ================================= */
@@ -2064,31 +1857,16 @@ async function logout(){
 
         await db.auth.signOut();
 
-    }catch(e){
+    }catch(error){
 
-        console.log(e);
+        console.error(error);
 
     }
-
-
-    localStorage.removeItem(
-        "studyhub_access_token"
-    );
-
-    localStorage.removeItem(
-        "studyhub_user_id"
-    );
-
-    localStorage.removeItem(
-        "studyhub_role"
-    );
-
 
     window.location.href =
         "login.html";
 
 }
-
 
 
 /* =================================
