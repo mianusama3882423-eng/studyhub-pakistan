@@ -116,7 +116,8 @@ header{
 }
 
 input,
-textarea{
+textarea,
+select{
     width:100%;
     padding:12px;
     border:1px solid #d8dde7;
@@ -126,7 +127,8 @@ textarea{
 }
 
 input:focus,
-textarea:focus{
+textarea:focus,
+select:focus{
     border-color:#2563eb;
 }
 
@@ -161,7 +163,7 @@ textarea{
     text-align:center;
     color:#687386;
     font-size:13px;
-    margin:4px 0;
+    margin:8px 0;
 }
 
 .help{
@@ -215,7 +217,7 @@ textarea{
     border-radius:8px;
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    align-items:flex-start;
     gap:15px;
 }
 
@@ -257,6 +259,45 @@ textarea{
     font-weight:bold;
 }
 
+.page-list{
+    margin-top:12px;
+    padding:10px;
+    background:#f8fafc;
+    border-radius:8px;
+}
+
+.page-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.page-item:last-child{
+    border-bottom:0;
+}
+
+.page-number{
+    background:#2563eb;
+    color:white;
+    min-width:30px;
+    height:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.page-preview{
+    width:60px;
+    height:45px;
+    object-fit:cover;
+    border-radius:5px;
+}
+
 #checking{
     max-width:500px;
     margin:80px auto;
@@ -273,6 +314,12 @@ textarea{
 
 .loading{
     color:#687386;
+}
+
+.small-note{
+    font-size:12px;
+    color:#687386;
+    margin-top:8px;
 }
 
 @media(max-width:900px){
@@ -303,7 +350,6 @@ textarea{
 
     .item{
         flex-direction:column;
-        align-items:flex-start;
     }
 
 }
@@ -488,7 +534,7 @@ textarea{
             </div>
 
             <button class="add-btn"
-                    onclick="addNote()">
+                    onclick="addNote(this)">
                 Add Note
             </button>
 
@@ -543,7 +589,7 @@ textarea{
             </div>
 
             <button class="add-btn"
-                    onclick="addPractical()">
+                    onclick="addPractical(this)">
                 Add Practical
             </button>
 
@@ -568,6 +614,7 @@ textarea{
 
             <input id="testQuestions"
                    type="number"
+                   min="1"
                    value="10"
                    placeholder="Questions">
 
@@ -610,31 +657,43 @@ textarea{
                       class="full"
                       placeholder="Past paper description"></textarea>
 
+
+            <!-- MULTIPLE PAGES -->
+
             <div class="upload-box">
 
                 <div class="upload-title">
-                    📷 Upload Picture
+                    📄 Upload Past Paper Pages
                 </div>
 
-                <input id="pastPaperFile"
+                <input id="pastPaperFiles"
                        type="file"
-                       accept="image/*">
+                       accept="image/*"
+                       multiple>
 
                 <p class="help">
-                    Past paper ki picture gallery se select karo.
+                    Gallery se Page 1, Page 2, Page 3... ek saath select kar sakte ho.
                 </p>
 
                 <div class="or">
                     — OR —
                 </div>
 
-                <input id="pastPaperFileUrl"
-                       placeholder="🔗 YouTube / PDF / File URL">
+                <textarea id="pastPaperPagesUrls"
+                          placeholder="🔗 Multiple URLs enter karo&#10;Har page ka URL new line mein"></textarea>
+
+                <p class="help">
+                    Example:&#10;
+                    Page 1 URL&#10;
+                    Page 2 URL&#10;
+                    Page 3 URL
+                </p>
 
             </div>
 
+
             <button class="add-btn"
-                    onclick="addPastPaper()">
+                    onclick="addPastPaper(this)">
                 Add Past Paper
             </button>
 
@@ -655,12 +714,14 @@ textarea{
         </div>
     </div>
 
+
     <div class="panel">
         <h2>📘 All Notes</h2>
         <div id="notesList" class="items">
             Loading...
         </div>
     </div>
+
 
     <div class="panel">
         <h2>🧪 All Practicals</h2>
@@ -669,12 +730,14 @@ textarea{
         </div>
     </div>
 
+
     <div class="panel">
         <h2>🎯 All Tests</h2>
         <div id="testsList" class="items">
             Loading...
         </div>
     </div>
+
 
     <div class="panel">
         <h2>📄 All Past Papers</h2>
@@ -688,9 +751,9 @@ textarea{
 
 <script>
 
-/* =================================
+/* =========================================
    SUPABASE
-================================= */
+========================================= */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -705,9 +768,9 @@ supabase.createClient(
 );
 
 
-/* =================================
+/* =========================================
    SAFE
-================================= */
+========================================= */
 
 function safe(value){
 
@@ -717,26 +780,28 @@ function safe(value){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
 }
 
 
-/* =================================
+/* =========================================
    CHECK ADMIN
-================================= */
+========================================= */
 
 async function checkAdmin(){
 
     try{
 
         const {
-            data: { session },
-            error:sessionError
-        } = await db.auth.getSession();
+            data:{session},
+            error
+        } =
+        await db.auth.getSession();
 
 
-        if(sessionError){
+        if(error){
 
-            throw sessionError;
+            throw error;
 
         }
 
@@ -757,11 +822,12 @@ async function checkAdmin(){
         const {
             data:profile,
             error:profileError
-        } = await db
-            .from("profiles")
-            .select("id,email,role")
-            .eq("id",user.id)
-            .maybeSingle();
+        } =
+        await db
+        .from("profiles")
+        .select("id,email,role")
+        .eq("id",user.id)
+        .maybeSingle();
 
 
         if(profileError){
@@ -812,11 +878,7 @@ async function checkAdmin(){
 
     catch(error){
 
-        console.error(
-            "ADMIN CHECK ERROR:",
-            error
-        );
-
+        console.error(error);
 
         document.getElementById(
             "checking"
@@ -843,9 +905,9 @@ async function checkAdmin(){
 }
 
 
-/* =================================
-   LOGIN REQUIRED
-================================= */
+/* =========================================
+   LOGIN
+========================================= */
 
 function showLoginRequired(){
 
@@ -855,9 +917,7 @@ function showLoginRequired(){
 
         <h2>🔐 Login Required</h2>
 
-        <p>
-            Please login as admin first.
-        </p>
+        <p>Please login as admin first.</p>
 
         <br>
 
@@ -872,10 +932,6 @@ function showLoginRequired(){
 }
 
 
-/* =================================
-   ACCESS DENIED
-================================= */
-
 function showAccessDenied(){
 
     document.getElementById(
@@ -884,9 +940,7 @@ function showAccessDenied(){
 
         <h2>🚫 Access Denied</h2>
 
-        <p>
-            This account is not an administrator.
-        </p>
+        <p>This account is not an administrator.</p>
 
         <br>
 
@@ -901,10 +955,6 @@ function showAccessDenied(){
 }
 
 
-/* =================================
-   GO LOGIN
-================================= */
-
 function goLogin(){
 
     window.location.href =
@@ -913,9 +963,9 @@ function goLogin(){
 }
 
 
-/* =================================
+/* =========================================
    MESSAGE
-================================= */
+========================================= */
 
 function showMessage(
     id,
@@ -939,18 +989,19 @@ function showMessage(
 
     box.style.display="block";
 
+
     setTimeout(()=>{
 
         box.style.display="none";
 
-    },5000);
+    },6000);
 
 }
 
 
-/* =================================
-   UPLOAD FILE
-================================= */
+/* =========================================
+   UPLOAD IMAGE
+========================================= */
 
 async function uploadFile(file){
 
@@ -979,15 +1030,24 @@ async function uploadFile(file){
     if(file.size > maxSize){
 
         throw new Error(
-            "Picture must be smaller than 10 MB."
+            "Image must be smaller than 10 MB."
         );
 
     }
 
 
     const {
-        data:{user}
-    } = await db.auth.getUser();
+        data:{user},
+        error:userError
+    } =
+    await db.auth.getUser();
+
+
+    if(userError){
+
+        throw userError;
+
+    }
 
 
     if(!user){
@@ -1015,16 +1075,16 @@ async function uploadFile(file){
     const {
         error:uploadError
     } =
-        await db.storage
-        .from("studyhub-files")
-        .upload(
-            fileName,
-            file,
-            {
-                cacheControl:"3600",
-                upsert:false
-            }
-        );
+    await db.storage
+    .from("studyhub-files")
+    .upload(
+        fileName,
+        file,
+        {
+            cacheControl:"3600",
+            upsert:false
+        }
+    );
 
 
     if(uploadError){
@@ -1037,9 +1097,9 @@ async function uploadFile(file){
     const {
         data:{publicUrl}
     } =
-        db.storage
-        .from("studyhub-files")
-        .getPublicUrl(fileName);
+    db.storage
+    .from("studyhub-files")
+    .getPublicUrl(fileName);
 
 
     return publicUrl;
@@ -1047,31 +1107,29 @@ async function uploadFile(file){
 }
 
 
-/* =================================
-   GET FILE URL
-================================= */
+/* =========================================
+   GET SINGLE FILE URL
+========================================= */
 
 async function getFileUrl(
     fileInputId,
     urlInputId
 ){
 
+    const input =
+        document.getElementById(fileInputId);
+
+
     const file =
-        document.getElementById(
-            fileInputId
-        ).files[0];
+        input.files[0];
 
 
     const url =
-        document.getElementById(
-            urlInputId
-        ).value.trim();
+        document
+        .getElementById(urlInputId)
+        .value
+        .trim();
 
-
-    /*
-      Agar picture upload hui hai
-      to upload wali picture use hogi.
-    */
 
     if(file){
 
@@ -1079,11 +1137,6 @@ async function getFileUrl(
 
     }
 
-
-    /*
-      Agar URL diya gaya hai
-      to wahi URL use hoga.
-    */
 
     if(url){
 
@@ -1099,31 +1152,35 @@ async function getFileUrl(
 }
 
 
-/* =================================
+/* =========================================
    ADD COURSE
-================================= */
+========================================= */
 
 async function addCourse(){
 
     const title =
-        document.getElementById(
-            "courseTitle"
-        ).value.trim();
+        document
+        .getElementById("courseTitle")
+        .value
+        .trim();
 
     const description =
-        document.getElementById(
-            "courseDescription"
-        ).value.trim();
+        document
+        .getElementById("courseDescription")
+        .value
+        .trim();
 
     const level =
-        document.getElementById(
-            "courseLevel"
-        ).value.trim();
+        document
+        .getElementById("courseLevel")
+        .value
+        .trim();
 
     const icon =
-        document.getElementById(
-            "courseIcon"
-        ).value.trim();
+        document
+        .getElementById("courseIcon")
+        .value
+        .trim();
 
 
     if(!title){
@@ -1185,26 +1242,29 @@ async function addCourse(){
 }
 
 
-/* =================================
+/* =========================================
    ADD NOTE
-================================= */
+========================================= */
 
-async function addNote(){
+async function addNote(button){
 
     const title =
-        document.getElementById(
-            "noteTitle"
-        ).value.trim();
+        document
+        .getElementById("noteTitle")
+        .value
+        .trim();
 
     const description =
-        document.getElementById(
-            "noteDescription"
-        ).value.trim();
+        document
+        .getElementById("noteDescription")
+        .value
+        .trim();
 
     const icon =
-        document.getElementById(
-            "noteIcon"
-        ).value.trim();
+        document
+        .getElementById("noteIcon")
+        .value
+        .trim();
 
 
     if(!title){
@@ -1219,9 +1279,6 @@ async function addNote(){
 
     }
 
-
-    const button =
-        event.target;
 
     button.disabled=true;
 
@@ -1307,21 +1364,23 @@ async function addNote(){
 }
 
 
-/* =================================
+/* =========================================
    ADD PRACTICAL
-================================= */
+========================================= */
 
-async function addPractical(){
+async function addPractical(button){
 
     const title =
-        document.getElementById(
-            "practicalTitle"
-        ).value.trim();
+        document
+        .getElementById("practicalTitle")
+        .value
+        .trim();
 
     const description =
-        document.getElementById(
-            "practicalDescription"
-        ).value.trim();
+        document
+        .getElementById("practicalDescription")
+        .value
+        .trim();
 
 
     if(!title){
@@ -1336,9 +1395,6 @@ async function addPractical(){
 
     }
 
-
-    const button =
-        event.target;
 
     button.disabled=true;
 
@@ -1356,15 +1412,15 @@ async function addPractical(){
 
 
         const {error} =
-            await db
-            .from("practicals")
-            .insert({
+        await db
+        .from("practicals")
+        .insert({
 
-                title,
-                description,
-                file_url
+            title,
+            description,
+            file_url
 
-            });
+        });
 
 
         if(error){
@@ -1423,27 +1479,29 @@ async function addPractical(){
 }
 
 
-/* =================================
+/* =========================================
    ADD TEST
-================================= */
+========================================= */
 
 async function addTest(){
 
     const title =
-        document.getElementById(
-            "testTitle"
-        ).value.trim();
+        document
+        .getElementById("testTitle")
+        .value
+        .trim();
 
     const description =
-        document.getElementById(
-            "testDescription"
-        ).value.trim();
+        document
+        .getElementById("testDescription")
+        .value
+        .trim();
 
     const questions =
         Number(
-            document.getElementById(
-                "testQuestions"
-            ).value
+            document
+            .getElementById("testQuestions")
+            .value
         );
 
 
@@ -1461,15 +1519,15 @@ async function addTest(){
 
 
     const {error} =
-        await db
-        .from("tests")
-        .insert({
+    await db
+    .from("tests")
+    .insert({
 
-            title,
-            description,
-            questions
+        title,
+        description,
+        questions
 
-        });
+    });
 
 
     if(error){
@@ -1505,33 +1563,36 @@ async function addTest(){
 }
 
 
-/* =================================
+/* =========================================
    ADD PAST PAPER
-================================= */
+========================================= */
 
-async function addPastPaper(){
+async function addPastPaper(button){
 
     const title =
-        document.getElementById(
-            "pastPaperTitle"
-        ).value.trim();
+        document
+        .getElementById("pastPaperTitle")
+        .value
+        .trim();
 
     const subject =
-        document.getElementById(
-            "pastPaperSubject"
-        ).value.trim();
+        document
+        .getElementById("pastPaperSubject")
+        .value
+        .trim();
 
     const year =
         Number(
-            document.getElementById(
-                "pastPaperYear"
-            ).value
+            document
+            .getElementById("pastPaperYear")
+            .value
         );
 
     const description =
-        document.getElementById(
-            "pastPaperDescription"
-        ).value.trim();
+        document
+        .getElementById("pastPaperDescription")
+        .value
+        .trim();
 
 
     if(!title){
@@ -1573,36 +1634,130 @@ async function addPastPaper(){
     }
 
 
-    const button =
-        event.target;
+    const files =
+        document
+        .getElementById("pastPaperFiles")
+        .files;
+
+
+    const urlText =
+        document
+        .getElementById("pastPaperPagesUrls")
+        .value
+        .trim();
+
+
+    if(files.length===0 && !urlText){
+
+        showMessage(
+            "pastPaperMessage",
+            "Please upload at least one page OR enter a URL.",
+            false
+        );
+
+        return;
+
+    }
+
 
     button.disabled=true;
 
     button.textContent =
-        "⏳ Uploading...";
+        "⏳ Uploading Pages...";
 
 
     try{
 
-        const file_url =
-            await getFileUrl(
-                "pastPaperFile",
-                "pastPaperFileUrl"
+        let pages=[];
+
+
+        /*
+          UPLOAD ALL SELECTED IMAGES
+        */
+
+        for(
+            let i=0;
+            i<files.length;
+            i++
+        ){
+
+            button.textContent =
+                `⏳ Uploading Page ${i+1}/${files.length}...`;
+
+
+            const url =
+                await uploadFile(files[i]);
+
+
+            pages.push({
+
+                page:i+1,
+
+                url:url
+
+            });
+
+        }
+
+
+        /*
+          ADD MANUAL URLS
+        */
+
+        if(urlText){
+
+            const urls =
+                urlText
+                .split("\n")
+                .map(x=>x.trim())
+                .filter(Boolean);
+
+
+            const startPage =
+                pages.length + 1;
+
+
+            urls.forEach(
+                (url,index)=>{
+
+                    pages.push({
+
+                        page:startPage + index,
+
+                        url:url
+
+                    });
+
+                }
             );
+
+        }
+
+
+        /*
+          SAVE FIRST URL IN EXISTING file_url
+          FOR BACKWARD COMPATIBILITY
+        */
+
+        const file_url =
+            pages.length
+            ? pages[0].url
+            : "";
 
 
         const {error} =
-            await db
-            .from("past_papers")
-            .insert({
+        await db
+        .from("past_papers")
+        .insert({
 
-                title,
-                subject,
-                year,
-                description,
-                file_url
+            title,
+            subject,
+            year,
+            description,
+            file_url,
+            pages
 
-            });
+        });
 
 
         if(error){
@@ -1614,7 +1769,7 @@ async function addPastPaper(){
 
         showMessage(
             "pastPaperMessage",
-            "✅ Past paper added successfully!"
+            `✅ Past Paper added with ${pages.length} page(s)!`
         );
 
 
@@ -1635,11 +1790,11 @@ async function addPastPaper(){
         ).value="";
 
         document.getElementById(
-            "pastPaperFile"
+            "pastPaperFiles"
         ).value="";
 
         document.getElementById(
-            "pastPaperFileUrl"
+            "pastPaperPagesUrls"
         ).value="";
 
 
@@ -1648,6 +1803,8 @@ async function addPastPaper(){
     }
 
     catch(error){
+
+        console.error(error);
 
         showMessage(
             "pastPaperMessage",
@@ -1669,9 +1826,9 @@ async function addPastPaper(){
 }
 
 
-/* =================================
+/* =========================================
    LOAD ALL
-================================= */
+========================================= */
 
 async function loadAll(){
 
@@ -1688,20 +1845,45 @@ async function loadAll(){
 }
 
 
-/* =================================
+/* =========================================
+   SORT DATA
+   created_at ho to use karega.
+   Na ho to bhi website break nahi hogi.
+========================================= */
+
+function sortData(data){
+
+    return [...data].sort(
+        (a,b)=>{
+
+            const da =
+                new Date(
+                    a.created_at || 0
+                ).getTime();
+
+            const dbb =
+                new Date(
+                    b.created_at || 0
+                ).getTime();
+
+            return dbb-da;
+
+        }
+    );
+
+}
+
+
+/* =========================================
    LOAD COURSES
-================================= */
+========================================= */
 
 async function loadCourses(){
 
     const {data,error} =
-        await db
-        .from("courses")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
+    await db
+    .from("courses")
+    .select("*");
 
 
     if(error){
@@ -1709,25 +1891,29 @@ async function loadCourses(){
         document.getElementById(
             "coursesList"
         ).innerHTML =
-            `<p>❌ ${safe(error.message)}</p>`;
+        `<p>❌ ${safe(error.message)}</p>`;
 
         return;
 
     }
 
 
+    const rows =
+        sortData(data || []);
+
+
     document.getElementById(
         "courseCount"
     ).textContent =
-        data.length;
+        rows.length;
 
 
-    if(data.length===0){
+    if(!rows.length){
 
         document.getElementById(
             "coursesList"
         ).innerHTML =
-            "<p>No courses yet.</p>";
+        "<p>No courses yet.</p>";
 
         return;
 
@@ -1738,7 +1924,7 @@ async function loadCourses(){
         "coursesList"
     ).innerHTML =
 
-    data.map(item=>`
+    rows.map(item=>`
 
         <div class="item">
 
@@ -1773,20 +1959,16 @@ async function loadCourses(){
 }
 
 
-/* =================================
+/* =========================================
    LOAD NOTES
-================================= */
+========================================= */
 
 async function loadNotes(){
 
     const {data,error} =
-        await db
-        .from("notes")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
+    await db
+    .from("notes")
+    .select("*");
 
 
     if(error){
@@ -1794,25 +1976,29 @@ async function loadNotes(){
         document.getElementById(
             "notesList"
         ).innerHTML =
-            `<p>❌ ${safe(error.message)}</p>`;
+        `<p>❌ ${safe(error.message)}</p>`;
 
         return;
 
     }
 
 
+    const rows =
+        sortData(data || []);
+
+
     document.getElementById(
         "noteCount"
     ).textContent =
-        data.length;
+        rows.length;
 
 
-    if(data.length===0){
+    if(!rows.length){
 
         document.getElementById(
             "notesList"
         ).innerHTML =
-            "<p>No notes yet.</p>";
+        "<p>No notes yet.</p>";
 
         return;
 
@@ -1823,7 +2009,7 @@ async function loadNotes(){
         "notesList"
     ).innerHTML =
 
-    data.map(item=>`
+    rows.map(item=>`
 
         <div class="item">
 
@@ -1847,11 +2033,8 @@ async function loadNotes(){
                         🔗 Open File / Video
                     </a>
 
-                    <br>
-
                     ${
-                        item.file_url
-                        .match(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i)
+                        isImage(item.file_url)
                         ?
                         `<img src="${safe(item.file_url)}"
                               alt="Note Image">`
@@ -1878,20 +2061,16 @@ async function loadNotes(){
 }
 
 
-/* =================================
+/* =========================================
    LOAD PRACTICALS
-================================= */
+========================================= */
 
 async function loadPracticals(){
 
     const {data,error} =
-        await db
-        .from("practicals")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
+    await db
+    .from("practicals")
+    .select("*");
 
 
     if(error){
@@ -1899,25 +2078,29 @@ async function loadPracticals(){
         document.getElementById(
             "practicalsList"
         ).innerHTML =
-            `<p>❌ ${safe(error.message)}</p>`;
+        `<p>❌ ${safe(error.message)}</p>`;
 
         return;
 
     }
 
 
+    const rows =
+        sortData(data || []);
+
+
     document.getElementById(
         "practicalCount"
     ).textContent =
-        data.length;
+        rows.length;
 
 
-    if(data.length===0){
+    if(!rows.length){
 
         document.getElementById(
             "practicalsList"
         ).innerHTML =
-            "<p>No practicals yet.</p>";
+        "<p>No practicals yet.</p>";
 
         return;
 
@@ -1928,7 +2111,7 @@ async function loadPracticals(){
         "practicalsList"
     ).innerHTML =
 
-    data.map(item=>`
+    rows.map(item=>`
 
         <div class="item">
 
@@ -1951,11 +2134,8 @@ async function loadPracticals(){
                         🔗 Open File / Video
                     </a>
 
-                    <br>
-
                     ${
-                        item.file_url
-                        .match(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i)
+                        isImage(item.file_url)
                         ?
                         `<img src="${safe(item.file_url)}"
                               alt="Practical Image">`
@@ -1982,20 +2162,16 @@ async function loadPracticals(){
 }
 
 
-/* =================================
+/* =========================================
    LOAD TESTS
-================================= */
+========================================= */
 
 async function loadTests(){
 
     const {data,error} =
-        await db
-        .from("tests")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
+    await db
+    .from("tests")
+    .select("*");
 
 
     if(error){
@@ -2003,25 +2179,29 @@ async function loadTests(){
         document.getElementById(
             "testsList"
         ).innerHTML =
-            `<p>❌ ${safe(error.message)}</p>`;
+        `<p>❌ ${safe(error.message)}</p>`;
 
         return;
 
     }
 
 
+    const rows =
+        sortData(data || []);
+
+
     document.getElementById(
         "testCount"
     ).textContent =
-        data.length;
+        rows.length;
 
 
-    if(data.length===0){
+    if(!rows.length){
 
         document.getElementById(
             "testsList"
         ).innerHTML =
-            "<p>No tests yet.</p>";
+        "<p>No tests yet.</p>";
 
         return;
 
@@ -2032,7 +2212,7 @@ async function loadTests(){
         "testsList"
     ).innerHTML =
 
-    data.map(item=>`
+    rows.map(item=>`
 
         <div class="item">
 
@@ -2043,8 +2223,11 @@ async function loadTests(){
                 </h3>
 
                 <p>
-                    ${safe(item.questions)}
-                    Questions —
+                    ${safe(item.questions || 0)}
+                    Questions
+                </p>
+
+                <p>
                     ${safe(item.description || "")}
                 </p>
 
@@ -2063,20 +2246,28 @@ async function loadTests(){
 }
 
 
-/* =================================
+/* =========================================
+   CHECK IMAGE
+========================================= */
+
+function isImage(url){
+
+    return /\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i
+        .test(url);
+
+}
+
+
+/* =========================================
    LOAD PAST PAPERS
-================================= */
+========================================= */
 
 async function loadPastPapers(){
 
     const {data,error} =
-        await db
-        .from("past_papers")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
+    await db
+    .from("past_papers")
+    .select("*");
 
 
     if(error){
@@ -2084,25 +2275,29 @@ async function loadPastPapers(){
         document.getElementById(
             "pastPapersList"
         ).innerHTML =
-            `<p>❌ ${safe(error.message)}</p>`;
+        `<p>❌ ${safe(error.message)}</p>`;
 
         return;
 
     }
 
 
+    const rows =
+        sortData(data || []);
+
+
     document.getElementById(
         "pastPaperCount"
     ).textContent =
-        data.length;
+        rows.length;
 
 
-    if(data.length===0){
+    if(!rows.length){
 
         document.getElementById(
             "pastPapersList"
         ).innerHTML =
-            "<p>No past papers yet.</p>";
+        "<p>No past papers yet.</p>";
 
         return;
 
@@ -2113,7 +2308,44 @@ async function loadPastPapers(){
         "pastPapersList"
     ).innerHTML =
 
-    data.map(item=>`
+    rows.map(item=>{
+
+        let pages=[];
+
+
+        /*
+          New multi-page data
+        */
+
+        if(
+            Array.isArray(item.pages) &&
+            item.pages.length
+        ){
+
+            pages =
+                item.pages;
+
+        }
+
+
+        /*
+          Old single-page data
+        */
+
+        else if(item.file_url){
+
+            pages=[{
+
+                page:1,
+
+                url:item.file_url
+
+            }];
+
+        }
+
+
+        return `
 
         <div class="item">
 
@@ -2137,32 +2369,59 @@ async function loadPastPapers(){
                     ${safe(item.description || "")}
                 </p>
 
+
                 ${
-                    item.file_url
+                    pages.length
                     ?
                     `
-                    <a href="${safe(item.file_url)}"
-                       target="_blank">
-                        🔗 Open Past Paper
-                    </a>
 
-                    <br>
+                    <div class="page-list">
 
-                    ${
-                        item.file_url
-                        .match(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i)
-                        ?
-                        `<img src="${safe(item.file_url)}"
-                              alt="Past Paper Image">`
-                        :
-                        ""
-                    }
+                        <strong>
+                            📑 ${pages.length} Page(s)
+                        </strong>
+
+                        ${pages.map((page,index)=>`
+
+                            <div class="page-item">
+
+                                <div class="page-number">
+                                    ${index+1}
+                                </div>
+
+                                ${
+                                    isImage(page.url)
+                                    ?
+                                    `<img
+                                        class="page-preview"
+                                        src="${safe(page.url)}"
+                                        alt="Page ${index+1}">
+                                    `
+                                    :
+                                    ""
+                                }
+
+                                <a
+                                    href="${safe(page.url)}"
+                                    target="_blank">
+
+                                    Open Page ${index+1}
+
+                                </a>
+
+                            </div>
+
+                        `).join("")}
+
+                    </div>
+
                     `
                     :
                     ""
                 }
 
             </div>
+
 
             <button
                 class="delete"
@@ -2172,14 +2431,16 @@ async function loadPastPapers(){
 
         </div>
 
-    `).join("");
+        `;
+
+    }).join("");
 
 }
 
 
-/* =================================
+/* =========================================
    DELETE
-================================= */
+========================================= */
 
 async function deleteItem(
     table,
@@ -2199,10 +2460,10 @@ async function deleteItem(
 
 
     const {error} =
-        await db
-        .from(table)
-        .delete()
-        .eq("id",id);
+    await db
+    .from(table)
+    .delete()
+    .eq("id",id);
 
 
     if(error){
@@ -2221,9 +2482,9 @@ async function deleteItem(
 }
 
 
-/* =================================
+/* =========================================
    LOGOUT
-================================= */
+========================================= */
 
 async function logout(){
 
@@ -2239,19 +2500,20 @@ async function logout(){
 
     }
 
+
     window.location.href =
         "login.html";
 
 }
 
 
-/* =================================
+/* =========================================
    START
-================================= */
+========================================= */
 
 checkAdmin();
 
 </script>
 
 </body>
-    </html>
+                    </html>
