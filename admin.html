@@ -23,13 +23,19 @@ body{
     color:#172033;
 }
 
+/* ================= HEADER ================= */
+
 header{
+    height:65px;
     background:#172033;
     color:white;
-    padding:16px 6%;
+    padding:0 5%;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
@@ -41,15 +47,101 @@ header{
     color:#60a5fa;
 }
 
-.logout{
+/* ================= MENU BUTTON ================= */
+
+.menu-btn{
+    width:44px;
+    height:44px;
     border:0;
-    background:#ef4444;
+    background:transparent;
     color:white;
-    padding:9px 16px;
-    border-radius:7px;
+    font-size:28px;
     cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* ================= SIDE MENU ================= */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:1998;
+    display:none;
+}
+
+.menu-overlay.show{
+    display:block;
+}
+
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-310px;
+    width:290px;
+    max-width:85%;
+    height:100vh;
+    background:white;
+    z-index:1999;
+    box-shadow:-5px 0 25px rgba(0,0,0,.18);
+    transition:.3s ease;
+    padding:20px;
+}
+
+.side-menu.open{
+    right:0;
+}
+
+.menu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:18px;
+    border-bottom:1px solid #e5e7eb;
+    margin-bottom:18px;
+}
+
+.menu-top h3{
+    color:#172033;
+}
+
+.close-menu{
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:8px;
+    background:#f1f5f9;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.menu-link{
+    width:100%;
+    display:block;
+    text-align:left;
+    border:0;
+    background:white;
+    padding:14px;
+    border-radius:9px;
+    margin-bottom:8px;
+    font-size:15px;
+    cursor:pointer;
+    color:#172033;
+}
+
+.menu-link:hover{
+    background:#eff6ff;
+}
+
+.logout-menu{
+    color:#dc2626;
+    background:#fff1f2;
     font-weight:bold;
 }
+
+/* ================= CONTAINER ================= */
 
 .container{
     max-width:1150px;
@@ -68,6 +160,8 @@ header{
 .welcome p{
     color:#687386;
 }
+
+/* ================= STATS ================= */
 
 .stats{
     display:grid;
@@ -97,6 +191,8 @@ header{
     margin-top:4px;
 }
 
+/* ================= PANEL ================= */
+
 .panel{
     background:white;
     padding:24px;
@@ -108,6 +204,8 @@ header{
 .panel h2{
     margin-bottom:18px;
 }
+
+/* ================= FORM ================= */
 
 .form{
     display:grid;
@@ -146,6 +244,8 @@ textarea{
     grid-column:1/-1;
 }
 
+/* ================= UPLOAD ================= */
+
 .upload-box{
     grid-column:1/-1;
     border:1px dashed #b9c3d3;
@@ -163,14 +263,17 @@ textarea{
     text-align:center;
     color:#687386;
     font-size:13px;
-    margin:8px 0;
+    margin:10px 0;
 }
 
 .help{
     color:#687386;
     font-size:12px;
     margin-top:6px;
+    line-height:1.5;
 }
+
+/* ================= BUTTON ================= */
 
 .add-btn{
     background:#2563eb;
@@ -186,6 +289,8 @@ textarea{
     opacity:.6;
     cursor:not-allowed;
 }
+
+/* ================= MESSAGE ================= */
 
 .message{
     margin-top:12px;
@@ -206,6 +311,8 @@ textarea{
     color:#991b1b;
 }
 
+/* ================= ITEMS ================= */
+
 .items{
     display:grid;
     gap:10px;
@@ -221,6 +328,11 @@ textarea{
     gap:15px;
 }
 
+.item-content{
+    flex:1;
+    min-width:0;
+}
+
 .item h3{
     margin-bottom:5px;
 }
@@ -229,6 +341,7 @@ textarea{
     color:#687386;
     font-size:13px;
     margin-top:4px;
+    line-height:1.5;
 }
 
 .item a{
@@ -241,12 +354,14 @@ textarea{
 }
 
 .item img{
-    max-width:150px;
-    max-height:100px;
-    object-fit:cover;
+    max-width:180px;
+    max-height:130px;
+    object-fit:contain;
     border-radius:7px;
     margin-top:10px;
     display:block;
+    border:1px solid #e5e7eb;
+    background:#fff;
 }
 
 .delete{
@@ -257,7 +372,10 @@ textarea{
     border-radius:6px;
     cursor:pointer;
     font-weight:bold;
+    flex-shrink:0;
 }
+
+/* ================= PAGES ================= */
 
 .page-list{
     margin-top:12px;
@@ -296,7 +414,10 @@ textarea{
     height:45px;
     object-fit:cover;
     border-radius:5px;
+    border:1px solid #ddd;
 }
+
+/* ================= CHECKING ================= */
 
 #checking{
     max-width:500px;
@@ -322,6 +443,8 @@ textarea{
     margin-top:8px;
 }
 
+/* ================= RESPONSIVE ================= */
+
 @media(max-width:900px){
 
     .stats{
@@ -340,10 +463,7 @@ textarea{
         grid-template-columns:1fr;
     }
 
-    .full{
-        grid-column:auto;
-    }
-
+    .full,
     .upload-box{
         grid-column:auto;
     }
@@ -352,12 +472,16 @@ textarea{
         flex-direction:column;
     }
 
+    .delete{
+        align-self:flex-start;
+    }
+
 }
 
 @media(max-width:450px){
 
     header{
-        padding:14px 18px;
+        padding:0 16px;
     }
 
     .logo{
@@ -372,6 +496,18 @@ textarea{
         padding:18px;
     }
 
+    .stats{
+        gap:10px;
+    }
+
+    .stat{
+        padding:15px;
+    }
+
+    .stat-icon{
+        font-size:24px;
+    }
+
 }
 
 </style>
@@ -379,18 +515,74 @@ textarea{
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header>
 
     <div class="logo">
         Study<span>Hub</span> Admin
     </div>
 
-    <button class="logout" onclick="logout()">
-        Logout
+    <button
+        class="menu-btn"
+        onclick="openMenu()"
+        aria-label="Open menu">
+        ☰
     </button>
 
 </header>
 
+
+<!-- ================= SIDE MENU ================= -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<div id="sideMenu" class="side-menu">
+
+    <div class="menu-top">
+
+        <h3>
+            ⚙️ Admin Menu
+        </h3>
+
+        <button
+            class="close-menu"
+            onclick="closeMenu()">
+            ✕
+        </button>
+
+    </div>
+
+
+    <button
+        class="menu-link"
+        onclick="goHome()">
+        🏠 StudyHub Home
+    </button>
+
+
+    <button
+        class="menu-link"
+        onclick="scrollToTop()">
+        📊 Dashboard
+    </button>
+
+
+    <button
+        class="menu-link logout-menu"
+        onclick="logout()">
+        🚪 Logout
+    </button>
+
+</div>
+
+
+<!-- ================= CHECKING ================= -->
 
 <div id="checking">
 
@@ -402,6 +594,8 @@ textarea{
 
 </div>
 
+
+<!-- ================= ADMIN PANEL ================= -->
 
 <main id="adminPanel" class="container">
 
@@ -418,7 +612,7 @@ textarea{
     </div>
 
 
-    <!-- STATS -->
+    <!-- ================= STATS ================= -->
 
     <div class="stats">
 
@@ -455,7 +649,7 @@ textarea{
     </div>
 
 
-    <!-- COURSE -->
+    <!-- ================= COURSE ================= -->
 
     <div class="panel">
 
@@ -463,35 +657,42 @@ textarea{
 
         <div class="form">
 
-            <input id="courseTitle"
-                   placeholder="Course title">
+            <input
+                id="courseTitle"
+                placeholder="Course title">
 
-            <input id="courseLevel"
-                   value="BEGINNER"
-                   placeholder="Level">
+            <input
+                id="courseLevel"
+                value="BEGINNER"
+                placeholder="Level">
 
-            <input id="courseIcon"
-                   value="📚"
-                   placeholder="Icon">
+            <input
+                id="courseIcon"
+                value="📚"
+                placeholder="Icon">
 
-            <textarea id="courseDescription"
-                      class="full"
-                      placeholder="Course description"></textarea>
+            <textarea
+                id="courseDescription"
+                class="full"
+                placeholder="Course description"></textarea>
 
-            <button class="add-btn"
-                    onclick="addCourse()">
+            <button
+                class="add-btn"
+                onclick="addCourse()">
                 Add Course
             </button>
 
         </div>
 
-        <div id="courseMessage"
-             class="message"></div>
+        <div
+            id="courseMessage"
+            class="message">
+        </div>
 
     </div>
 
 
-    <!-- NOTES -->
+    <!-- ================= NOTES ================= -->
 
     <div class="panel">
 
@@ -499,54 +700,65 @@ textarea{
 
         <div class="form">
 
-            <input id="noteTitle"
-                   placeholder="Note title">
+            <input
+                id="noteTitle"
+                placeholder="Note title">
 
-            <input id="noteIcon"
-                   value="📘"
-                   placeholder="Icon">
+            <input
+                id="noteIcon"
+                value="📘"
+                placeholder="Icon">
 
-            <textarea id="noteDescription"
-                      class="full"
-                      placeholder="Note description"></textarea>
+            <textarea
+                id="noteDescription"
+                class="full"
+                placeholder="Note description"></textarea>
+
 
             <div class="upload-box">
 
                 <div class="upload-title">
-                    📷 Upload Picture
+                    📷 Upload Note Picture
                 </div>
 
-                <input id="noteFile"
-                       type="file"
-                       accept="image/*">
+                <input
+                    id="noteFile"
+                    type="file"
+                    accept="image/*">
 
                 <p class="help">
                     Gallery se picture select karo.
+                    Maximum 10 MB.
                 </p>
 
                 <div class="or">
                     — OR —
                 </div>
 
-                <input id="noteFileUrl"
-                       placeholder="🔗 YouTube / PDF / File URL">
+                <input
+                    id="noteFileUrl"
+                    placeholder="🔗 YouTube / PDF / File URL">
 
             </div>
 
-            <button class="add-btn"
-                    onclick="addNote(this)">
+
+            <button
+                class="add-btn"
+                onclick="addNote(this)">
                 Add Note
             </button>
 
         </div>
 
-        <div id="noteMessage"
-             class="message"></div>
+        <div
+            id="noteMessage"
+            class="message">
+        </div>
 
     </div>
 
 
-    <!-- PRACTICAL -->
+    <!-- ================= PRACTICAL ================= -->
 
     <div class="panel">
 
@@ -554,54 +766,65 @@ textarea{
 
         <div class="form">
 
-            <input id="practicalTitle"
-                   placeholder="Practical title">
+            <input
+                id="practicalTitle"
+                placeholder="Practical title">
 
-            <input id="practicalIcon"
-                   value="💻"
-                   placeholder="Icon">
+            <input
+                id="practicalIcon"
+                value="💻"
+                placeholder="Icon">
 
-            <textarea id="practicalDescription"
-                      class="full"
-                      placeholder="Practical description"></textarea>
+            <textarea
+                id="practicalDescription"
+                class="full"
+                placeholder="Practical description"></textarea>
+
 
             <div class="upload-box">
 
                 <div class="upload-title">
-                    📷 Upload Picture
+                    📷 Upload Practical Picture
                 </div>
 
-                <input id="practicalFile"
-                       type="file"
-                       accept="image/*">
+                <input
+                    id="practicalFile"
+                    type="file"
+                    accept="image/*">
 
                 <p class="help">
                     Gallery se practical ki picture select karo.
+                    Maximum 10 MB.
                 </p>
 
                 <div class="or">
                     — OR —
                 </div>
 
-                <input id="practicalFileUrl"
-                       placeholder="🔗 YouTube / PDF / File URL">
+                <input
+                    id="practicalFileUrl"
+                    placeholder="🔗 YouTube / PDF / File URL">
 
             </div>
 
-            <button class="add-btn"
-                    onclick="addPractical(this)">
+
+            <button
+                class="add-btn"
+                onclick="addPractical(this)">
                 Add Practical
             </button>
 
         </div>
 
-        <div id="practicalMessage"
-             class="message"></div>
+        <div
+            id="practicalMessage"
+            class="message">
+        </div>
 
     </div>
 
 
-    <!-- TEST -->
+    <!-- ================= TEST ================= -->
 
     <div class="panel">
 
@@ -609,33 +832,39 @@ textarea{
 
         <div class="form">
 
-            <input id="testTitle"
-                   placeholder="Test title">
+            <input
+                id="testTitle"
+                placeholder="Test title">
 
-            <input id="testQuestions"
-                   type="number"
-                   min="1"
-                   value="10"
-                   placeholder="Questions">
+            <input
+                id="testQuestions"
+                type="number"
+                min="1"
+                value="10"
+                placeholder="Questions">
 
-            <textarea id="testDescription"
-                      class="full"
-                      placeholder="Test description"></textarea>
+            <textarea
+                id="testDescription"
+                class="full"
+                placeholder="Test description"></textarea>
 
-            <button class="add-btn"
-                    onclick="addTest()">
+            <button
+                class="add-btn"
+                onclick="addTest()">
                 Add Test
             </button>
 
         </div>
 
-        <div id="testMessage"
-             class="message"></div>
+        <div
+            id="testMessage"
+            class="message">
+        </div>
 
     </div>
 
 
-    <!-- PAST PAPERS -->
+    <!-- ================= PAST PAPERS ================= -->
 
     <div class="panel">
 
@@ -643,22 +872,24 @@ textarea{
 
         <div class="form">
 
-            <input id="pastPaperTitle"
-                   placeholder="Past paper title e.g. CIT 1st Year 2025">
+            <input
+                id="pastPaperTitle"
+                placeholder="Past paper title e.g. CIT 1st Year 2025">
 
-            <input id="pastPaperSubject"
-                   placeholder="Subject e.g. Computer Science">
+            <input
+                id="pastPaperSubject"
+                placeholder="Subject e.g. Computer Science">
 
-            <input id="pastPaperYear"
-                   type="number"
-                   placeholder="Year e.g. 2025">
+            <input
+                id="pastPaperYear"
+                type="number"
+                placeholder="Year e.g. 2025">
 
-            <textarea id="pastPaperDescription"
-                      class="full"
-                      placeholder="Past paper description"></textarea>
+            <textarea
+                id="pastPaperDescription"
+                class="full"
+                placeholder="Past paper description"></textarea>
 
-
-            <!-- MULTIPLE PAGES -->
 
             <div class="upload-box">
 
@@ -666,84 +897,120 @@ textarea{
                     📄 Upload Past Paper Pages
                 </div>
 
-                <input id="pastPaperFiles"
-                       type="file"
-                       accept="image/*"
-                       multiple>
+                <input
+                    id="pastPaperFiles"
+                    type="file"
+                    accept="image/*"
+                    multiple>
 
                 <p class="help">
-                    Gallery se Page 1, Page 2, Page 3... ek saath select kar sakte ho.
+                    Page 1, Page 2, Page 3...
+                    multiple pictures ek saath select kar sakte ho.
                 </p>
 
                 <div class="or">
                     — OR —
                 </div>
 
-                <textarea id="pastPaperPagesUrls"
-                          placeholder="🔗 Multiple URLs enter karo&#10;Har page ka URL new line mein"></textarea>
+                <textarea
+                    id="pastPaperPagesUrls"
+                    placeholder="🔗 Multiple URLs enter karo&#10;Har page ka URL new line mein"></textarea>
 
                 <p class="help">
-                    Example:&#10;
-                    Page 1 URL&#10;
-                    Page 2 URL&#10;
-                    Page 3 URL
+                    Har new line = ek page
                 </p>
 
             </div>
 
 
-            <button class="add-btn"
-                    onclick="addPastPaper(this)">
+            <button
+                class="add-btn"
+                onclick="addPastPaper(this)">
                 Add Past Paper
             </button>
 
         </div>
 
-        <div id="pastPaperMessage"
-             class="message"></div>
+        <div
+            id="pastPaperMessage"
+            class="message">
+        </div>
 
     </div>
 
 
-    <!-- LISTS -->
+    <!-- ================= COURSES LIST ================= -->
 
     <div class="panel">
+
         <h2>📚 All Courses</h2>
-        <div id="coursesList" class="items">
+
+        <div
+            id="coursesList"
+            class="items">
             Loading...
         </div>
+
     </div>
 
 
+    <!-- ================= NOTES LIST ================= -->
+
     <div class="panel">
+
         <h2>📘 All Notes</h2>
-        <div id="notesList" class="items">
+
+        <div
+            id="notesList"
+            class="items">
             Loading...
         </div>
+
     </div>
 
 
+    <!-- ================= PRACTICALS LIST ================= -->
+
     <div class="panel">
+
         <h2>🧪 All Practicals</h2>
-        <div id="practicalsList" class="items">
+
+        <div
+            id="practicalsList"
+            class="items">
             Loading...
         </div>
+
     </div>
 
 
+    <!-- ================= TESTS LIST ================= -->
+
     <div class="panel">
+
         <h2>🎯 All Tests</h2>
-        <div id="testsList" class="items">
+
+        <div
+            id="testsList"
+            class="items">
             Loading...
         </div>
+
     </div>
 
 
+    <!-- ================= PAST PAPERS LIST ================= -->
+
     <div class="panel">
+
         <h2>📄 All Past Papers</h2>
-        <div id="pastPapersList" class="items">
+
+        <div
+            id="pastPapersList"
+            class="items">
             Loading...
         </div>
+
     </div>
 
 </main>
@@ -769,7 +1036,7 @@ supabase.createClient(
 
 
 /* =========================================
-   SAFE
+   SAFE HTML
 ========================================= */
 
 function safe(value){
@@ -780,6 +1047,56 @@ function safe(value){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+function openMenu(){
+
+    document
+    .getElementById("sideMenu")
+    .classList.add("open");
+
+    document
+    .getElementById("menuOverlay")
+    .classList.add("show");
+
+}
+
+
+function closeMenu(){
+
+    document
+    .getElementById("sideMenu")
+    .classList.remove("open");
+
+    document
+    .getElementById("menuOverlay")
+    .classList.remove("show");
+
+}
+
+
+function goHome(){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+function scrollToTop(){
+
+    closeMenu();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
@@ -906,7 +1223,7 @@ async function checkAdmin(){
 
 
 /* =========================================
-   LOGIN
+   LOGIN REQUIRED
 ========================================= */
 
 function showLoginRequired(){
@@ -1066,10 +1383,16 @@ async function uploadFile(file){
         .toLowerCase();
 
 
+    const cleanName =
+        file.name
+        .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "-"
+        );
+
+
     const fileName =
-        `${user.id}/${Date.now()}-${Math.random()
-        .toString(36)
-        .substring(2)}.${extension}`;
+        `${user.id}/${Date.now()}-${cleanName}`;
 
 
     const {
@@ -1082,7 +1405,8 @@ async function uploadFile(file){
         file,
         {
             cacheControl:"3600",
-            upsert:false
+            upsert:false,
+            contentType:file.type
         }
     );
 
@@ -1108,7 +1432,7 @@ async function uploadFile(file){
 
 
 /* =========================================
-   GET SINGLE FILE URL
+   GET FILE URL
 ========================================= */
 
 async function getFileUrl(
@@ -1148,6 +1472,22 @@ async function getFileUrl(
     throw new Error(
         "Please upload a picture OR enter a URL."
     );
+
+}
+
+
+/* =========================================
+   IMAGE CHECK
+========================================= */
+
+function isImage(url){
+
+    if(!url){
+        return false;
+    }
+
+    return /\.(jpg|jpeg|png|gif|webp|bmp|svg|avif)(\?.*)?$/i
+        .test(url);
 
 }
 
@@ -1344,6 +1684,8 @@ async function addNote(button){
 
     catch(error){
 
+        console.error(error);
+
         showMessage(
             "noteMessage",
             "❌ " + error.message,
@@ -1459,6 +1801,8 @@ async function addPractical(button){
 
     catch(error){
 
+        console.error(error);
+
         showMessage(
             "practicalMessage",
             "❌ " + error.message,
@@ -1518,6 +1862,19 @@ async function addTest(){
     }
 
 
+    if(!questions || questions < 1){
+
+        showMessage(
+            "testMessage",
+            "Questions ki number enter karein.",
+            false
+        );
+
+        return;
+
+    }
+
+
     const {error} =
     await db
     .from("tests")
@@ -1525,6 +1882,12 @@ async function addTest(){
 
         title,
         description,
+
+        /*
+         * Existing questions column JSONB hai.
+         * Number ko JSON value ki form mein save
+         * kiya ja raha hai.
+         */
         questions
 
     });
@@ -1647,7 +2010,10 @@ async function addPastPaper(button){
         .trim();
 
 
-    if(files.length===0 && !urlText){
+    if(
+        files.length === 0 &&
+        !urlText
+    ){
 
         showMessage(
             "pastPaperMessage",
@@ -1671,9 +2037,9 @@ async function addPastPaper(button){
         let pages=[];
 
 
-        /*
-          UPLOAD ALL SELECTED IMAGES
-        */
+        /* ==========================
+           UPLOAD SELECTED PICTURES
+        ========================== */
 
         for(
             let i=0;
@@ -1700,9 +2066,9 @@ async function addPastPaper(button){
         }
 
 
-        /*
-          ADD MANUAL URLS
-        */
+        /* ==========================
+           MANUAL URLS
+        ========================== */
 
         if(urlText){
 
@@ -1734,16 +2100,15 @@ async function addPastPaper(button){
         }
 
 
-        /*
-          SAVE FIRST URL IN EXISTING file_url
-          FOR BACKWARD COMPATIBILITY
-        */
-
         const file_url =
             pages.length
             ? pages[0].url
             : "";
 
+
+        /* ==========================
+           SAVE DATABASE
+        ========================== */
 
         const {error} =
         await db
@@ -1846,9 +2211,7 @@ async function loadAll(){
 
 
 /* =========================================
-   SORT DATA
-   created_at ho to use karega.
-   Na ho to bhi website break nahi hogi.
+   SORT
 ========================================= */
 
 function sortData(data){
@@ -1928,7 +2291,7 @@ async function loadCourses(){
 
         <div class="item">
 
-            <div>
+            <div class="item-content">
 
                 <h3>
                     ${safe(item.icon || "📚")}
@@ -2013,7 +2376,7 @@ async function loadNotes(){
 
         <div class="item">
 
-            <div>
+            <div class="item-content">
 
                 <h3>
                     ${safe(item.icon || "📘")}
@@ -2028,19 +2391,27 @@ async function loadNotes(){
                     item.file_url
                     ?
                     `
-                    <a href="${safe(item.file_url)}"
-                       target="_blank">
-                        🔗 Open File / Video
+
+                    <a
+                        href="${safe(item.file_url)}"
+                        target="_blank"
+                        rel="noopener">
+                        🔗 Open File
                     </a>
 
                     ${
                         isImage(item.file_url)
                         ?
-                        `<img src="${safe(item.file_url)}"
-                              alt="Note Image">`
+                        `
+                        <img
+                            src="${safe(item.file_url)}"
+                            alt="Note Image"
+                            loading="lazy">
+                        `
                         :
                         ""
                     }
+
                     `
                     :
                     ""
@@ -2115,7 +2486,7 @@ async function loadPracticals(){
 
         <div class="item">
 
-            <div>
+            <div class="item-content">
 
                 <h3>
                     🧪 ${safe(item.title)}
@@ -2129,19 +2500,27 @@ async function loadPracticals(){
                     item.file_url
                     ?
                     `
-                    <a href="${safe(item.file_url)}"
-                       target="_blank">
-                        🔗 Open File / Video
+
+                    <a
+                        href="${safe(item.file_url)}"
+                        target="_blank"
+                        rel="noopener">
+                        🔗 Open File
                     </a>
 
                     ${
                         isImage(item.file_url)
                         ?
-                        `<img src="${safe(item.file_url)}"
-                              alt="Practical Image">`
+                        `
+                        <img
+                            src="${safe(item.file_url)}"
+                            alt="Practical Image"
+                            loading="lazy">
+                        `
                         :
                         ""
                     }
+
                     `
                     :
                     ""
@@ -2212,18 +2591,76 @@ async function loadTests(){
         "testsList"
     ).innerHTML =
 
-    rows.map(item=>`
+    rows.map(item=>{
+
+        let questionCount=0;
+
+
+        if(
+            Array.isArray(item.questions)
+        ){
+
+            questionCount =
+                item.questions.length;
+
+        }
+
+        else if(
+            typeof item.questions === "number"
+        ){
+
+            questionCount =
+                item.questions;
+
+        }
+
+        else if(
+            typeof item.questions === "string"
+        ){
+
+            const n =
+                Number(item.questions);
+
+            if(!isNaN(n)){
+
+                questionCount=n;
+
+            }
+
+            else{
+
+                try{
+
+                    const parsed =
+                        JSON.parse(item.questions);
+
+                    if(Array.isArray(parsed)){
+
+                        questionCount =
+                            parsed.length;
+
+                    }
+
+                }
+                catch(e){}
+
+            }
+
+        }
+
+
+        return `
 
         <div class="item">
 
-            <div>
+            <div class="item-content">
 
                 <h3>
                     🎯 ${safe(item.title)}
                 </h3>
 
                 <p>
-                    ${safe(item.questions || 0)}
+                    ${safe(questionCount)}
                     Questions
                 </p>
 
@@ -2241,19 +2678,9 @@ async function loadTests(){
 
         </div>
 
-    `).join("");
+        `;
 
-}
-
-
-/* =========================================
-   CHECK IMAGE
-========================================= */
-
-function isImage(url){
-
-    return /\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i
-        .test(url);
+    }).join("");
 
 }
 
@@ -2313,9 +2740,7 @@ async function loadPastPapers(){
         let pages=[];
 
 
-        /*
-          New multi-page data
-        */
+        /* NEW MULTI PAGE */
 
         if(
             Array.isArray(item.pages) &&
@@ -2328,9 +2753,7 @@ async function loadPastPapers(){
         }
 
 
-        /*
-          Old single-page data
-        */
+        /* OLD SINGLE PAGE */
 
         else if(item.file_url){
 
@@ -2349,7 +2772,7 @@ async function loadPastPapers(){
 
         <div class="item">
 
-            <div>
+            <div class="item-content">
 
                 <h3>
                     📄 ${safe(item.title)}
@@ -2381,6 +2804,7 @@ async function loadPastPapers(){
                             📑 ${pages.length} Page(s)
                         </strong>
 
+
                         ${pages.map((page,index)=>`
 
                             <div class="page-item">
@@ -2389,21 +2813,26 @@ async function loadPastPapers(){
                                     ${index+1}
                                 </div>
 
+
                                 ${
                                     isImage(page.url)
                                     ?
-                                    `<img
+                                    `
+                                    <img
                                         class="page-preview"
                                         src="${safe(page.url)}"
-                                        alt="Page ${index+1}">
+                                        alt="Page ${index+1}"
+                                        loading="lazy">
                                     `
                                     :
                                     ""
                                 }
 
+
                                 <a
                                     href="${safe(page.url)}"
-                                    target="_blank">
+                                    target="_blank"
+                                    rel="noopener">
 
                                     Open Page ${index+1}
 
@@ -2488,6 +2917,9 @@ async function deleteItem(
 
 async function logout(){
 
+    closeMenu();
+
+
     try{
 
         await db.auth.signOut();
@@ -2496,15 +2928,52 @@ async function logout(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Logout error:",
+            error
+        );
 
     }
 
 
-    window.location.href =
-        "login.html";
+    window.location.replace(
+        "login.html"
+    );
 
 }
+
+
+/* =========================================
+   SUPABASE AUTH STATE
+========================================= */
+
+db.auth.onAuthStateChange(
+    function(event){
+
+        if(event === "SIGNED_OUT"){
+
+            /*
+             * Agar logout kisi aur tab se ho
+             * to current admin page bhi login par
+             * chala jayega.
+             */
+
+            if(
+                !window.location.pathname
+                .toLowerCase()
+                .includes("login")
+            ){
+
+                window.location.replace(
+                    "login.html"
+                );
+
+            }
+
+        }
+
+    }
+);
 
 
 /* =========================================
@@ -2516,4 +2985,4 @@ checkAdmin();
 </script>
 
 </body>
-                    </html>
+    </html>
