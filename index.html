@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -26,9 +27,11 @@ body{
     color:#172033;
 }
 
+/* ================= NAVBAR ================= */
+
 .navbar{
+    height:65px;
     background:white;
-    min-height:65px;
     padding:0 6%;
     display:flex;
     align-items:center;
@@ -48,28 +51,113 @@ body{
     color:#2563eb;
 }
 
-.menu{
+/* ================= MENU BUTTON ================= */
+
+.menu-btn{
+    width:44px;
+    height:44px;
+    border:0;
+    background:#eff6ff;
+    border-radius:9px;
+    cursor:pointer;
     display:flex;
-    gap:12px;
+    flex-direction:column;
+    justify-content:center;
     align-items:center;
+    gap:5px;
 }
 
-.menu a{
-    text-decoration:none;
-    color:#333;
-    font-size:14px;
-    font-weight:500;
-}
-
-.login-btn{
+.menu-btn span{
+    width:22px;
+    height:2px;
     background:#2563eb;
-    color:white !important;
-    padding:10px 18px;
-    border-radius:7px;
+    border-radius:5px;
 }
+
+/* ================= SIDE MENU ================= */
+
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-320px;
+    width:300px;
+    height:100vh;
+    background:white;
+    z-index:3000;
+    box-shadow:-5px 0 25px rgba(0,0,0,.15);
+    transition:.3s ease;
+    padding:25px;
+}
+
+.side-menu.active{
+    right:0;
+}
+
+.side-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:20px;
+    border-bottom:1px solid #eee;
+}
+
+.side-header h2{
+    font-size:20px;
+}
+
+.close-menu{
+    width:35px;
+    height:35px;
+    border:0;
+    background:#fee2e2;
+    color:#dc2626;
+    border-radius:7px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.side-links{
+    margin-top:25px;
+}
+
+.side-links a{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    text-decoration:none;
+    color:#172033;
+    padding:15px;
+    margin-bottom:7px;
+    border-radius:9px;
+    font-weight:600;
+    font-size:15px;
+}
+
+.side-links a:hover{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.side-icon{
+    font-size:21px;
+}
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:2500;
+    display:none;
+}
+
+.menu-overlay.active{
+    display:block;
+}
+
+/* ================= HERO ================= */
 
 .hero{
-    min-height:470px;
+    min-height:480px;
     padding:75px 6%;
     display:flex;
     align-items:center;
@@ -123,6 +211,7 @@ body{
     padding:13px 22px;
     border-radius:8px;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .primary-btn{
@@ -162,6 +251,8 @@ body{
 .study-icon{
     font-size:25px;
 }
+
+/* ================= SEARCH ================= */
 
 .search-area{
     max-width:900px;
@@ -208,8 +299,9 @@ body{
     padding:15px;
     margin-bottom:10px;
     border-radius:8px;
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
 }
+
+/* ================= SECTION ================= */
 
 .section{
     max-width:1150px;
@@ -231,6 +323,8 @@ body{
     color:#697386;
 }
 
+/* ================= CATEGORIES ================= */
+
 .categories{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -239,16 +333,21 @@ body{
 
 .category{
     background:white;
-    padding:25px 15px;
+    padding:28px 15px;
     border-radius:12px;
     text-align:center;
     text-decoration:none;
     color:#172033;
     box-shadow:0 3px 15px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-4px);
 }
 
 .category-icon{
-    font-size:38px;
+    font-size:42px;
     margin-bottom:12px;
 }
 
@@ -260,6 +359,36 @@ body{
     color:#737b8c;
     font-size:13px;
 }
+
+/* ================= CATEGORY PAGE ================= */
+
+.category-header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:45px 20px;
+}
+
+.category-header-inner{
+    max-width:1150px;
+    margin:auto;
+}
+
+.back-btn{
+    display:inline-block;
+    color:white;
+    text-decoration:none;
+    background:rgba(255,255,255,.15);
+    padding:9px 15px;
+    border-radius:7px;
+    margin-bottom:20px;
+}
+
+.category-header h1{
+    font-size:36px;
+    margin-bottom:8px;
+}
+
+/* ================= MATERIALS ================= */
 
 .materials{
     display:grid;
@@ -317,42 +446,22 @@ body{
     color:white;
     text-decoration:none;
     border-radius:7px;
-    font-size:14px;
     border:0;
     width:100%;
     cursor:pointer;
 }
 
-.loading{
+.loading,
+.empty{
     text-align:center;
-    padding:30px;
+    padding:35px;
     color:#697386;
     grid-column:1/-1;
+    background:white;
+    border-radius:10px;
 }
 
-.stats{
-    background:#172033;
-    color:white;
-}
-
-.stats-container{
-    max-width:1000px;
-    margin:auto;
-    padding:45px 20px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    text-align:center;
-}
-
-.stat h2{
-    font-size:30px;
-    margin-bottom:5px;
-}
-
-.stat p{
-    color:#b9c1d0;
-    font-size:13px;
-}
+/* ================= TOOLS ================= */
 
 .tools{
     display:grid;
@@ -388,9 +497,10 @@ body{
     margin-top:12px;
     text-decoration:none;
     color:#2563eb;
-    font-size:13px;
     font-weight:bold;
 }
+
+/* ================= CTA ================= */
 
 .cta{
     margin:0 20px 60px;
@@ -409,6 +519,102 @@ body{
 .cta p{
     margin-bottom:20px;
 }
+
+/* ================= PAPER VIEWER ================= */
+
+.paper-viewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    z-index:5000;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.paper-viewer.active{
+    display:flex;
+}
+
+.paper-box{
+    width:100%;
+    max-width:900px;
+    max-height:95vh;
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+.paper-topbar{
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.close-paper{
+    border:0;
+    background:#ef4444;
+    color:white;
+    width:35px;
+    height:35px;
+    border-radius:7px;
+    font-size:18px;
+}
+
+.paper-content{
+    overflow:auto;
+    padding:15px;
+    text-align:center;
+    background:#f3f4f6;
+}
+
+.paper-content img{
+    max-width:100%;
+    max-height:65vh;
+}
+
+.paper-link{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:7px;
+}
+
+.paper-controls{
+    padding:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    border-top:1px solid #ddd;
+}
+
+.paper-controls button{
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:10px 18px;
+    border-radius:7px;
+}
+
+.paper-controls button:disabled{
+    opacity:.4;
+}
+
+.page-number{
+    font-weight:bold;
+    min-width:90px;
+    text-align:center;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
     background:#0f172a;
@@ -452,19 +658,9 @@ footer a{
     margin-bottom:9px;
 }
 
-.copyright{
-    max-width:1100px;
-    margin:35px auto 0;
-    padding-top:20px;
-    border-top:1px solid #293348;
-    text-align:center;
-}
+/* ================= MOBILE ================= */
 
 @media(max-width:800px){
-
-    .menu a:not(.login-btn){
-        display:none;
-    }
 
     .hero{
         flex-direction:column;
@@ -493,11 +689,6 @@ footer a{
         grid-template-columns:1fr;
     }
 
-    .stats-container{
-        grid-template-columns:repeat(2,1fr);
-        gap:30px;
-    }
-
     .tools{
         grid-template-columns:repeat(2,1fr);
     }
@@ -505,6 +696,7 @@ footer a{
     .footer-grid{
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:450px){
@@ -525,17 +717,36 @@ footer a{
         font-size:15px;
     }
 
-    .search-box button{
-        padding:0 14px;
+    .categories{
+        gap:10px;
     }
+
+    .category{
+        padding:20px 8px;
+    }
+
+    .category-icon{
+        font-size:32px;
+    }
+
+    .category h3{
+        font-size:15px;
+    }
+
+    .tools{
+        grid-template-columns:1fr 1fr;
+    }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
@@ -543,39 +754,100 @@ footer a{
         Study<span>Hub</span> Pakistan
     </div>
 
-    <nav class="menu">
+    <button
+        class="menu-btn"
+        onclick="openMenu()"
+        aria-label="Open menu">
 
-        <a href="#">Home</a>
+        <span></span>
+        <span></span>
+        <span></span>
 
-        <a href="#materials">
-            Materials
-        </a>
-
-        <a href="#pastPapers">
-            Past Papers
-        </a>
-
-        <a href="#tools">
-            Tools
-        </a>
-
-        <a href="#tests">
-            Tests
-        </a>
-
-        <a
-            id="loginButton"
-            class="login-btn"
-            href="login.html">
-            Login
-        </a>
-
-    </nav>
+    </button>
 
 </header>
 
 
-<!-- HERO -->
+<!-- ================= SIDE MENU ================= -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<aside
+    id="sideMenu"
+    class="side-menu">
+
+    <div class="side-header">
+
+        <h2>
+            StudyHub Menu
+        </h2>
+
+        <button
+            class="close-menu"
+            onclick="closeMenu()">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="side-links">
+
+        <a
+            href="index.html"
+            onclick="closeMenu()">
+
+            <span class="side-icon">🏠</span>
+            Home
+
+        </a>
+
+
+        <a
+            href="index.html#categories"
+            onclick="closeMenu()">
+
+            <span class="side-icon">📚</span>
+            Explore Categories
+
+        </a>
+
+
+        <a
+            href="index.html#tools"
+            onclick="closeMenu()">
+
+            <span class="side-icon">🛠</span>
+            Student Tools
+
+        </a>
+
+
+        <a
+            href="index.html#about"
+            onclick="closeMenu()">
+
+            <span class="side-icon">ℹ️</span>
+            About StudyHub
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= HOME ================= -->
+
+<div id="homePage">
+
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -593,21 +865,26 @@ footer a{
         <p>
             StudyHub Pakistan is your learning platform
             for notes, courses, practicals, tests and
-            useful student tools.
+            past papers.
         </p>
 
         <div class="hero-buttons">
 
             <a
-                href="#materials"
+                href="#categories"
                 class="primary-btn">
-                Explore Materials
+
+                🚀 Start Learning
+
             </a>
+
 
             <a
                 href="#tools"
                 class="secondary-btn">
-                Student Tools
+
+                🛠 Student Tools
+
             </a>
 
         </div>
@@ -617,26 +894,59 @@ footer a{
 
     <div class="hero-box">
 
-        <h2>📚 Start Learning</h2>
+        <h2>
+            📚 Start Learning
+        </h2>
 
         <div class="study-item">
-            <div class="study-icon">📘</div>
-            <div>Notes & Books</div>
+
+            <div class="study-icon">
+                📘
+            </div>
+
+            <div>
+                Notes & Books
+            </div>
+
         </div>
 
-        <div class="study-item">
-            <div class="study-icon">💻</div>
-            <div>Practical Programs</div>
-        </div>
 
         <div class="study-item">
-            <div class="study-icon">🧪</div>
-            <div>Online Tests</div>
+
+            <div class="study-icon">
+                💻
+            </div>
+
+            <div>
+                Practical Programs
+            </div>
+
         </div>
 
+
         <div class="study-item">
-            <div class="study-icon">📄</div>
-            <div>Past Papers</div>
+
+            <div class="study-icon">
+                🧪
+            </div>
+
+            <div>
+                Online Tests
+            </div>
+
+        </div>
+
+
+        <div class="study-item">
+
+            <div class="study-icon">
+                📄
+            </div>
+
+            <div>
+                Past Papers
+            </div>
+
         </div>
 
     </div>
@@ -644,16 +954,16 @@ footer a{
 </section>
 
 
-<!-- SEARCH -->
+<!-- ================= SEARCH ================= -->
 
 <div class="search-area">
 
     <div class="search-box">
 
         <input
-            type="text"
             id="searchInput"
-            placeholder="Search courses, notes, practicals, past papers...">
+            type="text"
+            placeholder="Search study material...">
 
         <button onclick="searchSite()">
             Search
@@ -663,35 +973,46 @@ footer a{
 
 </div>
 
+
 <div
     id="searchResults"
     class="search-results">
 </div>
 
 
-<!-- CATEGORIES -->
+<!-- ================= EXPLORE CATEGORIES ================= -->
 
-<section class="section">
+<section
+    class="section"
+    id="categories">
 
     <div class="section-title">
 
-        <h2>Explore Categories</h2>
+        <h2>
+            Explore Categories
+        </h2>
 
         <p>
-            Find study material for any class
+            Apni category select karein aur complete material dekhein
         </p>
 
     </div>
 
+
     <div class="categories">
 
-        <a href="#materials" class="category">
+
+        <a
+            class="category"
+            href="index.html?category=School">
 
             <div class="category-icon">
                 🎓
             </div>
 
-            <h3>School</h3>
+            <h3>
+                School
+            </h3>
 
             <p>
                 Classes 9th to 12th
@@ -700,13 +1021,17 @@ footer a{
         </a>
 
 
-        <a href="#materials" class="category">
+        <a
+            class="category"
+            href="index.html?category=Computer">
 
             <div class="category-icon">
                 💻
             </div>
 
-            <h3>Computer</h3>
+            <h3>
+                Computer
+            </h3>
 
             <p>
                 CIT, DIT & IT
@@ -715,31 +1040,115 @@ footer a{
         </a>
 
 
-        <a href="#materials" class="category">
+        <a
+            class="category"
+            href="index.html?category=CIT">
 
             <div class="category-icon">
-                📚
+                💻
             </div>
 
-            <h3>Notes</h3>
+            <h3>
+                CIT
+            </h3>
 
             <p>
-                Study Material
+                CIT 1st & 2nd Year
             </p>
 
         </a>
 
 
-        <a href="#pastPapers" class="category">
+        <a
+            class="category"
+            href="index.html?category=Mathematics">
 
             <div class="category-icon">
-                📄
+                📐
             </div>
 
-            <h3>Past Papers</h3>
+            <h3>
+                Mathematics
+            </h3>
 
             <p>
-                Previous Papers
+                Maths material
+            </p>
+
+        </a>
+
+
+        <a
+            class="category"
+            href="index.html?category=English">
+
+            <div class="category-icon">
+                📖
+            </div>
+
+            <h3>
+                English
+            </h3>
+
+            <p>
+                English learning
+            </p>
+
+        </a>
+
+
+        <a
+            class="category"
+            href="index.html?category=Physics">
+
+            <div class="category-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Physics
+            </h3>
+
+            <p>
+                Physics material
+            </p>
+
+        </a>
+
+
+        <a
+            class="category"
+            href="index.html?category=Chemistry">
+
+            <div class="category-icon">
+                🧪
+            </div>
+
+            <h3>
+                Chemistry
+            </h3>
+
+            <p>
+                Chemistry material
+            </p>
+
+        </a>
+
+
+        <a
+            class="category"
+            href="index.html?category=Urdu">
+
+            <div class="category-icon">
+                📝
+            </div>
+
+            <h3>
+                Urdu
+            </h3>
+
+            <p>
+                Urdu material
             </p>
 
         </a>
@@ -749,131 +1158,7 @@ footer a{
 </section>
 
 
-<!-- MATERIALS -->
-
-<section
-    class="section"
-    id="materials">
-
-    <div class="section-title">
-
-        <h2>
-            Latest Study Material
-        </h2>
-
-        <p>
-            Material uploaded to StudyHub
-        </p>
-
-    </div>
-
-    <div
-        id="materialsContainer"
-        class="materials">
-
-        <div class="loading">
-            ⏳ Loading materials...
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PAST PAPERS -->
-
-<section
-    class="section"
-    id="pastPapers">
-
-    <div class="section-title">
-
-        <h2>
-            📄 Past Papers
-        </h2>
-
-        <p>
-            Previous years ke papers yahan se access karein
-        </p>
-
-    </div>
-
-    <div
-        id="pastPapersContainer"
-        class="materials">
-
-        <div class="loading">
-            ⏳ Loading past papers...
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section class="stats">
-
-    <div class="stats-container">
-
-        <div class="stat">
-
-            <h2 id="materialCount">
-                0
-            </h2>
-
-            <p>
-                Materials
-            </p>
-
-        </div>
-
-
-        <div class="stat">
-
-            <h2 id="courseCount">
-                0
-            </h2>
-
-            <p>
-                Courses
-            </p>
-
-        </div>
-
-
-        <div class="stat">
-
-            <h2 id="practicalCount">
-                0
-            </h2>
-
-            <p>
-                Practicals
-            </p>
-
-        </div>
-
-
-        <div class="stat">
-
-            <h2 id="paperCount">
-                0
-            </h2>
-
-            <p>
-                Past Papers
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- TOOLS -->
+<!-- ================= TOOLS ================= -->
 
 <section
     class="section"
@@ -882,7 +1167,7 @@ footer a{
     <div class="section-title">
 
         <h2>
-            Student Tools
+            🛠 Student Tools
         </h2>
 
         <p>
@@ -982,39 +1267,28 @@ footer a{
 </section>
 
 
-<!-- TESTS -->
+<!-- ================= ABOUT ================= -->
 
 <section
     class="section"
-    id="tests">
+    id="about">
 
     <div class="section-title">
 
         <h2>
-            Online Tests
+            About StudyHub Pakistan
         </h2>
 
         <p>
-            Test your knowledge and improve your skills
+            A learning platform designed for Pakistani students.
         </p>
-
-    </div>
-
-
-    <div
-        id="testsContainer"
-        class="materials">
-
-        <div class="loading">
-            ⏳ Loading tests...
-        </div>
 
     </div>
 
 </section>
 
 
-<!-- CTA -->
+<!-- ================= CTA ================= -->
 
 <section class="cta">
 
@@ -1023,20 +1297,237 @@ footer a{
     </h2>
 
     <p>
-        Find notes, practicals and past papers
-        for your class.
+        Select your category and start studying.
     </p>
 
     <a
-        href="#materials"
+        href="#categories"
         class="primary-btn">
+
         Start Learning
+
     </a>
 
 </section>
 
+</div>
 
-<!-- FOOTER -->
+
+<!-- =====================================================
+     CATEGORY PAGE
+===================================================== -->
+
+<div
+    id="categoryPage"
+    style="display:none;">
+
+
+<section class="category-header">
+
+    <div class="category-header-inner">
+
+        <a
+            href="index.html"
+            class="back-btn">
+
+            ← Back to Home
+
+        </a>
+
+        <h1 id="categoryTitle">
+            Category
+        </h1>
+
+        <p id="categoryDescription">
+            Complete study material
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            📚 Notes & Courses
+        </h2>
+
+        <p>
+            Is category ka study material
+        </p>
+
+    </div>
+
+
+    <div
+        id="categoryMaterials"
+        class="materials">
+
+        <div class="loading">
+            ⏳ Loading...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🧪 Practicals
+        </h2>
+
+        <p>
+            Is category ke practicals
+        </p>
+
+    </div>
+
+
+    <div
+        id="categoryPracticals"
+        class="materials">
+
+        <div class="loading">
+            ⏳ Loading...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            📄 Past Papers
+        </h2>
+
+        <p>
+            Is category ke previous papers
+        </p>
+
+    </div>
+
+
+    <div
+        id="categoryPapers"
+        class="materials">
+
+        <div class="loading">
+            ⏳ Loading...
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            🎯 Online Tests
+        </h2>
+
+        <p>
+            Is category ke tests
+        </p>
+
+    </div>
+
+
+    <div
+        id="categoryTests"
+        class="materials">
+
+        <div class="loading">
+            ⏳ Loading...
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<!-- ================= PAPER VIEWER ================= -->
+
+<div
+    id="paperViewer"
+    class="paper-viewer">
+
+    <div class="paper-box">
+
+        <div class="paper-topbar">
+
+            <h3 id="viewerTitle">
+                Past Paper
+            </h3>
+
+            <button
+                class="close-paper"
+                onclick="closePaperViewer()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="paperContent"
+            class="paper-content">
+        </div>
+
+
+        <div class="paper-controls">
+
+            <button
+                id="prevPageBtn"
+                onclick="previousPaperPage()">
+
+                ← Previous
+
+            </button>
+
+
+            <div
+                id="pageNumber"
+                class="page-number">
+
+                Page 1 / 1
+
+            </div>
+
+
+            <button
+                id="nextPageBtn"
+                onclick="nextPaperPage()">
+
+                Next →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -1062,24 +1553,16 @@ footer a{
                 Quick Links
             </h3>
 
-            <a href="#">
+            <a href="index.html">
                 Home
             </a>
 
-            <a href="#materials">
-                Materials
+            <a href="index.html#categories">
+                Explore Categories
             </a>
 
-            <a href="#pastPapers">
-                Past Papers
-            </a>
-
-            <a href="#tools">
-                Tools
-            </a>
-
-            <a href="#tests">
-                Tests
+            <a href="index.html#tools">
+                Student Tools
             </a>
 
         </div>
@@ -1091,33 +1574,15 @@ footer a{
                 Learning
             </h3>
 
-            <a href="#materials">
-                Notes
+            <a href="index.html#categories">
+                Categories
             </a>
 
-            <a href="#materials">
-                Practicals
-            </a>
-
-            <a href="#pastPapers">
-                Past Papers
-            </a>
-
-            <a href="#tests">
-                Online Tests
+            <a href="tools.html">
+                Student Tools
             </a>
 
         </div>
-
-    </div>
-
-
-    <div class="copyright">
-
-        <p>
-            © 2026 StudyHub Pakistan.
-            All rights reserved.
-        </p>
 
     </div>
 
@@ -1126,9 +1591,9 @@ footer a{
 
 <script>
 
-/* ============================
+/* =====================================================
    SUPABASE
-============================ */
+===================================================== */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -1143,9 +1608,43 @@ supabase.createClient(
 );
 
 
-/* ============================
+/* =====================================================
+   MENU
+===================================================== */
+
+function openMenu(){
+
+    document
+        .getElementById("sideMenu")
+        .classList
+        .add("active");
+
+    document
+        .getElementById("menuOverlay")
+        .classList
+        .add("active");
+
+}
+
+
+function closeMenu(){
+
+    document
+        .getElementById("sideMenu")
+        .classList
+        .remove("active");
+
+    document
+        .getElementById("menuOverlay")
+        .classList
+        .remove("active");
+
+}
+
+
+/* =====================================================
    SAFE TEXT
-============================ */
+===================================================== */
 
 function safe(value){
 
@@ -1155,300 +1654,532 @@ function safe(value){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
 }
 
 
-/* ============================
-   LOAD COURSES
-============================ */
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+function getCategory(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    return params.get("category");
+
+}
+
+
+function belongsToCategory(item,category){
+
+    if(!category){
+        return true;
+    }
+
+    const wanted =
+        category
+        .toLowerCase()
+        .trim();
+
+
+    const values = [
+
+        item.category,
+        item.level,
+        item.class_name,
+        item.subject,
+        item.board,
+        item.course,
+        item.title,
+        item.description
+
+    ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+
+    if(values.includes(wanted)){
+        return true;
+    }
+
+
+    if(wanted === "computer"){
+
+        return /computer|cit|dit|it|programming|html|css|c\+\+|java|database|dbms/i
+            .test(values);
+
+    }
+
+
+    if(wanted === "cit"){
+
+        return /cit|certificate in information technology|computer/i
+            .test(values);
+
+    }
+
+
+    if(wanted === "school"){
+
+        return /school|9th|10th|11th|12th|matric|intermediate/i
+            .test(values);
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
 
 async function loadCourses(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("courses")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
-
+        .select("*");
 
     if(error){
 
-        console.log(
-            "Courses error:",
-            error.message
-        );
+        console.log(error.message);
 
         return [];
+
     }
 
-
-    document.getElementById(
-        "courseCount"
-    ).textContent = data.length;
-
-
     return data || [];
+
 }
 
-
-/* ============================
-   LOAD NOTES
-============================ */
 
 async function loadNotes(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("notes")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
-
+        .select("*");
 
     if(error){
 
-        console.log(
-            "Notes error:",
-            error.message
-        );
+        console.log(error.message);
 
         return [];
+
     }
 
-
     return data || [];
+
 }
 
-
-/* ============================
-   LOAD PRACTICALS
-============================ */
 
 async function loadPracticals(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("practicals")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
-
+        .select("*");
 
     if(error){
 
-        console.log(
-            "Practicals error:",
-            error.message
-        );
+        console.log(error.message);
 
         return [];
+
     }
 
-
-    document.getElementById(
-        "practicalCount"
-    ).textContent = data.length;
-
-
     return data || [];
+
 }
 
-
-/* ============================
-   LOAD TESTS
-============================ */
 
 async function loadTests(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("tests")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
-
+        .select("*");
 
     if(error){
 
-        console.log(
-            "Tests error:",
-            error.message
-        );
+        console.log(error.message);
 
         return [];
+
     }
 
-
     return data || [];
+
 }
 
 
-/* ============================
-   LOAD PAST PAPERS
-============================ */
-
 async function loadPastPapers(){
 
-    const {
-        data,
-        error
-    } =
-    await db
+    const {data,error} =
+        await db
         .from("past_papers")
-        .select("*")
-        .order(
-            "created_at",
-            {ascending:false}
-        );
-
+        .select("*");
 
     if(error){
 
-        console.log(
-            "Past Papers error:",
-            error.message
-        );
+        console.log(error.message);
 
         return [];
+
+    }
+
+    return data || [];
+
+}
+
+
+/* =====================================================
+   PAPER PAGES
+===================================================== */
+
+function getPaperPages(item){
+
+    if(
+        Array.isArray(item.pages) &&
+        item.pages.length
+    ){
+
+        return item.pages
+            .map((p,i)=>{
+
+                if(typeof p === "string"){
+
+                    return {
+                        page:i+1,
+                        url:p
+                    };
+
+                }
+
+                return {
+                    page:p.page || i+1,
+                    url:p.url || p.file_url || ""
+                };
+
+            })
+            .filter(x=>x.url);
+
+    }
+
+
+    if(item.file_url){
+
+        return [
+            {
+                page:1,
+                url:item.file_url
+            }
+        ];
+
+    }
+
+
+    return [];
+
+}
+
+
+function isImage(url){
+
+    return /\.(jpg|jpeg|png|gif|webp|bmp)(\?.*)?$/i
+        .test(url);
+
+}
+
+
+/* =====================================================
+   PAPER VIEWER
+===================================================== */
+
+let currentPaperPages=[];
+let currentPaperIndex=0;
+
+
+function openPaper(item){
+
+    currentPaperPages =
+        getPaperPages(item);
+
+    currentPaperIndex=0;
+
+
+    if(!currentPaperPages.length){
+
+        alert(
+            "Paper file available nahi hai."
+        );
+
+        return;
+
     }
 
 
     document.getElementById(
-        "paperCount"
-    ).textContent = data.length;
+        "viewerTitle"
+    ).textContent =
+        item.title || "Past Paper";
 
 
-    return data || [];
+    document
+        .getElementById("paperViewer")
+        .classList
+        .add("active");
+
+
+    showCurrentPaperPage();
+
 }
 
 
-/* ============================
-   SHOW MATERIALS
-============================ */
+function showCurrentPaperPage(){
 
-async function showMaterials(){
+    const page =
+        currentPaperPages[
+            currentPaperIndex
+        ];
 
-    const container =
+
+    const content =
         document.getElementById(
-            "materialsContainer"
+            "paperContent"
         );
 
 
-    container.innerHTML =
-        `<div class="loading">
-            ⏳ Loading...
-        </div>`;
+    if(isImage(page.url)){
 
+        content.innerHTML = `
+
+            <img
+                src="${safe(page.url)}"
+                alt="Paper Page">
+
+        `;
+
+    }
+    else{
+
+        content.innerHTML = `
+
+            <div style="padding:40px 20px;">
+
+                <div style="
+                    font-size:55px;
+                    margin-bottom:15px;">
+                    📄
+                </div>
+
+                <h3>
+                    Page ${currentPaperIndex+1}
+                </h3>
+
+                <a
+                    class="paper-link"
+                    href="${safe(page.url)}"
+                    target="_blank">
+
+                    Open Page →
+
+                </a>
+
+            </div>
+
+        `;
+
+    }
+
+
+    document.getElementById(
+        "pageNumber"
+    ).textContent =
+        `Page ${currentPaperIndex+1} / ${currentPaperPages.length}`;
+
+
+    document.getElementById(
+        "prevPageBtn"
+    ).disabled =
+        currentPaperIndex === 0;
+
+
+    document.getElementById(
+        "nextPageBtn"
+    ).disabled =
+        currentPaperIndex ===
+        currentPaperPages.length-1;
+
+}
+
+
+function nextPaperPage(){
+
+    if(
+        currentPaperIndex <
+        currentPaperPages.length-1
+    ){
+
+        currentPaperIndex++;
+
+        showCurrentPaperPage();
+
+    }
+
+}
+
+
+function previousPaperPage(){
+
+    if(currentPaperIndex>0){
+
+        currentPaperIndex--;
+
+        showCurrentPaperPage();
+
+    }
+
+}
+
+
+function closePaperViewer(){
+
+    document
+        .getElementById("paperViewer")
+        .classList
+        .remove("active");
+
+}
+
+
+/* =====================================================
+   CATEGORY MATERIALS
+===================================================== */
+
+async function loadCategory(category){
 
     const notes =
         await loadNotes();
 
-    const practicals =
-        await loadPracticals();
-
     const courses =
         await loadCourses();
 
+    const practicals =
+        await loadPracticals();
 
-    const materials = [];
+    const papers =
+        await loadPastPapers();
 
-
-    notes.forEach(item => {
-
-        materials.push({
-
-            title:item.title,
-
-            description:item.description,
-
-            icon:item.icon || "📘",
-
-            type:"NOTE",
-
-            url:item.file_url || item.url || ""
-
-        });
-
-    });
+    const tests =
+        await loadTests();
 
 
-    practicals.forEach(item => {
-
-        materials.push({
-
-            title:item.title,
-
-            description:item.description,
-
-            icon:"🧪",
-
-            type:"PRACTICAL",
-
-            url:item.file_url || item.url || ""
-
-        });
-
-    });
+    const notesFiltered =
+        notes.filter(
+            x=>belongsToCategory(x,category)
+        );
 
 
-    courses.forEach(item => {
+    const coursesFiltered =
+        courses.filter(
+            x=>belongsToCategory(x,category)
+        );
 
-        materials.push({
 
-            title:item.title,
+    const practicalsFiltered =
+        practicals.filter(
+            x=>belongsToCategory(x,category)
+        );
 
-            description:item.description,
 
-            icon:item.icon || "📚",
+    const papersFiltered =
+        papers.filter(
+            x=>belongsToCategory(x,category)
+        );
 
+
+    const testsFiltered =
+        tests.filter(
+            x=>belongsToCategory(x,category)
+        );
+
+
+    showMaterials([
+        ...coursesFiltered.map(x=>({
+
+            title:x.title,
+            description:x.description,
+            icon:x.icon || "📚",
             type:"COURSE",
-
             url:"courses.html"
 
-        });
+        })),
 
-    });
+        ...notesFiltered.map(x=>({
+
+            title:x.title,
+            description:x.description,
+            icon:x.icon || "📘",
+            type:"NOTE",
+            url:x.file_url || x.url || ""
+
+        }))
+
+    ]);
 
 
-    document.getElementById(
-        "materialCount"
-    ).textContent = materials.length;
+    showPracticals(
+        practicalsFiltered
+    );
 
 
-    if(materials.length === 0){
+    showPapers(
+        papersFiltered
+    );
+
+
+    showTests(
+        testsFiltered
+    );
+
+}
+
+
+/* =====================================================
+   SHOW MATERIALS
+===================================================== */
+
+function showMaterials(items){
+
+    const container =
+        document.getElementById(
+            "categoryMaterials"
+        );
+
+
+    if(!items.length){
 
         container.innerHTML =
-            `<div class="loading">
-                📚 No study material available yet.
+            `<div class="empty">
+                📚 Is category mein material available nahi hai.
             </div>`;
 
         return;
+
     }
 
 
     container.innerHTML =
-        materials.slice(0,12).map(item => `
+        items.map(item=>`
 
             <div class="material-card">
 
@@ -1476,16 +2207,13 @@ async function showMaterials(){
                         `<a
                             class="material-btn"
                             href="${safe(item.url)}"
-                            target="_blank"
-                            rel="noopener">
+                            target="_blank">
+
                             Open Material →
+
                         </a>`
                         :
-                        `<button
-                            class="material-btn"
-                            disabled>
-                            Available Soon
-                        </button>`
+                        ""
                     }
 
                 </div>
@@ -1497,35 +2225,112 @@ async function showMaterials(){
 }
 
 
-/* ============================
-   SHOW PAST PAPERS
-============================ */
+/* =====================================================
+   PRACTICALS
+===================================================== */
 
-async function showPastPapers(){
+function showPracticals(items){
 
     const container =
         document.getElementById(
-            "pastPapersContainer"
+            "categoryPracticals"
         );
 
 
-    const papers =
-        await loadPastPapers();
-
-
-    if(papers.length === 0){
+    if(!items.length){
 
         container.innerHTML =
-            `<div class="loading">
-                📄 No past papers available yet.
+            `<div class="empty">
+                🧪 Practicals available nahi hain.
             </div>`;
 
         return;
+
     }
 
 
     container.innerHTML =
-        papers.map(item => `
+        items.map(item=>`
+
+            <div class="material-card">
+
+                <div class="material-top">
+                    🧪
+                </div>
+
+                <div class="material-content">
+
+                    <span class="material-type">
+                        PRACTICAL
+                    </span>
+
+                    <h3>
+                        ${safe(item.title)}
+                    </h3>
+
+                    <p>
+                        ${safe(item.description)}
+                    </p>
+
+                    ${
+                        item.file_url
+                        ?
+                        `<a
+                            class="material-btn"
+                            href="${safe(item.file_url)}"
+                            target="_blank">
+
+                            Open Practical →
+
+                        </a>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =====================================================
+   PAST PAPERS
+===================================================== */
+
+function showPapers(items){
+
+    const container =
+        document.getElementById(
+            "categoryPapers"
+        );
+
+
+    if(!items.length){
+
+        container.innerHTML =
+            `<div class="empty">
+                📄 Past papers available nahi hain.
+            </div>`;
+
+        return;
+
+    }
+
+
+    window.categoryPapers=items;
+
+
+    container.innerHTML =
+        items.map((item,index)=>{
+
+            const pages =
+                getPaperPages(item);
+
+
+            return `
 
             <div class="material-card">
 
@@ -1544,16 +2349,6 @@ async function showPastPapers(){
                     </h3>
 
                     ${
-                        item.class_name
-                        ?
-                        `<p>
-                            🎓 ${safe(item.class_name)}
-                        </p>`
-                        :
-                        ""
-                    }
-
-                    ${
                         item.subject
                         ?
                         `<p>
@@ -1564,19 +2359,9 @@ async function showPastPapers(){
                     }
 
                     ${
-                        item.board
-                        ?
-                        `<p>
-                            🏫 ${safe(item.board)}
-                        </p>`
-                        :
-                        ""
-                    }
-
-                    ${
                         item.description
                         ?
-                        `<p style="margin-top:8px;">
+                        `<p>
                             ${safe(item.description)}
                         </p>`
                         :
@@ -1584,61 +2369,113 @@ async function showPastPapers(){
                     }
 
                     ${
-                        item.file_url
+                        pages.length
                         ?
-                        `<a
-                            class="material-btn"
-                            href="${safe(item.file_url)}"
-                            target="_blank"
-                            rel="noopener">
-                            📥 Open Paper →
-                        </a>`
-                        :
                         `<button
                             class="material-btn"
-                            disabled>
-                            File Not Available
+                            onclick="openPaperByIndex(${index})">
+
+                            📖 Read Paper
+
                         </button>`
+                        :
+                        ""
                     }
 
                 </div>
 
             </div>
 
-        `).join("");
+            `;
+
+        }).join("");
 
 }
 
 
-/* ============================
-   SHOW TESTS
-============================ */
+function openPaperByIndex(index){
 
-async function showTests(){
+    const item =
+        window.categoryPapers[index];
+
+    if(item){
+
+        openPaper(item);
+
+    }
+
+}
+
+
+/* =====================================================
+   TESTS
+===================================================== */
+
+function showTests(items){
 
     const container =
         document.getElementById(
-            "testsContainer"
+            "categoryTests"
         );
 
 
-    const tests =
-        await loadTests();
-
-
-    if(tests.length === 0){
+    if(!items.length){
 
         container.innerHTML =
-            `<div class="loading">
-                🎯 No tests available yet.
+            `<div class="empty">
+                🎯 Tests available nahi hain.
             </div>`;
 
         return;
+
     }
 
 
     container.innerHTML =
-        tests.map(item => `
+        items.map(item=>{
+
+            let count=0;
+
+
+            if(Array.isArray(item.questions)){
+
+                count =
+                    item.questions.length;
+
+            }
+            else{
+
+                try{
+
+                    const q =
+                        JSON.parse(
+                            item.questions
+                        );
+
+                    if(Array.isArray(q)){
+
+                        count=q.length;
+
+                    }
+                    else{
+
+                        count =
+                            Number(item.questions)||0;
+
+                    }
+
+                }
+                catch(e){
+
+                    count =
+                        Number(item.questions)||0;
+
+                }
+
+            }
+
+
+            return `
 
             <div class="material-card">
 
@@ -1649,8 +2486,7 @@ async function showTests(){
                 <div class="material-content">
 
                     <span class="material-type">
-                        ${Number(item.questions) || 0}
-                        QUESTIONS
+                        ${count} QUESTIONS
                     </span>
 
                     <h3>
@@ -1673,14 +2509,16 @@ async function showTests(){
 
             </div>
 
-        `).join("");
+            `;
+
+        }).join("");
 
 }
 
 
-/* ============================
+/* =====================================================
    SEARCH
-============================ */
+===================================================== */
 
 async function searchSite(){
 
@@ -1700,9 +2538,10 @@ async function searchSite(){
 
     if(!query){
 
-        results.innerHTML = "";
+        results.innerHTML="";
 
         return;
+
     }
 
 
@@ -1715,74 +2554,49 @@ async function searchSite(){
     const practicals =
         await loadPracticals();
 
-    const tests =
-        await loadTests();
-
     const papers =
         await loadPastPapers();
 
+    const tests =
+        await loadTests();
 
-    const all = [
 
-        ...courses.map(x => ({
-            title:x.title,
-            description:x.description,
-            type:"Course"
-        })),
+    const all=[
 
-        ...notes.map(x => ({
-            title:x.title,
-            description:x.description,
-            type:"Note"
-        })),
-
-        ...practicals.map(x => ({
-            title:x.title,
-            description:x.description,
-            type:"Practical"
-        })),
-
-        ...tests.map(x => ({
-            title:x.title,
-            description:x.description,
-            type:"Test"
-        })),
-
-        ...papers.map(x => ({
-            title:x.title,
-            description:
-                [
-                    x.description,
-                    x.class_name,
-                    x.subject,
-                    x.board,
-                    x.year
-                ]
-                .filter(Boolean)
-                .join(" "),
-            type:"Past Paper"
-        }))
+        ...courses,
+        ...notes,
+        ...practicals,
+        ...papers,
+        ...tests
 
     ];
 
 
     const found =
-        all.filter(item =>
+        all.filter(item=>{
 
-            String(item.title || "")
-            .toLowerCase()
-            .includes(query)
+            const text =
+                [
 
-            ||
+                    item.title,
+                    item.description,
+                    item.subject,
+                    item.year,
+                    item.category,
+                    item.level
 
-            String(item.description || "")
-            .toLowerCase()
-            .includes(query)
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
 
-        );
+
+            return text.includes(query);
+
+        });
 
 
-    if(found.length === 0){
+    if(!found.length){
 
         results.innerHTML =
             `<div class="search-result">
@@ -1790,21 +2604,18 @@ async function searchSite(){
             </div>`;
 
         return;
+
     }
 
 
     results.innerHTML =
-        found.map(item => `
+        found.map(item=>`
 
             <div class="search-result">
 
                 <strong>
-                    ${safe(item.type)}
-                </strong>
-
-                <h3>
                     ${safe(item.title)}
-                </h3>
+                </strong>
 
                 <p>
                     ${safe(item.description)}
@@ -1817,30 +2628,55 @@ async function searchSite(){
 }
 
 
-/* ============================
-   START TEST
-============================ */
+/* =====================================================
+   TEST
+===================================================== */
 
 function startTest(id){
 
     alert(
-        "Test system will be connected next."
+        "Test solving system next step mein connect karenge."
     );
 
 }
 
 
-/* ============================
-   START WEBSITE
-============================ */
+/* =====================================================
+   START
+===================================================== */
 
 async function start(){
 
-    await showMaterials();
+    const category =
+        getCategory();
 
-    await showPastPapers();
 
-    await showTests();
+    if(category){
+
+        document.getElementById(
+            "homePage"
+        ).style.display="none";
+
+
+        document.getElementById(
+            "categoryPage"
+        ).style.display="block";
+
+
+        document.getElementById(
+            "categoryTitle"
+        ).textContent=category;
+
+
+        document.getElementById(
+            "categoryDescription"
+        ).textContent =
+            `${category} ka complete study material`;
+
+
+        await loadCategory(category);
+
+    }
 
 }
 
@@ -1848,6 +2684,24 @@ async function start(){
 /* START */
 
 start();
+
+
+/* PAPER OUTSIDE CLICK */
+
+document
+    .getElementById("paperViewer")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target===this){
+
+                closePaperViewer();
+
+            }
+
+        }
+    );
 
 </script>
 
