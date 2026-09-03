@@ -28,7 +28,7 @@ body{
 .login-box{
     width:100%;
     max-width:410px;
-    background:white;
+    background:#fff;
     padding:35px;
     border-radius:18px;
     box-shadow:0 10px 40px rgba(0,0,0,.12);
@@ -191,9 +191,9 @@ button:disabled{
 
 <script>
 
-/* ================================
+/* =========================================
    SUPABASE
-================================ */
+========================================= */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -207,9 +207,9 @@ const db = supabase.createClient(
 );
 
 
-/* ================================
+/* =========================================
    ELEMENTS
-================================ */
+========================================= */
 
 const form =
 document.getElementById("loginForm");
@@ -230,9 +230,9 @@ const debug =
 document.getElementById("debug");
 
 
-/* ================================
+/* =========================================
    MESSAGE
-================================ */
+========================================= */
 
 function showMessage(text,type){
 
@@ -243,9 +243,9 @@ function showMessage(text,type){
 }
 
 
-/* ================================
+/* =========================================
    DEBUG
-================================ */
+========================================= */
 
 function showDebug(text){
 
@@ -255,67 +255,9 @@ function showDebug(text){
 }
 
 
-/* ================================
-   CHECK EXISTING SESSION
-================================ */
-
-async function checkExistingSession(){
-
-    try{
-
-        const {
-            data: { session }
-        } = await db.auth.getSession();
-
-        if(!session){
-            return;
-        }
-
-        const user = session.user;
-
-        const {
-            data: profile,
-            error
-        } = await db
-            .from("profiles")
-            .select("id,email,role")
-            .eq("id",user.id)
-            .maybeSingle();
-
-        if(error){
-            console.log("Profile check:",error);
-            return;
-        }
-
-        if(
-            profile &&
-            String(profile.role).toLowerCase() === "admin"
-        ){
-
-            showMessage(
-                "✅ Already logged in. Opening Admin Panel...",
-                "success"
-            );
-
-            setTimeout(function(){
-
-                window.location.href =
-                    "admin.html";
-
-            },600);
-        }
-
-    }catch(error){
-
-        console.log(error);
-
-    }
-}
-
-
-/* ================================
+/* =========================================
    LOGIN
-================================ */
+========================================= */
 
 form.addEventListener(
     "submit",
@@ -352,9 +294,21 @@ form.addEventListener(
 
         try{
 
-            /* =========================
-               AUTH LOGIN
-            ========================= */
+            /*
+             * Agar purani session موجود hai
+             * to pehle sign out kar dein.
+             *
+             * Is se har baar login form se
+             * login karte waqt password required
+             * rahega.
+             */
+
+            await db.auth.signOut();
+
+
+            /* =================================
+               SUPABASE LOGIN
+            ================================= */
 
             const {
                 data,
@@ -366,6 +320,7 @@ form.addEventListener(
                 password:password
 
             });
+
 
             if(error){
 
@@ -387,6 +342,7 @@ form.addEventListener(
                 return;
             }
 
+
             if(!data || !data.user){
 
                 throw new Error(
@@ -395,9 +351,9 @@ form.addEventListener(
             }
 
 
-            /* =========================
-               GET ADMIN PROFILE
-            ========================= */
+            /* =================================
+               USER PROFILE
+            ================================= */
 
             const userId =
                 data.user.id;
@@ -460,9 +416,9 @@ form.addEventListener(
             }
 
 
-            /* =========================
-               ADMIN ROLE
-            ========================= */
+            /* =================================
+               ADMIN CHECK
+            ================================= */
 
             if(
                 String(profile.role)
@@ -491,9 +447,9 @@ form.addEventListener(
             }
 
 
-            /* =========================
+            /* =================================
                SUCCESS
-            ========================= */
+            ================================= */
 
             showMessage(
                 "✅ Login successful! Opening Admin Panel...",
@@ -502,11 +458,13 @@ form.addEventListener(
 
 
             /*
-              IMPORTANT:
-              Supabase automatically keeps
-              the authenticated session.
-            */
-
+             * Session Supabase mein maintain hogi.
+             * Admin Panel refresh par bhi login
+             * check karega.
+             *
+             * Logout karne par session completely
+             * sign out ho jayegi.
+             */
 
             setTimeout(function(){
 
@@ -542,13 +500,6 @@ form.addEventListener(
 
     }
 );
-
-
-/* ================================
-   START
-================================ */
-
-checkExistingSession();
 
 </script>
 
