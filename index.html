@@ -87,6 +87,7 @@ body{
     box-shadow:-5px 0 25px rgba(0,0,0,.15);
     transition:.3s ease;
     padding:25px;
+    overflow-y:auto;
 }
 
 .side-menu.active{
@@ -299,6 +300,7 @@ body{
     padding:15px;
     margin-bottom:10px;
     border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
 }
 
 /* ================= SECTION ================= */
@@ -401,15 +403,30 @@ body{
     border-radius:13px;
     overflow:hidden;
     box-shadow:0 3px 15px rgba(0,0,0,.07);
+    transition:.2s;
+}
+
+.material-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 7px 25px rgba(0,0,0,.1);
 }
 
 .material-top{
-    height:130px;
+    min-height:130px;
     display:flex;
     align-items:center;
     justify-content:center;
     background:#eff6ff;
     font-size:55px;
+    overflow:hidden;
+}
+
+.material-top img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    display:block;
+    cursor:pointer;
 }
 
 .material-content{
@@ -435,6 +452,7 @@ body{
     color:#697386;
     font-size:13px;
     line-height:1.5;
+    margin-bottom:4px;
 }
 
 .material-btn{
@@ -449,6 +467,21 @@ body{
     border:0;
     width:100%;
     cursor:pointer;
+    font-weight:bold;
+}
+
+.material-btn.secondary{
+    background:#eff6ff;
+    color:#2563eb;
+    margin-top:8px;
+}
+
+.image-label{
+    display:block;
+    text-align:center;
+    font-size:11px;
+    color:#697386;
+    margin-top:8px;
 }
 
 .loading,
@@ -526,7 +559,7 @@ body{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.85);
+    background:rgba(0,0,0,.88);
     z-index:5000;
     align-items:center;
     justify-content:center;
@@ -553,6 +586,11 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:10px;
+}
+
+.paper-topbar h3{
+    font-size:18px;
 }
 
 .close-paper{
@@ -563,6 +601,7 @@ body{
     height:35px;
     border-radius:7px;
     font-size:18px;
+    cursor:pointer;
 }
 
 .paper-content{
@@ -570,11 +609,15 @@ body{
     padding:15px;
     text-align:center;
     background:#f3f4f6;
+    flex:1;
 }
 
 .paper-content img{
     max-width:100%;
     max-height:65vh;
+    height:auto;
+    border-radius:5px;
+    box-shadow:0 2px 12px rgba(0,0,0,.15);
 }
 
 .paper-link{
@@ -602,16 +645,56 @@ body{
     color:white;
     padding:10px 18px;
     border-radius:7px;
+    cursor:pointer;
 }
 
 .paper-controls button:disabled{
     opacity:.4;
+    cursor:not-allowed;
 }
 
 .page-number{
     font-weight:bold;
     min-width:90px;
     text-align:center;
+}
+
+/* ================= IMAGE VIEWER ================= */
+
+.image-viewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:6000;
+    background:rgba(0,0,0,.92);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.image-viewer.active{
+    display:flex;
+}
+
+.image-viewer img{
+    max-width:95vw;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:5px;
+}
+
+.close-image{
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:8px;
+    background:#ef4444;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
 }
 
 /* ================= FOOTER ================= */
@@ -735,6 +818,10 @@ footer a{
 
     .tools{
         grid-template-columns:1fr 1fr;
+    }
+
+    .side-menu{
+        width:285px;
     }
 
 }
@@ -963,7 +1050,8 @@ footer a{
         <input
             id="searchInput"
             type="text"
-            placeholder="Search study material...">
+            placeholder="Search study material..."
+            onkeydown="if(event.key==='Enter') searchSite()">
 
         <button onclick="searchSite()">
             Search
@@ -1527,6 +1615,30 @@ footer a{
 </div>
 
 
+<!-- ================= IMAGE VIEWER ================= -->
+
+<div
+    id="imageViewer"
+    class="image-viewer"
+    onclick="closeImageViewer()">
+
+    <button
+        class="close-image"
+        onclick="closeImageViewer()">
+
+        ×
+
+    </button>
+
+    <img
+        id="fullImage"
+        src=""
+        alt="Full Image"
+        onclick="event.stopPropagation()">
+
+</div>
+
+
 <!-- ================= FOOTER ================= -->
 
 <footer>
@@ -1659,6 +1771,35 @@ function safe(value){
 
 
 /* =====================================================
+   SAFE URL
+===================================================== */
+
+function safeUrl(value){
+
+    if(!value){
+        return "";
+    }
+
+    const url =
+        String(value).trim();
+
+    if(
+        url.startsWith("https://") ||
+        url.startsWith("http://")
+    ){
+
+        return url
+            .replaceAll('"',"&quot;")
+            .replaceAll("'","&#039;");
+
+    }
+
+    return "";
+
+}
+
+
+/* =====================================================
    CATEGORY
 ===================================================== */
 
@@ -1750,7 +1891,10 @@ async function loadCourses(){
 
     if(error){
 
-        console.log(error.message);
+        console.log(
+            "Courses:",
+            error.message
+        );
 
         return [];
 
@@ -1770,7 +1914,10 @@ async function loadNotes(){
 
     if(error){
 
-        console.log(error.message);
+        console.log(
+            "Notes:",
+            error.message
+        );
 
         return [];
 
@@ -1790,7 +1937,10 @@ async function loadPracticals(){
 
     if(error){
 
-        console.log(error.message);
+        console.log(
+            "Practicals:",
+            error.message
+        );
 
         return [];
 
@@ -1810,7 +1960,10 @@ async function loadTests(){
 
     if(error){
 
-        console.log(error.message);
+        console.log(
+            "Tests:",
+            error.message
+        );
 
         return [];
 
@@ -1830,13 +1983,68 @@ async function loadPastPapers(){
 
     if(error){
 
-        console.log(error.message);
+        console.log(
+            "Past Papers:",
+            error.message
+        );
 
         return [];
 
     }
 
     return data || [];
+
+}
+
+
+/* =====================================================
+   IMAGE CHECK
+===================================================== */
+
+function isImage(url){
+
+    if(!url){
+        return false;
+    }
+
+    return /\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i
+        .test(String(url));
+
+}
+
+
+/* =====================================================
+   IMAGE VIEWER
+===================================================== */
+
+function openImageViewer(url){
+
+    if(!url){
+        return;
+    }
+
+    document
+        .getElementById("fullImage")
+        .src = url;
+
+    document
+        .getElementById("imageViewer")
+        .classList
+        .add("active");
+
+}
+
+
+function closeImageViewer(){
+
+    document
+        .getElementById("imageViewer")
+        .classList
+        .remove("active");
+
+    document
+        .getElementById("fullImage")
+        .src = "";
 
 }
 
@@ -1865,8 +2073,16 @@ function getPaperPages(item){
                 }
 
                 return {
-                    page:p.page || i+1,
-                    url:p.url || p.file_url || ""
+
+                    page:
+                        p.page ||
+                        i+1,
+
+                    url:
+                        p.url ||
+                        p.file_url ||
+                        ""
+
                 };
 
             })
@@ -1878,24 +2094,18 @@ function getPaperPages(item){
     if(item.file_url){
 
         return [
+
             {
                 page:1,
                 url:item.file_url
             }
+
         ];
 
     }
 
 
     return [];
-
-}
-
-
-function isImage(url){
-
-    return /\.(jpg|jpeg|png|gif|webp|bmp)(\?.*)?$/i
-        .test(url);
 
 }
 
@@ -1958,17 +2168,38 @@ function showCurrentPaperPage(){
         );
 
 
-    if(isImage(page.url)){
+    const url =
+        safeUrl(page.url);
+
+
+    if(!url){
 
         content.innerHTML = `
 
-            <img
-                src="${safe(page.url)}"
-                alt="Paper Page">
+            <div style="padding:40px 20px;">
+
+                ❌ Invalid file URL.
+
+            </div>
 
         `;
 
     }
+
+    else if(isImage(page.url)){
+
+        content.innerHTML = `
+
+            <img
+                src="${url}"
+                alt="Paper Page ${currentPaperIndex+1}"
+                onclick="openImageViewer('${url}')"
+                style="cursor:zoom-in;">
+
+        `;
+
+    }
+
     else{
 
         content.innerHTML = `
@@ -1987,8 +2218,9 @@ function showCurrentPaperPage(){
 
                 <a
                     class="paper-link"
-                    href="${safe(page.url)}"
-                    target="_blank">
+                    href="${url}"
+                    target="_blank"
+                    rel="noopener">
 
                     Open Page →
 
@@ -2062,25 +2294,124 @@ function closePaperViewer(){
 
 
 /* =====================================================
+   MATERIAL IMAGE HTML
+===================================================== */
+
+function getMaterialTop(item,defaultIcon){
+
+    const url =
+        item.file_url ||
+        item.url ||
+        "";
+
+
+    if(isImage(url)){
+
+        const safeImageUrl =
+            safeUrl(url);
+
+
+        return `
+
+            <div class="material-top">
+
+                <img
+                    src="${safeImageUrl}"
+                    alt="${safe(item.title)}"
+                    loading="lazy"
+                    onclick="openImageViewer('${safeImageUrl}')">
+
+            </div>
+
+        `;
+
+    }
+
+
+    return `
+
+        <div class="material-top">
+
+            ${safe(defaultIcon)}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   MATERIAL BUTTON
+===================================================== */
+
+function getFileButton(url,label){
+
+    const cleanUrl =
+        safeUrl(url);
+
+
+    if(!cleanUrl){
+        return "";
+    }
+
+
+    if(isImage(url)){
+
+        return `
+
+            <button
+                class="material-btn"
+                onclick="openImageViewer('${cleanUrl}')">
+
+                🖼 View Image
+
+            </button>
+
+        `;
+
+    }
+
+
+    return `
+
+        <a
+            class="material-btn"
+            href="${cleanUrl}"
+            target="_blank"
+            rel="noopener">
+
+            ${safe(label)} →
+
+        </a>
+
+    `;
+
+}
+
+
+/* =====================================================
    CATEGORY MATERIALS
 ===================================================== */
 
 async function loadCategory(category){
 
-    const notes =
-        await loadNotes();
+    const [
+        notes,
+        courses,
+        practicals,
+        papers,
+        tests
+    ] =
+        await Promise.all([
 
-    const courses =
-        await loadCourses();
+            loadNotes(),
+            loadCourses(),
+            loadPracticals(),
+            loadPastPapers(),
+            loadTests()
 
-    const practicals =
-        await loadPracticals();
-
-    const papers =
-        await loadPastPapers();
-
-    const tests =
-        await loadTests();
+        ]);
 
 
     const notesFiltered =
@@ -2114,23 +2445,34 @@ async function loadCategory(category){
 
 
     showMaterials([
+
         ...coursesFiltered.map(x=>({
 
-            title:x.title,
-            description:x.description,
-            icon:x.icon || "📚",
+            ...x,
+
             type:"COURSE",
-            url:"courses.html"
+
+            displayUrl:"courses.html",
+
+            displayIcon:
+                x.icon || "📚"
 
         })),
 
+
         ...notesFiltered.map(x=>({
 
-            title:x.title,
-            description:x.description,
-            icon:x.icon || "📘",
+            ...x,
+
             type:"NOTE",
-            url:x.file_url || x.url || ""
+
+            displayUrl:
+                x.file_url ||
+                x.url ||
+                "",
+
+            displayIcon:
+                x.icon || "📘"
 
         }))
 
@@ -2179,13 +2521,83 @@ function showMaterials(items){
 
 
     container.innerHTML =
-        items.map(item=>`
+        items.map(item=>{
+
+            const imageUrl =
+                item.file_url ||
+                item.url ||
+                "";
+
+
+            let topHTML =
+                `<div class="material-top">
+                    ${safe(item.displayIcon)}
+                </div>`;
+
+
+            if(
+                item.type === "NOTE" &&
+                isImage(imageUrl)
+            ){
+
+                const url =
+                    safeUrl(imageUrl);
+
+
+                topHTML = `
+
+                    <div class="material-top">
+
+                        <img
+                            src="${url}"
+                            alt="${safe(item.title)}"
+                            loading="lazy"
+                            onclick="openImageViewer('${url}')">
+
+                    </div>
+
+                `;
+
+            }
+
+
+            let buttonHTML="";
+
+
+            if(item.type === "NOTE"){
+
+                buttonHTML =
+                    getFileButton(
+                        imageUrl,
+                        "Open Note"
+                    );
+
+            }
+
+            else{
+
+                buttonHTML = `
+
+                    <a
+                        class="material-btn"
+                        href="${safeUrl(item.displayUrl)}"
+                        target="_blank"
+                        rel="noopener">
+
+                        Open Course →
+
+                    </a>
+
+                `;
+
+            }
+
+
+            return `
 
             <div class="material-card">
 
-                <div class="material-top">
-                    ${safe(item.icon)}
-                </div>
+                ${topHTML}
 
                 <div class="material-content">
 
@@ -2201,26 +2613,15 @@ function showMaterials(items){
                         ${safe(item.description)}
                     </p>
 
-                    ${
-                        item.url
-                        ?
-                        `<a
-                            class="material-btn"
-                            href="${safe(item.url)}"
-                            target="_blank">
-
-                            Open Material →
-
-                        </a>`
-                        :
-                        ""
-                    }
+                    ${buttonHTML}
 
                 </div>
 
             </div>
 
-        `).join("");
+            `;
+
+        }).join("");
 
 }
 
@@ -2250,13 +2651,22 @@ function showPracticals(items){
 
 
     container.innerHTML =
-        items.map(item=>`
+        items.map(item=>{
+
+            const url =
+                item.file_url ||
+                item.url ||
+                "";
+
+
+            return `
 
             <div class="material-card">
 
-                <div class="material-top">
-                    🧪
-                </div>
+                ${getMaterialTop(
+                    item,
+                    "🧪"
+                )}
 
                 <div class="material-content">
 
@@ -2273,16 +2683,12 @@ function showPracticals(items){
                     </p>
 
                     ${
-                        item.file_url
+                        url
                         ?
-                        `<a
-                            class="material-btn"
-                            href="${safe(item.file_url)}"
-                            target="_blank">
-
-                            Open Practical →
-
-                        </a>`
+                        getFileButton(
+                            url,
+                            "Open Practical"
+                        )
                         :
                         ""
                     }
@@ -2291,7 +2697,9 @@ function showPracticals(items){
 
             </div>
 
-        `).join("");
+            `;
+
+        }).join("");
 
 }
 
@@ -2320,7 +2728,8 @@ function showPapers(items){
     }
 
 
-    window.categoryPapers=items;
+    window.categoryPapers =
+        items;
 
 
     container.innerHTML =
@@ -2330,18 +2739,64 @@ function showPapers(items){
                 getPaperPages(item);
 
 
+            let preview="";
+
+
+            if(
+                pages.length &&
+                isImage(pages[0].url)
+            ){
+
+                const url =
+                    safeUrl(
+                        pages[0].url
+                    );
+
+
+                preview = `
+
+                    <div class="material-top">
+
+                        <img
+                            src="${url}"
+                            alt="Past Paper"
+                            loading="lazy"
+                            onclick="openImageViewer('${url}')">
+
+                    </div>
+
+                `;
+
+            }
+
+            else{
+
+                preview = `
+
+                    <div class="material-top">
+                        📄
+                    </div>
+
+                `;
+
+            }
+
+
             return `
 
             <div class="material-card">
 
-                <div class="material-top">
-                    📄
-                </div>
+                ${preview}
 
                 <div class="material-content">
 
                     <span class="material-type">
-                        ${safe(item.year || "PAST PAPER")}
+
+                        ${safe(
+                            item.year ||
+                            "PAST PAPER"
+                        )}
+
                     </span>
 
                     <h3>
@@ -2376,10 +2831,17 @@ function showPapers(items){
                             onclick="openPaperByIndex(${index})">
 
                             📖 Read Paper
+                            ${
+                                pages.length > 1
+                                ? `(${pages.length} Pages)`
+                                : ""
+                            }
 
                         </button>`
                         :
-                        ""
+                        `<div class="image-label">
+                            File available nahi hai
+                        </div>`
                     }
 
                 </div>
@@ -2411,6 +2873,70 @@ function openPaperByIndex(index){
    TESTS
 ===================================================== */
 
+function getQuestionCount(item){
+
+    if(
+        Array.isArray(
+            item.questions
+        )
+    ){
+
+        return item.questions.length;
+
+    }
+
+
+    if(
+        typeof item.questions === "number"
+    ){
+
+        return item.questions;
+
+    }
+
+
+    if(item.questions){
+
+        try{
+
+            const q =
+                JSON.parse(
+                    item.questions
+                );
+
+
+            if(Array.isArray(q)){
+
+                return q.length;
+
+            }
+
+
+            if(
+                typeof q === "number"
+            ){
+
+                return q;
+
+            }
+
+        }
+        catch(e){
+
+            return Number(
+                item.questions
+            ) || 0;
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
 function showTests(items){
 
     const container =
@@ -2434,45 +2960,8 @@ function showTests(items){
     container.innerHTML =
         items.map(item=>{
 
-            let count=0;
-
-
-            if(Array.isArray(item.questions)){
-
-                count =
-                    item.questions.length;
-
-            }
-            else{
-
-                try{
-
-                    const q =
-                        JSON.parse(
-                            item.questions
-                        );
-
-                    if(Array.isArray(q)){
-
-                        count=q.length;
-
-                    }
-                    else{
-
-                        count =
-                            Number(item.questions)||0;
-
-                    }
-
-                }
-                catch(e){
-
-                    count =
-                        Number(item.questions)||0;
-
-                }
-
-            }
+            const count =
+                getQuestionCount(item);
 
 
             return `
@@ -2522,10 +3011,14 @@ function showTests(items){
 
 async function searchSite(){
 
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+
     const query =
-        document
-        .getElementById("searchInput")
-        .value
+        input.value
         .trim()
         .toLowerCase();
 
@@ -2545,29 +3038,71 @@ async function searchSite(){
     }
 
 
-    const courses =
-        await loadCourses();
+    results.innerHTML = `
 
-    const notes =
-        await loadNotes();
+        <div class="search-result">
 
-    const practicals =
-        await loadPracticals();
+            ⏳ Searching...
 
-    const papers =
-        await loadPastPapers();
+        </div>
 
-    const tests =
-        await loadTests();
+    `;
 
 
-    const all=[
+    const [
+        courses,
+        notes,
+        practicals,
+        papers,
+        tests
+    ] =
+        await Promise.all([
 
-        ...courses,
-        ...notes,
-        ...practicals,
-        ...papers,
-        ...tests
+            loadCourses(),
+            loadNotes(),
+            loadPracticals(),
+            loadPastPapers(),
+            loadTests()
+
+        ]);
+
+
+    const all = [
+
+        ...courses.map(x=>({
+
+            ...x,
+            materialType:"COURSE"
+
+        })),
+
+        ...notes.map(x=>({
+
+            ...x,
+            materialType:"NOTE"
+
+        })),
+
+        ...practicals.map(x=>({
+
+            ...x,
+            materialType:"PRACTICAL"
+
+        })),
+
+        ...papers.map(x=>({
+
+            ...x,
+            materialType:"PAST PAPER"
+
+        })),
+
+        ...tests.map(x=>({
+
+            ...x,
+            materialType:"TEST"
+
+        }))
 
     ];
 
@@ -2583,7 +3118,11 @@ async function searchSite(){
                     item.subject,
                     item.year,
                     item.category,
-                    item.level
+                    item.level,
+                    item.class_name,
+                    item.board,
+                    item.course,
+                    item.materialType
 
                 ]
                 .filter(Boolean)
@@ -2609,9 +3148,99 @@ async function searchSite(){
 
 
     results.innerHTML =
-        found.map(item=>`
+        found.map(item=>{
+
+            let button="";
+
+
+            const url =
+                item.file_url ||
+                item.url ||
+                "";
+
+
+            if(
+                item.materialType ===
+                "PAST PAPER"
+            ){
+
+                button = `
+
+                    <button
+                        class="material-btn"
+                        onclick="openSearchPaper('${safe(item.id)}')">
+
+                        📖 Open Paper
+
+                    </button>
+
+                `;
+
+            }
+
+            else if(
+                item.materialType ===
+                "NOTE" ||
+                item.materialType ===
+                "PRACTICAL"
+            ){
+
+                if(url){
+
+                    if(isImage(url)){
+
+                        const safeImage =
+                            safeUrl(url);
+
+
+                        button = `
+
+                            <button
+                                class="material-btn"
+                                onclick="openImageViewer('${safeImage}')">
+
+                                🖼 View Image
+
+                            </button>
+
+                        `;
+
+                    }
+
+                    else{
+
+                        button = `
+
+                            <a
+                                class="material-btn"
+                                href="${safeUrl(url)}"
+                                target="_blank"
+                                rel="noopener">
+
+                                Open File →
+
+                            </a>
+
+                        `;
+
+                    }
+
+                }
+
+            }
+
+
+            return `
 
             <div class="search-result">
+
+                <span class="material-type">
+
+                    ${safe(
+                        item.materialType
+                    )}
+
+                </span>
 
                 <strong>
                     ${safe(item.title)}
@@ -2621,9 +3250,37 @@ async function searchSite(){
                     ${safe(item.description)}
                 </p>
 
+                ${button}
+
             </div>
 
-        `).join("");
+            `;
+
+        }).join("");
+
+
+    window.searchPapers =
+        papers;
+
+}
+
+
+/* =====================================================
+   SEARCH PAPER
+===================================================== */
+
+function openSearchPaper(id){
+
+    const item =
+        (window.searchPapers || [])
+        .find(x=>String(x.id)===String(id));
+
+
+    if(item){
+
+        openPaper(item);
+
+    }
 
 }
 
@@ -2665,7 +3322,8 @@ async function start(){
 
         document.getElementById(
             "categoryTitle"
-        ).textContent=category;
+        ).textContent =
+            category;
 
 
         document.getElementById(
@@ -2674,19 +3332,45 @@ async function start(){
             `${category} ka complete study material`;
 
 
-        await loadCategory(category);
+        await loadCategory(
+            category
+        );
 
     }
 
 }
 
 
-/* START */
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closeMenu();
+            closePaperViewer();
+            closeImageViewer();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
 
 start();
 
 
-/* PAPER OUTSIDE CLICK */
+/* =====================================================
+   PAPER OUTSIDE CLICK
+===================================================== */
 
 document
     .getElementById("paperViewer")
@@ -2694,7 +3378,7 @@ document
         "click",
         function(e){
 
-            if(e.target===this){
+            if(e.target === this){
 
                 closePaperViewer();
 
