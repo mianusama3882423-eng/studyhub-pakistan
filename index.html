@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>StudyHub Pakistan</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -22,20 +20,40 @@ html{
     scroll-behavior:smooth;
 }
 
-body{
-    background:#f5f7fb;
-    color:#172033;
+:root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#687386;
+    --primary:#2563eb;
+    --purple:#7c3aed;
+    --border:#e5e7eb;
+    --soft:#eff6ff;
 }
 
-/* ================= NAVBAR ================= */
+body.dark{
+    --bg:#0b1120;
+    --card:#111827;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --border:#263244;
+    --soft:#172554;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* NAVBAR */
 
 .navbar{
     height:65px;
-    background:white;
-    padding:0 6%;
+    background:var(--card);
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    gap:12px;
+    padding:0 6%;
     position:sticky;
     top:0;
     z-index:1000;
@@ -48,99 +66,114 @@ body{
 }
 
 .logo span{
-    color:#2563eb;
+    color:var(--primary);
 }
-
-/* ================= MENU BUTTON ================= */
 
 .menu-btn{
     width:44px;
     height:44px;
     border:0;
-    background:#eff6ff;
     border-radius:9px;
-    cursor:pointer;
+    background:var(--soft);
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     gap:5px;
+    cursor:pointer;
 }
 
 .menu-btn span{
     width:22px;
     height:2px;
-    background:#2563eb;
-    border-radius:5px;
+    background:var(--primary);
 }
 
-/* ================= SIDE MENU ================= */
+/* SIDE MENU */
 
 .side-menu{
     position:fixed;
     top:0;
-    right:-320px;
+    left:-320px;
     width:300px;
     height:100vh;
-    background:white;
+    background:var(--card);
     z-index:3000;
-    box-shadow:-5px 0 25px rgba(0,0,0,.15);
-    transition:.3s ease;
+    box-shadow:5px 0 25px rgba(0,0,0,.15);
+    transition:.3s;
     padding:25px;
     overflow-y:auto;
 }
 
 .side-menu.active{
-    right:0;
+    left:0;
 }
 
 .side-header{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     padding-bottom:20px;
-    border-bottom:1px solid #eee;
-}
-
-.side-header h2{
-    font-size:20px;
+    border-bottom:1px solid var(--border);
 }
 
 .close-menu{
     width:35px;
     height:35px;
     border:0;
+    border-radius:7px;
     background:#fee2e2;
     color:#dc2626;
-    border-radius:7px;
     font-size:22px;
     cursor:pointer;
 }
 
 .side-links{
-    margin-top:25px;
+    margin-top:20px;
 }
 
-.side-links a{
+.side-links a,
+.side-action{
+    width:100%;
     display:flex;
     align-items:center;
     gap:13px;
-    text-decoration:none;
-    color:#172033;
-    padding:15px;
+    padding:14px 15px;
     margin-bottom:7px;
+    border:0;
     border-radius:9px;
-    font-weight:600;
-    font-size:15px;
+    background:none;
+    color:var(--text);
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+    text-align:left;
 }
 
-.side-links a:hover{
-    background:#eff6ff;
-    color:#2563eb;
+.side-links a:hover,
+.side-action:hover{
+    background:var(--soft);
+    color:var(--primary);
 }
 
-.side-icon{
-    font-size:21px;
+.menu-label{
+    color:var(--muted);
+    font-size:12px;
+    font-weight:bold;
+    margin:18px 10px 8px;
+    text-transform:uppercase;
+}
+
+.category-menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+}
+
+.category-menu a{
+    font-size:13px;
+    padding:11px 9px;
+    margin:0;
 }
 
 .menu-overlay{
@@ -155,7 +188,7 @@ body{
     display:block;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
     min-height:480px;
@@ -165,6 +198,10 @@ body{
     justify-content:space-between;
     gap:40px;
     background:linear-gradient(135deg,#eff6ff,#f5f3ff);
+}
+
+body.dark .hero{
+    background:linear-gradient(135deg,#111b35,#21183d);
 }
 
 .hero-text{
@@ -189,11 +226,11 @@ body{
 }
 
 .hero h1 span{
-    color:#2563eb;
+    color:var(--primary);
 }
 
 .hero p{
-    color:#5d6678;
+    color:var(--muted);
     font-size:17px;
     line-height:1.7;
     margin-bottom:25px;
@@ -208,28 +245,28 @@ body{
 .primary-btn,
 .secondary-btn{
     display:inline-block;
-    text-decoration:none;
     padding:13px 22px;
     border-radius:8px;
     font-weight:bold;
+    text-decoration:none;
     cursor:pointer;
 }
 
 .primary-btn{
-    background:#2563eb;
+    background:var(--primary);
     color:white;
 }
 
 .secondary-btn{
-    background:white;
-    color:#2563eb;
-    border:1px solid #d5dbe7;
+    background:var(--card);
+    color:var(--primary);
+    border:1px solid var(--border);
 }
 
 .hero-box{
     width:330px;
     min-height:300px;
-    background:white;
+    background:var(--card);
     border-radius:20px;
     padding:30px;
     box-shadow:0 10px 35px rgba(37,99,235,.15);
@@ -245,7 +282,7 @@ body{
     gap:12px;
     padding:13px;
     margin-bottom:10px;
-    background:#f5f7fb;
+    background:var(--bg);
     border-radius:9px;
 }
 
@@ -253,18 +290,18 @@ body{
     font-size:25px;
 }
 
-/* ================= SEARCH ================= */
+/* SEARCH */
 
 .search-area{
     max-width:900px;
     margin:-28px auto 0;
     padding:0 20px;
     position:relative;
-    z-index:10;
+    z-index:20;
 }
 
 .search-box{
-    background:white;
+    background:var(--card);
     padding:10px;
     border-radius:12px;
     box-shadow:0 5px 25px rgba(0,0,0,.1);
@@ -275,19 +312,76 @@ body{
     flex:1;
     border:0;
     outline:0;
+    background:transparent;
+    color:var(--text);
     padding:14px;
     font-size:15px;
 }
 
 .search-box button{
     border:0;
-    background:#2563eb;
+    background:var(--primary);
     color:white;
     padding:0 22px;
     border-radius:8px;
     cursor:pointer;
     font-weight:bold;
 }
+
+/* SMART SUGGESTIONS */
+
+.suggestions{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:0 0 12px 12px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+    overflow:hidden;
+    display:none;
+}
+
+.suggestions.active{
+    display:block;
+}
+
+.suggestion{
+    padding:14px 16px;
+    border-bottom:1px solid var(--border);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.suggestion:last-child{
+    border-bottom:0;
+}
+
+.suggestion:hover{
+    background:var(--soft);
+}
+
+.suggestion-icon{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    background:var(--soft);
+    font-size:20px;
+}
+
+.suggestion-main{
+    font-weight:bold;
+}
+
+.suggestion-sub{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
+/* SEARCH RESULTS */
 
 .search-results{
     max-width:900px;
@@ -296,19 +390,30 @@ body{
 }
 
 .search-result{
-    background:white;
-    padding:15px;
+    background:var(--card);
+    padding:16px;
     margin-bottom:10px;
-    border-radius:8px;
-    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    border-radius:9px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
-/* ================= SECTION ================= */
+.search-result strong{
+    font-size:16px;
+}
+
+.search-result p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:7px;
+}
+
+/* SECTIONS */
 
 .section{
     max-width:1150px;
     margin:auto;
     padding:65px 20px;
+    scroll-margin-top:75px;
 }
 
 .section-title{
@@ -322,10 +427,10 @@ body{
 }
 
 .section-title p{
-    color:#697386;
+    color:var(--muted);
 }
 
-/* ================= CATEGORIES ================= */
+/* CATEGORIES */
 
 .categories{
     display:grid;
@@ -334,12 +439,12 @@ body{
 }
 
 .category{
-    background:white;
+    background:var(--card);
     padding:28px 15px;
     border-radius:12px;
     text-align:center;
     text-decoration:none;
-    color:#172033;
+    color:var(--text);
     box-shadow:0 3px 15px rgba(0,0,0,.06);
     transition:.2s;
 }
@@ -358,11 +463,11 @@ body{
 }
 
 .category p{
-    color:#737b8c;
+    color:var(--muted);
     font-size:13px;
 }
 
-/* ================= CATEGORY PAGE ================= */
+/* CATEGORY PAGE */
 
 .category-header{
     background:linear-gradient(135deg,#2563eb,#7c3aed);
@@ -390,7 +495,7 @@ body{
     margin-bottom:8px;
 }
 
-/* ================= MATERIALS ================= */
+/* MATERIALS */
 
 .materials{
     display:grid;
@@ -399,7 +504,7 @@ body{
 }
 
 .material-card{
-    background:white;
+    background:var(--card);
     border-radius:13px;
     overflow:hidden;
     box-shadow:0 3px 15px rgba(0,0,0,.07);
@@ -408,7 +513,6 @@ body{
 
 .material-card:hover{
     transform:translateY(-3px);
-    box-shadow:0 7px 25px rgba(0,0,0,.1);
 }
 
 .material-top{
@@ -416,7 +520,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    background:#eff6ff;
+    background:var(--soft);
     font-size:55px;
     overflow:hidden;
 }
@@ -449,10 +553,10 @@ body{
 }
 
 .material-content p{
-    color:#697386;
+    color:var(--muted);
     font-size:13px;
     line-height:1.5;
-    margin-bottom:4px;
+    margin-bottom:5px;
 }
 
 .material-btn{
@@ -460,7 +564,7 @@ body{
     text-align:center;
     margin-top:17px;
     padding:10px;
-    background:#2563eb;
+    background:var(--primary);
     color:white;
     text-decoration:none;
     border-radius:7px;
@@ -470,31 +574,17 @@ body{
     font-weight:bold;
 }
 
-.material-btn.secondary{
-    background:#eff6ff;
-    color:#2563eb;
-    margin-top:8px;
-}
-
-.image-label{
-    display:block;
-    text-align:center;
-    font-size:11px;
-    color:#697386;
-    margin-top:8px;
-}
-
 .loading,
 .empty{
     text-align:center;
     padding:35px;
-    color:#697386;
+    color:var(--muted);
     grid-column:1/-1;
-    background:white;
+    background:var(--card);
     border-radius:10px;
 }
 
-/* ================= TOOLS ================= */
+/* TOOLS */
 
 .tools{
     display:grid;
@@ -503,7 +593,7 @@ body{
 }
 
 .tool{
-    background:white;
+    background:var(--card);
     padding:20px;
     text-align:center;
     border-radius:10px;
@@ -520,7 +610,7 @@ body{
 }
 
 .tool p{
-    color:#777;
+    color:var(--muted);
     font-size:12px;
     margin-top:5px;
 }
@@ -529,11 +619,11 @@ body{
     display:block;
     margin-top:12px;
     text-decoration:none;
-    color:#2563eb;
+    color:var(--primary);
     font-weight:bold;
 }
 
-/* ================= CTA ================= */
+/* CTA */
 
 .cta{
     margin:0 20px 60px;
@@ -553,9 +643,10 @@ body{
     margin-bottom:20px;
 }
 
-/* ================= PAPER VIEWER ================= */
+/* PAPER VIEWER */
 
-.paper-viewer{
+.paper-viewer,
+.image-viewer{
     display:none;
     position:fixed;
     inset:0;
@@ -566,7 +657,8 @@ body{
     padding:15px;
 }
 
-.paper-viewer.active{
+.paper-viewer.active,
+.image-viewer.active{
     display:flex;
 }
 
@@ -586,21 +678,17 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px;
-}
-
-.paper-topbar h3{
-    font-size:18px;
+    color:#172033;
 }
 
 .close-paper{
+    width:35px;
+    height:35px;
     border:0;
     background:#ef4444;
     color:white;
-    width:35px;
-    height:35px;
     border-radius:7px;
-    font-size:18px;
+    font-size:20px;
     cursor:pointer;
 }
 
@@ -615,16 +703,15 @@ body{
 .paper-content img{
     max-width:100%;
     max-height:65vh;
-    height:auto;
     border-radius:5px;
-    box-shadow:0 2px 12px rgba(0,0,0,.15);
+    cursor:zoom-in;
 }
 
 .paper-link{
     display:inline-block;
     margin-top:20px;
     padding:12px 20px;
-    background:#2563eb;
+    background:var(--primary);
     color:white;
     text-decoration:none;
     border-radius:7px;
@@ -641,7 +728,7 @@ body{
 
 .paper-controls button{
     border:0;
-    background:#2563eb;
+    background:var(--primary);
     color:white;
     padding:10px 18px;
     border-radius:7px;
@@ -650,30 +737,19 @@ body{
 
 .paper-controls button:disabled{
     opacity:.4;
-    cursor:not-allowed;
 }
 
 .page-number{
     font-weight:bold;
     min-width:90px;
     text-align:center;
+    color:#172033;
 }
 
-/* ================= IMAGE VIEWER ================= */
+/* IMAGE VIEWER */
 
 .image-viewer{
-    display:none;
-    position:fixed;
-    inset:0;
     z-index:6000;
-    background:rgba(0,0,0,.92);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.image-viewer.active{
-    display:flex;
 }
 
 .image-viewer img{
@@ -690,14 +766,14 @@ body{
     width:42px;
     height:42px;
     border:0;
-    border-radius:8px;
     background:#ef4444;
     color:white;
+    border-radius:7px;
     font-size:25px;
     cursor:pointer;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
     background:#0f172a;
@@ -723,25 +799,24 @@ footer{
     color:#60a5fa;
 }
 
-footer p{
+footer p,
+footer a{
     color:#aeb7c7;
     font-size:13px;
     line-height:1.6;
+}
+
+footer a{
+    display:block;
+    text-decoration:none;
+    margin-bottom:9px;
 }
 
 footer h3{
     margin-bottom:15px;
 }
 
-footer a{
-    display:block;
-    color:#aeb7c7;
-    text-decoration:none;
-    font-size:13px;
-    margin-bottom:9px;
-}
-
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -779,7 +854,6 @@ footer a{
     .footer-grid{
         grid-template-columns:1fr;
     }
-
 }
 
 @media(max-width:450px){
@@ -800,10 +874,6 @@ footer a{
         font-size:15px;
     }
 
-    .categories{
-        gap:10px;
-    }
-
     .category{
         padding:20px 8px;
     }
@@ -816,896 +886,622 @@ footer a{
         font-size:15px;
     }
 
-    .tools{
-        grid-template-columns:1fr 1fr;
-    }
-
     .side-menu{
         width:285px;
     }
 
+    .search-box button{
+        padding:0 15px;
+    }
 }
-
 </style>
-
 </head>
 
 <body>
 
-
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 
 <header class="navbar">
 
-    <div class="logo">
-        Study<span>Hub</span> Pakistan
-    </div>
+<button class="menu-btn" onclick="openMenu()">
+<span></span>
+<span></span>
+<span></span>
+</button>
 
-    <button
-        class="menu-btn"
-        onclick="openMenu()"
-        aria-label="Open menu">
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
+<div class="logo">
+Study<span>Hub</span> Pakistan
+</div>
 
 </header>
 
 
-<!-- ================= SIDE MENU ================= -->
+<!-- SIDE MENU -->
 
-<div
-    id="menuOverlay"
-    class="menu-overlay"
-    onclick="closeMenu()">
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+
+<aside id="sideMenu" class="side-menu">
+
+<div class="side-header">
+
+<h2>StudyHub Menu</h2>
+
+<button class="close-menu" onclick="closeMenu()">×</button>
+
 </div>
 
+<div class="side-links">
 
-<aside
-    id="sideMenu"
-    class="side-menu">
+<a href="index.html" onclick="closeMenu()">🏠 Home</a>
 
-    <div class="side-header">
+<div class="menu-label">Categories</div>
 
-        <h2>
-            StudyHub Menu
-        </h2>
+<div class="category-menu">
 
-        <button
-            class="close-menu"
-            onclick="closeMenu()">
-            ×
-        </button>
+<a href="index.html?category=School" onclick="closeMenu()">🎓 School</a>
 
-    </div>
+<a href="index.html?category=Computer" onclick="closeMenu()">💻 Computer</a>
 
+<a href="index.html?category=CIT" onclick="closeMenu()">💻 CIT</a>
 
-    <div class="side-links">
+<a href="index.html?category=Mathematics" onclick="closeMenu()">📐 Mathematics</a>
 
-        <a
-            href="index.html"
-            onclick="closeMenu()">
+<a href="index.html?category=English" onclick="closeMenu()">📖 English</a>
 
-            <span class="side-icon">🏠</span>
-            Home
+<a href="index.html?category=Physics" onclick="closeMenu()">⚡ Physics</a>
 
-        </a>
+<a href="index.html?category=Chemistry" onclick="closeMenu()">🧪 Chemistry</a>
 
+<a href="index.html?category=Urdu" onclick="closeMenu()">📝 Urdu</a>
 
-        <a
-            href="index.html#categories"
-            onclick="closeMenu()">
+</div>
 
-            <span class="side-icon">📚</span>
-            Explore Categories
+<div class="menu-label">StudyHub</div>
 
-        </a>
+<a href="index.html#categories" onclick="closeMenu()">
+📚 Explore Categories
+</a>
 
+<a href="index.html#tools" onclick="closeMenu()">
+🛠 Student Tools
+</a>
 
-        <a
-            href="index.html#tools"
-            onclick="closeMenu()">
+<a href="index.html#about" onclick="closeMenu()">
+ℹ️ About StudyHub
+</a>
 
-            <span class="side-icon">🛠</span>
-            Student Tools
+<button class="side-action" id="themeBtn" onclick="toggleTheme()">
+🌙 Dark Mode
+</button>
 
-        </a>
-
-
-        <a
-            href="index.html#about"
-            onclick="closeMenu()">
-
-            <span class="side-icon">ℹ️</span>
-            About StudyHub
-
-        </a>
-
-    </div>
+</div>
 
 </aside>
 
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 
 <div id="homePage">
 
-
-<!-- ================= HERO ================= -->
-
 <section class="hero">
 
-    <div class="hero-text">
+<div class="hero-text">
 
-        <div class="badge">
-            🇵🇰 Made for Pakistani Students
-        </div>
+<div class="badge">
+🇵🇰 Made for Pakistani Students
+</div>
 
-        <h1>
-            Learn Today.<br>
-            <span>Build Your Future.</span>
-        </h1>
+<h1>
+Learn Today.<br>
+<span>Build Your Future.</span>
+</h1>
 
-        <p>
-            StudyHub Pakistan is your learning platform
-            for notes, courses, practicals, tests and
-            past papers.
-        </p>
+<p>
+StudyHub Pakistan is your learning platform for notes,
+courses, practicals, tests and past papers.
+</p>
 
-        <div class="hero-buttons">
+<div class="hero-buttons">
 
-            <a
-                href="#categories"
-                class="primary-btn">
+<a href="#categories" class="primary-btn">
+🚀 Start Learning
+</a>
 
-                🚀 Start Learning
+<a href="#tools" class="secondary-btn">
+🛠 Student Tools
+</a>
 
-            </a>
+</div>
 
-
-            <a
-                href="#tools"
-                class="secondary-btn">
-
-                🛠 Student Tools
-
-            </a>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="hero-box">
+<div class="hero-box">
 
-        <h2>
-            📚 Start Learning
-        </h2>
+<h2>📚 Start Learning</h2>
 
-        <div class="study-item">
+<div class="study-item">
+<div class="study-icon">📘</div>
+<div>Notes & Books</div>
+</div>
 
-            <div class="study-icon">
-                📘
-            </div>
+<div class="study-item">
+<div class="study-icon">💻</div>
+<div>Practical Programs</div>
+</div>
 
-            <div>
-                Notes & Books
-            </div>
+<div class="study-item">
+<div class="study-icon">🧪</div>
+<div>Online Tests</div>
+</div>
 
-        </div>
+<div class="study-item">
+<div class="study-icon">📄</div>
+<div>Past Papers</div>
+</div>
 
-
-        <div class="study-item">
-
-            <div class="study-icon">
-                💻
-            </div>
-
-            <div>
-                Practical Programs
-            </div>
-
-        </div>
-
-
-        <div class="study-item">
-
-            <div class="study-icon">
-                🧪
-            </div>
-
-            <div>
-                Online Tests
-            </div>
-
-        </div>
-
-
-        <div class="study-item">
-
-            <div class="study-icon">
-                📄
-            </div>
-
-            <div>
-                Past Papers
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ================= SEARCH ================= -->
+<!-- SEARCH -->
 
 <div class="search-area">
 
-    <div class="search-box">
+<div class="search-box">
 
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="Search study material..."
-            onkeydown="if(event.key==='Enter') searchSite()">
+<input
+id="searchInput"
+type="text"
+autocomplete="off"
+placeholder="Search e.g. CIT, CIT practical, Physics notes..."
+oninput="handleSearchInput()"
+onkeydown="handleSearchKey(event)"
+>
 
-        <button onclick="searchSite()">
-            Search
-        </button>
+<button onclick="searchSite()">
+Search
+</button>
 
-    </div>
+</div>
+
+<div id="suggestions" class="suggestions"></div>
+
+</div>
+
+<div id="searchResults" class="search-results"></div>
+
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+<div class="section-title">
+
+<h2>Explore Categories</h2>
+
+<p>
+Apni category select karein aur complete material dekhein
+</p>
 
 </div>
 
 
-<div
-    id="searchResults"
-    class="search-results">
+<div class="categories">
+
+<a class="category" href="index.html?category=School">
+
+<div class="category-icon">🎓</div>
+
+<h3>School</h3>
+
+<p>Classes 9th to 12th</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=Computer">
+
+<div class="category-icon">💻</div>
+
+<h3>Computer</h3>
+
+<p>CIT, DIT & IT</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=CIT">
+
+<div class="category-icon">💻</div>
+
+<h3>CIT</h3>
+
+<p>CIT 1st & 2nd Year</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=Mathematics">
+
+<div class="category-icon">📐</div>
+
+<h3>Mathematics</h3>
+
+<p>Maths material</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=English">
+
+<div class="category-icon">📖</div>
+
+<h3>English</h3>
+
+<p>English learning</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=Physics">
+
+<div class="category-icon">⚡</div>
+
+<h3>Physics</h3>
+
+<p>Physics material</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=Chemistry">
+
+<div class="category-icon">🧪</div>
+
+<h3>Chemistry</h3>
+
+<p>Chemistry material</p>
+
+</a>
+
+
+<a class="category" href="index.html?category=Urdu">
+
+<div class="category-icon">📝</div>
+
+<h3>Urdu</h3>
+
+<p>Urdu material</p>
+
+</a>
+
 </div>
 
-
-<!-- ================= EXPLORE CATEGORIES ================= -->
-
-<section
-    class="section"
-    id="categories">
-
-    <div class="section-title">
-
-        <h2>
-            Explore Categories
-        </h2>
-
-        <p>
-            Apni category select karein aur complete material dekhein
-        </p>
-
-    </div>
+</section>
 
 
-    <div class="categories">
+<!-- TOOLS -->
 
+<section class="section" id="tools">
 
-        <a
-            class="category"
-            href="index.html?category=School">
+<div class="section-title">
 
-            <div class="category-icon">
-                🎓
-            </div>
+<h2>🛠 Student Tools</h2>
 
-            <h3>
-                School
-            </h3>
+<p>Useful tools for everyday study</p>
 
-            <p>
-                Classes 9th to 12th
-            </p>
+</div>
 
-        </a>
+<div class="tools">
 
+<div class="tool">
+<div class="tool-icon">🧮</div>
+<h3>Percentage</h3>
+<p>Calculate percentage</p>
+<a href="tools.html">Open Tool →</a>
+</div>
 
-        <a
-            class="category"
-            href="index.html?category=Computer">
+<div class="tool">
+<div class="tool-icon">🔢</div>
+<h3>Calculator</h3>
+<p>Quick calculations</p>
+<a href="tools.html">Open Tool →</a>
+</div>
 
-            <div class="category-icon">
-                💻
-            </div>
+<div class="tool">
+<div class="tool-icon">📅</div>
+<h3>Age Calculator</h3>
+<p>Calculate your age</p>
+<a href="tools.html">Open Tool →</a>
+</div>
 
-            <h3>
-                Computer
-            </h3>
+<div class="tool">
+<div class="tool-icon">📄</div>
+<h3>Word Counter</h3>
+<p>Count your words</p>
+<a href="tools.html">Open Tool →</a>
+</div>
 
-            <p>
-                CIT, DIT & IT
-            </p>
-
-        </a>
-
-
-        <a
-            class="category"
-            href="index.html?category=CIT">
-
-            <div class="category-icon">
-                💻
-            </div>
-
-            <h3>
-                CIT
-            </h3>
-
-            <p>
-                CIT 1st & 2nd Year
-            </p>
-
-        </a>
-
-
-        <a
-            class="category"
-            href="index.html?category=Mathematics">
-
-            <div class="category-icon">
-                📐
-            </div>
-
-            <h3>
-                Mathematics
-            </h3>
-
-            <p>
-                Maths material
-            </p>
-
-        </a>
-
-
-        <a
-            class="category"
-            href="index.html?category=English">
-
-            <div class="category-icon">
-                📖
-            </div>
-
-            <h3>
-                English
-            </h3>
-
-            <p>
-                English learning
-            </p>
-
-        </a>
-
-
-        <a
-            class="category"
-            href="index.html?category=Physics">
-
-            <div class="category-icon">
-                ⚡
-            </div>
-
-            <h3>
-                Physics
-            </h3>
-
-            <p>
-                Physics material
-            </p>
-
-        </a>
-
-
-        <a
-            class="category"
-            href="index.html?category=Chemistry">
-
-            <div class="category-icon">
-                🧪
-            </div>
-
-            <h3>
-                Chemistry
-            </h3>
-
-            <p>
-                Chemistry material
-            </p>
-
-        </a>
-
-
-        <a
-            class="category"
-            href="index.html?category=Urdu">
-
-            <div class="category-icon">
-                📝
-            </div>
-
-            <h3>
-                Urdu
-            </h3>
-
-            <p>
-                Urdu material
-            </p>
-
-        </a>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ================= TOOLS ================= -->
+<section class="section" id="about">
 
-<section
-    class="section"
-    id="tools">
+<div class="section-title">
 
-    <div class="section-title">
+<h2>About StudyHub Pakistan</h2>
 
-        <h2>
-            🛠 Student Tools
-        </h2>
+<p>
+A learning platform designed for Pakistani students.
+</p>
 
-        <p>
-            Useful tools for everyday study
-        </p>
-
-    </div>
-
-
-    <div class="tools">
-
-        <div class="tool">
-
-            <div class="tool-icon">
-                🧮
-            </div>
-
-            <h3>
-                Percentage
-            </h3>
-
-            <p>
-                Calculate percentage
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
-        </div>
-
-
-        <div class="tool">
-
-            <div class="tool-icon">
-                🔢
-            </div>
-
-            <h3>
-                Calculator
-            </h3>
-
-            <p>
-                Quick calculations
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
-        </div>
-
-
-        <div class="tool">
-
-            <div class="tool-icon">
-                📅
-            </div>
-
-            <h3>
-                Age Calculator
-            </h3>
-
-            <p>
-                Calculate your age
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
-        </div>
-
-
-        <div class="tool">
-
-            <div class="tool-icon">
-                📄
-            </div>
-
-            <h3>
-                Word Counter
-            </h3>
-
-            <p>
-                Count your words
-            </p>
-
-            <a href="tools.html">
-                Open Tool →
-            </a>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-
-<!-- ================= ABOUT ================= -->
-
-<section
-    class="section"
-    id="about">
-
-    <div class="section-title">
-
-        <h2>
-            About StudyHub Pakistan
-        </h2>
-
-        <p>
-            A learning platform designed for Pakistani students.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CTA ================= -->
 
 <section class="cta">
 
-    <h2>
-        Ready to Start Learning?
-    </h2>
+<h2>Ready to Start Learning?</h2>
 
-    <p>
-        Select your category and start studying.
-    </p>
+<p>Select your category and start studying.</p>
 
-    <a
-        href="#categories"
-        class="primary-btn">
-
-        Start Learning
-
-    </a>
+<a href="#categories" class="primary-btn">
+Start Learning
+</a>
 
 </section>
 
 </div>
 
 
-<!-- =====================================================
-     CATEGORY PAGE
-===================================================== -->
+<!-- CATEGORY PAGE -->
 
-<div
-    id="categoryPage"
-    style="display:none;">
-
+<div id="categoryPage" style="display:none">
 
 <section class="category-header">
 
-    <div class="category-header-inner">
+<div class="category-header-inner">
 
-        <a
-            href="index.html"
-            class="back-btn">
+<a href="index.html" class="back-btn">
+← Back to Home
+</a>
 
-            ← Back to Home
+<h1 id="categoryTitle">
+Category
+</h1>
 
-        </a>
+<p id="categoryDescription">
+Complete study material
+</p>
 
-        <h1 id="categoryTitle">
-            Category
-        </h1>
-
-        <p id="categoryDescription">
-            Complete study material
-        </p>
-
-    </div>
+</div>
 
 </section>
 
 
-<section class="section">
+<section class="section" id="notesSection">
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>
-            📚 Notes & Courses
-        </h2>
+<h2>📚 Notes & Courses</h2>
 
-        <p>
-            Is category ka study material
-        </p>
+<p>
+Is category ka study material
+</p>
 
-    </div>
+</div>
 
+<div id="categoryMaterials" class="materials">
 
-    <div
-        id="categoryMaterials"
-        class="materials">
+<div class="loading">
+⏳ Loading...
+</div>
 
-        <div class="loading">
-            ⏳ Loading...
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<section class="section">
+<section class="section" id="practicalsSection">
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>
-            🧪 Practicals
-        </h2>
+<h2>🧪 Practicals</h2>
 
-        <p>
-            Is category ke practicals
-        </p>
+<p>
+Is category ke practicals
+</p>
 
-    </div>
+</div>
 
+<div id="categoryPracticals" class="materials">
 
-    <div
-        id="categoryPracticals"
-        class="materials">
+<div class="loading">
+⏳ Loading...
+</div>
 
-        <div class="loading">
-            ⏳ Loading...
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<section class="section">
+<section class="section" id="papersSection">
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>
-            📄 Past Papers
-        </h2>
+<h2>📄 Past Papers</h2>
 
-        <p>
-            Is category ke previous papers
-        </p>
+<p>
+Is category ke previous papers
+</p>
 
-    </div>
+</div>
 
+<div id="categoryPapers" class="materials">
 
-    <div
-        id="categoryPapers"
-        class="materials">
+<div class="loading">
+⏳ Loading...
+</div>
 
-        <div class="loading">
-            ⏳ Loading...
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<section class="section">
+<section class="section" id="testsSection">
 
-    <div class="section-title">
+<div class="section-title">
 
-        <h2>
-            🎯 Online Tests
-        </h2>
+<h2>🎯 Online Tests</h2>
 
-        <p>
-            Is category ke tests
-        </p>
+<p>
+Is category ke tests
+</p>
 
-    </div>
+</div>
 
+<div id="categoryTests" class="materials">
 
-    <div
-        id="categoryTests"
-        class="materials">
+<div class="loading">
+⏳ Loading...
+</div>
 
-        <div class="loading">
-            ⏳ Loading...
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 </div>
 
 
-<!-- ================= PAPER VIEWER ================= -->
+<!-- PAPER VIEWER -->
 
-<div
-    id="paperViewer"
-    class="paper-viewer">
+<div id="paperViewer" class="paper-viewer">
 
-    <div class="paper-box">
+<div class="paper-box">
 
-        <div class="paper-topbar">
+<div class="paper-topbar">
 
-            <h3 id="viewerTitle">
-                Past Paper
-            </h3>
+<h3 id="viewerTitle">
+Past Paper
+</h3>
 
-            <button
-                class="close-paper"
-                onclick="closePaperViewer()">
-
-                ×
-
-            </button>
-
-        </div>
-
-
-        <div
-            id="paperContent"
-            class="paper-content">
-        </div>
-
-
-        <div class="paper-controls">
-
-            <button
-                id="prevPageBtn"
-                onclick="previousPaperPage()">
-
-                ← Previous
-
-            </button>
-
-
-            <div
-                id="pageNumber"
-                class="page-number">
-
-                Page 1 / 1
-
-            </div>
-
-
-            <button
-                id="nextPageBtn"
-                onclick="nextPaperPage()">
-
-                Next →
-
-            </button>
-
-        </div>
-
-    </div>
+<button class="close-paper" onclick="closePaperViewer()">
+×
+</button>
 
 </div>
 
 
-<!-- ================= IMAGE VIEWER ================= -->
+<div id="paperContent" class="paper-content"></div>
 
-<div
-    id="imageViewer"
-    class="image-viewer"
-    onclick="closeImageViewer()">
 
-    <button
-        class="close-image"
-        onclick="closeImageViewer()">
+<div class="paper-controls">
 
-        ×
+<button id="prevPageBtn" onclick="previousPaperPage()">
+← Previous
+</button>
 
-    </button>
+<div id="pageNumber" class="page-number">
+Page 1 / 1
+</div>
 
-    <img
-        id="fullImage"
-        src=""
-        alt="Full Image"
-        onclick="event.stopPropagation()">
+<button id="nextPageBtn" onclick="nextPaperPage()">
+Next →
+</button>
+
+</div>
+
+</div>
 
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- IMAGE VIEWER -->
+
+<div id="imageViewer" class="image-viewer" onclick="closeImageViewer()">
+
+<button class="close-image" onclick="closeImageViewer()">
+×
+</button>
+
+<img
+id="fullImage"
+src=""
+alt="Full Image"
+onclick="event.stopPropagation()"
+>
+
+</div>
+
+
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-grid">
+<div class="footer-grid">
 
-        <div>
+<div>
 
-            <div class="footer-logo">
-                Study<span>Hub</span> Pakistan
-            </div>
+<div class="footer-logo">
+Study<span>Hub</span> Pakistan
+</div>
 
-            <p>
-                A learning platform designed to help
-                Pakistani students learn, practice and grow.
-            </p>
+<p>
+A learning platform designed to help Pakistani
+students learn, practice and grow.
+</p>
 
-        </div>
-
-
-        <div>
-
-            <h3>
-                Quick Links
-            </h3>
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="index.html#categories">
-                Explore Categories
-            </a>
-
-            <a href="index.html#tools">
-                Student Tools
-            </a>
-
-        </div>
+</div>
 
 
-        <div>
+<div>
 
-            <h3>
-                Learning
-            </h3>
+<h3>Quick Links</h3>
 
-            <a href="index.html#categories">
-                Categories
-            </a>
+<a href="index.html">
+Home
+</a>
 
-            <a href="tools.html">
-                Student Tools
-            </a>
+<a href="index.html#categories">
+Explore Categories
+</a>
 
-        </div>
+<a href="index.html#tools">
+Student Tools
+</a>
 
-    </div>
+</div>
+
+
+<div>
+
+<h3>Learning</h3>
+
+<a href="index.html#categories">
+Categories
+</a>
+
+<a href="tools.html">
+Student Tools
+</a>
+
+</div>
+
+</div>
 
 </footer>
 
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+/* ================================
+SUPABASE
+================================ */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -1715,404 +1511,1585 @@ const SUPABASE_KEY =
 
 const db =
 supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
-/* =====================================================
-   MENU
-===================================================== */
+/* ================================
+CATEGORY INFO
+================================ */
+
+const CATEGORY_INFO = {
+
+School:[
+"🎓",
+"School",
+"School / 9th, 10th, 11th & 12th"
+],
+
+Computer:[
+"💻",
+"Computer",
+"Computer, IT, CIT, DIT & Programming"
+],
+
+CIT:[
+"💻",
+"CIT",
+"CIT 1st & 2nd Year"
+],
+
+Mathematics:[
+"📐",
+"Mathematics",
+"Mathematics material"
+],
+
+English:[
+"📖",
+"English",
+"English learning material"
+],
+
+Physics:[
+"⚡",
+"Physics",
+"Physics material"
+],
+
+Chemistry:[
+"🧪",
+"Chemistry",
+"Chemistry material"
+],
+
+Urdu:[
+"📝",
+"Urdu",
+"Urdu material"
+]
+
+};
+
+
+/* ================================
+MENU
+================================ */
 
 function openMenu(){
 
-    document
-        .getElementById("sideMenu")
-        .classList
-        .add("active");
+document
+.getElementById("sideMenu")
+.classList.add("active");
 
-    document
-        .getElementById("menuOverlay")
-        .classList
-        .add("active");
+document
+.getElementById("menuOverlay")
+.classList.add("active");
 
 }
-
 
 function closeMenu(){
 
-    document
-        .getElementById("sideMenu")
-        .classList
-        .remove("active");
+document
+.getElementById("sideMenu")
+.classList.remove("active");
 
-    document
-        .getElementById("menuOverlay")
-        .classList
-        .remove("active");
+document
+.getElementById("menuOverlay")
+.classList.remove("active");
 
 }
 
 
-/* =====================================================
-   SAFE TEXT
-===================================================== */
+/* ================================
+DARK MODE
+================================ */
+
+function toggleTheme(){
+
+const dark =
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"studyhub_theme",
+dark ? "dark" : "light"
+);
+
+document.getElementById("themeBtn")
+.textContent =
+dark ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+}
+
+
+(function(){
+
+const dark =
+localStorage.getItem("studyhub_theme")
+==="dark";
+
+document.body.classList.toggle(
+"dark",
+dark
+);
+
+const btn =
+document.getElementById("themeBtn");
+
+if(btn){
+
+btn.textContent =
+dark
+? "☀️ Light Mode"
+: "🌙 Dark Mode";
+
+}
+
+})();
+
+
+/* ================================
+HELPERS
+================================ */
 
 function safe(value){
 
-    return String(value || "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 
-/* =====================================================
-   SAFE URL
-===================================================== */
+function enc(value){
 
-function safeUrl(value){
-
-    if(!value){
-        return "";
-    }
-
-    const url =
-        String(value).trim();
-
-    if(
-        url.startsWith("https://") ||
-        url.startsWith("http://")
-    ){
-
-        return url
-            .replaceAll('"',"&quot;")
-            .replaceAll("'","&#039;");
-
-    }
-
-    return "";
+return encodeURIComponent(
+String(value ?? "")
+);
 
 }
 
 
-/* =====================================================
-   CATEGORY
-===================================================== */
+function normalize(value){
 
-function getCategory(){
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-    return params.get("category");
+return String(value || "")
+.toLowerCase()
+.replace(/[^\w\u0600-\u06ff+]+/g," ")
+.trim();
 
 }
 
 
-function belongsToCategory(item,category){
+function words(value){
 
-    if(!category){
-        return true;
-    }
-
-    const wanted =
-        category
-        .toLowerCase()
-        .trim();
-
-
-    const values = [
-
-        item.category,
-        item.level,
-        item.class_name,
-        item.subject,
-        item.board,
-        item.course,
-        item.title,
-        item.description
-
-    ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-
-    if(values.includes(wanted)){
-        return true;
-    }
-
-
-    if(wanted === "computer"){
-
-        return /computer|cit|dit|it|programming|html|css|c\+\+|java|database|dbms/i
-            .test(values);
-
-    }
-
-
-    if(wanted === "cit"){
-
-        return /cit|certificate in information technology|computer/i
-            .test(values);
-
-    }
-
-
-    if(wanted === "school"){
-
-        return /school|9th|10th|11th|12th|matric|intermediate/i
-            .test(values);
-
-    }
-
-
-    return false;
+return normalize(value)
+.split(/\s+/)
+.filter(Boolean);
 
 }
 
 
-/* =====================================================
-   LOAD DATA
-===================================================== */
+function cleanUrl(url){
 
-async function loadCourses(){
+const value =
+String(url || "").trim();
 
-    const {data,error} =
-        await db
-        .from("courses")
-        .select("*");
-
-    if(error){
-
-        console.log(
-            "Courses:",
-            error.message
-        );
-
-        return [];
-
-    }
-
-    return data || [];
+return /^https?:\/\//i.test(value)
+? value
+: "";
 
 }
 
-
-async function loadNotes(){
-
-    const {data,error} =
-        await db
-        .from("notes")
-        .select("*");
-
-    if(error){
-
-        console.log(
-            "Notes:",
-            error.message
-        );
-
-        return [];
-
-    }
-
-    return data || [];
-
-}
-
-
-async function loadPracticals(){
-
-    const {data,error} =
-        await db
-        .from("practicals")
-        .select("*");
-
-    if(error){
-
-        console.log(
-            "Practicals:",
-            error.message
-        );
-
-        return [];
-
-    }
-
-    return data || [];
-
-}
-
-
-async function loadTests(){
-
-    const {data,error} =
-        await db
-        .from("tests")
-        .select("*");
-
-    if(error){
-
-        console.log(
-            "Tests:",
-            error.message
-        );
-
-        return [];
-
-    }
-
-    return data || [];
-
-}
-
-
-async function loadPastPapers(){
-
-    const {data,error} =
-        await db
-        .from("past_papers")
-        .select("*");
-
-    if(error){
-
-        console.log(
-            "Past Papers:",
-            error.message
-        );
-
-        return [];
-
-    }
-
-    return data || [];
-
-}
-
-
-/* =====================================================
-   IMAGE CHECK
-===================================================== */
 
 function isImage(url){
 
-    if(!url){
-        return false;
-    }
+try{
 
-    return /\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i
-        .test(String(url));
+return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i
+.test(new URL(url).pathname);
+
+}catch(e){
+
+return /\.(jpg|jpeg|png|gif|webp|bmp|svg)(\?.*)?$/i
+.test(String(url || ""));
+
+}
 
 }
 
 
-/* =====================================================
-   IMAGE VIEWER
-===================================================== */
+function decodeOpen(url){
 
-function openImageViewer(url){
-
-    if(!url){
-        return;
-    }
-
-    document
-        .getElementById("fullImage")
-        .src = url;
-
-    document
-        .getElementById("imageViewer")
-        .classList
-        .add("active");
+openImageViewer(
+decodeURIComponent(url)
+);
 
 }
 
 
-function closeImageViewer(){
+/* ================================
+LOAD TABLE
+================================ */
 
-    document
-        .getElementById("imageViewer")
-        .classList
-        .remove("active");
+async function loadTable(table){
 
-    document
-        .getElementById("fullImage")
-        .src = "";
+const {
+data,
+error
+} =
+await db
+.from(table)
+.select("*");
+
+if(error){
+
+console.log(
+table,
+error.message
+);
+
+return [];
+
+}
+
+return data || [];
 
 }
 
 
-/* =====================================================
-   PAPER PAGES
-===================================================== */
+/* ================================
+SEARCH DATA
+================================ */
+
+let cachedData = null;
+
+async function getAllData(){
+
+if(cachedData)
+return cachedData;
+
+const [
+courses,
+notes,
+practicals,
+papers,
+tests
+] =
+await Promise.all([
+
+loadTable("courses"),
+loadTable("notes"),
+loadTable("practicals"),
+loadTable("past_papers"),
+loadTable("tests")
+
+]);
+
+
+cachedData = [
+
+...courses.map(x=>({
+...x,
+materialType:"COURSE"
+})),
+
+...notes.map(x=>({
+...x,
+materialType:"NOTE"
+})),
+
+...practicals.map(x=>({
+...x,
+materialType:"PRACTICAL"
+})),
+
+...papers.map(x=>({
+...x,
+materialType:"PAST PAPER"
+})),
+
+...tests.map(x=>({
+...x,
+materialType:"TEST"
+}))
+
+];
+
+return cachedData;
+
+}
+
+
+/* ================================
+TEXT SEARCH
+================================ */
+
+function textOf(item){
+
+return [
+
+item.title,
+item.description,
+item.subject,
+item.year,
+item.category,
+item.level,
+item.class_name,
+item.board,
+item.course,
+item.type,
+item.materialType
+
+]
+.filter(
+x =>
+x !== null &&
+x !== undefined
+)
+.join(" ")
+.toLowerCase();
+
+}
+
+
+/* ================================
+CATEGORY MATCH
+================================ */
+
+function categoryMatches(item,category){
+
+const t =
+textOf(item);
+
+const c =
+category.toLowerCase();
+
+
+/* CIT FIRST */
+
+if(c==="cit"){
+
+return (
+(/\bcit\b/.test(t)) ||
+/certificate in information technology/.test(t)
+);
+
+}
+
+
+/* COMPUTER */
+
+if(c==="computer"){
+
+return (
+/computer|cit|dit|information technology|programming|html|css|c\+\+|java|dbms/
+.test(t)
+);
+
+}
+
+
+/* SCHOOL */
+
+if(c==="school"){
+
+return (
+/school|9th|10th|11th|12th|matric|intermediate/
+.test(t)
+);
+
+}
+
+
+return t.includes(c);
+
+}
+
+
+/* ================================
+TYPE MATCH
+================================ */
+
+function typeMatches(item,type){
+
+const t =
+String(type || "")
+.toLowerCase();
+
+const mt =
+String(item.materialType || "")
+.toLowerCase();
+
+if(mt===t)
+return true;
+
+
+if(t==="notes"){
+
+return (
+mt==="note" ||
+/note|notes|book/.test(textOf(item))
+);
+
+}
+
+
+if(t==="practicals"){
+
+return (
+mt==="practical" ||
+/practical|program|lab/.test(textOf(item))
+);
+
+}
+
+
+if(t==="past papers"){
+
+return (
+mt==="past paper" ||
+/past paper|paper|previous/.test(textOf(item))
+);
+
+}
+
+
+if(t==="tests"){
+
+return (
+mt==="test" ||
+/test|quiz|mcq/.test(textOf(item))
+);
+
+}
+
+
+if(t==="courses"){
+
+return (
+mt==="course" ||
+/course|class|chapter/.test(textOf(item))
+);
+
+}
+
+return false;
+
+}
+
+
+/* ================================
+NAVIGATION
+================================ */
+
+function openCategorySection(
+category,
+type
+){
+
+window.location.href =
+"index.html?category="
++
+encodeURIComponent(category)
++
+"&focus="
++
+encodeURIComponent(type);
+
+}
+
+
+/* ================================
+SMART SUGGESTIONS
+================================ */
+
+let suggestionTimer = null;
+
+async function buildSuggestions(query){
+
+const q =
+normalize(query);
+
+if(!q)
+return [];
+
+
+const suggestions = [];
+
+const categories =
+Object.keys(CATEGORY_INFO);
+
+const qWords =
+words(q);
+
+
+/* --------------------------------
+CATEGORY + TYPE
+-------------------------------- */
+
+for(const category of categories){
+
+const categoryWord =
+normalize(category);
+
+const categoryFound =
+qWords.includes(categoryWord)
+||
+q.includes(categoryWord);
+
+
+if(!categoryFound)
+continue;
+
+
+const types = [
+
+{
+name:"courses",
+label:"Courses",
+icon:"📚"
+},
+
+{
+name:"notes",
+label:"Notes",
+icon:"📘"
+},
+
+{
+name:"practicals",
+label:"Practicals",
+icon:"🧪"
+},
+
+{
+name:"past papers",
+label:"Past Papers",
+icon:"📄"
+},
+
+{
+name:"tests",
+label:"Tests",
+icon:"🎯"
+}
+
+];
+
+
+const typeSearch = {
+
+courses:[
+"course",
+"courses"
+],
+
+notes:[
+"note",
+"notes"
+],
+
+practicals:[
+"practical",
+"practicals"
+],
+
+"past papers":[
+"paper",
+"papers",
+"past",
+"past paper"
+],
+
+tests:[
+"test",
+"tests",
+"quiz",
+"mcq"
+]
+
+};
+
+
+let selectedType = null;
+
+
+for(const type of types){
+
+if(
+typeSearch[type.name]
+.some(
+word => q.includes(word)
+)
+){
+
+selectedType = type;
+break;
+
+}
+
+}
+
+
+/* if user typed CIT practical */
+
+if(selectedType){
+
+suggestions.push({
+
+kind:"nav",
+icon:selectedType.icon,
+
+title:
+category+
+" "+
+selectedType.label,
+
+sub:
+"Open "+category+
+" → "+
+selectedType.label,
+
+category:category,
+
+type:selectedType.name
+
+});
+
+}
+
+/* if only CIT */
+
+else{
+
+for(const type of types){
+
+suggestions.push({
+
+kind:"nav",
+
+icon:type.icon,
+
+title:
+category+
+" "+
+type.label,
+
+sub:
+"Open "+category+
+" → "+
+type.label,
+
+category:category,
+
+type:type.name
+
+});
+
+}
+
+}
+
+}
+
+
+/* --------------------------------
+EXACT MATERIAL MATCHES
+-------------------------------- */
+
+const all =
+await getAllData();
+
+const results =
+all.map(item=>{
+
+const text =
+textOf(item);
+
+const title =
+normalize(item.title);
+
+let score=0;
+
+
+if(title===q)
+score+=100;
+
+
+if(title.includes(q))
+score+=60;
+
+
+qWords.forEach(word=>{
+
+if(text.includes(word))
+score+=10;
+
+});
+
+
+return {
+item,
+score
+};
+
+})
+.filter(x=>x.score>0)
+.sort(
+(a,b)=>b.score-a.score
+);
+
+
+const icons = {
+
+COURSE:"📚",
+NOTE:"📘",
+PRACTICAL:"🧪",
+"PAST PAPER":"📄",
+TEST:"🎯"
+
+};
+
+
+const already =
+new Set();
+
+
+for(
+const result of results.slice(0,8)
+){
+
+const item =
+result.item;
+
+const key =
+String(
+item.id ||
+item.title
+);
+
+if(already.has(key))
+continue;
+
+already.add(key);
+
+
+suggestions.push({
+
+kind:"item",
+
+icon:
+icons[item.materialType]
+||
+"📚",
+
+title:
+item.title ||
+"Untitled",
+
+sub:
+item.materialType
++
+(
+item.subject
+?
+" • "+item.subject
+:
+""
+),
+
+item:item
+
+});
+
+}
+
+
+return suggestions.slice(
+0,
+12
+);
+
+}
+
+
+/* ================================
+SHOW SUGGESTIONS
+================================ */
+
+async function handleSearchInput(){
+
+const input =
+document.getElementById(
+"searchInput"
+);
+
+const box =
+document.getElementById(
+"suggestions"
+);
+
+const q =
+input.value.trim();
+
+
+clearTimeout(
+suggestionTimer
+);
+
+
+if(!q){
+
+box.classList.remove(
+"active"
+);
+
+box.innerHTML="";
+
+return;
+
+}
+
+
+suggestionTimer =
+setTimeout(
+async function(){
+
+box.innerHTML = `
+
+<div class="suggestion">
+
+<div class="suggestion-icon">
+⏳
+</div>
+
+<div>
+
+<div class="suggestion-main">
+Searching...
+</div>
+
+<div class="suggestion-sub">
+Finding your StudyHub material
+</div>
+
+</div>
+
+</div>
+
+`;
+
+box.classList.add("active");
+
+
+try{
+
+const list =
+await buildSuggestions(q);
+
+
+window.currentSuggestions =
+list;
+
+
+if(!list.length){
+
+box.innerHTML = `
+
+<div class="suggestion">
+
+<div class="suggestion-icon">
+🔎
+</div>
+
+<div>
+
+<div class="suggestion-main">
+No matching suggestion
+</div>
+
+<div class="suggestion-sub">
+Press Search to search all material
+</div>
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML =
+list.map(
+(s,index)=>{
+
+
+if(s.kind==="nav"){
+
+return `
+
+<div
+class="suggestion"
+onclick="openCategorySection(
+'${enc(s.category)}',
+'${enc(s.type)}'
+)"
+>
+
+<div class="suggestion-icon">
+${s.icon}
+</div>
+
+<div>
+
+<div class="suggestion-main">
+${safe(s.title)}
+</div>
+
+<div class="suggestion-sub">
+${safe(s.sub)}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+return `
+
+<div
+class="suggestion"
+onclick="openSuggestionItem(${index})"
+>
+
+<div class="suggestion-icon">
+${s.icon}
+</div>
+
+<div>
+
+<div class="suggestion-main">
+${safe(s.title)}
+</div>
+
+<div class="suggestion-sub">
+${safe(s.sub)}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+).join("");
+
+
+}catch(error){
+
+console.log(error);
+
+box.innerHTML="";
+
+}
+
+},
+180
+);
+
+}
+
+
+/* ================================
+KEYBOARD SEARCH
+================================ */
+
+function handleSearchKey(event){
+
+if(event.key==="Enter"){
+
+event.preventDefault();
+
+searchSite();
+
+}
+
+if(event.key==="Escape"){
+
+document
+.getElementById("suggestions")
+.classList.remove("active");
+
+}
+
+}
+
+
+/* ================================
+OPEN SUGGESTION ITEM
+================================ */
+
+async function openSuggestionItem(index){
+
+const suggestion =
+(
+window.currentSuggestions ||
+[]
+)[index];
+
+
+if(!suggestion)
+return;
+
+
+if(suggestion.kind!=="item")
+return;
+
+
+const item =
+suggestion.item;
+
+
+document
+.getElementById("suggestions")
+.classList.remove("active");
+
+
+const categories =
+Object.keys(CATEGORY_INFO);
+
+
+const category =
+categories.find(
+c =>
+categoryMatches(
+item,
+c
+)
+);
+
+
+if(category){
+
+window.location.href =
+"index.html?category="
++
+encodeURIComponent(category)
++
+"&focus="
++
+encodeURIComponent(
+item.materialType
+);
+
+return;
+
+}
+
+
+/* fallback */
+
+showDirectSearchItem(item);
+
+}
+
+
+/* ================================
+DIRECT SEARCH RESULT
+================================ */
+
+function showDirectSearchItem(item){
+
+const results =
+document.getElementById(
+"searchResults"
+);
+
+results.innerHTML =
+renderSearchResult(item);
+
+results.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+
+/* ================================
+SEARCH SITE
+================================ */
+
+async function searchSite(){
+
+const input =
+document.getElementById(
+"searchInput"
+);
+
+const results =
+document.getElementById(
+"searchResults"
+);
+
+const query =
+normalize(input.value);
+
+
+document
+.getElementById("suggestions")
+.classList.remove("active");
+
+
+if(!query){
+
+results.innerHTML="";
+
+return;
+
+}
+
+
+results.innerHTML = `
+
+<div class="search-result">
+⏳ Searching StudyHub...
+</div>
+
+`;
+
+
+const all =
+await getAllData();
+
+const qWords =
+words(query);
+
+
+const found =
+all.map(item=>{
+
+const text =
+textOf(item);
+
+const title =
+normalize(item.title);
+
+const description =
+normalize(item.description);
+
+let score=0;
+
+
+if(title===query)
+score+=100;
+
+if(title.includes(query))
+score+=50;
+
+if(description.includes(query))
+score+=15;
+
+
+qWords.forEach(word=>{
+
+if(text.includes(word))
+score+=8;
+
+});
+
+
+return {
+item,
+score
+};
+
+})
+.filter(x=>x.score>0)
+.sort(
+(a,b)=>b.score-a.score
+);
+
+
+if(!found.length){
+
+results.innerHTML = `
+
+<div class="search-result">
+
+<strong>
+❌ No result found
+</strong>
+
+<p>
+Try:
+CIT,
+CIT practical,
+CIT notes,
+Physics,
+Physics practical
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+results.innerHTML = `
+
+<div class="search-result">
+
+<strong>
+🔎 ${found.length}
+result(s) found for
+"${safe(input.value)}"
+</strong>
+
+</div>
+
+`
+
++
+
+found
+.slice(0,30)
+.map(x =>
+renderSearchResult(x.item)
+)
+.join("");
+
+}
+
+
+/* ================================
+RENDER SEARCH RESULT
+================================ */
+
+function renderSearchResult(item){
+
+const type =
+item.materialType;
+
+const url =
+cleanUrl(
+item.file_url ||
+item.url
+);
+
+
+let button="";
+
+
+if(type==="PAST PAPER"){
+
+const key =
+"paper_"+
+Date.now()+
+Math.random();
+
+window.searchPapers =
+window.searchPapers ||
+{};
+
+window.searchPapers[key] =
+item;
+
+
+button = `
+
+<button
+class="material-btn"
+onclick="openPaper(
+window.searchPapers['${key}']
+)"
+>
+
+📖 Open Paper
+
+</button>
+
+`;
+
+}
+
+
+else if(
+type==="NOTE" ||
+type==="PRACTICAL"
+){
+
+if(url){
+
+if(isImage(url)){
+
+button = `
+
+<button
+class="material-btn"
+onclick="decodeOpen(
+'${enc(url)}'
+)"
+>
+
+🖼 View Image
+
+</button>
+
+`;
+
+}else{
+
+button = `
+
+<a
+class="material-btn"
+href="${safe(url)}"
+target="_blank"
+rel="noopener"
+>
+
+Open File →
+
+</a>
+
+`;
+
+}
+
+}else{
+
+button = `
+
+<button
+class="material-btn"
+onclick="openCategoryFromTitle(
+'${enc(item.title || "")}'
+)"
+>
+
+📚 Open Section
+
+</button>
+
+`;
+
+}
+
+}
+
+
+else if(type==="COURSE"){
+
+button = `
+
+<button
+class="material-btn"
+onclick="openCategoryFromTitle(
+'${enc(item.title || "")}'
+)"
+>
+
+📚 Open Course
+
+</button>
+
+`;
+
+}
+
+
+else if(type==="TEST"){
+
+button = `
+
+<button
+class="material-btn"
+onclick="openCategoryFromTitle(
+'${enc(item.title || "")}'
+)"
+>
+
+🎯 Open Test
+
+</button>
+
+`;
+
+}
+
+
+return `
+
+<div class="search-result">
+
+<span class="material-type">
+${safe(type)}
+</span>
+
+<strong>
+${safe(item.title)}
+</strong>
+
+${
+item.subject
+?
+`<p>📚 ${safe(item.subject)}</p>`
+:
+""
+}
+
+<p>
+${safe(item.description)}
+</p>
+
+${button}
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+OPEN CATEGORY FROM TITLE
+================================ */
+
+async function openCategoryFromTitle(title){
+
+const decoded =
+decodeURIComponent(title);
+
+
+const all =
+await getAllData();
+
+
+const item =
+all.find(
+x =>
+normalize(x.title)
+===
+normalize(decoded)
+);
+
+
+if(!item)
+return;
+
+
+const categories =
+Object.keys(CATEGORY_INFO);
+
+
+const category =
+categories.find(
+c =>
+categoryMatches(
+item,
+c
+)
+);
+
+
+if(category){
+
+window.location.href =
+"index.html?category="
++
+encodeURIComponent(category)
++
+"&focus="
++
+encodeURIComponent(
+item.materialType
+);
+
+}
+
+}
+
+
+/* ================================
+PAPER SYSTEM
+================================ */
 
 function getPaperPages(item){
 
-    if(
-        Array.isArray(item.pages) &&
-        item.pages.length
-    ){
+if(
+Array.isArray(item.pages)
+&&
+item.pages.length
+){
 
-        return item.pages
-            .map((p,i)=>{
+return item.pages
+.map(
+(p,i)=>{
 
-                if(typeof p === "string"){
+if(typeof p==="string"){
 
-                    return {
-                        page:i+1,
-                        url:p
-                    };
+return {
+page:i+1,
+url:p
+};
 
-                }
+}
 
-                return {
+return {
 
-                    page:
-                        p.page ||
-                        i+1,
+page:p.page || i+1,
 
-                    url:
-                        p.url ||
-                        p.file_url ||
-                        ""
+url:
+p.url ||
+p.file_url ||
+""
 
-                };
+};
 
-            })
-            .filter(x=>x.url);
-
-    }
-
-
-    if(item.file_url){
-
-        return [
-
-            {
-                page:1,
-                url:item.file_url
-            }
-
-        ];
-
-    }
-
-
-    return [];
+}
+)
+.filter(
+x=>x.url
+);
 
 }
 
 
-/* =====================================================
-   PAPER VIEWER
-===================================================== */
+if(item.file_url){
+
+return [
+
+{
+page:1,
+url:item.file_url
+}
+
+];
+
+}
+
+
+return [];
+
+}
+
 
 let currentPaperPages=[];
 let currentPaperIndex=0;
@@ -2120,1272 +3097,1115 @@ let currentPaperIndex=0;
 
 function openPaper(item){
 
-    currentPaperPages =
-        getPaperPages(item);
+currentPaperPages =
+getPaperPages(item);
 
-    currentPaperIndex=0;
-
-
-    if(!currentPaperPages.length){
-
-        alert(
-            "Paper file available nahi hai."
-        );
-
-        return;
-
-    }
+currentPaperIndex=0;
 
 
-    document.getElementById(
-        "viewerTitle"
-    ).textContent =
-        item.title || "Past Paper";
+if(!currentPaperPages.length){
+
+alert(
+"Paper file available nahi hai."
+);
+
+return;
+
+}
 
 
-    document
-        .getElementById("paperViewer")
-        .classList
-        .add("active");
+document.getElementById(
+"viewerTitle"
+).textContent =
+item.title ||
+"Past Paper";
 
 
-    showCurrentPaperPage();
+document
+.getElementById("paperViewer")
+.classList.add("active");
+
+
+showCurrentPaperPage();
 
 }
 
 
 function showCurrentPaperPage(){
 
-    const page =
-        currentPaperPages[
-            currentPaperIndex
-        ];
+const page =
+currentPaperPages[
+currentPaperIndex
+];
 
 
-    const content =
-        document.getElementById(
-            "paperContent"
-        );
+const url =
+cleanUrl(page.url);
 
 
-    const url =
-        safeUrl(page.url);
+const content =
+document.getElementById(
+"paperContent"
+);
 
 
-    if(!url){
+if(!url){
 
-        content.innerHTML = `
+content.innerHTML =
+"<div style='padding:40px'>❌ Invalid file URL.</div>";
 
-            <div style="padding:40px 20px;">
-
-                ❌ Invalid file URL.
-
-            </div>
-
-        `;
-
-    }
-
-    else if(isImage(page.url)){
-
-        content.innerHTML = `
-
-            <img
-                src="${url}"
-                alt="Paper Page ${currentPaperIndex+1}"
-                onclick="openImageViewer('${url}')"
-                style="cursor:zoom-in;">
-
-        `;
-
-    }
-
-    else{
-
-        content.innerHTML = `
-
-            <div style="padding:40px 20px;">
-
-                <div style="
-                    font-size:55px;
-                    margin-bottom:15px;">
-                    📄
-                </div>
-
-                <h3>
-                    Page ${currentPaperIndex+1}
-                </h3>
-
-                <a
-                    class="paper-link"
-                    href="${url}"
-                    target="_blank"
-                    rel="noopener">
-
-                    Open Page →
-
-                </a>
-
-            </div>
-
-        `;
-
-    }
+}
 
 
-    document.getElementById(
-        "pageNumber"
-    ).textContent =
-        `Page ${currentPaperIndex+1} / ${currentPaperPages.length}`;
+else if(isImage(url)){
+
+content.innerHTML = `
+
+<img
+src="${safe(url)}"
+alt="Paper Page"
+onclick="decodeOpen('${enc(url)}')"
+>
+
+`;
+
+}
 
 
-    document.getElementById(
-        "prevPageBtn"
-    ).disabled =
-        currentPaperIndex === 0;
+else{
+
+content.innerHTML = `
+
+<div style="padding:40px">
+
+<div style="font-size:55px">
+📄
+</div>
+
+<h3>
+Page ${currentPaperIndex+1}
+</h3>
+
+<a
+class="paper-link"
+href="${safe(url)}"
+target="_blank"
+rel="noopener"
+>
+
+Open Page →
+
+</a>
+
+</div>
+
+`;
+
+}
 
 
-    document.getElementById(
-        "nextPageBtn"
-    ).disabled =
-        currentPaperIndex ===
-        currentPaperPages.length-1;
+document.getElementById(
+"pageNumber"
+).textContent =
+`Page ${currentPaperIndex+1} / ${currentPaperPages.length}`;
+
+
+document.getElementById(
+"prevPageBtn"
+).disabled =
+currentPaperIndex===0;
+
+
+document.getElementById(
+"nextPageBtn"
+).disabled =
+currentPaperIndex===
+currentPaperPages.length-1;
 
 }
 
 
 function nextPaperPage(){
 
-    if(
-        currentPaperIndex <
-        currentPaperPages.length-1
-    ){
+if(
+currentPaperIndex
+<
+currentPaperPages.length-1
+){
 
-        currentPaperIndex++;
+currentPaperIndex++;
 
-        showCurrentPaperPage();
+showCurrentPaperPage();
 
-    }
+}
 
 }
 
 
 function previousPaperPage(){
 
-    if(currentPaperIndex>0){
+if(currentPaperIndex>0){
 
-        currentPaperIndex--;
+currentPaperIndex--;
 
-        showCurrentPaperPage();
+showCurrentPaperPage();
 
-    }
+}
 
 }
 
 
 function closePaperViewer(){
 
-    document
-        .getElementById("paperViewer")
-        .classList
-        .remove("active");
+document
+.getElementById("paperViewer")
+.classList.remove("active");
 
 }
 
 
-/* =====================================================
-   MATERIAL IMAGE HTML
-===================================================== */
+/* ================================
+IMAGE VIEWER
+================================ */
 
-function getMaterialTop(item,defaultIcon){
+function openImageViewer(url){
 
-    const url =
-        item.file_url ||
-        item.url ||
-        "";
+if(!url)
+return;
 
+document.getElementById(
+"fullImage"
+).src=url;
 
-    if(isImage(url)){
-
-        const safeImageUrl =
-            safeUrl(url);
-
-
-        return `
-
-            <div class="material-top">
-
-                <img
-                    src="${safeImageUrl}"
-                    alt="${safe(item.title)}"
-                    loading="lazy"
-                    onclick="openImageViewer('${safeImageUrl}')">
-
-            </div>
-
-        `;
-
-    }
-
-
-    return `
-
-        <div class="material-top">
-
-            ${safe(defaultIcon)}
-
-        </div>
-
-    `;
+document
+.getElementById("imageViewer")
+.classList.add("active");
 
 }
 
 
-/* =====================================================
-   MATERIAL BUTTON
-===================================================== */
+function closeImageViewer(){
 
-function getFileButton(url,label){
+document
+.getElementById("imageViewer")
+.classList.remove("active");
 
-    const cleanUrl =
-        safeUrl(url);
-
-
-    if(!cleanUrl){
-        return "";
-    }
-
-
-    if(isImage(url)){
-
-        return `
-
-            <button
-                class="material-btn"
-                onclick="openImageViewer('${cleanUrl}')">
-
-                🖼 View Image
-
-            </button>
-
-        `;
-
-    }
-
-
-    return `
-
-        <a
-            class="material-btn"
-            href="${cleanUrl}"
-            target="_blank"
-            rel="noopener">
-
-            ${safe(label)} →
-
-        </a>
-
-    `;
+document.getElementById(
+"fullImage"
+).src="";
 
 }
 
 
-/* =====================================================
-   CATEGORY MATERIALS
-===================================================== */
+/* ================================
+MATERIAL TOP
+================================ */
 
-async function loadCategory(category){
+function getMaterialTop(
+item,
+icon
+){
 
-    const [
-        notes,
-        courses,
-        practicals,
-        papers,
-        tests
-    ] =
-        await Promise.all([
-
-            loadNotes(),
-            loadCourses(),
-            loadPracticals(),
-            loadPastPapers(),
-            loadTests()
-
-        ]);
+const url =
+cleanUrl(
+item.file_url ||
+item.url
+);
 
 
-    const notesFiltered =
-        notes.filter(
-            x=>belongsToCategory(x,category)
-        );
+if(
+url &&
+isImage(url)
+){
 
+return `
 
-    const coursesFiltered =
-        courses.filter(
-            x=>belongsToCategory(x,category)
-        );
+<div class="material-top">
 
+<img
+src="${safe(url)}"
+alt="${safe(item.title)}"
+loading="lazy"
+onclick="decodeOpen('${enc(url)}')"
+>
 
-    const practicalsFiltered =
-        practicals.filter(
-            x=>belongsToCategory(x,category)
-        );
+</div>
 
-
-    const papersFiltered =
-        papers.filter(
-            x=>belongsToCategory(x,category)
-        );
-
-
-    const testsFiltered =
-        tests.filter(
-            x=>belongsToCategory(x,category)
-        );
-
-
-    showMaterials([
-
-        ...coursesFiltered.map(x=>({
-
-            ...x,
-
-            type:"COURSE",
-
-            displayUrl:"courses.html",
-
-            displayIcon:
-                x.icon || "📚"
-
-        })),
-
-
-        ...notesFiltered.map(x=>({
-
-            ...x,
-
-            type:"NOTE",
-
-            displayUrl:
-                x.file_url ||
-                x.url ||
-                "",
-
-            displayIcon:
-                x.icon || "📘"
-
-        }))
-
-    ]);
-
-
-    showPracticals(
-        practicalsFiltered
-    );
-
-
-    showPapers(
-        papersFiltered
-    );
-
-
-    showTests(
-        testsFiltered
-    );
+`;
 
 }
 
 
-/* =====================================================
-   SHOW MATERIALS
-===================================================== */
+return `
+
+<div class="material-top">
+${icon}
+</div>
+
+`;
+
+}
+
+
+/* ================================
+FILE BUTTON
+================================ */
+
+function getFileButton(
+url,
+label
+){
+
+const u =
+cleanUrl(url);
+
+
+if(!u)
+return "";
+
+
+if(isImage(u)){
+
+return `
+
+<button
+class="material-btn"
+onclick="decodeOpen('${enc(u)}')"
+>
+
+🖼 View Image
+
+</button>
+
+`;
+
+}
+
+
+return `
+
+<a
+class="material-btn"
+href="${safe(u)}"
+target="_blank"
+rel="noopener"
+>
+
+${safe(label)} →
+
+</a>
+
+`;
+
+}
+
+
+/* ================================
+SHOW MATERIALS
+================================ */
 
 function showMaterials(items){
 
-    const container =
-        document.getElementById(
-            "categoryMaterials"
-        );
+const container =
+document.getElementById(
+"categoryMaterials"
+);
 
 
-    if(!items.length){
+if(!items.length){
 
-        container.innerHTML =
-            `<div class="empty">
-                📚 Is category mein material available nahi hai.
-            </div>`;
+container.innerHTML = `
 
-        return;
+<div class="empty">
 
-    }
+📚 Is category mein
+material available nahi hai.
 
+</div>
 
-    container.innerHTML =
-        items.map(item=>{
+`;
 
-            const imageUrl =
-                item.file_url ||
-                item.url ||
-                "";
-
-
-            let topHTML =
-                `<div class="material-top">
-                    ${safe(item.displayIcon)}
-                </div>`;
-
-
-            if(
-                item.type === "NOTE" &&
-                isImage(imageUrl)
-            ){
-
-                const url =
-                    safeUrl(imageUrl);
-
-
-                topHTML = `
-
-                    <div class="material-top">
-
-                        <img
-                            src="${url}"
-                            alt="${safe(item.title)}"
-                            loading="lazy"
-                            onclick="openImageViewer('${url}')">
-
-                    </div>
-
-                `;
-
-            }
-
-
-            let buttonHTML="";
-
-
-            if(item.type === "NOTE"){
-
-                buttonHTML =
-                    getFileButton(
-                        imageUrl,
-                        "Open Note"
-                    );
-
-            }
-
-            else{
-
-                buttonHTML = `
-
-                    <a
-                        class="material-btn"
-                        href="${safeUrl(item.displayUrl)}"
-                        target="_blank"
-                        rel="noopener">
-
-                        Open Course →
-
-                    </a>
-
-                `;
-
-            }
-
-
-            return `
-
-            <div class="material-card">
-
-                ${topHTML}
-
-                <div class="material-content">
-
-                    <span class="material-type">
-                        ${safe(item.type)}
-                    </span>
-
-                    <h3>
-                        ${safe(item.title)}
-                    </h3>
-
-                    <p>
-                        ${safe(item.description)}
-                    </p>
-
-                    ${buttonHTML}
-
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("");
+return;
 
 }
 
 
-/* =====================================================
-   PRACTICALS
-===================================================== */
+container.innerHTML =
+items.map(item=>{
+
+const isNote =
+item.type==="NOTE";
+
+
+const icon =
+isNote
+?
+(item.icon || "📘")
+:
+(item.icon || "📚");
+
+
+return `
+
+<div class="material-card">
+
+${getMaterialTop(
+item,
+icon
+)}
+
+<div class="material-content">
+
+<span class="material-type">
+
+${safe(item.type)}
+
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+${
+isNote
+?
+getFileButton(
+item.file_url ||
+item.url,
+"Open Note"
+)
+:
+`<div class="image-label">
+Course available
+</div>`
+}
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* ================================
+SHOW PRACTICALS
+================================ */
 
 function showPracticals(items){
 
-    const container =
-        document.getElementById(
-            "categoryPracticals"
-        );
+const container =
+document.getElementById(
+"categoryPracticals"
+);
 
 
-    if(!items.length){
+if(!items.length){
 
-        container.innerHTML =
-            `<div class="empty">
-                🧪 Practicals available nahi hain.
-            </div>`;
+container.innerHTML = `
 
-        return;
+<div class="empty">
 
-    }
+🧪 Practicals available nahi hain.
 
+</div>
 
-    container.innerHTML =
-        items.map(item=>{
+`;
 
-            const url =
-                item.file_url ||
-                item.url ||
-                "";
-
-
-            return `
-
-            <div class="material-card">
-
-                ${getMaterialTop(
-                    item,
-                    "🧪"
-                )}
-
-                <div class="material-content">
-
-                    <span class="material-type">
-                        PRACTICAL
-                    </span>
-
-                    <h3>
-                        ${safe(item.title)}
-                    </h3>
-
-                    <p>
-                        ${safe(item.description)}
-                    </p>
-
-                    ${
-                        url
-                        ?
-                        getFileButton(
-                            url,
-                            "Open Practical"
-                        )
-                        :
-                        ""
-                    }
-
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("");
+return;
 
 }
 
 
-/* =====================================================
-   PAST PAPERS
-===================================================== */
+container.innerHTML =
+items.map(item=>`
+
+<div class="material-card">
+
+${getMaterialTop(
+item,
+"🧪"
+)}
+
+<div class="material-content">
+
+<span class="material-type">
+PRACTICAL
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+${getFileButton(
+item.file_url ||
+item.url,
+"Open Practical"
+)}
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* ================================
+SHOW PAPERS
+================================ */
 
 function showPapers(items){
 
-    const container =
-        document.getElementById(
-            "categoryPapers"
-        );
+const container =
+document.getElementById(
+"categoryPapers"
+);
 
 
-    if(!items.length){
-
-        container.innerHTML =
-            `<div class="empty">
-                📄 Past papers available nahi hain.
-            </div>`;
-
-        return;
-
-    }
+window.categoryPapers =
+items;
 
 
-    window.categoryPapers =
-        items;
+if(!items.length){
+
+container.innerHTML = `
+
+<div class="empty">
+
+📄 Past papers available nahi hain.
+
+</div>
+
+`;
+
+return;
+
+}
 
 
-    container.innerHTML =
-        items.map((item,index)=>{
+container.innerHTML =
+items.map(
+(item,index)=>{
 
-            const pages =
-                getPaperPages(item);
+const pages =
+getPaperPages(item);
 
-
-            let preview="";
-
-
-            if(
-                pages.length &&
-                isImage(pages[0].url)
-            ){
-
-                const url =
-                    safeUrl(
-                        pages[0].url
-                    );
+const firstUrl =
+pages[0]?.url || "";
 
 
-                preview = `
+return `
 
-                    <div class="material-top">
+<div class="material-card">
 
-                        <img
-                            src="${url}"
-                            alt="Past Paper"
-                            loading="lazy"
-                            onclick="openImageViewer('${url}')">
+${
+firstUrl &&
+isImage(firstUrl)
 
-                    </div>
+?
 
-                `;
+`
 
-            }
+<div class="material-top">
 
-            else{
+<img
+src="${safe(cleanUrl(firstUrl))}"
+alt="Past Paper"
+loading="lazy"
+onclick="decodeOpen('${enc(cleanUrl(firstUrl))}')"
+>
 
-                preview = `
+</div>
 
-                    <div class="material-top">
-                        📄
-                    </div>
+`
 
-                `;
+:
 
-            }
+`
 
+<div class="material-top">
+📄
+</div>
 
-            return `
+`
+}
 
-            <div class="material-card">
+<div class="material-content">
 
-                ${preview}
+<span class="material-type">
 
-                <div class="material-content">
+${safe(
+item.year ||
+"PAST PAPER"
+)}
 
-                    <span class="material-type">
+</span>
 
-                        ${safe(
-                            item.year ||
-                            "PAST PAPER"
-                        )}
+<h3>
+${safe(item.title)}
+</h3>
 
-                    </span>
+${
+item.subject
+?
+`<p>📚 ${safe(item.subject)}</p>`
+:
+""
+}
 
-                    <h3>
-                        ${safe(item.title)}
-                    </h3>
+<p>
+${safe(item.description)}
+</p>
 
-                    ${
-                        item.subject
-                        ?
-                        `<p>
-                            📚 ${safe(item.subject)}
-                        </p>`
-                        :
-                        ""
-                    }
+${
+pages.length
+?
 
-                    ${
-                        item.description
-                        ?
-                        `<p>
-                            ${safe(item.description)}
-                        </p>`
-                        :
-                        ""
-                    }
+`
 
-                    ${
-                        pages.length
-                        ?
-                        `<button
-                            class="material-btn"
-                            onclick="openPaperByIndex(${index})">
+<button
+class="material-btn"
+onclick="openPaperByIndex(${index})"
+>
 
-                            📖 Read Paper
-                            ${
-                                pages.length > 1
-                                ? `(${pages.length} Pages)`
-                                : ""
-                            }
+📖 Read Paper
 
-                        </button>`
-                        :
-                        `<div class="image-label">
-                            File available nahi hai
-                        </div>`
-                    }
+${
+pages.length>1
+?
+`(${pages.length} Pages)`
+:
+""
+}
 
-                </div>
+</button>
 
-            </div>
+`
 
-            `;
+:
+""
 
-        }).join("");
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+).join("");
 
 }
 
 
 function openPaperByIndex(index){
 
-    const item =
-        window.categoryPapers[index];
+if(
+window.categoryPapers &&
+window.categoryPapers[index]
+){
 
-    if(item){
+openPaper(
+window.categoryPapers[index]
+);
 
-        openPaper(item);
-
-    }
+}
 
 }
 
 
-/* =====================================================
-   TESTS
-===================================================== */
+/* ================================
+TEST QUESTIONS
+================================ */
 
 function getQuestionCount(item){
 
-    if(
-        Array.isArray(
-            item.questions
-        )
-    ){
+if(
+Array.isArray(item.questions)
+){
 
-        return item.questions.length;
-
-    }
-
-
-    if(
-        typeof item.questions === "number"
-    ){
-
-        return item.questions;
-
-    }
-
-
-    if(item.questions){
-
-        try{
-
-            const q =
-                JSON.parse(
-                    item.questions
-                );
-
-
-            if(Array.isArray(q)){
-
-                return q.length;
-
-            }
-
-
-            if(
-                typeof q === "number"
-            ){
-
-                return q;
-
-            }
-
-        }
-        catch(e){
-
-            return Number(
-                item.questions
-            ) || 0;
-
-        }
-
-    }
-
-
-    return 0;
+return item.questions.length;
 
 }
 
+
+if(
+typeof item.questions==="number"
+){
+
+return item.questions;
+
+}
+
+
+if(item.questions){
+
+try{
+
+const q =
+typeof item.questions==="string"
+?
+JSON.parse(item.questions)
+:
+item.questions;
+
+return Array.isArray(q)
+?
+q.length
+:
+Number(q)||0;
+
+}catch(e){
+
+return Number(item.questions)||0;
+
+}
+
+}
+
+
+return 0;
+
+}
+
+
+/* ================================
+SHOW TESTS
+================================ */
 
 function showTests(items){
 
-    const container =
-        document.getElementById(
-            "categoryTests"
-        );
-
-
-    if(!items.length){
-
-        container.innerHTML =
-            `<div class="empty">
-                🎯 Tests available nahi hain.
-            </div>`;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        items.map(item=>{
-
-            const count =
-                getQuestionCount(item);
-
-
-            return `
-
-            <div class="material-card">
-
-                <div class="material-top">
-                    🎯
-                </div>
-
-                <div class="material-content">
-
-                    <span class="material-type">
-                        ${count} QUESTIONS
-                    </span>
-
-                    <h3>
-                        ${safe(item.title)}
-                    </h3>
-
-                    <p>
-                        ${safe(item.description)}
-                    </p>
-
-                    <button
-                        class="material-btn"
-                        onclick="startTest('${safe(item.id)}')">
-
-                        Start Test →
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-
-        }).join("");
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-async function searchSite(){
-
-    const input =
-        document.getElementById(
-            "searchInput"
-        );
-
-
-    const query =
-        input.value
-        .trim()
-        .toLowerCase();
-
-
-    const results =
-        document.getElementById(
-            "searchResults"
-        );
-
-
-    if(!query){
-
-        results.innerHTML="";
-
-        return;
-
-    }
-
-
-    results.innerHTML = `
-
-        <div class="search-result">
-
-            ⏳ Searching...
-
-        </div>
-
-    `;
-
-
-    const [
-        courses,
-        notes,
-        practicals,
-        papers,
-        tests
-    ] =
-        await Promise.all([
-
-            loadCourses(),
-            loadNotes(),
-            loadPracticals(),
-            loadPastPapers(),
-            loadTests()
-
-        ]);
-
-
-    const all = [
-
-        ...courses.map(x=>({
-
-            ...x,
-            materialType:"COURSE"
-
-        })),
-
-        ...notes.map(x=>({
-
-            ...x,
-            materialType:"NOTE"
-
-        })),
-
-        ...practicals.map(x=>({
-
-            ...x,
-            materialType:"PRACTICAL"
-
-        })),
-
-        ...papers.map(x=>({
-
-            ...x,
-            materialType:"PAST PAPER"
-
-        })),
-
-        ...tests.map(x=>({
-
-            ...x,
-            materialType:"TEST"
-
-        }))
-
-    ];
-
-
-    const found =
-        all.filter(item=>{
-
-            const text =
-                [
-
-                    item.title,
-                    item.description,
-                    item.subject,
-                    item.year,
-                    item.category,
-                    item.level,
-                    item.class_name,
-                    item.board,
-                    item.course,
-                    item.materialType
-
-                ]
-                .filter(Boolean)
-                .join(" ")
-                .toLowerCase();
-
-
-            return text.includes(query);
-
-        });
-
-
-    if(!found.length){
-
-        results.innerHTML =
-            `<div class="search-result">
-                ❌ No result found.
-            </div>`;
-
-        return;
-
-    }
-
-
-    results.innerHTML =
-        found.map(item=>{
-
-            let button="";
-
-
-            const url =
-                item.file_url ||
-                item.url ||
-                "";
-
-
-            if(
-                item.materialType ===
-                "PAST PAPER"
-            ){
-
-                button = `
-
-                    <button
-                        class="material-btn"
-                        onclick="openSearchPaper('${safe(item.id)}')">
-
-                        📖 Open Paper
-
-                    </button>
-
-                `;
-
-            }
-
-            else if(
-                item.materialType ===
-                "NOTE" ||
-                item.materialType ===
-                "PRACTICAL"
-            ){
-
-                if(url){
-
-                    if(isImage(url)){
-
-                        const safeImage =
-                            safeUrl(url);
-
-
-                        button = `
-
-                            <button
-                                class="material-btn"
-                                onclick="openImageViewer('${safeImage}')">
-
-                                🖼 View Image
-
-                            </button>
-
-                        `;
-
-                    }
-
-                    else{
-
-                        button = `
-
-                            <a
-                                class="material-btn"
-                                href="${safeUrl(url)}"
-                                target="_blank"
-                                rel="noopener">
-
-                                Open File →
-
-                            </a>
-
-                        `;
-
-                    }
-
-                }
-
-            }
-
-
-            return `
-
-            <div class="search-result">
-
-                <span class="material-type">
-
-                    ${safe(
-                        item.materialType
-                    )}
-
-                </span>
-
-                <strong>
-                    ${safe(item.title)}
-                </strong>
-
-                <p>
-                    ${safe(item.description)}
-                </p>
-
-                ${button}
-
-            </div>
-
-            `;
-
-        }).join("");
-
-
-    window.searchPapers =
-        papers;
-
-}
-
-
-/* =====================================================
-   SEARCH PAPER
-===================================================== */
-
-function openSearchPaper(id){
-
-    const item =
-        (window.searchPapers || [])
-        .find(x=>String(x.id)===String(id));
-
-
-    if(item){
-
-        openPaper(item);
-
-    }
-
-}
-
-
-/* =====================================================
-   TEST
-===================================================== */
-
-function startTest(id){
-
-    alert(
-        "Test solving system next step mein connect karenge."
-    );
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-async function start(){
-
-    const category =
-        getCategory();
-
-
-    if(category){
-
-        document.getElementById(
-            "homePage"
-        ).style.display="none";
-
-
-        document.getElementById(
-            "categoryPage"
-        ).style.display="block";
-
-
-        document.getElementById(
-            "categoryTitle"
-        ).textContent =
-            category;
-
-
-        document.getElementById(
-            "categoryDescription"
-        ).textContent =
-            `${category} ka complete study material`;
-
-
-        await loadCategory(
-            category
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   ESC KEY
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(e){
-
-        if(e.key === "Escape"){
-
-            closeMenu();
-            closePaperViewer();
-            closeImageViewer();
-
-        }
-
-    }
+const container =
+document.getElementById(
+"categoryTests"
 );
 
 
-/* =====================================================
-   START
-===================================================== */
+if(!items.length){
 
-start();
+container.innerHTML = `
+
+<div class="empty">
+
+🎯 Tests available nahi hain.
+
+</div>
+
+`;
+
+return;
+
+}
 
 
-/* =====================================================
-   PAPER OUTSIDE CLICK
-===================================================== */
+container.innerHTML =
+items.map(item=>`
+
+<div class="material-card">
+
+<div class="material-top">
+🎯
+</div>
+
+<div class="material-content">
+
+<span class="material-type">
+
+${getQuestionCount(item)}
+QUESTIONS
+
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+<button
+class="material-btn"
+onclick="startTest('${enc(item.id)}')"
+>
+
+Start Test →
+
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+function startTest(id){
+
+alert(
+"Test solving system next step mein connect karenge."
+);
+
+}
+
+
+/* ================================
+LOAD CATEGORY
+================================ */
+
+async function loadCategory(category){
+
+const [
+notes,
+courses,
+practicals,
+papers,
+tests
+] =
+await Promise.all([
+
+loadNotes(),
+loadCourses(),
+loadPracticals(),
+loadPastPapers(),
+loadTests()
+
+]);
+
+
+const categoryCourses =
+courses
+.filter(
+x =>
+categoryMatches(
+x,
+category
+)
+)
+.map(
+x=>({
+
+...x,
+
+type:"COURSE",
+
+icon:
+x.icon ||
+"📚"
+
+})
+);
+
+
+const categoryNotes =
+notes
+.filter(
+x =>
+categoryMatches(
+x,
+category
+)
+)
+.map(
+x=>({
+
+...x,
+
+type:"NOTE",
+
+icon:
+x.icon ||
+"📘"
+
+})
+);
+
+
+const categoryPracticals =
+practicals
+.filter(
+x =>
+categoryMatches(
+x,
+category
+)
+);
+
+
+const categoryPapers =
+papers
+.filter(
+x =>
+categoryMatches(
+x,
+category
+)
+);
+
+
+const categoryTests =
+tests
+.filter(
+x =>
+categoryMatches(
+x,
+category
+)
+);
+
+
+showMaterials([
+...categoryCourses,
+...categoryNotes
+]);
+
+
+showPracticals(
+categoryPracticals
+);
+
+
+showPapers(
+categoryPapers
+);
+
+
+showTests(
+categoryTests
+);
+
+}
+
+
+/* ================================
+FOCUS SECTION
+================================ */
+
+function focusSection(type){
+
+if(!type)
+return;
+
+
+const map = {
+
+"NOTE":
+"notesSection",
+
+"COURSE":
+"notesSection",
+
+"PRACTICAL":
+"practicalsSection",
+
+"PAST PAPER":
+"papersSection",
+
+"TEST":
+"testsSection",
+
+"notes":
+"notesSection",
+
+"courses":
+"notesSection",
+
+"practicals":
+"practicalsSection",
+
+"past papers":
+"papersSection",
+
+"tests":
+"testsSection"
+
+};
+
+
+const section =
+map[type] ||
+map[
+String(type).toUpperCase()
+];
+
+
+if(section){
+
+setTimeout(
+()=>{
+
+const element =
+document.getElementById(
+section
+);
+
+if(element){
+
+element.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+},
+300
+);
+
+}
+
+}
+
+
+/* ================================
+START
+================================ */
+
+async function start(){
+
+const params =
+new URLSearchParams(
+location.search
+);
+
+
+const category =
+params.get("category");
+
+
+const focus =
+params.get("focus");
+
+
+if(category){
+
+document.getElementById(
+"homePage"
+).style.display="none";
+
+
+document.getElementById(
+"categoryPage"
+).style.display="block";
+
+
+const info =
+CATEGORY_INFO[category]
+||
+[
+"📚",
+category,
+category+
+" ka complete study material"
+];
+
+
+document.getElementById(
+"categoryTitle"
+).textContent =
+info[0]+" "+info[1];
+
+
+document.getElementById(
+"categoryDescription"
+).textContent =
+info[2];
+
+
+await loadCategory(
+category
+);
+
+
+focusSection(
+focus
+);
+
+}
+
+}
+
+
+/* ================================
+GLOBAL EVENTS
+================================ */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Escape"){
+
+closeMenu();
+
+closePaperViewer();
+
+closeImageViewer();
+
+}
+
+});
+
 
 document
-    .getElementById("paperViewer")
-    .addEventListener(
-        "click",
-        function(e){
+.getElementById("paperViewer")
+.addEventListener(
+"click",
+function(e){
 
-            if(e.target === this){
+if(
+e.target===e.currentTarget
+){
 
-                closePaperViewer();
+closePaperViewer();
 
-            }
+}
 
-        }
-    );
+});
+
+
+document.addEventListener(
+"click",
+function(e){
+
+if(
+!e.target.closest(
+".search-area"
+)
+){
+
+document
+.getElementById(
+"suggestions"
+)
+.classList.remove(
+"active"
+);
+
+}
+
+});
+
+
+/* START APP */
+
+start();
 
 </script>
 
