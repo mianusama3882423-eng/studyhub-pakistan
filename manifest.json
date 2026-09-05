@@ -1,0 +1,10 @@
+{
+  "name": "StudyHub Pakistan",
+  "short_name": "StudyHub",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "description": "StudyHub Pakistan - Courses, Notes, Practicals, Tests and Past Papers",
+  "orientation": "portrait"
+}
