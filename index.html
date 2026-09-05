@@ -895,6 +895,7 @@ footer h3{
     }
 }
 </style>
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -4209,5 +4210,13 @@ start();
 
 </script>
 
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js")
+          .catch(err => console.log("Service Worker:", err));
+      });
+    }
+  </script>
 </body>
     </html>
