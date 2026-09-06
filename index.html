@@ -1123,29 +1123,6 @@ footer h3{
 
 }
 
-
-/* ================= CATEGORY HIERARCHY ================= */
-.hierarchy-section{max-width:1150px;margin:auto;padding:35px 20px 10px}
-.hierarchy-title{text-align:center;margin-bottom:22px}
-.hierarchy-title h2{margin-bottom:7px}
-.hierarchy-title p{color:var(--muted)}
-.hierarchy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.hierarchy-btn{border:2px solid var(--border);background:var(--card);color:var(--text);padding:20px 14px;border-radius:13px;cursor:pointer;font-weight:bold;font-size:16px;transition:.2s;box-shadow:0 3px 12px rgba(0,0,0,.04)}
-.hierarchy-btn:hover{border-color:var(--primary);transform:translateY(-2px)}
-.hierarchy-btn.active{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border-color:transparent}
-.material-choice-wrap{max-width:1150px;margin:auto;padding:15px 20px 10px}
-.material-choice-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.material-choice{border:1px solid var(--border);background:var(--card);color:var(--text);padding:20px 12px;border-radius:12px;cursor:pointer;text-align:center;font-weight:bold;box-shadow:0 3px 12px rgba(0,0,0,.05);transition:.2s}
-.material-choice:hover{transform:translateY(-3px);border-color:var(--primary);background:var(--soft)}
-.material-choice.active{border-color:var(--primary);box-shadow:0 5px 18px rgba(37,99,235,.16)}
-.material-choice-icon{font-size:34px;margin-bottom:8px}
-.material-choice small{display:block;color:var(--muted);font-weight:normal;margin-top:5px}
-.material-display{display:none}
-.material-display.active{display:block}
-.material-display .section{padding-top:35px}
-@media(max-width:900px){.hierarchy-grid{grid-template-columns:repeat(2,1fr)}.material-choice-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.hierarchy-grid,.material-choice-grid{grid-template-columns:1fr 1fr}.hierarchy-btn{padding:16px 8px;font-size:14px}.material-choice{padding:16px 8px}.material-choice-icon{font-size:28px}}
-
 /* ================= HIDDEN ================= */
 
 .hidden{
@@ -1213,35 +1190,35 @@ Categories
 
 <div class="category-menu">
 
-<a href="index.html?category=School">
+<a href="index.html?category=School" onclick="goToCategory('School'); closeMenu(); return false;">
 🎓 School
 </a>
 
-<a href="index.html?category=Computer">
+<a href="index.html?category=Computer" onclick="goToCategory('Computer'); closeMenu(); return false;">
 💻 Computer
 </a>
 
-<a href="index.html?category=CIT">
+<a href="index.html?category=CIT" onclick="goToCategory('CIT'); closeMenu(); return false;">
 💻 CIT
 </a>
 
-<a href="index.html?category=Mathematics">
+<a href="index.html?category=Mathematics" onclick="goToCategory('Mathematics'); closeMenu(); return false;">
 📐 Mathematics
 </a>
 
-<a href="index.html?category=English">
+<a href="index.html?category=English" onclick="goToCategory('English'); closeMenu(); return false;">
 📖 English
 </a>
 
-<a href="index.html?category=Physics">
+<a href="index.html?category=Physics" onclick="goToCategory('Physics'); closeMenu(); return false;">
 ⚡ Physics
 </a>
 
-<a href="index.html?category=Chemistry">
+<a href="index.html?category=Chemistry" onclick="goToCategory('Chemistry'); closeMenu(); return false;">
 🧪 Chemistry
 </a>
 
-<a href="index.html?category=Urdu">
+<a href="index.html?category=Urdu" onclick="goToCategory('Urdu'); closeMenu(); return false;">
 📝 Urdu
 </a>
 
@@ -1438,7 +1415,8 @@ Choose a category and explore complete study material
 
 <a
 class="category"
-href="index.html?category=School">
+href="index.html?category=School"
+onclick="goToCategory('School'); return false;">
 
 <div class="category-icon">
 🎓
@@ -1455,7 +1433,8 @@ Classes 9th to 12th
 
 <a
 class="category"
-href="index.html?category=Computer">
+href="index.html?category=Computer"
+onclick="goToCategory('Computer'); return false;">
 
 <div class="category-icon">
 💻
@@ -1472,7 +1451,8 @@ CIT, DIT & IT
 
 <a
 class="category"
-href="index.html?category=CIT">
+href="index.html?category=CIT"
+onclick="goToCategory('CIT'); return false;">
 
 <div class="category-icon">
 💻
@@ -1489,7 +1469,8 @@ href="index.html?category=CIT">
 
 <a
 class="category"
-href="index.html?category=Mathematics">
+href="index.html?category=Mathematics"
+onclick="goToCategory('Mathematics'); return false;">
 
 <div class="category-icon">
 📐
@@ -1506,7 +1487,8 @@ Maths material
 
 <a
 class="category"
-href="index.html?category=English">
+href="index.html?category=English"
+onclick="goToCategory('English'); return false;">
 
 <div class="category-icon">
 📖
@@ -1523,7 +1505,8 @@ English learning
 
 <a
 class="category"
-href="index.html?category=Physics">
+href="index.html?category=Physics"
+onclick="goToCategory('Physics'); return false;">
 
 <div class="category-icon">
 ⚡
@@ -1540,7 +1523,8 @@ Physics material
 
 <a
 class="category"
-href="index.html?category=Chemistry">
+href="index.html?category=Chemistry"
+onclick="goToCategory('Chemistry'); return false;">
 
 <div class="category-icon">
 🧪
@@ -1557,7 +1541,8 @@ Chemistry material
 
 <a
 class="category"
-href="index.html?category=Urdu">
+href="index.html?category=Urdu"
+onclick="goToCategory('Urdu'); return false;">
 
 <div class="category-icon">
 📝
@@ -1740,85 +1725,273 @@ Start Learning
 
 <!-- ================= CATEGORY PAGE ================= -->
 
-<div id="categoryPage" style="display:none">
+<div
+id="categoryPage"
+style="display:none">
 
 <section class="category-header">
-  <div class="category-header-inner">
-    <a href="index.html" class="back-btn">← Back to Home</a>
-    <h1 id="categoryTitle">Category</h1>
-    <p id="categoryDescription">Complete study material</p>
-  </div>
-</section>
 
-<section class="hierarchy-section">
-  <div class="hierarchy-title">
-    <h2 id="yearHeading">🎓 Select Class / Year</h2>
-    <p id="yearSubheading">Choose a class or year to continue</p>
-  </div>
-  <div id="yearButtons" class="hierarchy-grid"></div>
-</section>
+<div class="category-header-inner">
 
-<section id="materialChoiceSection" class="material-choice-wrap hidden">
-  <div class="hierarchy-title">
-    <h2 id="materialHeading">📚 Select Material</h2>
-    <p id="materialSubheading">Choose what you want to study</p>
-  </div>
-  <div id="materialChoices" class="material-choice-grid"></div>
-</section>
+<a
+href="index.html"
+class="back-btn">
 
-<div id="materialDisplays">
+← Back to Home
 
-  <div id="booksDisplay" class="material-display">
-    <section class="section">
-      <div class="section-title">
-        <h2>📚 Books</h2>
-        <p id="booksDisplayText">Books</p>
-      </div>
-      <div id="categoryBooks" class="materials"></div>
-    </section>
-  </div>
+</a>
 
-  <div id="notesDisplay" class="material-display">
-    <section class="section">
-      <div class="section-title">
-        <h2>📝 Notes</h2>
-        <p id="notesDisplayText">Notes</p>
-      </div>
-      <div id="categoryNotes" class="materials"></div>
-    </section>
-  </div>
+<h1 id="categoryTitle">
+Category
+</h1>
 
-  <div id="practicalsDisplay" class="material-display">
-    <section class="section">
-      <div class="section-title">
-        <h2>🧪 Practicals</h2>
-        <p id="practicalsDisplayText">Practicals</p>
-      </div>
-      <div id="categoryPracticals" class="materials"></div>
-    </section>
-  </div>
-
-  <div id="papersDisplay" class="material-display">
-    <section class="section">
-      <div class="section-title">
-        <h2>📄 Past Papers</h2>
-        <p id="papersDisplayText">Past Papers</p>
-      </div>
-      <div id="categoryPapers" class="materials"></div>
-    </section>
-  </div>
-
-  <div id="testsDisplay" class="material-display">
-    <section class="section">
-      <div class="section-title">
-        <h2>🎯 Online Tests</h2>
-        <p id="testsDisplayText">Tests</p>
-      </div>
-      <div id="categoryTests" class="materials"></div>
-    </section>
-  </div>
+<p id="categoryDescription">
+Complete study material
+</p>
 
 </div>
+
+</section>
+
+
+<!-- ================= CIT YEAR SELECTOR ================= -->
+
+<div
+id="citYearSelector"
+class="year-section hidden">
+
+<div class="year-title">
+
+<h2>
+📚 Select CIT Year
+</h2>
+
+<p>
+Choose your year to view books and practicals
+</p>
+
+</div>
+
+<div class="year-buttons">
+
+<button
+class="year-btn"
+onclick="selectCITYear('1st Year')">
+
+📘 1st Year
+
+</button>
+
+<button
+class="year-btn"
+onclick="selectCITYear('2nd Year')">
+
+📗 2nd Year
+
+</button>
+
+<button
+class="year-btn"
+onclick="selectCITYear('3rd Year')">
+
+📕 3rd Year
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CIT YEAR CONTENT ================= -->
+
+<div
+id="citYearContent"
+class="year-content hidden">
+
+<section
+class="section"
+id="booksSection">
+
+<div class="section-title">
+
+<h2>
+📚 Books
+</h2>
+
+<p id="booksYearText">
+CIT Books
+</p>
+
+</div>
+
+<div
+id="categoryBooks"
+class="materials">
+
+<div class="loading">
+Loading books...
+</div>
+
+</div>
+
+</section>
+
+
+<section
+class="section"
+id="citPracticalsSection">
+
+<div class="section-title">
+
+<h2>
+🧪 Practicals
+</h2>
+
+<p id="practicalsYearText">
+CIT Practicals
+</p>
+
+</div>
+
+<div
+id="citYearPracticals"
+class="materials">
+
+<div class="loading">
+Loading practicals...
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ================= NOTES ================= -->
+
+<section
+class="section"
+id="notesSection">
+
+<div class="section-title">
+
+<h2>
+📚 Notes & Courses
+</h2>
+
+<p>
+Study material for this category
+</p>
+
+</div>
+
+<div
+id="categoryMaterials"
+class="materials">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= GENERAL PRACTICALS ================= -->
+
+<section
+class="section"
+id="practicalsSection">
+
+<div class="section-title">
+
+<h2>
+🧪 Practicals
+</h2>
+
+<p>
+Practical material
+</p>
+
+</div>
+
+<div
+id="categoryPracticals"
+class="materials">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PAST PAPERS ================= -->
+
+<section
+class="section"
+id="papersSection">
+
+<div class="section-title">
+
+<h2>
+📄 Past Papers
+</h2>
+
+<p>
+Previous examination papers
+</p>
+
+</div>
+
+<div
+id="categoryPapers"
+class="materials">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= TESTS ================= -->
+
+<section
+class="section"
+id="testsSection">
+
+<div class="section-title">
+
+<h2>
+🎯 Online Tests
+</h2>
+
+<p>
+Test your knowledge
+</p>
+
+</div>
+
+<div
+id="categoryTests"
+class="materials">
+
+<div class="loading">
+Loading...
+</div>
+
+</div>
+
+</section>
+
 </div>
 
 
@@ -2679,276 +2852,419 @@ document.getElementById(
 
 
 /* =====================================================
-CATEGORY HIERARCHY
+CIT YEAR
 ===================================================== */
 
-const CATEGORY_YEARS={
-  School:["9th","10th","11th","12th"],
-  Computer:["9th","10th","11th","12th"],
-  CIT:["1st Year","2nd Year","3rd Year"],
-  Mathematics:["9th","10th","11th","12th"],
-  English:["9th","10th","11th","12th"],
-  Physics:["9th","10th","11th","12th"],
-  Chemistry:["9th","10th","11th","12th"],
-  Urdu:["9th","10th","11th","12th"]
-};
+let selectedCITYear =
+"1st Year";
 
-let selectedCategory="";
-let selectedYear="";
-let selectedMaterial="";
+function selectCITYear(year){
 
-function getCategoryYears(category){
-  return CATEGORY_YEARS[category]||["9th","10th","11th","12th"];
+selectedCITYear=year;
+
+document
+.querySelectorAll(".year-btn")
+.forEach(btn=>{
+
+btn.classList.remove("active");
+
+});
+
+document
+.querySelectorAll(".year-btn")
+.forEach(btn=>{
+
+if(
+btn.textContent.includes(year)
+){
+
+btn.classList.add("active");
+
 }
 
-function yearMatches(item,year){
-  if(!year)return true;
-  const values=[
-    item.year,item.class_name,item.class,item.level,item.course
-  ].filter(v=>v!==null&&v!==undefined).map(v=>normalize(v));
+});
 
-  const y=normalize(year);
-  if(values.includes(y))return true;
+document
+.getElementById("citYearContent")
+.classList.add("active");
 
-  if(y==="1st year")return values.some(v=>/1st year|first year|year 1/.test(v));
-  if(y==="2nd year")return values.some(v=>/2nd year|second year|year 2/.test(v));
-  if(y==="3rd year")return values.some(v=>/3rd year|third year|year 3/.test(v));
-  if(y==="9th")return values.some(v=>/\b9th\b|class 9\b/.test(v));
-  if(y==="10th")return values.some(v=>/\b10th\b|class 10\b/.test(v));
-  if(y==="11th")return values.some(v=>/\b11th\b|class 11\b/.test(v));
-  if(y==="12th")return values.some(v=>/\b12th\b|class 12\b/.test(v));
+document
+.getElementById("citYearContent")
+.classList.remove("hidden");
 
-  return false;
-}
+document.getElementById(
+"booksYearText"
+).textContent =
+year+" Books";
 
-function categoryItemMatches(item,category,year){
-  return categoryMatches(item,category)&&yearMatches(item,year);
-}
+document.getElementById(
+"practicalsYearText"
+).textContent =
+year+" Practicals";
 
-function renderYearButtons(category){
-  const box=document.getElementById("yearButtons");
-  const years=getCategoryYears(category);
+loadCITYearData(year);
 
-  box.innerHTML=years.map((year,index)=>`
-    <button class="hierarchy-btn ${selectedYear===year?"active":""}"
-      onclick="selectCategoryYear('${enc(year)}')">
-      ${category==="CIT"?(index===0?"📘":index===1?"📗":"📕"):"🎓"} ${safe(year)}
-    </button>
-  `).join("");
-}
-
-function selectCategoryYear(encoded){
-  selectedYear=decodeURIComponent(encoded);
-  selectedMaterial="";
-
-  renderYearButtons(selectedCategory);
-  document.getElementById("materialChoiceSection").classList.remove("hidden");
-
-  document.getElementById("materialHeading").textContent="📚 Select Material";
-  document.getElementById("materialSubheading").textContent=
-    selectedCategory+" → "+selectedYear+" → Choose material";
-
-  renderMaterialChoices();
-
-  document.querySelectorAll(".material-display")
-    .forEach(x=>x.classList.remove("active"));
-
-  const url=new URL(window.location.href);
-  url.searchParams.set("category",selectedCategory);
-  url.searchParams.set("year",selectedYear);
-  url.searchParams.delete("material");
-  url.searchParams.delete("focus");
-  history.replaceState(null,"",url.toString());
-
-  document.getElementById("materialChoiceSection")
-    .scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-function renderMaterialChoices(){
-  const box=document.getElementById("materialChoices");
-
-  const choices=[
-    {key:"books",icon:"📚",title:"Books",sub:"Study books"},
-    {key:"notes",icon:"📝",title:"Notes",sub:"Class notes"},
-    {key:"papers",icon:"📄",title:"Past Papers",sub:"Previous papers"},
-    {key:"tests",icon:"🎯",title:"Tests",sub:"Online tests"}
-  ];
-
-  if(selectedCategory==="CIT"){
-    choices.splice(2,0,{
-      key:"practicals",icon:"🧪",title:"Practicals",sub:"Practical programs"
-    });
-  }
-
-  box.innerHTML=choices.map(x=>`
-    <button class="material-choice ${selectedMaterial===x.key?"active":""}"
-      onclick="selectMaterial('${x.key}')">
-      <div class="material-choice-icon">${x.icon}</div>
-      ${x.title}
-      <small>${x.sub}</small>
-    </button>
-  `).join("");
-}
-
-async function selectMaterial(type){
-  if(type==="practicals"&&selectedCategory!=="CIT")return;
-
-  selectedMaterial=type;
-  renderMaterialChoices();
-
-  document.querySelectorAll(".material-display")
-    .forEach(x=>x.classList.remove("active"));
-
-  const map={
-    books:"booksDisplay",
-    notes:"notesDisplay",
-    practicals:"practicalsDisplay",
-    papers:"papersDisplay",
-    tests:"testsDisplay"
-  };
-
-  const display=document.getElementById(map[type]);
-  if(display)display.classList.add("active");
-
-  const url=new URL(window.location.href);
-  url.searchParams.set("category",selectedCategory);
-  url.searchParams.set("year",selectedYear);
-  url.searchParams.set("material",type);
-  history.replaceState(null,"",url.toString());
-
-  await loadSelectedMaterial(type);
-
-  if(display)display.scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-async function loadSelectedMaterial(type){
-  const [books,notes,practicals,papers,tests,courses]=await Promise.all([
-    loadBooks(),loadNotes(),loadPracticals(),loadPastPapers(),loadTests(),loadCourses()
-  ]);
-
-  const filter=arr=>arr.filter(item=>
-    categoryItemMatches(item,selectedCategory,selectedYear)
-  );
-
-  if(type==="books"){
-    const items=filter(books);
-    document.getElementById("booksDisplayText").textContent=
-      selectedCategory+" → "+selectedYear+" Books";
-    showBooks(items);
-  }
-
-  if(type==="notes"){
-    const items=filter(notes);
-    const courseItems=filter(courses).map(x=>({
-      ...x,type:"COURSE",icon:x.icon||"📚"
-    }));
-    document.getElementById("notesDisplayText").textContent=
-      selectedCategory+" → "+selectedYear+" Notes";
-    showNotesAndCourses(items,courseItems);
-  }
-
-  if(type==="practicals"){
-    const items=practicals.filter(item=>
-      selectedCategory==="CIT" &&
-      String(item.category||"").toLowerCase()==="cit" &&
-      yearMatches(item,selectedYear)
-    );
-    document.getElementById("practicalsDisplayText").textContent=
-      "CIT → "+selectedYear+" Practicals";
-    showPracticals(items);
-  }
-
-  if(type==="papers"){
-    const items=filter(papers);
-    document.getElementById("papersDisplayText").textContent=
-      selectedCategory+" → "+selectedYear+" Past Papers";
-    showPapers(items);
-  }
-
-  if(type==="tests"){
-    const items=filter(tests);
-    document.getElementById("testsDisplayText").textContent=
-      selectedCategory+" → "+selectedYear+" Tests";
-    showTests(items);
-  }
 }
 
 
 /* =====================================================
-SHOW BOOKS / NOTES / PRACTICALS
+LOAD CIT YEAR DATA
+===================================================== */
+
+async function loadCITYearData(year){
+
+const [
+books,
+practicals
+] =
+await Promise.all([
+
+loadBooks(),
+loadPracticals()
+
+]);
+
+
+const yearBooks =
+books.filter(item=>
+
+String(item.category || "")
+.toLowerCase()
+==="cit"
+
+&&
+
+String(item.year || "")
+.toLowerCase()
+===year.toLowerCase()
+
+);
+
+
+const yearPracticals =
+practicals.filter(item=>
+
+String(item.category || "")
+.toLowerCase()
+==="cit"
+
+&&
+
+String(item.year || "")
+.toLowerCase()
+===year.toLowerCase()
+
+);
+
+
+showBooks(yearBooks);
+
+showCITPracticals(yearPracticals);
+
+}
+
+
+/* =====================================================
+SHOW BOOKS
 ===================================================== */
 
 function showBooks(items){
-  const container=document.getElementById("categoryBooks");
 
-  if(!items.length){
-    container.innerHTML=`<div class="empty">📚 No books available for this class/year yet.</div>`;
-    return;
-  }
+const container =
+document.getElementById(
+"categoryBooks"
+);
 
-  container.innerHTML=items.map(item=>`
-    <div class="material-card">
-      ${getMaterialTop(item,"📚")}
-      <div class="material-content">
-        <span class="book-year">${safe(item.year||selectedYear)}</span>
-        <h3>${safe(item.title)}</h3>
-        <p>${safe(item.description)}</p>
-        ${getFileButton(item.file_url||item.url,"Read Book PDF")}
-      </div>
-    </div>
-  `).join("");
+if(!items.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+📚 No books available for this year yet.
+
+</div>
+
+`;
+
+return;
+
 }
 
-function showNotesAndCourses(notes,courses){
-  const container=document.getElementById("categoryNotes");
-  const items=[
-    ...courses,
-    ...notes.map(x=>({...x,type:"NOTE",icon:x.icon||"📘"}))
-  ];
+container.innerHTML =
+items.map(item=>`
 
-  if(!items.length){
-    container.innerHTML=`<div class="empty">📝 No notes or courses available for this class/year yet.</div>`;
-    return;
-  }
+<div class="material-card">
 
-  container.innerHTML=items.map(item=>{
-    const type=item.type||item.materialType;
-    const icon=item.icon||(type==="COURSE"?"📚":"📘");
+<div class="material-top">
 
-    return `
-      <div class="material-card">
-        ${getMaterialTop(item,icon)}
-        <div class="material-content">
-          <span class="material-type">${safe(type)}</span>
-          <h3>${safe(item.title)}</h3>
-          <p>${safe(item.description)}</p>
-          ${type==="NOTE"
-            ?getFileButton(item.file_url||item.url,"Open Note")
-            :`<div style="margin-top:12px;color:var(--muted);font-size:13px">📚 Course material</div>`}
-        </div>
-      </div>`;
-  }).join("");
+<div class="book-icon">
+📚
+</div>
+
+</div>
+
+<div class="material-content">
+
+<span class="book-year">
+
+${safe(item.year || "CIT")}
+
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+${
+item.file_url
+?
+getFileButton(
+item.file_url,
+"Read Book PDF"
+)
+:
+`<div class="empty" style="padding:10px">
+PDF not available yet.
+</div>`
 }
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+SHOW CIT PRACTICALS
+===================================================== */
+
+function showCITPracticals(items){
+
+const container =
+document.getElementById(
+"citYearPracticals"
+);
+
+if(!items.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+🧪 No practicals available for this year yet.
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML =
+items.map(item=>`
+
+<div class="material-card">
+
+${getMaterialTop(
+item,
+"🧪"
+)}
+
+<div class="material-content">
+
+<span class="material-type">
+PRACTICAL
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+${getFileButton(
+item.file_url ||
+item.url,
+"Open Practical"
+)}
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+SHOW MATERIALS
+===================================================== */
+
+function showMaterials(items){
+
+const container =
+document.getElementById(
+"categoryMaterials"
+);
+
+if(!items.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+📚 No material available in this category yet.
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML =
+items.map(item=>{
+
+const type =
+item.type ||
+item.materialType;
+
+const icon =
+type==="NOTE"
+?
+(item.icon || "📘")
+:
+(item.icon || "📚");
+
+return `
+
+<div class="material-card">
+
+${getMaterialTop(
+item,
+icon
+)}
+
+<div class="material-content">
+
+<span class="material-type">
+
+${safe(type)}
+
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+${
+type==="NOTE"
+?
+getFileButton(
+item.file_url ||
+item.url,
+"Open Note"
+)
+:
+`<div style="
+margin-top:12px;
+color:var(--muted);
+font-size:13px">
+📚 Course material
+</div>`
+}
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* =====================================================
+SHOW GENERAL PRACTICALS
+===================================================== */
 
 function showPracticals(items){
-  const container=document.getElementById("categoryPracticals");
 
-  if(!items.length){
-    container.innerHTML=`<div class="empty">🧪 No practicals available for this year yet.</div>`;
-    return;
-  }
+const container =
+document.getElementById(
+"categoryPracticals"
+);
 
-  container.innerHTML=items.map(item=>`
-    <div class="material-card">
-      ${getMaterialTop(item,"🧪")}
-      <div class="material-content">
-        <span class="material-type">PRACTICAL</span>
-        <h3>${safe(item.title)}</h3>
-        <p>${safe(item.description)}</p>
-        ${getFileButton(item.file_url||item.url,"Open Practical")}
-      </div>
-    </div>
-  `).join("");
+if(!items.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+🧪 No practicals available.
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML =
+items.map(item=>`
+
+<div class="material-card">
+
+${getMaterialTop(
+item,
+"🧪"
+)}
+
+<div class="material-content">
+
+<span class="material-type">
+PRACTICAL
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+${getFileButton(
+item.file_url ||
+item.url,
+"Open Practical"
+)}
+
+</div>
+
+</div>
+
+`).join("");
+
 }
 
 
@@ -2957,238 +3273,1967 @@ PAPER SYSTEM
 ===================================================== */
 
 function getPaperPages(item){
-  if(Array.isArray(item.pages)&&item.pages.length){
-    return item.pages.map((p,i)=>{
-      if(typeof p==="string")return{page:i+1,url:p};
-      return{page:p.page||i+1,url:p.url||p.file_url||""};
-    }).filter(x=>x.url);
-  }
-  if(item.file_url)return[{page:1,url:item.file_url}];
-  return [];
+
+if(
+Array.isArray(item.pages)
+&&
+item.pages.length
+){
+
+return item.pages
+.map((p,i)=>{
+
+if(typeof p==="string"){
+
+return {
+page:i+1,
+url:p
+};
+
 }
+
+return {
+
+page:p.page || i+1,
+
+url:
+p.url ||
+p.file_url ||
+""
+
+};
+
+})
+.filter(x=>x.url);
+
+}
+
+if(item.file_url){
+
+return [
+
+{
+page:1,
+url:item.file_url
+}
+
+];
+
+}
+
+return [];
+
+}
+
 
 let currentPaperPages=[];
 let currentPaperIndex=0;
 
 function openPaper(item){
-  currentPaperPages=getPaperPages(item);
-  currentPaperIndex=0;
 
-  if(!currentPaperPages.length){
-    alert("Paper file is not available.");
-    return;
-  }
+currentPaperPages =
+getPaperPages(item);
 
-  document.getElementById("viewerTitle").textContent=item.title||"Past Paper";
-  document.getElementById("paperViewer").classList.add("active");
-  showCurrentPaperPage();
+currentPaperIndex=0;
+
+if(!currentPaperPages.length){
+
+alert(
+"Paper file is not available."
+);
+
+return;
+
+}
+
+document.getElementById(
+"viewerTitle"
+).textContent =
+item.title ||
+"Past Paper";
+
+document
+.getElementById("paperViewer")
+.classList.add("active");
+
+showCurrentPaperPage();
+
 }
 
 function showCurrentPaperPage(){
-  const page=currentPaperPages[currentPaperIndex];
-  const url=cleanUrl(page.url);
-  const content=document.getElementById("paperContent");
 
-  if(!url){
-    content.innerHTML="<div style='padding:40px'>Invalid file URL.</div>";
-  }else if(isImage(url)){
-    content.innerHTML=`<img src="${safe(url)}" alt="Paper Page" onclick="decodeOpen('${enc(url)}')">`;
-  }else{
-    content.innerHTML=`
-      <div style="padding:40px">
-        <div style="font-size:55px">📄</div>
-        <h3>Page ${currentPaperIndex+1}</h3>
-        <a class="paper-link" href="${safe(url)}" target="_blank" rel="noopener">Open Page →</a>
-      </div>`;
-  }
+const page =
+currentPaperPages[
+currentPaperIndex
+];
 
-  document.getElementById("pageNumber").textContent=
-    `Page ${currentPaperIndex+1} / ${currentPaperPages.length}`;
+const url =
+cleanUrl(page.url);
 
-  document.getElementById("prevPageBtn").disabled=currentPaperIndex===0;
-  document.getElementById("nextPageBtn").disabled=
-    currentPaperIndex===currentPaperPages.length-1;
+const content =
+document.getElementById(
+"paperContent"
+);
+
+if(!url){
+
+content.innerHTML =
+"<div style='padding:40px'>Invalid file URL.</div>";
+
+}
+
+else if(isImage(url)){
+
+content.innerHTML=`
+
+<img
+src="${safe(url)}"
+alt="Paper Page"
+onclick="decodeOpen('${enc(url)}')">
+
+`;
+
+}
+
+else{
+
+content.innerHTML=`
+
+<div style="padding:40px">
+
+<div style="font-size:55px">
+📄
+</div>
+
+<h3>
+Page ${currentPaperIndex+1}
+</h3>
+
+<a
+class="paper-link"
+href="${safe(url)}"
+target="_blank"
+rel="noopener">
+
+Open Page →
+
+</a>
+
+</div>
+
+`;
+
+}
+
+document.getElementById(
+"pageNumber"
+).textContent =
+`Page ${currentPaperIndex+1} / ${currentPaperPages.length}`;
+
+document.getElementById(
+"prevPageBtn"
+).disabled =
+currentPaperIndex===0;
+
+document.getElementById(
+"nextPageBtn"
+).disabled =
+currentPaperIndex===
+currentPaperPages.length-1;
+
 }
 
 function nextPaperPage(){
-  if(currentPaperIndex<currentPaperPages.length-1){
-    currentPaperIndex++;
-    showCurrentPaperPage();
-  }
+
+if(
+currentPaperIndex <
+currentPaperPages.length-1
+){
+
+currentPaperIndex++;
+
+showCurrentPaperPage();
+
+}
+
 }
 
 function previousPaperPage(){
-  if(currentPaperIndex>0){
-    currentPaperIndex--;
-    showCurrentPaperPage();
-  }
+
+if(currentPaperIndex>0){
+
+currentPaperIndex--;
+
+showCurrentPaperPage();
+
+}
+
 }
 
 function closePaperViewer(){
-  document.getElementById("paperViewer").classList.remove("active");
-  document.getElementById("paperContent").innerHTML="";
-}
 
-function showPapers(items){
-  const container=document.getElementById("categoryPapers");
-  window.categoryPapers=items;
+document
+.getElementById("paperViewer")
+.classList.remove("active");
 
-  if(!items.length){
-    container.innerHTML=`<div class="empty">📄 No past papers available for this class/year yet.</div>`;
-    return;
-  }
-
-  container.innerHTML=items.map((item,index)=>{
-    const pages=getPaperPages(item);
-    const firstUrl=pages[0]?.url||"";
-
-    return `
-      <div class="material-card">
-        ${firstUrl&&isImage(firstUrl)
-          ?`<div class="material-top"><img src="${safe(cleanUrl(firstUrl))}" alt="Past Paper" loading="lazy" onclick="decodeOpen('${enc(cleanUrl(firstUrl))}')"></div>`
-          :`<div class="material-top">📄</div>`}
-        <div class="material-content">
-          <span class="material-type">${safe(item.year||selectedYear||"PAST PAPER")}</span>
-          <h3>${safe(item.title)}</h3>
-          ${item.subject?`<p>📚 ${safe(item.subject)}</p>`:""}
-          <p>${safe(item.description)}</p>
-          ${pages.length?`
-            <button class="material-btn" onclick="openPaperByIndex(${index})">
-              📖 Read Paper ${pages.length>1?` (${pages.length} Pages)`:""}
-            </button>`:""}
-        </div>
-      </div>`;
-  }).join("");
-}
-
-function openPaperByIndex(index){
-  if(window.categoryPapers&&window.categoryPapers[index]){
-    openPaper(window.categoryPapers[index]);
-  }
 }
 
 
 /* =====================================================
-TESTS
+SHOW PAPERS
+===================================================== */
+
+function showPapers(items){
+
+const container =
+document.getElementById(
+"categoryPapers"
+);
+
+window.categoryPapers=items;
+
+if(!items.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+📄 No past papers available.
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML =
+items.map((item,index)=>{
+
+const pages =
+getPaperPages(item);
+
+const firstUrl =
+pages[0]?.url || "";
+
+return `
+
+<div class="material-card">
+
+${
+firstUrl &&
+isImage(firstUrl)
+?
+
+`<div class="material-top">
+
+<img
+src="${safe(cleanUrl(firstUrl))}"
+alt="Past Paper"
+loading="lazy"
+onclick="decodeOpen('${enc(cleanUrl(firstUrl))}')">
+
+</div>`
+
+:
+
+`<div class="material-top">
+📄
+</div>`
+
+}
+
+<div class="material-content">
+
+<span class="material-type">
+
+${safe(item.year || "PAST PAPER")}
+
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+${
+item.subject
+?
+`<p>📚 ${safe(item.subject)}</p>`
+:
+""
+}
+
+<p>
+${safe(item.description)}
+</p>
+
+${
+pages.length
+?
+
+`<button
+class="material-btn"
+onclick="openPaperByIndex(${index})">
+
+📖 Read Paper
+${pages.length>1
+?` (${pages.length} Pages)`
+:""}
+
+</button>`
+
+:
+""
+
+}
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+function openPaperByIndex(index){
+
+if(
+window.categoryPapers &&
+window.categoryPapers[index]
+){
+
+openPaper(
+window.categoryPapers[index]
+);
+
+}
+
+}
+
+
+/* =====================================================
+TEST PARSER
 ===================================================== */
 
 function parseQuestions(raw){
-  if(!raw)return null;
-  let data=raw;
-  if(typeof raw==="string"){
-    try{data=JSON.parse(raw);}catch(e){return null;}
-  }
-  if(Array.isArray(data))return{type:"questions",items:data};
-  if(data&&Array.isArray(data.items))return data;
-  return null;
+
+if(!raw)
+return null;
+
+let data=raw;
+
+if(typeof raw==="string"){
+
+try{
+
+data=JSON.parse(raw);
+
+}catch(e){
+
+return null;
+
 }
+
+}
+
+if(
+Array.isArray(data)
+){
+
+return {
+type:"questions",
+items:data
+};
+
+}
+
+if(
+data &&
+Array.isArray(data.items)
+){
+
+return data;
+
+}
+
+return null;
+
+}
+
+
+/* =====================================================
+QUESTION COUNT
+===================================================== */
 
 function getQuestionCount(item){
-  const data=parseQuestions(item.questions);
-  if(data&&Array.isArray(data.items))return data.items.length;
-  if(typeof item.questions==="number")return item.questions;
-  return 0;
+
+const data =
+parseQuestions(
+item.questions
+);
+
+if(
+data &&
+Array.isArray(data.items)
+){
+
+return data.items.length;
+
 }
+
+if(
+typeof item.questions==="number"
+){
+
+return item.questions;
+
+}
+
+return 0;
+
+}
+
+
+/* =====================================================
+SHOW TESTS
+===================================================== */
 
 function showTests(items){
-  const container=document.getElementById("categoryTests");
 
-  if(!items.length){
-    container.innerHTML=`<div class="empty">🎯 No tests available for this class/year yet.</div>`;
-    return;
-  }
+const container =
+document.getElementById(
+"categoryTests"
+);
 
-  container.innerHTML=items.map(item=>`
-    <div class="material-card">
-      <div class="material-top">🎯</div>
-      <div class="material-content">
-        <span class="material-type">${getQuestionCount(item)} QUESTIONS</span>
-        <h3>${safe(item.title)}</h3>
-        <p>${safe(item.description)}</p>
-        <button class="material-btn" onclick="startTest('${enc(item.id)}')">🎯 Start Test →</button>
-      </div>
-    </div>
-  `).join("");
+if(!items.length){
+
+container.innerHTML=`
+
+<div class="empty">
+
+🎯 No tests available.
+
+</div>
+
+`;
+
+return;
+
 }
+
+container.innerHTML =
+items.map(item=>`
+
+<div class="material-card">
+
+<div class="material-top">
+🎯
+</div>
+
+<div class="material-content">
+
+<span class="material-type">
+
+${getQuestionCount(item)}
+QUESTIONS
+
+</span>
+
+<h3>
+${safe(item.title)}
+</h3>
+
+<p>
+${safe(item.description)}
+</p>
+
+<button
+class="material-btn"
+onclick="startTest('${enc(item.id)}')">
+
+🎯 Start Test →
+
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+CURRENT TEST
+===================================================== */
 
 let currentTest=null;
 
 function startTest(id){
-  getAllData().then(all=>{
-    const test=all.find(x=>x.materialType==="TEST"&&String(x.id)===String(id));
 
-    if(!test){alert("Test not found.");return;}
+getAllData()
+.then(all=>{
 
-    const data=parseQuestions(test.questions);
+const test =
+all.find(
+x =>
+x.materialType==="TEST"
+&&
+String(x.id)===String(id)
+);
 
-    if(!data||!Array.isArray(data.items)){
-      alert("This test does not contain valid questions yet.");
-      return;
-    }
+if(!test){
 
-    currentTest={...test,parsed:data};
-    document.getElementById("testModalTitle").textContent=test.title||"Online Test";
-    document.getElementById("testModalDescription").textContent=test.description||"";
-    document.getElementById("testResult").classList.add("hidden");
-    document.getElementById("submitTestBtn").style.display="block";
-    renderTestQuestions(currentTest);
-    document.getElementById("testModal").classList.add("active");
-  });
+alert("Test not found.");
+
+return;
+
 }
+
+const data =
+parseQuestions(
+test.questions
+);
+
+if(
+!data ||
+!Array.isArray(data.items)
+){
+
+alert(
+"This test does not contain valid questions yet."
+);
+
+return;
+
+}
+
+currentTest={
+...test,
+parsed:data
+};
+
+document.getElementById(
+"testModalTitle"
+).textContent =
+test.title || "Online Test";
+
+document.getElementById(
+"testModalDescription"
+).textContent =
+test.description || "";
+
+document.getElementById(
+"testResult"
+).classList.add("hidden");
+
+document.getElementById(
+"submitTestBtn"
+).style.display="block";
+
+renderTestQuestions(
+currentTest
+);
+
+document
+.getElementById("testModal")
+.classList.add("active");
+
+});
+
+}
+
+
+/* =====================================================
+RENDER TEST QUESTIONS
+===================================================== */
 
 function renderTestQuestions(test){
-  const body=document.getElementById("testBody");
-  const data=test.parsed;
-  const type=String(data.type||"questions").toLowerCase();
 
-  if(type==="mcq"){
-    body.innerHTML=data.items.map((item,index)=>`
-      <div class="test-question">
-        <h3>${index+1}. ${safe(item.question)}</h3>
-        <label class="option"><input type="radio" name="q_${index}" value="A"> A. ${safe(item.A)}</label>
-        <label class="option"><input type="radio" name="q_${index}" value="B"> B. ${safe(item.B)}</label>
-        <label class="option"><input type="radio" name="q_${index}" value="C"> C. ${safe(item.C)}</label>
-        <label class="option"><input type="radio" name="q_${index}" value="D"> D. ${safe(item.D)}</label>
-      </div>
-    `).join("");
-  }else{
-    body.innerHTML=data.items.map((item,index)=>`
-      <div class="test-question">
-        <h3>${index+1}. ${safe(item.question)}</h3>
-        <textarea class="answer-input" data-question="${index}" placeholder="Write your answer here..."></textarea>
-      </div>
-    `).join("");
-  }
+const body =
+document.getElementById(
+"testBody"
+);
+
+const data =
+test.parsed;
+
+const type =
+String(data.type || "questions")
+.toLowerCase();
+
+if(type==="mcq"){
+
+body.innerHTML =
+data.items.map((item,index)=>`
+
+<div class="test-question">
+
+<h3>
+${index+1}. ${safe(item.question)}
+</h3>
+
+<label class="option">
+
+<input
+type="radio"
+name="q_${index}"
+value="A">
+
+A. ${safe(item.A)}
+
+</label>
+
+<label class="option">
+
+<input
+type="radio"
+name="q_${index}"
+value="B">
+
+B. ${safe(item.B)}
+
+</label>
+
+<label class="option">
+
+<input
+type="radio"
+name="q_${index}"
+value="C">
+
+C. ${safe(item.C)}
+
+</label>
+
+<label class="option">
+
+<input
+type="radio"
+name="q_${index}"
+value="D">
+
+D. ${safe(item.D)}
+
+</label>
+
+</div>
+
+`).join("");
+
 }
+
+else{
+
+body.innerHTML =
+data.items.map((item,index)=>`
+
+<div class="test-question">
+
+<h3>
+${index+1}. ${safe(item.question)}
+</h3>
+
+<textarea
+class="answer-input"
+id="answer_${index}"
+placeholder="Write your answer here...">
+</textarea>
+
+</div>
+
+`).join("");
+
+}
+
+}
+
+
+/* =====================================================
+SUBMIT TEST
+===================================================== */
 
 function submitCurrentTest(){
-  if(!currentTest)return;
 
-  const data=currentTest.parsed;
-  const type=String(data.type||"questions").toLowerCase();
-  const result=document.getElementById("testResult");
+if(!currentTest)
+return;
 
-  if(type==="mcq"){
-    let score=0;
-    data.items.forEach((item,index)=>{
-      const selected=document.querySelector(`input[name="q_${index}"]:checked`);
-      const correct=String(item.answer||item.correct||"").toUpperCase();
-      if(selected&&String(selected.value).toUpperCase()===correct)score++;
-    });
+const data =
+currentTest.parsed;
 
-    result.textContent=`Result: ${score} / ${data.items.length} correct`;
-    result.classList.remove("hidden");
-  }else{
-    const answers=[...document.querySelectorAll(".answer-input")].map(x=>x.value.trim());
-    const answered=answers.filter(Boolean).length;
-    result.textContent=`You answered ${answered} / ${data.items.length} questions.`;
-    result.classList.remove("hidden");
-  }
+const type =
+String(data.type || "questions")
+.toLowerCase();
+
+const result =
+document.getElementById(
+"testResult"
+);
+
+if(type==="mcq"){
+
+let score=0;
+
+let answered=0;
+
+data.items.forEach((item,index)=>{
+
+const selected =
+document.querySelector(
+`input[name="q_${index}"]:checked`
+);
+
+if(selected){
+
+answered++;
+
+if(
+String(selected.value)
+.toUpperCase()
+===
+String(item.answer || "")
+.toUpperCase()
+){
+
+score++;
+
 }
 
+}
+
+});
+
+const total =
+data.items.length;
+
+const percentage =
+total
+?
+Math.round(
+(score/total)*100
+)
+:
+0;
+
+result.innerHTML=`
+
+🎯 Test Completed!
+
+<br><br>
+
+Score:
+<strong>
+${score} / ${total}
+</strong>
+
+<br>
+
+Percentage:
+<strong>
+${percentage}%
+</strong>
+
+<br>
+
+Answered:
+<strong>
+${answered} / ${total}
+</strong>
+
+`;
+
+result.classList.remove(
+"hidden"
+);
+
+}
+
+else{
+
+const answers =
+data.items.map(
+(item,index)=>{
+
+const field =
+document.getElementById(
+"answer_"+index
+);
+
+return field
+?
+field.value.trim()
+:
+"";
+
+});
+
+let answered =
+answers.filter(Boolean).length;
+
+result.innerHTML=`
+
+✅ Answers Submitted!
+
+<br><br>
+
+You answered
+<strong>
+${answered} / ${data.items.length}
+</strong>
+questions.
+
+<br><br>
+
+Your answers have been recorded on this device.
+`;
+
+result.classList.remove(
+"hidden"
+);
+
+}
+
+}
+
+
+/* =====================================================
+CLOSE TEST
+===================================================== */
+
 function closeTest(){
-  document.getElementById("testModal").classList.remove("active");
-  currentTest=null;
+
+document
+.getElementById("testModal")
+.classList.remove("active");
+
+currentTest=null;
+
+}
+
+
+/* =====================================================
+SOCIAL LINKS
+===================================================== */
+
+const SOCIAL_ICONS={
+
+Facebook:"📘",
+Instagram:"📸",
+Twitter:"🐦",
+"Twitter/X":"𝕏",
+YouTube:"▶️",
+WhatsApp:"💬",
+Gmail:"📧",
+Email:"📧",
+Website:"🌐",
+Custom:"🔗"
+
+};
+
+function getSocialIcon(platform){
+
+return SOCIAL_ICONS[platform]
+||
+"🔗";
+
+}
+
+function renderSocialLinks(items){
+
+const html =
+items.map(item=>{
+
+const url =
+cleanUrl(item.url);
+
+if(!url)
+return "";
+
+return `
+
+<a
+class="social-link"
+href="${safe(url)}"
+target="_blank"
+rel="noopener">
+
+${getSocialIcon(item.platform)}
+
+${safe(
+item.link_name ||
+item.platform ||
+"Link"
+)}
+
+</a>
+
+`;
+
+}).join("");
+
+document.getElementById(
+"socialLinksHome"
+).innerHTML =
+html ||
+`<div class="empty">
+No contact links available yet.
+</div>`;
+
+document.getElementById(
+"socialLinksFooter"
+).innerHTML =
+html;
+
+}
+
+async function loadSocial(){
+
+const links =
+await loadSocialLinks();
+
+renderSocialLinks(
+links
+);
+
+}
+
+
+/* =====================================================
+SEARCH
+===================================================== */
+
+let suggestionTimer=null;
+
+async function buildSuggestions(query){
+
+const q =
+normalize(query);
+
+if(!q)
+return [];
+
+const suggestions=[];
+
+const categories =
+Object.keys(CATEGORY_INFO);
+
+const qWords =
+words(q);
+
+
+/* CATEGORY SUGGESTIONS */
+
+for(const category of categories){
+
+const categoryFound =
+qWords.includes(
+normalize(category)
+)
+||
+q.includes(
+normalize(category)
+);
+
+if(!categoryFound)
+continue;
+
+if(category==="CIT"){
+
+suggestions.push({
+
+kind:"nav",
+icon:"📚",
+title:"CIT 1st Year",
+sub:"Open CIT → 1st Year",
+category:"CIT",
+type:"cit-year-1"
+
+});
+
+suggestions.push({
+
+kind:"nav",
+icon:"📗",
+title:"CIT 2nd Year",
+sub:"Open CIT → 2nd Year",
+category:"CIT",
+type:"cit-year-2"
+
+});
+
+suggestions.push({
+
+kind:"nav",
+icon:"📕",
+title:"CIT 3rd Year",
+sub:"Open CIT → 3rd Year",
+category:"CIT",
+type:"cit-year-3"
+
+});
+
+}
+
+const types=[
+
+{
+name:"courses",
+label:"Courses",
+icon:"📚"
+},
+
+{
+name:"notes",
+label:"Notes",
+icon:"📘"
+},
+
+{
+name:"practicals",
+label:"Practicals",
+icon:"🧪"
+},
+
+{
+name:"past papers",
+label:"Past Papers",
+icon:"📄"
+},
+
+{
+name:"tests",
+label:"Tests",
+icon:"🎯"
+},
+
+{
+name:"books",
+label:"Books",
+icon:"📚"
+}
+
+];
+
+const typeSearch={
+
+courses:["course","courses"],
+
+notes:["note","notes"],
+
+practicals:["practical","practicals"],
+
+"past papers":["paper","papers","past"],
+
+tests:["test","tests","quiz","mcq"],
+
+books:["book","books"]
+
+};
+
+let selectedType=null;
+
+for(const type of types){
+
+if(
+typeSearch[type.name]
+.some(
+word=>q.includes(word)
+)
+){
+
+selectedType=type;
+
+break;
+
+}
+
+}
+
+if(selectedType){
+
+suggestions.push({
+
+kind:"nav",
+
+icon:selectedType.icon,
+
+title:
+category+" "+selectedType.label,
+
+sub:
+"Open "+category+
+" → "+
+selectedType.label,
+
+category,
+type:selectedType.name
+
+});
+
+}
+
+else{
+
+if(category!=="CIT"){
+
+suggestions.push({
+
+kind:"nav",
+icon:"📚",
+title:category+" Courses",
+sub:"Open "+category+" → Courses",
+category,
+type:"courses"
+
+});
+
+suggestions.push({
+
+kind:"nav",
+icon:"📘",
+title:category+" Notes",
+sub:"Open "+category+" → Notes",
+category,
+type:"notes"
+
+});
+
+}
+
+}
+
+}
+
+
+/* MATERIAL SUGGESTIONS */
+
+const all =
+await getAllData();
+
+const results =
+all.map(item=>{
+
+const text =
+textOf(item);
+
+const title =
+normalize(item.title);
+
+let score=0;
+
+if(title===q)
+score+=100;
+
+if(title.includes(q))
+score+=60;
+
+qWords.forEach(word=>{
+
+if(text.includes(word))
+score+=10;
+
+});
+
+return {
+item,
+score
+};
+
+})
+.filter(x=>x.score>0)
+.sort((a,b)=>b.score-a.score);
+
+const icons={
+
+COURSE:"📚",
+NOTE:"📘",
+PRACTICAL:"🧪",
+"PAST PAPER":"📄",
+TEST:"🎯",
+BOOK:"📚"
+
+};
+
+const already =
+new Set();
+
+for(
+const result of results.slice(0,8)
+){
+
+const item =
+result.item;
+
+const key =
+String(
+item.id ||
+item.title
+);
+
+if(already.has(key))
+continue;
+
+already.add(key);
+
+suggestions.push({
+
+kind:"item",
+
+icon:
+icons[item.materialType] ||
+"📚",
+
+title:
+item.title ||
+"Untitled",
+
+sub:
+item.materialType+
+(
+item.year
+?
+" • "+item.year
+:
+""
+),
+
+item
+
+});
+
+}
+
+return suggestions.slice(
+0,
+12
+);
+
+}
+
+
+/* =====================================================
+SHOW SEARCH SUGGESTIONS
+===================================================== */
+
+async function handleSearchInput(){
+
+const input =
+document.getElementById(
+"searchInput"
+);
+
+const box =
+document.getElementById(
+"suggestions"
+);
+
+const q =
+input.value.trim();
+
+clearTimeout(
+suggestionTimer
+);
+
+if(!q){
+
+box.classList.remove("active");
+box.innerHTML="";
+return;
+
+}
+
+suggestionTimer =
+setTimeout(async()=>{
+
+box.innerHTML=`
+
+<div class="suggestion">
+
+<div class="suggestion-icon">
+⏳
+</div>
+
+<div>
+
+<div class="suggestion-main">
+Searching...
+</div>
+
+<div class="suggestion-sub">
+Finding StudyHub material
+</div>
+
+</div>
+
+</div>
+
+`;
+
+box.classList.add("active");
+
+try{
+
+const list =
+await buildSuggestions(q);
+
+window.currentSuggestions=list;
+
+if(!list.length){
+
+box.innerHTML=`
+
+<div class="suggestion">
+
+<div class="suggestion-icon">
+🔎
+</div>
+
+<div>
+
+<div class="suggestion-main">
+No matching suggestion
+</div>
+
+<div class="suggestion-sub">
+Press Search to search all material
+</div>
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML =
+list.map((s,index)=>{
+
+if(s.kind==="nav"){
+
+return `
+
+<div
+class="suggestion"
+onclick="handleSuggestionNavigation(
+'${enc(s.category)}',
+'${enc(s.type)}'
+)">
+
+<div class="suggestion-icon">
+${s.icon}
+</div>
+
+<div>
+
+<div class="suggestion-main">
+${safe(s.title)}
+</div>
+
+<div class="suggestion-sub">
+${safe(s.sub)}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+return `
+
+<div
+class="suggestion"
+onclick="openSuggestionItem(${index})">
+
+<div class="suggestion-icon">
+${s.icon}
+</div>
+
+<div>
+
+<div class="suggestion-main">
+${safe(s.title)}
+</div>
+
+<div class="suggestion-sub">
+${safe(s.sub)}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}catch(error){
+
+console.log(error);
+
+}
+
+},180);
+
+}
+
+
+/* =====================================================
+SUGGESTION NAVIGATION
+===================================================== */
+
+function handleSuggestionNavigation(
+category,
+type
+){
+
+const c =
+decodeURIComponent(category);
+
+const t =
+decodeURIComponent(type);
+
+if(
+c==="CIT"
+&&
+t==="cit-year-1"
+){
+
+window.location.href=
+"index.html?category=CIT&year=1st%20Year";
+
+return;
+
+}
+
+if(
+c==="CIT"
+&&
+t==="cit-year-2"
+){
+
+window.location.href=
+"index.html?category=CIT&year=2nd%20Year";
+
+return;
+
+}
+
+if(
+c==="CIT"
+&&
+t==="cit-year-3"
+){
+
+window.location.href=
+"index.html?category=CIT&year=3rd%20Year";
+
+return;
+
+}
+
+openCategorySection(
+c,
+t
+);
+
+}
+
+
+/* =====================================================
+KEYBOARD SEARCH
+===================================================== */
+
+function handleSearchKey(event){
+
+if(event.key==="Enter"){
+
+event.preventDefault();
+
+searchSite();
+
+}
+
+if(event.key==="Escape"){
+
+document
+.getElementById("suggestions")
+.classList.remove("active");
+
+}
+
+}
+
+
+/* =====================================================
+OPEN SEARCH ITEM
+===================================================== */
+
+async function openSuggestionItem(index){
+
+const suggestion=
+(
+window.currentSuggestions ||
+[]
+)[index];
+
+if(!suggestion)
+return;
+
+if(suggestion.kind!=="item")
+return;
+
+const item=
+suggestion.item;
+
+document
+.getElementById("suggestions")
+.classList.remove("active");
+
+
+if(item.materialType==="BOOK"){
+
+window.location.href=
+"index.html?category=CIT&year="+
+encodeURIComponent(
+item.year || "1st Year"
+);
+
+return;
+
+}
+
+
+if(item.materialType==="PRACTICAL"){
+
+window.location.href=
+"index.html?category=CIT&year="+
+encodeURIComponent(
+item.year || "1st Year"
+);
+
+return;
+
+}
+
+const categories=
+Object.keys(CATEGORY_INFO);
+
+const category=
+categories.find(
+c=>
+categoryMatches(
+item,
+c
+)
+);
+
+if(category){
+
+window.location.href=
+"index.html?category="+
+encodeURIComponent(category)+
+"&focus="+
+encodeURIComponent(
+item.materialType
+);
+
+return;
+
+}
+
+showDirectSearchItem(item);
+
+}
+
+
+/* =====================================================
+DIRECT SEARCH RESULT
+===================================================== */
+
+function showDirectSearchItem(item){
+
+const results =
+document.getElementById(
+"searchResults"
+);
+
+results.innerHTML =
+renderSearchResult(item);
+
+results.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+
+/* =====================================================
+SEARCH SITE
+===================================================== */
+
+async function searchSite(){
+
+const input =
+document.getElementById(
+"searchInput"
+);
+
+const results =
+document.getElementById(
+"searchResults"
+);
+
+const query =
+normalize(input.value);
+
+document
+.getElementById("suggestions")
+.classList.remove("active");
+
+if(!query){
+
+results.innerHTML="";
+return;
+
+}
+
+results.innerHTML=`
+
+<div class="search-result">
+⏳ Searching StudyHub...
+</div>
+
+`;
+
+const all =
+await getAllData();
+
+const qWords =
+words(query);
+
+const found =
+all.map(item=>{
+
+const text =
+textOf(item);
+
+const title =
+normalize(item.title);
+
+const description =
+normalize(item.description);
+
+let score=0;
+
+if(title===query)
+score+=100;
+
+if(title.includes(query))
+score+=50;
+
+if(description.includes(query))
+score+=15;
+
+qWords.forEach(word=>{
+
+if(text.includes(word))
+score+=8;
+
+});
+
+return {
+item,
+score
+};
+
+})
+.filter(x=>x.score>0)
+.sort((a,b)=>b.score-a.score);
+
+if(!found.length){
+
+results.innerHTML=`
+
+<div class="search-result">
+
+<strong>
+❌ No result found
+</strong>
+
+<p>
+Try CIT, CIT books, CIT practical,
+Physics notes or past papers.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+results.innerHTML=`
+
+<div class="search-result">
+
+<strong>
+🔎 ${found.length}
+result(s) found for
+"${safe(input.value)}"
+</strong>
+
+</div>
+
+`+
+
+found
+.slice(0,30)
+.map(x=>
+renderSearchResult(
+x.item
+)
+)
+.join("");
+
+}
+
+
+/* =====================================================
+RENDER SEARCH RESULT
+===================================================== */
+
+function renderSearchResult(item){
+
+const type =
+item.materialType;
+
+const url =
+cleanUrl(
+item.file_url ||
+item.url
+);
+
+let button="";
+
+if(type==="BOOK"){
+
+button =
+getFileButton(
+url,
+"Read Book PDF"
+);
+
+}
+
+else if(type==="PAST PAPER"){
+
+const key=
+"paper_"+
+Date.now()+
+Math.random();
+
+window.searchPapers =
+window.searchPapers || {};
+
+window.searchPapers[key]=item;
+
+button=`
+
+<button
+class="material-btn"
+onclick="openPaper(
+window.searchPapers['${key}']
+)">
+
+📖 Open Paper
+
+</button>
+
+`;
+
+}
+
+else if(
+type==="NOTE" ||
+type==="PRACTICAL"
+){
+
+button =
+url
+?
+getFileButton(
+url,
+type==="NOTE"
+?
+"Open Note"
+:
+"Open Practical"
+)
+:
+`<button
+class="material-btn"
+onclick="openCategoryFromTitle(
+'${enc(item.title || "")}'
+)">
+
+📚 Open Section
+
+</button>`;
+
+}
+
+else if(type==="COURSE"){
+
+button=`
+
+<button
+class="material-btn"
+onclick="openCategoryFromTitle(
+'${enc(item.title || "")}'
+)">
+
+📚 Open Course
+
+</button>
+
+`;
+
+}
+
+else if(type==="TEST"){
+
+button=`
+
+<button
+class="material-btn"
+onclick="openCategoryFromTitle(
+'${enc(item.title || "")}'
+)">
+
+🎯 Open Test
+
+</button>
+
+`;
+
+}
+
+return `
+
+<div class="search-result">
+
+<span class="material-type">
+${safe(type)}
+</span>
+
+<strong>
+${safe(item.title)}
+</strong>
+
+${
+item.subject
+?
+`<p>📚 ${safe(item.subject)}</p>`
+:
+""
+}
+
+${
+item.year
+?
+`<p>📅 ${safe(item.year)}</p>`
+:
+""
+}
+
+<p>
+${safe(item.description)}
+</p>
+
+${button}
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+OPEN CATEGORY FROM TITLE
+===================================================== */
+
+async function openCategoryFromTitle(title){
+
+const decoded =
+decodeURIComponent(title);
+
+const all =
+await getAllData();
+
+const item =
+all.find(
+x =>
+normalize(x.title)
+===
+normalize(decoded)
+);
+
+if(!item)
+return;
+
+if(
+item.materialType==="BOOK"
+||
+item.materialType==="PRACTICAL"
+){
+
+window.location.href=
+"index.html?category=CIT&year="+
+encodeURIComponent(
+item.year || "1st Year"
+);
+
+return;
+
+}
+
+const categories=
+Object.keys(CATEGORY_INFO);
+
+const category=
+categories.find(
+c=>
+categoryMatches(
+item,
+c
+)
+);
+
+if(category){
+
+window.location.href=
+"index.html?category="+
+encodeURIComponent(category)+
+"&focus="+
+encodeURIComponent(
+item.materialType
+);
+
+}
+
 }
 
 
@@ -3197,24 +5242,161 @@ LOAD CATEGORY
 ===================================================== */
 
 async function loadCategory(category){
-  selectedCategory=category;
-  selectedYear="";
-  selectedMaterial="";
 
-  document.getElementById("materialChoiceSection").classList.add("hidden");
-  document.querySelectorAll(".material-display").forEach(x=>x.classList.remove("active"));
+const [
+notes,
+courses,
+practicals,
+papers,
+tests
+] =
+await Promise.all([
 
-  renderYearButtons(category);
+loadNotes(),
+loadCourses(),
+loadPracticals(),
+loadPastPapers(),
+loadTests()
 
-  const isCit=category==="CIT";
-  document.getElementById("yearHeading").textContent=
-    isCit?"📚 Select CIT Year":"🎓 Select Class";
+]);
 
-  document.getElementById("yearSubheading").textContent=
-    isCit
-    ?"Choose 1st, 2nd or 3rd Year"
-    :"Choose 9th, 10th, 11th or 12th class";
+
+const categoryCourses =
+courses
+.filter(
+x=>
+categoryMatches(
+x,
+category
+)
+)
+.map(x=>({
+
+...x,
+type:"COURSE",
+icon:x.icon || "📚"
+
+}));
+
+
+const categoryNotes =
+notes
+.filter(
+x=>
+categoryMatches(
+x,
+category
+)
+)
+.map(x=>({
+
+...x,
+type:"NOTE",
+icon:x.icon || "📘"
+
+}));
+
+
+/*
+Practicals are shown only under CIT.
+*/
+
+const categoryPracticals =
+category==="CIT"
+?
+practicals.filter(
+x=>
+String(x.category || "")
+.toLowerCase()
+==="cit"
+)
+:
+[];
+
+
+const categoryPapers =
+papers.filter(
+x=>
+categoryMatches(
+x,
+category
+)
+);
+
+
+const categoryTests =
+tests.filter(
+x=>
+categoryMatches(
+x,
+category
+)
+);
+
+
+showMaterials([
+
+...categoryCourses,
+...categoryNotes
+
+]);
+
+
+if(category==="CIT"){
+
+document
+.getElementById("practicalsSection")
+.classList.add("hidden");
+
 }
+else{
+
+document
+.getElementById("practicalsSection")
+.classList.add("hidden");
+
+}
+
+showPracticals(
+categoryPracticals
+);
+
+showPapers(
+categoryPapers
+);
+
+showTests(
+categoryTests
+);
+
+
+/*
+Load CIT year selector.
+*/
+
+if(category==="CIT"){
+
+document
+.getElementById("citYearSelector")
+.classList.remove("hidden");
+
+const params=
+new URLSearchParams(
+location.search
+);
+
+const year=
+params.get("year");
+
+selectCITYear(
+year ||
+"1st Year"
+);
+
+}
+
+}
+
 
 /* =====================================================
 FOCUS SECTION
@@ -3297,40 +5479,329 @@ block:"start"
 }
 
 
+
+/* =====================================================
+SOCIAL LINKS
+===================================================== */
+
+async function loadSocial(){
+
+    const containerHome =
+        document.getElementById("socialLinksHome");
+
+    const containerFooter =
+        document.getElementById("socialLinksFooter");
+
+    try{
+
+        const links = await loadSocialLinks();
+
+        if(!links.length){
+
+            if(containerHome){
+                containerHome.innerHTML =
+                    `<div class="empty">
+                        No contact links available yet.
+                    </div>`;
+            }
+
+            if(containerFooter){
+                containerFooter.innerHTML = "";
+            }
+
+            return;
+        }
+
+        const icons = {
+            facebook:"📘",
+            instagram:"📸",
+            twitter:"𝕏",
+            x:"𝕏",
+            youtube:"▶️",
+            whatsapp:"💬",
+            email:"✉️",
+            gmail:"✉️",
+            website:"🌐",
+            custom:"🔗"
+        };
+
+        const html = links.map(item => {
+
+            const platform =
+                String(item.platform || "custom").toLowerCase();
+
+            const icon =
+                icons[platform] || "🔗";
+
+            const url =
+                cleanUrl(item.url);
+
+            if(!url) return "";
+
+            return `
+                <a
+                    class="social-link"
+                    href="${safe(url)}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    ${icon}
+                    ${safe(item.link_name || item.platform || "Link")}
+
+                </a>
+            `;
+
+        }).join("");
+
+        if(containerHome){
+            containerHome.innerHTML =
+                html ||
+                `<div class="empty">No contact links available yet.</div>`;
+        }
+
+        if(containerFooter){
+            containerFooter.innerHTML = html;
+        }
+
+    }catch(error){
+
+        console.log("Social links:",error);
+
+        if(containerHome){
+            containerHome.innerHTML =
+                `<div class="empty">
+                    Contact links could not be loaded.
+                </div>`;
+        }
+
+    }
+}
+
+
+/* =====================================================
+MATERIAL URL PARAMETER
+===================================================== */
+
+function materialKeyFromParam(value){
+
+    const v =
+        String(value || "")
+        .toLowerCase()
+        .trim();
+
+    const map = {
+
+        books:"books",
+        book:"books",
+
+        notes:"notes",
+        note:"notes",
+
+        practicals:"practicals",
+        practical:"practicals",
+
+        papers:"papers",
+        paper:"papers",
+        "past papers":"papers",
+        "past paper":"papers",
+
+        tests:"tests",
+        test:"tests",
+
+        courses:"notes",
+        course:"notes"
+
+    };
+
+    return map[v] || "";
+}
+
+
+/* =====================================================
+SAFE CATEGORY NAVIGATION
+===================================================== */
+
+function goToCategory(category){
+
+    if(!category) return;
+
+    window.location.href =
+        "index.html?category=" +
+        encodeURIComponent(category);
+
+}
+
+
+/* =====================================================
+FIXED SEARCH FOCUS
+===================================================== */
+
+function focusSection(type){
+
+    const material =
+        materialKeyFromParam(type);
+
+    if(!material) return;
+
+    if(!selectedCategory){
+
+        const params =
+            new URLSearchParams(location.search);
+
+        selectedCategory =
+            params.get("category") || "";
+
+    }
+
+    if(!selectedCategory) return;
+
+    if(!selectedYear){
+
+        const params =
+            new URLSearchParams(location.search);
+
+        selectedYear =
+            params.get("year") || "";
+
+    }
+
+    if(!selectedYear){
+
+        document.getElementById("materialChoiceSection")
+            ?.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        return;
+
+    }
+
+    selectMaterial(material);
+
+}
+
+
+/* =====================================================
+CATEGORY CLICK FALLBACK
+===================================================== */
+
+document.addEventListener("click",function(e){
+
+    const link =
+        e.target.closest(
+            '.category[href*="category="], .category-menu a[href*="category="]'
+        );
+
+    if(!link) return;
+
+    const href =
+        link.getAttribute("href");
+
+    if(!href) return;
+
+    const match =
+        href.match(/[?&]category=([^&]+)/);
+
+    if(!match) return;
+
+    e.preventDefault();
+
+    const category =
+        decodeURIComponent(match[1]);
+
+    goToCategory(category);
+
+});
+
+
+
 /* =====================================================
 START
 ===================================================== */
 
 async function start(){
-  updateThemeButton();
-  loadSocial();
 
-  const params=new URLSearchParams(location.search);
-  const category=params.get("category");
-  const year=params.get("year");
-  const material=materialKeyFromParam(params.get("material")||params.get("focus"));
+updateThemeButton();
 
-  if(category){
-    document.getElementById("homePage").style.display="none";
-    document.getElementById("categoryPage").style.display="block";
+loadSocial();
 
-    const info=CATEGORY_INFO[category]||[
-      "📚",category,category+" complete study material"
-    ];
 
-    document.getElementById("categoryTitle").textContent=info[0]+" "+info[1];
-    document.getElementById("categoryDescription").textContent=info[2];
+const params =
+new URLSearchParams(
+location.search
+);
 
-    await loadCategory(category);
+const category =
+params.get("category");
 
-    if(year&&getCategoryYears(category).includes(year)){
-      selectCategoryYear(enc(year));
+const focus =
+params.get("focus");
 
-      if(material){
-        await selectMaterial(material);
-      }
-    }
-  }
+const year =
+params.get("year");
+
+
+if(category){
+
+document.getElementById(
+"homePage"
+).style.display="none";
+
+document.getElementById(
+"categoryPage"
+).style.display="block";
+
+
+const info =
+CATEGORY_INFO[category]
+||
+[
+"📚",
+category,
+category+
+" complete study material"
+];
+
+
+document.getElementById(
+"categoryTitle"
+).textContent =
+info[0]+" "+info[1];
+
+document.getElementById(
+"categoryDescription"
+).textContent =
+info[2];
+
+
+await loadCategory(
+category
+);
+
+
+if(
+category==="CIT"
+&&
+year
+){
+
+selectCITYear(
+year
+);
+
+}
+
+else{
+
+focusSection(
+focus
+);
+
+}
+
+}
+
 }
 
 
