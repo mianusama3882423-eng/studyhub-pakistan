@@ -18,199 +18,174 @@
     font-family:Arial,sans-serif;
 }
 
-body{
-    background:#f4f7fb;
-    color:#172033;
+:root{
+    --primary:#4f46e5;
+    --secondary:#7c3aed;
+    --bg:#f5f7ff;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --danger:#ef4444;
+    --success:#16a34a;
 }
 
-/* ================= HEADER ================= */
+body{
+    background:var(--bg);
+    color:var(--text);
+}
 
 header{
     height:65px;
-    background:#172033;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
     color:white;
-    padding:0 5%;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    padding:0 18px;
     position:sticky;
     top:0;
     z-index:1000;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
 }
 
-.logo{
-    font-size:21px;
-    font-weight:bold;
-}
-
-.logo span{
-    color:#60a5fa;
-}
-
-/* ================= MENU BUTTON ================= */
-
-.menu-btn{
-    width:44px;
-    height:44px;
+.menuBtn{
     border:0;
     background:transparent;
     color:white;
     font-size:28px;
     cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    margin-right:15px;
 }
 
-/* ================= SIDE MENU ================= */
-
-.menu-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:1998;
-    display:none;
-}
-
-.menu-overlay.show{
-    display:block;
-}
-
-.side-menu{
-    position:fixed;
-    top:0;
-    right:-310px;
-    width:290px;
-    max-width:85%;
-    height:100vh;
-    background:white;
-    z-index:1999;
-    box-shadow:-5px 0 25px rgba(0,0,0,.18);
-    transition:.3s ease;
-    padding:20px;
-}
-
-.side-menu.open{
-    right:0;
-}
-
-.menu-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding-bottom:18px;
-    border-bottom:1px solid #e5e7eb;
-    margin-bottom:18px;
-}
-
-.menu-top h3{
-    color:#172033;
-}
-
-.close-menu{
-    width:38px;
-    height:38px;
-    border:0;
-    border-radius:8px;
-    background:#f1f5f9;
-    cursor:pointer;
+header h2{
     font-size:20px;
 }
 
-.menu-link{
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:280px;
+    height:100%;
+    background:white;
+    z-index:2000;
+    box-shadow:5px 0 20px rgba(0,0,0,.15);
+    transition:.3s;
+    padding-top:70px;
+}
+
+.sidebar.open{
+    left:0;
+}
+
+.sidebar a,
+.sidebar button{
     width:100%;
     display:block;
-    text-align:left;
+    padding:16px 20px;
     border:0;
     background:white;
-    padding:14px;
-    border-radius:9px;
-    margin-bottom:8px;
-    font-size:15px;
+    text-align:left;
+    color:#333;
+    font-size:16px;
+    text-decoration:none;
     cursor:pointer;
-    color:#172033;
 }
 
-.menu-link:hover{
-    background:#eff6ff;
+.sidebar a:hover,
+.sidebar button:hover{
+    background:#eef2ff;
+    color:var(--primary);
 }
 
-.logout-menu{
-    color:#dc2626;
-    background:#fff1f2;
-    font-weight:bold;
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    z-index:1500;
 }
 
-/* ================= CONTAINER ================= */
+.overlay.show{
+    display:block;
+}
 
 .container{
-    max-width:1150px;
+    width:100%;
+    max-width:1100px;
     margin:auto;
-    padding:30px 20px;
+    padding:20px;
 }
 
 .welcome{
-    margin-bottom:25px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
 }
 
 .welcome h1{
-    margin-bottom:7px;
+    font-size:27px;
+    margin-bottom:8px;
 }
 
 .welcome p{
-    color:#687386;
+    opacity:.9;
 }
-
-/* ================= STATS ================= */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:16px;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
     margin-bottom:25px;
 }
 
 .stat{
-    background:white;
+    background:var(--card);
+    border-radius:15px;
     padding:20px;
-    border-radius:12px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
-.stat-icon{
-    font-size:28px;
-}
-
-.stat h2{
-    margin-top:8px;
+.stat h3{
+    font-size:27px;
+    color:var(--primary);
 }
 
 .stat p{
-    color:#687386;
-    font-size:13px;
-    margin-top:4px;
+    color:var(--muted);
+    margin-top:5px;
 }
 
-/* ================= PANEL ================= */
-
-.panel{
-    background:white;
-    padding:24px;
-    border-radius:12px;
-    margin-bottom:22px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
+.section{
+    background:var(--card);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
-.panel h2{
+.section h2{
+    color:var(--primary);
     margin-bottom:18px;
+    font-size:21px;
 }
 
-/* ================= FORM ================= */
-
-.form{
+.form-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
 }
 
 input,
@@ -218,282 +193,192 @@ textarea,
 select{
     width:100%;
     padding:12px;
-    border:1px solid #d8dde7;
-    border-radius:7px;
+    border:1px solid var(--border);
+    border-radius:10px;
     outline:none;
-    font-size:14px;
+    font-size:15px;
+    background:white;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-    border-color:#2563eb;
+    border-color:var(--primary);
 }
 
-input[type="file"]{
-    background:#f8fafc;
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:12px 18px;
+    color:white;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
     cursor:pointer;
-}
-
-textarea{
-    min-height:90px;
-    resize:vertical;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-/* ================= UPLOAD ================= */
-
-.upload-box{
-    grid-column:1/-1;
-    border:1px dashed #b9c3d3;
-    padding:15px;
-    border-radius:8px;
-    background:#f8fafc;
-}
-
-.upload-title{
     font-weight:bold;
-    margin-bottom:8px;
 }
 
-.or{
-    text-align:center;
-    color:#687386;
-    font-size:13px;
-    margin:10px 0;
+.btn:hover{
+    opacity:.9;
+}
+
+.btn-danger{
+    background:var(--danger);
+}
+
+.btn-success{
+    background:var(--success);
+}
+
+.small-btn{
+    padding:8px 12px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    color:white;
+    background:var(--primary);
+}
+
+.file-box{
+    background:#f8faff;
+    border:1px dashed #b8c1ff;
+    padding:14px;
+    border-radius:10px;
 }
 
 .help{
-    color:#687386;
-    font-size:12px;
+    color:var(--muted);
+    font-size:13px;
     margin-top:6px;
-    line-height:1.5;
 }
 
-/* ================= BUTTON ================= */
-
-.add-btn{
-    background:#2563eb;
-    color:white;
-    border:0;
-    padding:12px 18px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.add-btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-}
-
-/* ================= MESSAGE ================= */
-
-.message{
-    margin-top:12px;
-    padding:10px;
-    border-radius:7px;
-    display:none;
-}
-
-.success{
-    display:block;
-    background:#dcfce7;
-    color:#166534;
-}
-
-.error{
-    display:block;
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-/* ================= ITEMS ================= */
-
-.items{
-    display:grid;
-    gap:10px;
+.list{
+    margin-top:20px;
 }
 
 .item{
-    border:1px solid #e1e5ec;
+    border:1px solid var(--border);
+    border-radius:13px;
     padding:15px;
-    border-radius:8px;
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
+    margin-bottom:12px;
+    background:#fafbff;
 }
 
-.item-content{
-    flex:1;
-    min-width:0;
+.item-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:flex-start;
 }
 
 .item h3{
+    color:#333;
     margin-bottom:5px;
 }
 
 .item p{
-    color:#687386;
-    font-size:13px;
-    margin-top:4px;
-    line-height:1.5;
+    color:var(--muted);
+    font-size:14px;
+    margin:4px 0;
 }
 
-.item a{
+.badge{
     display:inline-block;
-    margin-top:8px;
-    color:#2563eb;
-    font-size:13px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.item img{
-    max-width:180px;
-    max-height:130px;
-    object-fit:contain;
-    border-radius:7px;
-    margin-top:10px;
-    display:block;
-    border:1px solid #e5e7eb;
-    background:#fff;
-}
-
-.delete{
-    background:#fee2e2;
-    color:#dc2626;
-    border:0;
-    padding:8px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    font-weight:bold;
-    flex-shrink:0;
-}
-
-/* ================= PAGES ================= */
-
-.page-list{
-    margin-top:12px;
-    padding:10px;
-    background:#f8fafc;
-    border-radius:8px;
-}
-
-.page-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 0;
-    border-bottom:1px solid #e5e7eb;
-}
-
-.page-item:last-child{
-    border-bottom:0;
-}
-
-.page-number{
-    background:#2563eb;
-    color:white;
-    min-width:30px;
-    height:30px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:50%;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#e0e7ff;
+    color:#4338ca;
     font-size:12px;
     font-weight:bold;
+    margin:3px 3px 3px 0;
 }
 
-.page-preview{
-    width:60px;
-    height:45px;
-    object-fit:cover;
-    border-radius:5px;
-    border:1px solid #ddd;
+.actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
 }
 
-/* ================= CHECKING ================= */
-
-#checking{
-    max-width:500px;
-    margin:80px auto;
-    text-align:center;
-    background:white;
-    padding:35px;
-    border-radius:15px;
-    box-shadow:0 4px 20px rgba(0,0,0,.08);
+.remove{
+    color:#ef4444;
+    background:#fee2e2;
 }
 
-#adminPanel{
+.builder{
+    margin-top:15px;
+}
+
+.builder-card{
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:12px;
+    background:#fafbff;
+}
+
+.builder-card h4{
+    margin-bottom:12px;
+    color:var(--primary);
+}
+
+.option-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.link-row{
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:12px;
+    background:#fafbff;
+}
+
+.hidden{
     display:none;
 }
 
+hr{
+    border:0;
+    border-top:1px solid var(--border);
+    margin:20px 0;
+}
+
 .loading{
-    color:#687386;
+    text-align:center;
+    padding:20px;
+    color:var(--muted);
 }
 
-.small-note{
-    font-size:12px;
-    color:#687386;
-    margin-top:8px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:900px){
+@media(max-width:800px){
 
     .stats{
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
-}
-
-@media(max-width:750px){
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .form{
+    .form-grid{
         grid-template-columns:1fr;
     }
 
-    .full,
-    .upload-box{
+    .full{
         grid-column:auto;
-    }
-
-    .item{
-        flex-direction:column;
-    }
-
-    .delete{
-        align-self:flex-start;
     }
 
 }
 
-@media(max-width:450px){
-
-    header{
-        padding:0 16px;
-    }
-
-    .logo{
-        font-size:18px;
-    }
+@media(max-width:500px){
 
     .container{
-        padding:22px 14px;
+        padding:12px;
     }
 
-    .panel{
-        padding:18px;
+    .welcome h1{
+        font-size:22px;
     }
 
     .stats{
@@ -504,8 +389,12 @@ textarea{
         padding:15px;
     }
 
-    .stat-icon{
-        font-size:24px;
+    .stat h3{
+        font-size:22px;
+    }
+
+    .item-top{
+        flex-direction:column;
     }
 
 }
@@ -515,505 +404,638 @@ textarea{
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
 
-    <div class="logo">
-        Study<span>Hub</span> Admin
-    </div>
+<button class="menuBtn" onclick="openMenu()">☰</button>
 
-    <button
-        class="menu-btn"
-        onclick="openMenu()"
-        aria-label="Open menu">
-        ☰
-    </button>
+<h2>StudyHub Pakistan - Admin</h2>
 
 </header>
 
 
-<!-- ================= SIDE MENU ================= -->
-
-<div
-    id="menuOverlay"
-    class="menu-overlay"
-    onclick="closeMenu()">
-</div>
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
 
-<div id="sideMenu" class="side-menu">
+<div id="sidebar" class="sidebar">
 
-    <div class="menu-top">
+<a href="index.html">🏠 Home</a>
 
-        <h3>
-            ⚙️ Admin Menu
-        </h3>
+<a href="#dashboard" onclick="closeMenu()">📊 Dashboard</a>
 
-        <button
-            class="close-menu"
-            onclick="closeMenu()">
-            ✕
-        </button>
+<a href="#books" onclick="closeMenu()">📚 Books</a>
 
-    </div>
+<a href="#practicals" onclick="closeMenu()">🧪 Practicals</a>
 
+<a href="#notes" onclick="closeMenu()">📝 Notes</a>
 
-    <button
-        class="menu-link"
-        onclick="goHome()">
-        🏠 StudyHub Home
-    </button>
+<a href="#tests" onclick="closeMenu()">📋 Tests</a>
 
+<a href="#pastPapers" onclick="closeMenu()">📄 Past Papers</a>
 
-    <button
-        class="menu-link"
-        onclick="scrollToTop()">
-        📊 Dashboard
-    </button>
+<a href="#socialLinks" onclick="closeMenu()">🔗 Social & Contact Links</a>
 
-
-    <button
-        class="menu-link logout-menu"
-        onclick="logout()">
-        🚪 Logout
-    </button>
+<button onclick="logout()">🚪 Logout</button>
 
 </div>
 
 
-<!-- ================= CHECKING ================= -->
+<div class="container">
 
-<div id="checking">
+<div class="welcome" id="dashboard">
 
-    <h2>🔐 Checking Admin...</h2>
+<h1>Welcome to StudyHub Pakistan</h1>
 
-    <p class="loading">
-        Please wait...
-    </p>
+<p>Manage courses, notes, practicals, books, tests, past papers and social links.</p>
 
 </div>
 
 
-<!-- ================= ADMIN PANEL ================= -->
+<div class="stats">
 
-<main id="adminPanel" class="container">
+<div class="stat">
+<h3 id="courseCount">0</h3>
+<p>Courses</p>
+</div>
 
-    <div class="welcome">
+<div class="stat">
+<h3 id="noteCount">0</h3>
+<p>Notes</p>
+</div>
 
-        <h1>
-            Welcome Admin 👋
-        </h1>
+<div class="stat">
+<h3 id="practicalCount">0</h3>
+<p>Practicals</p>
+</div>
 
-        <p>
-            StudyHub Pakistan Content Management
-        </p>
+<div class="stat">
+<h3 id="bookCount">0</h3>
+<p>Books</p>
+</div>
 
-    </div>
+</div>
 
 
-    <!-- ================= STATS ================= -->
+<!-- ================= COURSES ================= -->
 
-    <div class="stats">
+<div class="section">
 
-        <div class="stat">
-            <div class="stat-icon">📚</div>
-            <h2 id="courseCount">0</h2>
-            <p>Courses</p>
-        </div>
+<h2>🎓 Add Course</h2>
 
-        <div class="stat">
-            <div class="stat-icon">📘</div>
-            <h2 id="noteCount">0</h2>
-            <p>Notes</p>
-        </div>
+<form onsubmit="addCourse(event)">
 
-        <div class="stat">
-            <div class="stat-icon">🧪</div>
-            <h2 id="practicalCount">0</h2>
-            <p>Practicals</p>
-        </div>
+<div class="form-grid">
 
-        <div class="stat">
-            <div class="stat-icon">🎯</div>
-            <h2 id="testCount">0</h2>
-            <p>Tests</p>
-        </div>
+<div>
+<label>Course Title</label>
+<input id="courseTitle" required>
+</div>
 
-        <div class="stat">
-            <div class="stat-icon">📄</div>
-            <h2 id="pastPaperCount">0</h2>
-            <p>Past Papers</p>
-        </div>
+<div>
+<label>Level</label>
+<input id="courseLevel" placeholder="Example: CIT 1st Year" required>
+</div>
 
-    </div>
+<div>
+<label>Icon</label>
+<input id="courseIcon" placeholder="📚">
+</div>
 
+<div class="full">
+<label>Description</label>
+<textarea id="courseDescription"></textarea>
+</div>
 
-    <!-- ================= COURSE ================= -->
+</div>
 
-    <div class="panel">
+<br>
 
-        <h2>📚 Add Course</h2>
+<button class="btn">Add Course</button>
 
-        <div class="form">
+</form>
 
-            <input
-                id="courseTitle"
-                placeholder="Course title">
+<div id="coursesList" class="list"></div>
 
-            <input
-                id="courseLevel"
-                value="BEGINNER"
-                placeholder="Level">
+</div>
 
-            <input
-                id="courseIcon"
-                value="📚"
-                placeholder="Icon">
 
-            <textarea
-                id="courseDescription"
-                class="full"
-                placeholder="Course description"></textarea>
+<!-- ================= BOOKS ================= -->
 
-            <button
-                class="add-btn"
-                onclick="addCourse()">
-                Add Course
-            </button>
+<div class="section" id="books">
 
-        </div>
+<h2>📚 Add Book</h2>
 
-        <div
-            id="courseMessage"
-            class="message">
-        </div>
+<form onsubmit="addBook(event)">
 
-    </div>
+<div class="form-grid">
 
+<div>
+<label>Category</label>
 
-    <!-- ================= NOTES ================= -->
+<select id="bookCategory">
 
-    <div class="panel">
+<option value="CIT">CIT</option>
 
-        <h2>📘 Add Note</h2>
+</select>
 
-        <div class="form">
+</div>
 
-            <input
-                id="noteTitle"
-                placeholder="Note title">
 
-            <input
-                id="noteIcon"
-                value="📘"
-                placeholder="Icon">
+<div>
 
-            <textarea
-                id="noteDescription"
-                class="full"
-                placeholder="Note description"></textarea>
+<label>Year</label>
 
+<select id="bookYear">
 
-            <div class="upload-box">
+<option value="1st Year">1st Year</option>
 
-                <div class="upload-title">
-                    📷 Upload Note Picture
-                </div>
+<option value="2nd Year">2nd Year</option>
 
-                <input
-                    id="noteFile"
-                    type="file"
-                    accept="image/*">
+<option value="3rd Year">3rd Year</option>
 
-                <p class="help">
-                    Gallery se picture select karo.
-                    Maximum 10 MB.
-                </p>
+</select>
 
-                <div class="or">
-                    — OR —
-                </div>
+</div>
 
-                <input
-                    id="noteFileUrl"
-                    placeholder="🔗 YouTube / PDF / File URL">
 
-            </div>
+<div class="full">
 
+<label>Book Name</label>
 
-            <button
-                class="add-btn"
-                onclick="addNote(this)">
-                Add Note
-            </button>
+<input id="bookTitle" placeholder="Example: CIT-114 Programming" required>
 
-        </div>
+</div>
 
-        <div
-            id="noteMessage"
-            class="message">
-        </div>
 
-    </div>
+<div class="full">
 
+<label>Description</label>
 
-    <!-- ================= PRACTICAL ================= -->
+<textarea id="bookDescription" placeholder="Book description"></textarea>
 
-    <div class="panel">
+</div>
 
-        <h2>🧪 Add Practical</h2>
 
-        <div class="form">
+<div>
 
-            <input
-                id="practicalTitle"
-                placeholder="Practical title">
+<label>Upload PDF</label>
 
-            <input
-                id="practicalIcon"
-                value="💻"
-                placeholder="Icon">
+<div class="file-box">
 
-            <textarea
-                id="practicalDescription"
-                class="full"
-                placeholder="Practical description"></textarea>
+<input
+type="file"
+id="bookFile"
+accept=".pdf,application/pdf">
 
+</div>
 
-            <div class="upload-box">
+</div>
 
-                <div class="upload-title">
-                    📷 Upload Practical Picture
-                </div>
 
-                <input
-                    id="practicalFile"
-                    type="file"
-                    accept="image/*">
+<div>
 
-                <p class="help">
-                    Gallery se practical ki picture select karo.
-                    Maximum 10 MB.
-                </p>
+<label>OR PDF / Book Link</label>
 
-                <div class="or">
-                    — OR —
-                </div>
+<input
+id="bookFileUrl"
+type="url"
+placeholder="https://example.com/book.pdf">
 
-                <input
-                    id="practicalFileUrl"
-                    placeholder="🔗 YouTube / PDF / File URL">
+</div>
 
-            </div>
+</div>
 
+<br>
 
-            <button
-                class="add-btn"
-                onclick="addPractical(this)">
-                Add Practical
-            </button>
+<button class="btn">➕ Add Book</button>
 
-        </div>
+</form>
 
-        <div
-            id="practicalMessage"
-            class="message">
-        </div>
 
-    </div>
+<div id="booksList" class="list">
 
+<div class="loading">Loading books...</div>
 
-    <!-- ================= TEST ================= -->
+</div>
 
-    <div class="panel">
+</div>
 
-        <h2>🎯 Add Test</h2>
 
-        <div class="form">
+<!-- ================= NOTES ================= -->
 
-            <input
-                id="testTitle"
-                placeholder="Test title">
+<div class="section" id="notes">
 
-            <input
-                id="testQuestions"
-                type="number"
-                min="1"
-                value="10"
-                placeholder="Questions">
+<h2>📝 Add Note</h2>
 
-            <textarea
-                id="testDescription"
-                class="full"
-                placeholder="Test description"></textarea>
+<form onsubmit="addNote(event)">
 
-            <button
-                class="add-btn"
-                onclick="addTest()">
-                Add Test
-            </button>
+<div class="form-grid">
 
-        </div>
+<div>
 
-        <div
-            id="testMessage"
-            class="message">
-        </div>
+<label>Note Title</label>
 
-    </div>
+<input id="noteTitle" required>
 
+</div>
 
-    <!-- ================= PAST PAPERS ================= -->
 
-    <div class="panel">
+<div>
 
-        <h2>📄 Add Past Paper</h2>
+<label>Icon</label>
 
-        <div class="form">
+<input id="noteIcon" placeholder="📝">
 
-            <input
-                id="pastPaperTitle"
-                placeholder="Past paper title e.g. CIT 1st Year 2025">
+</div>
 
-            <input
-                id="pastPaperSubject"
-                placeholder="Subject e.g. Computer Science">
 
-            <input
-                id="pastPaperYear"
-                type="number"
-                placeholder="Year e.g. 2025">
+<div class="full">
 
-            <textarea
-                id="pastPaperDescription"
-                class="full"
-                placeholder="Past paper description"></textarea>
+<label>Description</label>
 
+<textarea id="noteDescription"></textarea>
 
-            <div class="upload-box">
+</div>
 
-                <div class="upload-title">
-                    📄 Upload Past Paper Pages
-                </div>
 
-                <input
-                    id="pastPaperFiles"
-                    type="file"
-                    accept="image/*"
-                    multiple>
+<div>
 
-                <p class="help">
-                    Page 1, Page 2, Page 3...
-                    multiple pictures ek saath select kar sakte ho.
-                </p>
+<label>Upload Image / PDF / File</label>
 
-                <div class="or">
-                    — OR —
-                </div>
+<div class="file-box">
 
-                <textarea
-                    id="pastPaperPagesUrls"
-                    placeholder="🔗 Multiple URLs enter karo&#10;Har page ka URL new line mein"></textarea>
+<input
+type="file"
+id="noteFile"
+accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
 
-                <p class="help">
-                    Har new line = ek page
-                </p>
+</div>
 
-            </div>
+</div>
 
 
-            <button
-                class="add-btn"
-                onclick="addPastPaper(this)">
-                Add Past Paper
-            </button>
+<div>
 
-        </div>
+<label>OR Add URL / Link</label>
 
-        <div
-            id="pastPaperMessage"
-            class="message">
-        </div>
+<input
+id="noteFileUrl"
+type="url"
+placeholder="https://example.com/file">
 
-    </div>
+</div>
 
+</div>
 
-    <!-- ================= COURSES LIST ================= -->
+<br>
 
-    <div class="panel">
+<button class="btn">➕ Add Note</button>
 
-        <h2>📚 All Courses</h2>
+</form>
 
-        <div
-            id="coursesList"
-            class="items">
-            Loading...
-        </div>
 
-    </div>
+<div id="notesList" class="list"></div>
 
+</div>
 
-    <!-- ================= NOTES LIST ================= -->
 
-    <div class="panel">
+<!-- ================= PRACTICALS ================= -->
 
-        <h2>📘 All Notes</h2>
+<div class="section" id="practicals">
 
-        <div
-            id="notesList"
-            class="items">
-            Loading...
-        </div>
+<h2>🧪 Add Practical</h2>
 
-    </div>
+<form onsubmit="addPractical(event)">
 
+<div class="form-grid">
 
-    <!-- ================= PRACTICALS LIST ================= -->
 
-    <div class="panel">
+<div>
 
-        <h2>🧪 All Practicals</h2>
+<label>Category</label>
 
-        <div
-            id="practicalsList"
-            class="items">
-            Loading...
-        </div>
+<select id="practicalCategory">
 
-    </div>
+<option value="CIT">CIT</option>
 
+</select>
 
-    <!-- ================= TESTS LIST ================= -->
+</div>
 
-    <div class="panel">
 
-        <h2>🎯 All Tests</h2>
+<div>
 
-        <div
-            id="testsList"
-            class="items">
-            Loading...
-        </div>
+<label>Year</label>
 
-    </div>
+<select id="practicalYear">
 
+<option value="1st Year">1st Year</option>
 
-    <!-- ================= PAST PAPERS LIST ================= -->
+<option value="2nd Year">2nd Year</option>
 
-    <div class="panel">
+<option value="3rd Year">3rd Year</option>
 
-        <h2>📄 All Past Papers</h2>
+</select>
 
-        <div
-            id="pastPapersList"
-            class="items">
-            Loading...
-        </div>
+</div>
 
-    </div>
 
-</main>
+<div>
+
+<label>Practical Title</label>
+
+<input id="practicalTitle" required>
+
+</div>
+
+
+<div>
+
+<label>Icon</label>
+
+<input id="practicalIcon" placeholder="🧪">
+
+</div>
+
+
+<div class="full">
+
+<label>Description</label>
+
+<textarea id="practicalDescription"></textarea>
+
+</div>
+
+
+<div>
+
+<label>Upload Image / PDF / File</label>
+
+<div class="file-box">
+
+<input
+type="file"
+id="practicalFile"
+accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
+
+</div>
+
+</div>
+
+
+<div>
+
+<label>OR Add URL / Link</label>
+
+<input
+id="practicalFileUrl"
+type="url"
+placeholder="https://example.com/file">
+
+</div>
+
+</div>
+
+<br>
+
+<button class="btn">➕ Add Practical</button>
+
+</form>
+
+
+<div id="practicalsList" class="list"></div>
+
+</div>
+
+
+<!-- ================= TESTS ================= -->
+
+<div class="section" id="tests">
+
+<h2>📋 Add Test</h2>
+
+<form onsubmit="addTest(event)">
+
+<div class="form-grid">
+
+<div>
+
+<label>Test Title</label>
+
+<input id="testTitle" required>
+
+</div>
+
+
+<div>
+
+<label>Test Type</label>
+
+<select id="testType" onchange="changeTestType()">
+
+<option value="mcq">MCQs</option>
+
+<option value="questions">Questions</option>
+
+</select>
+
+</div>
+
+
+<div class="full">
+
+<label>Description</label>
+
+<textarea id="testDescription"></textarea>
+
+</div>
+
+</div>
+
+
+<!-- MCQ BUILDER -->
+
+<div id="mcqBuilder" class="builder">
+
+<h3>MCQs</h3>
+
+<div id="mcqItems"></div>
+
+<button
+type="button"
+class="btn"
+onclick="addMCQ()">
+
+➕ Add MCQ
+
+</button>
+
+</div>
+
+
+<!-- QUESTION BUILDER -->
+
+<div id="questionBuilder" class="builder hidden">
+
+<h3>Questions</h3>
+
+<div id="questionItems"></div>
+
+<button
+type="button"
+class="btn"
+onclick="addQuestion()">
+
+➕ Add Question
+
+</button>
+
+</div>
+
+
+<br>
+
+<button class="btn">💾 Save Test</button>
+
+</form>
+
+
+<div id="testsList" class="list"></div>
+
+</div>
+
+
+<!-- ================= PAST PAPERS ================= -->
+
+<div class="section" id="pastPapers">
+
+<h2>📄 Add Past Paper</h2>
+
+<form onsubmit="addPastPaper(event)">
+
+<div class="form-grid">
+
+
+<div>
+
+<label>Title</label>
+
+<input id="paperTitle" required>
+
+</div>
+
+
+<div>
+
+<label>Subject</label>
+
+<input id="paperSubject" required>
+
+</div>
+
+
+<div>
+
+<label>Year</label>
+
+<input id="paperYear" placeholder="2026">
+
+</div>
+
+
+<div class="full">
+
+<label>Description</label>
+
+<textarea id="paperDescription"></textarea>
+
+</div>
+
+
+<div>
+
+<label>Upload Pages / PDF / Files</label>
+
+<div class="file-box">
+
+<input
+type="file"
+id="pastPaperFiles"
+multiple
+accept="image/*,.pdf,.doc,.docx">
+
+</div>
+
+</div>
+
+
+<div>
+
+<label>OR Add URLs</label>
+
+<textarea
+id="pastPaperPagesUrls"
+placeholder="Add one URL per line"></textarea>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="btn">➕ Add Past Paper</button>
+
+</form>
+
+
+<div id="pastPapersList" class="list"></div>
+
+</div>
+
+
+<!-- ================= SOCIAL LINKS ================= -->
+
+<div class="section" id="socialLinks">
+
+<h2>🔗 Social & Contact Links</h2>
+
+<p class="help">
+Add unlimited social media, contact and website links.
+These links can be displayed automatically in the About section.
+</p>
+
+<br>
+
+<div id="socialRows"></div>
+
+
+<button
+type="button"
+class="btn"
+onclick="addSocialRow()">
+
+➕ Add Link
+
+</button>
+
+<br><br>
+
+
+<button
+type="button"
+class="btn btn-success"
+onclick="saveSocialLinks()">
+
+💾 Save All Links
+
+</button>
+
+
+<div id="socialLinksList" class="list"></div>
+
+</div>
+
+
+</div>
 
 
 <script>
@@ -1028,27 +1050,10 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_5xL_Po0vDkNM_sMHz6zBTg_HhV1r0zT";
 
-const db =
-supabase.createClient(
+const db = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
-
-/* =========================================
-   SAFE HTML
-========================================= */
-
-function safe(value){
-
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
 
 
 /* =========================================
@@ -1058,11 +1063,11 @@ function safe(value){
 function openMenu(){
 
     document
-    .getElementById("sideMenu")
+    .getElementById("sidebar")
     .classList.add("open");
 
     document
-    .getElementById("menuOverlay")
+    .getElementById("overlay")
     .classList.add("show");
 
 }
@@ -1071,580 +1076,302 @@ function openMenu(){
 function closeMenu(){
 
     document
-    .getElementById("sideMenu")
+    .getElementById("sidebar")
     .classList.remove("open");
 
     document
-    .getElementById("menuOverlay")
+    .getElementById("overlay")
     .classList.remove("show");
 
 }
 
 
-function goHome(){
-
-    window.location.href =
-        "index.html";
-
-}
-
-
-function scrollToTop(){
-
-    closeMenu();
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-
 /* =========================================
-   CHECK ADMIN
+   ADMIN CHECK
 ========================================= */
 
 async function checkAdmin(){
 
-    try{
-
-        const {
-            data:{session},
-            error
-        } =
-        await db.auth.getSession();
-
-
-        if(error){
-
-            throw error;
-
+    const {
+        data:{
+            session
         }
+    } = await db.auth.getSession();
 
 
-        if(!session){
+    if(!session){
 
-            showLoginRequired();
+        location.href="login.html";
 
-            return;
+        return;
 
-        }
-
-
-        const user =
-            session.user;
+    }
 
 
-        const {
-            data:profile,
-            error:profileError
-        } =
-        await db
+    const {
+        data:user,
+        error:userError
+    } = await db.auth.getUser();
+
+
+    if(userError || !user){
+
+        location.href="login.html";
+
+        return;
+
+    }
+
+
+    const {
+        data:profile,
+        error
+    } = await db
         .from("profiles")
-        .select("id,email,role")
-        .eq("id",user.id)
+        .select("role")
+        .eq("id",user.user.id)
         .maybeSingle();
 
 
-        if(profileError){
-
-            throw new Error(
-                "Could not check admin profile: " +
-                profileError.message
-            );
-
-        }
-
-
-        if(!profile){
-
-            showAccessDenied();
-
-            return;
-
-        }
-
-
-        if(
-            String(profile.role)
-            .trim()
-            .toLowerCase() !== "admin"
-        ){
-
-            showAccessDenied();
-
-            return;
-
-        }
-
-
-        document.getElementById(
-            "checking"
-        ).style.display="none";
-
-
-        document.getElementById(
-            "adminPanel"
-        ).style.display="block";
-
-
-        await loadAll();
-
-    }
-
-    catch(error){
+    if(error){
 
         console.error(error);
 
-        document.getElementById(
-            "checking"
-        ).innerHTML = `
+        alert("Unable to verify admin access.");
 
-            <h2>❌ Error</h2>
+        location.href="login.html";
 
-            <p>
-                ${safe(error.message)}
-            </p>
+        return;
 
-            <br>
+    }
 
-            <button
-                onclick="goLogin()"
-                class="add-btn">
-                Go to Login
-            </button>
 
-        `;
+    if(!profile || profile.role!=="admin"){
+
+        alert("Admin access required.");
+
+        location.href="index.html";
+
+        return;
 
     }
 
 }
 
 
+checkAdmin();
+
+
 /* =========================================
-   LOGIN REQUIRED
+   LOGOUT
 ========================================= */
 
-function showLoginRequired(){
+async function logout(){
 
-    document.getElementById(
-        "checking"
-    ).innerHTML = `
+    await db.auth.signOut();
 
-        <h2>🔐 Login Required</h2>
-
-        <p>Please login as admin first.</p>
-
-        <br>
-
-        <button
-            onclick="goLogin()"
-            class="add-btn">
-            Go to Login
-        </button>
-
-    `;
-
-}
-
-
-function showAccessDenied(){
-
-    document.getElementById(
-        "checking"
-    ).innerHTML = `
-
-        <h2>🚫 Access Denied</h2>
-
-        <p>This account is not an administrator.</p>
-
-        <br>
-
-        <button
-            onclick="logout()"
-            class="delete">
-            Logout
-        </button>
-
-    `;
-
-}
-
-
-function goLogin(){
-
-    window.location.href =
-        "login.html";
+    location.href="login.html";
 
 }
 
 
 /* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(
-    id,
-    text,
-    success=true
-){
-
-    const box =
-        document.getElementById(id);
-
-    box.textContent =
-        text;
-
-    box.className =
-        "message " +
-        (
-            success
-            ? "success"
-            : "error"
-        );
-
-    box.style.display="block";
-
-
-    setTimeout(()=>{
-
-        box.style.display="none";
-
-    },6000);
-
-}
-
-
-/* =========================================
-   UPLOAD IMAGE
+   FILE UPLOAD
 ========================================= */
 
 async function uploadFile(file){
 
     if(!file){
 
-        throw new Error(
-            "Please select a picture."
-        );
+        return null;
 
     }
 
 
-    if(!file.type.startsWith("image/")){
-
-        throw new Error(
-            "Only image files are allowed."
-        );
-
-    }
-
-
-    const maxSize =
-        10 * 1024 * 1024;
-
+    const maxSize = 25 * 1024 * 1024;
 
     if(file.size > maxSize){
 
         throw new Error(
-            "Image must be smaller than 10 MB."
+            "File size must be 25MB or less."
         );
 
     }
 
 
-    const {
-        data:{user},
-        error:userError
-    } =
-    await db.auth.getUser();
-
-
-    if(userError){
-
-        throw userError;
-
-    }
-
-
-    if(!user){
-
-        throw new Error(
-            "Please login again."
-        );
-
-    }
-
-
-    const extension =
+    const safeName =
         file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
-
-
-    const cleanName =
-        file.name
-        .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "-"
-        );
+        .replace(/[^a-zA-Z0-9._-]/g,"_");
 
 
     const fileName =
-        `${user.id}/${Date.now()}-${cleanName}`;
+        Date.now() +
+        "_" +
+        Math.random().toString(36).substring(2,8) +
+        "_" +
+        safeName;
+
+
+    const path =
+        "studyhub/" + fileName;
 
 
     const {
-        error:uploadError
-    } =
-    await db.storage
-    .from("studyhub-files")
-    .upload(
-        fileName,
-        file,
-        {
-            cacheControl:"3600",
-            upsert:false,
-            contentType:file.type
-        }
-    );
-
-
-    if(uploadError){
-
-        throw uploadError;
-
-    }
-
-
-    const {
-        data:{publicUrl}
-    } =
-    db.storage
-    .from("studyhub-files")
-    .getPublicUrl(fileName);
-
-
-    return publicUrl;
-
-}
-
-
-/* =========================================
-   GET FILE URL
-========================================= */
-
-async function getFileUrl(
-    fileInputId,
-    urlInputId
-){
-
-    const input =
-        document.getElementById(fileInputId);
-
-
-    const file =
-        input.files[0];
-
-
-    const url =
-        document
-        .getElementById(urlInputId)
-        .value
-        .trim();
-
-
-    if(file){
-
-        return await uploadFile(file);
-
-    }
-
-
-    if(url){
-
-        return url;
-
-    }
-
-
-    throw new Error(
-        "Please upload a picture OR enter a URL."
-    );
-
-}
-
-
-/* =========================================
-   IMAGE CHECK
-========================================= */
-
-function isImage(url){
-
-    if(!url){
-        return false;
-    }
-
-    return /\.(jpg|jpeg|png|gif|webp|bmp|svg|avif)(\?.*)?$/i
-        .test(url);
-
-}
-
-
-/* =========================================
-   ADD COURSE
-========================================= */
-
-async function addCourse(){
-
-    const title =
-        document
-        .getElementById("courseTitle")
-        .value
-        .trim();
-
-    const description =
-        document
-        .getElementById("courseDescription")
-        .value
-        .trim();
-
-    const level =
-        document
-        .getElementById("courseLevel")
-        .value
-        .trim();
-
-    const icon =
-        document
-        .getElementById("courseIcon")
-        .value
-        .trim();
-
-
-    if(!title){
-
-        showMessage(
-            "courseMessage",
-            "Course title required.",
-            false
+        error
+    } = await db.storage
+        .from("studyhub-files")
+        .upload(
+            path,
+            file,
+            {
+                upsert:false
+            }
         );
 
-        return;
+
+    if(error){
+
+        throw error;
 
     }
 
 
-    const {error} =
-        await db
+    const {
+        data
+    } = db.storage
+        .from("studyhub-files")
+        .getPublicUrl(path);
+
+
+    return data.publicUrl;
+
+}
+
+
+/* =========================================
+   COURSES
+========================================= */
+
+async function addCourse(event){
+
+    event.preventDefault();
+
+
+    const title =
+        document.getElementById("courseTitle").value.trim();
+
+    const level =
+        document.getElementById("courseLevel").value.trim();
+
+    const icon =
+        document.getElementById("courseIcon").value.trim();
+
+    const description =
+        document.getElementById("courseDescription").value.trim();
+
+
+    const {
+        error
+    } = await db
         .from("courses")
         .insert({
-
             title,
-            description,
             level,
-            icon
-
+            icon,
+            description
         });
 
 
     if(error){
 
-        showMessage(
-            "courseMessage",
-            error.message,
-            false
-        );
+        alert(error.message);
 
         return;
 
     }
 
 
-    showMessage(
-        "courseMessage",
-        "✅ Course added successfully!"
-    );
+    alert("Course added successfully.");
 
+    event.target.reset();
 
-    document.getElementById(
-        "courseTitle"
-    ).value="";
-
-    document.getElementById(
-        "courseDescription"
-    ).value="";
-
-
-    await loadCourses();
+    loadCourses();
 
 }
 
 
 /* =========================================
-   ADD NOTE
+   BOOKS
 ========================================= */
 
-async function addNote(button){
+async function addBook(event){
+
+    event.preventDefault();
+
 
     const title =
-        document
-        .getElementById("noteTitle")
-        .value
-        .trim();
+        document.getElementById("bookTitle").value.trim();
+
+    const category =
+        document.getElementById("bookCategory").value;
+
+    const year =
+        document.getElementById("bookYear").value;
 
     const description =
-        document
-        .getElementById("noteDescription")
-        .value
-        .trim();
+        document.getElementById("bookDescription").value.trim();
 
-    const icon =
-        document
-        .getElementById("noteIcon")
-        .value
-        .trim();
+    const file =
+        document.getElementById("bookFile").files[0];
+
+    const manualUrl =
+        document.getElementById("bookFileUrl").value.trim();
 
 
-    if(!title){
+    if(!file && !manualUrl){
 
-        showMessage(
-            "noteMessage",
-            "Note title required.",
-            false
-        );
+        alert("Please upload a PDF or add a book link.");
 
         return;
 
     }
 
 
-    button.disabled=true;
-
-    button.textContent =
-        "⏳ Uploading...";
-
-
     try{
 
-        const file_url =
-            await getFileUrl(
-                "noteFile",
-                "noteFileUrl"
-            );
+        let fileUrl = manualUrl;
 
 
-        const {error} =
-            await db
-            .from("notes")
+        if(file){
+
+            if(
+                file.type !== "application/pdf" &&
+                !file.name.toLowerCase().endsWith(".pdf")
+            ){
+
+                alert("Only PDF files are allowed for books.");
+
+                return;
+
+            }
+
+
+            fileUrl =
+                await uploadFile(file);
+
+        }
+
+
+        const {
+            error
+        } = await db
+            .from("books")
             .insert({
-
                 title,
                 description,
-                icon,
-                file_url
-
+                category,
+                year,
+                file_url:fileUrl
             });
 
 
@@ -1655,51 +1382,20 @@ async function addNote(button){
         }
 
 
-        showMessage(
-            "noteMessage",
-            "✅ Note added successfully!"
-        );
+        alert("Book added successfully.");
 
+        event.target.reset();
 
-        document.getElementById(
-            "noteTitle"
-        ).value="";
-
-        document.getElementById(
-            "noteDescription"
-        ).value="";
-
-        document.getElementById(
-            "noteFile"
-        ).value="";
-
-        document.getElementById(
-            "noteFileUrl"
-        ).value="";
-
-
-        await loadNotes();
+        loadBooks();
 
     }
 
     catch(error){
 
-        console.error(error);
-
-        showMessage(
-            "noteMessage",
-            "❌ " + error.message,
-            false
+        alert(
+            "Book upload failed: " +
+            error.message
         );
-
-    }
-
-    finally{
-
-        button.disabled=false;
-
-        button.textContent =
-            "Add Note";
 
     }
 
@@ -1707,62 +1403,56 @@ async function addNote(button){
 
 
 /* =========================================
-   ADD PRACTICAL
+   REPLACE BOOK PDF
 ========================================= */
 
-async function addPractical(button){
+async function replaceBookFile(
+    id,
+    inputId
+){
 
-    const title =
-        document
-        .getElementById("practicalTitle")
-        .value
-        .trim();
+    const input =
+        document.getElementById(inputId);
 
-    const description =
-        document
-        .getElementById("practicalDescription")
-        .value
-        .trim();
+    const file =
+        input.files[0];
 
 
-    if(!title){
+    if(!file){
 
-        showMessage(
-            "practicalMessage",
-            "Practical title required.",
-            false
-        );
+        alert("Please select a PDF file.");
 
         return;
 
     }
 
 
-    button.disabled=true;
+    if(
+        file.type !== "application/pdf" &&
+        !file.name.toLowerCase().endsWith(".pdf")
+    ){
 
-    button.textContent =
-        "⏳ Uploading...";
+        alert("Only PDF files are allowed.");
+
+        return;
+
+    }
 
 
     try{
 
-        const file_url =
-            await getFileUrl(
-                "practicalFile",
-                "practicalFileUrl"
-            );
+        const url =
+            await uploadFile(file);
 
 
-        const {error} =
-        await db
-        .from("practicals")
-        .insert({
-
-            title,
-            description,
-            file_url
-
-        });
+        const {
+            error
+        } = await db
+            .from("books")
+            .update({
+                file_url:url
+            })
+            .eq("id",id);
 
 
         if(error){
@@ -1772,53 +1462,542 @@ async function addPractical(button){
         }
 
 
-        showMessage(
-            "practicalMessage",
-            "✅ Practical added successfully!"
-        );
+        alert("Book PDF replaced successfully.");
 
-
-        document.getElementById(
-            "practicalTitle"
-        ).value="";
-
-        document.getElementById(
-            "practicalDescription"
-        ).value="";
-
-        document.getElementById(
-            "practicalFile"
-        ).value="";
-
-        document.getElementById(
-            "practicalFileUrl"
-        ).value="";
-
-
-        await loadPracticals();
+        loadBooks();
 
     }
 
     catch(error){
 
-        console.error(error);
-
-        showMessage(
-            "practicalMessage",
-            "❌ " + error.message,
-            false
+        alert(
+            "Unable to replace PDF: " +
+            error.message
         );
 
     }
 
-    finally{
+}
 
-        button.disabled=false;
 
-        button.textContent =
-            "Add Practical";
+/* =========================================
+   LOAD BOOKS
+========================================= */
+
+async function loadBooks(){
+
+    const list =
+        document.getElementById("booksList");
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("books")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        list.innerHTML =
+            "<p>Unable to load books.</p>";
+
+        return;
 
     }
+
+
+    document.getElementById("bookCount").textContent =
+        data.length;
+
+
+    if(!data.length){
+
+        list.innerHTML =
+            "<p class='loading'>No books added yet.</p>";
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        data.map(book => {
+
+            const inputId =
+                "replace_" + book.id;
+
+
+            return `
+
+            <div class="item">
+
+                <div class="item-top">
+
+                    <div>
+
+                        <h3>
+                            📚 ${escapeHtml(book.title)}
+                        </h3>
+
+                        <span class="badge">
+                            ${escapeHtml(book.category)}
+                        </span>
+
+                        <span class="badge">
+                            ${escapeHtml(book.year)}
+                        </span>
+
+                        <p>
+                            ${escapeHtml(book.description || "")}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions">
+
+                    ${
+                        book.file_url
+                        ?
+                        `<a
+                            class="small-btn"
+                            href="${book.file_url}"
+                            target="_blank">
+                            📖 Open PDF
+                        </a>`
+                        :
+                        ""
+                    }
+
+
+                    <button
+                        class="small-btn"
+                        onclick="document.getElementById('${inputId}').click()">
+
+                        🔄 Replace PDF
+
+                    </button>
+
+
+                    <input
+                        id="${inputId}"
+                        type="file"
+                        accept=".pdf,application/pdf"
+                        style="display:none"
+                        onchange="replaceBookFile('${book.id}','${inputId}')">
+
+
+                    <button
+                        class="small-btn btn-danger"
+                        onclick="deleteBook('${book.id}')">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   DELETE BOOK
+========================================= */
+
+async function deleteBook(id){
+
+    if(!confirm("Delete this book?")){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("books")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadBooks();
+
+}
+
+
+/* =========================================
+   NOTES
+========================================= */
+
+async function addNote(event){
+
+    event.preventDefault();
+
+
+    const title =
+        document.getElementById("noteTitle").value.trim();
+
+    const icon =
+        document.getElementById("noteIcon").value.trim();
+
+    const description =
+        document.getElementById("noteDescription").value.trim();
+
+    const file =
+        document.getElementById("noteFile").files[0];
+
+    let url =
+        document.getElementById("noteFileUrl").value.trim();
+
+
+    try{
+
+        if(file){
+
+            url =
+                await uploadFile(file);
+
+        }
+
+
+        const {
+            error
+        } = await db
+            .from("notes")
+            .insert({
+                title,
+                icon,
+                description,
+                file_url:url || null
+            });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert("Note added successfully.");
+
+        event.target.reset();
+
+        loadNotes();
+
+    }
+
+    catch(error){
+
+        alert(
+            "Unable to add note: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   PRACTICALS
+========================================= */
+
+async function addPractical(event){
+
+    event.preventDefault();
+
+
+    const title =
+        document.getElementById("practicalTitle").value.trim();
+
+    const category =
+        document.getElementById("practicalCategory").value;
+
+    const year =
+        document.getElementById("practicalYear").value;
+
+    const description =
+        document.getElementById("practicalDescription").value.trim();
+
+    const file =
+        document.getElementById("practicalFile").files[0];
+
+    let url =
+        document.getElementById("practicalFileUrl").value.trim();
+
+
+    try{
+
+        if(file){
+
+            url =
+                await uploadFile(file);
+
+        }
+
+
+        const {
+            error
+        } = await db
+            .from("practicals")
+            .insert({
+                title,
+                description,
+                file_url:url || null,
+                category,
+                year
+            });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert("Practical added successfully.");
+
+        event.target.reset();
+
+        loadPracticals();
+
+    }
+
+    catch(error){
+
+        alert(
+            "Unable to add practical: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   TEST BUILDER
+========================================= */
+
+let mcqItems = [];
+
+let questionItems = [];
+
+
+function changeTestType(){
+
+    const type =
+        document.getElementById("testType").value;
+
+
+    document
+        .getElementById("mcqBuilder")
+        .classList.toggle(
+            "hidden",
+            type !== "mcq"
+        );
+
+
+    document
+        .getElementById("questionBuilder")
+        .classList.toggle(
+            "hidden",
+            type !== "questions"
+        );
+
+}
+
+
+function addMCQ(){
+
+    mcqItems.push({
+        question:"",
+        A:"",
+        B:"",
+        C:"",
+        D:"",
+        answer:"A"
+    });
+
+    renderMCQs();
+
+}
+
+
+function removeMCQ(index){
+
+    mcqItems.splice(index,1);
+
+    renderMCQs();
+
+}
+
+
+function renderMCQs(){
+
+    const box =
+        document.getElementById("mcqItems");
+
+
+    box.innerHTML =
+        mcqItems.map((item,index)=>`
+
+        <div class="builder-card">
+
+            <h4>MCQ ${index+1}</h4>
+
+            <label>Question</label>
+
+            <textarea
+                onchange="mcqItems[${index}].question=this.value"
+                placeholder="Enter question"></textarea>
+
+
+            <div class="option-grid">
+
+                <div>
+                    <label>Option A</label>
+                    <input
+                        onchange="mcqItems[${index}].A=this.value">
+                </div>
+
+                <div>
+                    <label>Option B</label>
+                    <input
+                        onchange="mcqItems[${index}].B=this.value">
+                </div>
+
+                <div>
+                    <label>Option C</label>
+                    <input
+                        onchange="mcqItems[${index}].C=this.value">
+                </div>
+
+                <div>
+                    <label>Option D</label>
+                    <input
+                        onchange="mcqItems[${index}].D=this.value">
+                </div>
+
+            </div>
+
+            <br>
+
+            <label>Correct Answer</label>
+
+            <select
+                onchange="mcqItems[${index}].answer=this.value">
+
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+
+            </select>
+
+            <br><br>
+
+            <button
+                type="button"
+                class="small-btn btn-danger"
+                onclick="removeMCQ(${index})">
+
+                Remove
+
+            </button>
+
+        </div>
+
+        `).join("");
+
+}
+
+
+function addQuestion(){
+
+    questionItems.push({
+        question:"",
+        answer:""
+    });
+
+    renderQuestions();
+
+}
+
+
+function removeQuestion(index){
+
+    questionItems.splice(index,1);
+
+    renderQuestions();
+
+}
+
+
+function renderQuestions(){
+
+    const box =
+        document.getElementById("questionItems");
+
+
+    box.innerHTML =
+        questionItems.map((item,index)=>`
+
+        <div class="builder-card">
+
+            <h4>Question ${index+1}</h4>
+
+            <label>Question</label>
+
+            <textarea
+                onchange="questionItems[${index}].question=this.value"
+                placeholder="Enter question"></textarea>
+
+
+            <label>Answer</label>
+
+            <textarea
+                onchange="questionItems[${index}].answer=this.value"
+                placeholder="Enter answer"></textarea>
+
+
+            <br>
+
+            <button
+                type="button"
+                class="small-btn btn-danger"
+                onclick="removeQuestion(${index})">
+
+                Remove
+
+            </button>
+
+        </div>
+
+        `).join("");
 
 }
 
@@ -1827,34 +2006,40 @@ async function addPractical(button){
    ADD TEST
 ========================================= */
 
-async function addTest(){
+async function addTest(event){
+
+    event.preventDefault();
+
 
     const title =
-        document
-        .getElementById("testTitle")
-        .value
-        .trim();
+        document.getElementById("testTitle").value.trim();
+
+    const type =
+        document.getElementById("testType").value;
 
     const description =
-        document
-        .getElementById("testDescription")
-        .value
-        .trim();
-
-    const questions =
-        Number(
-            document
-            .getElementById("testQuestions")
-            .value
-        );
+        document.getElementById("testDescription").value.trim();
 
 
-    if(!title){
+    let items = [];
 
-        showMessage(
-            "testMessage",
-            "Test title required.",
-            false
+
+    if(type === "mcq"){
+
+        items = mcqItems;
+
+    }
+    else{
+
+        items = questionItems;
+
+    }
+
+
+    if(!items.length){
+
+        alert(
+            "Please add at least one question."
         );
 
         return;
@@ -1862,267 +2047,158 @@ async function addTest(){
     }
 
 
-    if(!questions || questions < 1){
+    const questions = {
 
-        showMessage(
-            "testMessage",
-            "Questions ki number enter karein.",
-            false
-        );
+        type:type,
 
-        return;
+        items:items
 
-    }
+    };
 
 
-    const {error} =
-    await db
-    .from("tests")
-    .insert({
+    const {
+        error
+    } = await db
+        .from("tests")
+        .insert({
 
-        title,
-        description,
+            title,
+            description,
+            questions
 
-        /*
-         * Existing questions column JSONB hai.
-         * Number ko JSON value ki form mein save
-         * kiya ja raha hai.
-         */
-        questions
-
-    });
+        });
 
 
     if(error){
 
-        showMessage(
-            "testMessage",
-            error.message,
-            false
-        );
+        alert(error.message);
 
         return;
 
     }
 
 
-    showMessage(
-        "testMessage",
-        "✅ Test added successfully!"
-    );
+    alert("Test added successfully.");
 
+    event.target.reset();
 
-    document.getElementById(
-        "testTitle"
-    ).value="";
+    mcqItems = [];
 
-    document.getElementById(
-        "testDescription"
-    ).value="";
+    questionItems = [];
 
+    renderMCQs();
 
-    await loadTests();
+    renderQuestions();
+
+    changeTestType();
+
+    loadTests();
 
 }
 
 
 /* =========================================
-   ADD PAST PAPER
+   PAST PAPERS
 ========================================= */
 
-async function addPastPaper(button){
+async function addPastPaper(event){
+
+    event.preventDefault();
+
 
     const title =
-        document
-        .getElementById("pastPaperTitle")
-        .value
-        .trim();
+        document.getElementById("paperTitle").value.trim();
 
     const subject =
-        document
-        .getElementById("pastPaperSubject")
-        .value
-        .trim();
+        document.getElementById("paperSubject").value.trim();
 
     const year =
-        Number(
-            document
-            .getElementById("pastPaperYear")
-            .value
-        );
+        document.getElementById("paperYear").value.trim();
 
     const description =
-        document
-        .getElementById("pastPaperDescription")
-        .value
-        .trim();
-
-
-    if(!title){
-
-        showMessage(
-            "pastPaperMessage",
-            "Past paper title required.",
-            false
-        );
-
-        return;
-
-    }
-
-
-    if(!subject){
-
-        showMessage(
-            "pastPaperMessage",
-            "Subject required.",
-            false
-        );
-
-        return;
-
-    }
-
-
-    if(!year){
-
-        showMessage(
-            "pastPaperMessage",
-            "Year required.",
-            false
-        );
-
-        return;
-
-    }
+        document.getElementById("paperDescription").value.trim();
 
 
     const files =
+        Array.from(
+            document.getElementById("pastPaperFiles").files
+        );
+
+
+    const urls =
         document
-        .getElementById("pastPaperFiles")
-        .files;
+            .getElementById("pastPaperPagesUrls")
+            .value
+            .split("\n")
+            .map(x=>x.trim())
+            .filter(Boolean);
 
 
-    const urlText =
-        document
-        .getElementById("pastPaperPagesUrls")
-        .value
-        .trim();
+    if(!files.length && !urls.length){
 
-
-    if(
-        files.length === 0 &&
-        !urlText
-    ){
-
-        showMessage(
-            "pastPaperMessage",
-            "Please upload at least one page OR enter a URL.",
-            false
+        alert(
+            "Please upload at least one page/file or add a URL."
         );
 
         return;
 
     }
-
-
-    button.disabled=true;
-
-    button.textContent =
-        "⏳ Uploading Pages...";
 
 
     try{
 
-        let pages=[];
+        const pages = [];
 
 
-        /* ==========================
-           UPLOAD SELECTED PICTURES
-        ========================== */
+        for(let i=0;i<files.length;i++){
 
-        for(
-            let i=0;
-            i<files.length;
-            i++
-        ){
-
-            button.textContent =
-                `⏳ Uploading Page ${i+1}/${files.length}...`;
-
-
-            const url =
+            const uploadedUrl =
                 await uploadFile(files[i]);
-
 
             pages.push({
 
                 page:i+1,
 
-                url:url
+                url:uploadedUrl
 
             });
 
         }
 
 
-        /* ==========================
-           MANUAL URLS
-        ========================== */
+        urls.forEach((url,index)=>{
 
-        if(urlText){
+            pages.push({
 
-            const urls =
-                urlText
-                .split("\n")
-                .map(x=>x.trim())
-                .filter(Boolean);
+                page:files.length + index + 1,
 
+                url:url
 
-            const startPage =
-                pages.length + 1;
-
-
-            urls.forEach(
-                (url,index)=>{
-
-                    pages.push({
-
-                        page:startPage + index,
-
-                        url:url
-
-                    });
-
-                }
-            );
-
-        }
-
-
-        const file_url =
-            pages.length
-            ? pages[0].url
-            : "";
-
-
-        /* ==========================
-           SAVE DATABASE
-        ========================== */
-
-        const {error} =
-        await db
-        .from("past_papers")
-        .insert({
-
-            title,
-            subject,
-            year,
-            description,
-            file_url,
-            pages
+            });
 
         });
+
+
+        const firstUrl =
+            pages.length
+            ? pages[0].url
+            : null;
+
+
+        const {
+            error
+        } = await db
+            .from("past_papers")
+            .insert({
+
+                title,
+                subject,
+                year,
+                description,
+                file_url:firstUrl,
+                pages
+
+            });
 
 
         if(error){
@@ -2132,59 +2208,284 @@ async function addPastPaper(button){
         }
 
 
-        showMessage(
-            "pastPaperMessage",
-            `✅ Past Paper added with ${pages.length} page(s)!`
-        );
+        alert("Past paper added successfully.");
 
+        event.target.reset();
 
-        document.getElementById(
-            "pastPaperTitle"
-        ).value="";
-
-        document.getElementById(
-            "pastPaperSubject"
-        ).value="";
-
-        document.getElementById(
-            "pastPaperYear"
-        ).value="";
-
-        document.getElementById(
-            "pastPaperDescription"
-        ).value="";
-
-        document.getElementById(
-            "pastPaperFiles"
-        ).value="";
-
-        document.getElementById(
-            "pastPaperPagesUrls"
-        ).value="";
-
-
-        await loadPastPapers();
+        loadPastPapers();
 
     }
 
     catch(error){
 
-        console.error(error);
-
-        showMessage(
-            "pastPaperMessage",
-            "❌ " + error.message,
-            false
+        alert(
+            "Unable to add past paper: " +
+            error.message
         );
 
     }
 
-    finally{
+}
 
-        button.disabled=false;
 
-        button.textContent =
-            "Add Past Paper";
+/* =========================================
+   SOCIAL LINKS
+========================================= */
+
+let socialRowNumber = 0;
+
+
+function addSocialRow(){
+
+    socialRowNumber++;
+
+
+    const id =
+        "social_" + socialRowNumber;
+
+
+    const row =
+        document.createElement("div");
+
+
+    row.className = "link-row";
+
+    row.id = id;
+
+
+    row.innerHTML = `
+
+        <label>Platform / Link Name</label>
+
+        <select
+            class="social-platform"
+            onchange="toggleCustomName(this)">
+
+            <option value="Facebook">Facebook</option>
+
+            <option value="Instagram">Instagram</option>
+
+            <option value="Twitter/X">Twitter/X</option>
+
+            <option value="YouTube">YouTube</option>
+
+            <option value="WhatsApp">WhatsApp</option>
+
+            <option value="Gmail/Email">Gmail/Email</option>
+
+            <option value="Website">Website</option>
+
+            <option value="Custom Link">Custom Link</option>
+
+        </select>
+
+
+        <div
+            class="custom-name-box hidden"
+            style="margin-top:10px">
+
+            <label>Custom Link Name</label>
+
+            <input
+                class="custom-name"
+                placeholder="Example: My Portfolio">
+
+        </div>
+
+
+        <br>
+
+        <label>Link / URL</label>
+
+        <input
+            class="social-url"
+            type="url"
+            placeholder="https://example.com"
+            required>
+
+
+        <br><br>
+
+        <button
+            type="button"
+            class="small-btn btn-danger"
+            onclick="removeSocialRow('${id}')">
+
+            Remove
+
+        </button>
+
+    `;
+
+
+    document
+        .getElementById("socialRows")
+        .appendChild(row);
+
+}
+
+
+function toggleCustomName(select){
+
+    const box =
+        select
+        .parentElement
+        .querySelector(".custom-name-box");
+
+
+    if(select.value === "Custom Link"){
+
+        box.classList.remove("hidden");
+
+    }
+    else{
+
+        box.classList.add("hidden");
+
+    }
+
+}
+
+
+function removeSocialRow(id){
+
+    const row =
+        document.getElementById(id);
+
+    if(row){
+
+        row.remove();
+
+    }
+
+}
+
+
+async function saveSocialLinks(){
+
+    const rows =
+        Array.from(
+            document.querySelectorAll(".link-row")
+        );
+
+
+    if(!rows.length){
+
+        alert("Please add at least one link.");
+
+        return;
+
+    }
+
+
+    try{
+
+        const records = [];
+
+
+        for(const row of rows){
+
+            const platform =
+                row.querySelector(".social-platform").value;
+
+            const url =
+                row.querySelector(".social-url").value.trim();
+
+
+            const customNameInput =
+                row.querySelector(".custom-name");
+
+
+            let linkName =
+                platform;
+
+
+            if(
+                platform === "Custom Link" &&
+                customNameInput
+            ){
+
+                linkName =
+                    customNameInput.value.trim();
+
+            }
+
+
+            if(!url){
+
+                continue;
+
+            }
+
+
+            if(
+                platform === "Custom Link" &&
+                !linkName
+            ){
+
+                alert(
+                    "Please enter a custom link name."
+                );
+
+                return;
+
+            }
+
+
+            records.push({
+
+                platform,
+
+                link_name:linkName,
+
+                url
+
+            });
+
+        }
+
+
+        if(!records.length){
+
+            alert("Please enter valid links.");
+
+            return;
+
+        }
+
+
+        const {
+            error
+        } = await db
+            .from("social_links")
+            .insert(records);
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert("Links saved successfully.");
+
+        document.getElementById("socialRows").innerHTML="";
+
+        socialRowNumber=0;
+
+        addSocialRow();
+
+        loadSocialLinks();
+
+    }
+
+    catch(error){
+
+        alert(
+            "Unable to save links: " +
+            error.message
+        );
 
     }
 
@@ -2192,47 +2493,121 @@ async function addPastPaper(button){
 
 
 /* =========================================
-   LOAD ALL
+   DELETE SOCIAL LINK
 ========================================= */
 
-async function loadAll(){
+async function deleteSocialLink(id){
 
-    await Promise.all([
+    if(!confirm("Delete this link?")){
 
-        loadCourses(),
-        loadNotes(),
-        loadPracticals(),
-        loadTests(),
-        loadPastPapers()
+        return;
 
-    ]);
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("social_links")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadSocialLinks();
 
 }
 
 
 /* =========================================
-   SORT
+   LOAD SOCIAL LINKS
 ========================================= */
 
-function sortData(data){
+async function loadSocialLinks(){
 
-    return [...data].sort(
-        (a,b)=>{
+    const box =
+        document.getElementById("socialLinksList");
 
-            const da =
-                new Date(
-                    a.created_at || 0
-                ).getTime();
 
-            const dbb =
-                new Date(
-                    b.created_at || 0
-                ).getTime();
+    const {
+        data,
+        error
+    } = await db
+        .from("social_links")
+        .select("*")
+        .order("created_at",{ascending:false});
 
-            return dbb-da;
 
-        }
-    );
+    if(error){
+
+        box.innerHTML =
+            "<p>Unable to load links.</p>";
+
+        return;
+
+    }
+
+
+    if(!data.length){
+
+        box.innerHTML =
+            "<p class='loading'>No links added yet.</p>";
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        data.map(item=>`
+
+        <div class="item">
+
+            <h3>
+                🔗 ${escapeHtml(item.link_name)}
+            </h3>
+
+            <p>
+                ${escapeHtml(item.url)}
+            </p>
+
+            <span class="badge">
+                ${escapeHtml(item.platform)}
+            </span>
+
+            <div class="actions">
+
+                <a
+                    class="small-btn"
+                    href="${item.url}"
+                    target="_blank">
+
+                    Open Link
+
+                </a>
+
+
+                <button
+                    class="small-btn btn-danger"
+                    onclick="deleteSocialLink('${item.id}')">
+
+                    Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `).join("");
 
 }
 
@@ -2243,81 +2618,111 @@ function sortData(data){
 
 async function loadCourses(){
 
-    const {data,error} =
-    await db
-    .from("courses")
-    .select("*");
+    const box =
+        document.getElementById("coursesList");
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("courses")
+        .select("*")
+        .order("created_at",{ascending:false});
 
 
     if(error){
 
-        document.getElementById(
-            "coursesList"
-        ).innerHTML =
-        `<p>❌ ${safe(error.message)}</p>`;
+        box.innerHTML =
+            "<p>Unable to load courses.</p>";
 
         return;
 
     }
 
 
-    const rows =
-        sortData(data || []);
+    document.getElementById("courseCount").textContent =
+        data.length;
 
 
-    document.getElementById(
-        "courseCount"
-    ).textContent =
-        rows.length;
+    if(!data.length){
 
-
-    if(!rows.length){
-
-        document.getElementById(
-            "coursesList"
-        ).innerHTML =
-        "<p>No courses yet.</p>";
+        box.innerHTML =
+            "<p class='loading'>No courses added yet.</p>";
 
         return;
 
     }
 
 
-    document.getElementById(
-        "coursesList"
-    ).innerHTML =
-
-    rows.map(item=>`
+    box.innerHTML =
+        data.map(item=>`
 
         <div class="item">
 
-            <div class="item-content">
+            <h3>
+                ${escapeHtml(item.icon || "🎓")}
+                ${escapeHtml(item.title)}
+            </h3>
 
-                <h3>
-                    ${safe(item.icon || "📚")}
-                    ${safe(item.title)}
-                </h3>
+            <span class="badge">
+                ${escapeHtml(item.level || "")}
+            </span>
 
-                <p>
-                    ${safe(item.description || "")}
-                </p>
+            <p>
+                ${escapeHtml(item.description || "")}
+            </p>
 
-                <p>
-                    Level:
-                    ${safe(item.level || "")}
-                </p>
+            <div class="actions">
+
+                <button
+                    class="small-btn btn-danger"
+                    onclick="deleteCourse('${item.id}')">
+
+                    Delete
+
+                </button>
 
             </div>
 
-            <button
-                class="delete"
-                onclick="deleteItem('courses','${safe(item.id)}',loadCourses)">
-                Delete
-            </button>
-
         </div>
 
-    `).join("");
+        `).join("");
+
+}
+
+
+/* =========================================
+   DELETE COURSE
+========================================= */
+
+async function deleteCourse(id){
+
+    if(!confirm("Delete this course?")){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("courses")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadCourses();
 
 }
 
@@ -2328,106 +2733,115 @@ async function loadCourses(){
 
 async function loadNotes(){
 
-    const {data,error} =
-    await db
-    .from("notes")
-    .select("*");
+    const box =
+        document.getElementById("notesList");
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("notes")
+        .select("*")
+        .order("created_at",{ascending:false});
 
 
     if(error){
 
-        document.getElementById(
-            "notesList"
-        ).innerHTML =
-        `<p>❌ ${safe(error.message)}</p>`;
+        box.innerHTML =
+            "<p>Unable to load notes.</p>";
 
         return;
 
     }
 
 
-    const rows =
-        sortData(data || []);
+    document.getElementById("noteCount").textContent =
+        data.length;
 
 
-    document.getElementById(
-        "noteCount"
-    ).textContent =
-        rows.length;
-
-
-    if(!rows.length){
-
-        document.getElementById(
-            "notesList"
-        ).innerHTML =
-        "<p>No notes yet.</p>";
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "notesList"
-    ).innerHTML =
-
-    rows.map(item=>`
+    box.innerHTML =
+        data.length
+        ?
+        data.map(item=>`
 
         <div class="item">
 
-            <div class="item-content">
+            <h3>
+                ${escapeHtml(item.icon || "📝")}
+                ${escapeHtml(item.title)}
+            </h3>
 
-                <h3>
-                    ${safe(item.icon || "📘")}
-                    ${safe(item.title)}
-                </h3>
+            <p>
+                ${escapeHtml(item.description || "")}
+            </p>
 
-                <p>
-                    ${safe(item.description || "")}
-                </p>
+            <div class="actions">
 
                 ${
                     item.file_url
                     ?
-                    `
-
-                    <a
-                        href="${safe(item.file_url)}"
+                    `<a
+                        href="${item.file_url}"
                         target="_blank"
-                        rel="noopener">
-                        🔗 Open File
-                    </a>
-
-                    ${
-                        isImage(item.file_url)
-                        ?
-                        `
-                        <img
-                            src="${safe(item.file_url)}"
-                            alt="Note Image"
-                            loading="lazy">
-                        `
-                        :
-                        ""
-                    }
-
-                    `
+                        class="small-btn">
+                        Open File
+                    </a>`
                     :
                     ""
                 }
 
-            </div>
 
-            <button
-                class="delete"
-                onclick="deleteItem('notes','${safe(item.id)}',loadNotes)">
-                Delete
-            </button>
+                <button
+                    class="small-btn btn-danger"
+                    onclick="deleteNote('${item.id}')">
+
+                    Delete
+
+                </button>
+
+            </div>
 
         </div>
 
-    `).join("");
+        `).join("")
+        :
+        "<p class='loading'>No notes added yet.</p>";
+
+}
+
+
+/* =========================================
+   DELETE NOTE
+========================================= */
+
+async function deleteNote(id){
+
+    if(!confirm("Delete this note?")){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("notes")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadNotes();
 
 }
 
@@ -2438,105 +2852,122 @@ async function loadNotes(){
 
 async function loadPracticals(){
 
-    const {data,error} =
-    await db
-    .from("practicals")
-    .select("*");
+    const box =
+        document.getElementById("practicalsList");
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("practicals")
+        .select("*")
+        .order("created_at",{ascending:false});
 
 
     if(error){
 
-        document.getElementById(
-            "practicalsList"
-        ).innerHTML =
-        `<p>❌ ${safe(error.message)}</p>`;
+        box.innerHTML =
+            "<p>Unable to load practicals.</p>";
 
         return;
 
     }
 
 
-    const rows =
-        sortData(data || []);
+    document.getElementById("practicalCount").textContent =
+        data.length;
 
 
-    document.getElementById(
-        "practicalCount"
-    ).textContent =
-        rows.length;
-
-
-    if(!rows.length){
-
-        document.getElementById(
-            "practicalsList"
-        ).innerHTML =
-        "<p>No practicals yet.</p>";
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "practicalsList"
-    ).innerHTML =
-
-    rows.map(item=>`
+    box.innerHTML =
+        data.length
+        ?
+        data.map(item=>`
 
         <div class="item">
 
-            <div class="item-content">
+            <h3>
+                🧪 ${escapeHtml(item.title)}
+            </h3>
 
-                <h3>
-                    🧪 ${safe(item.title)}
-                </h3>
+            <span class="badge">
+                ${escapeHtml(item.category || "CIT")}
+            </span>
 
-                <p>
-                    ${safe(item.description || "")}
-                </p>
+            <span class="badge">
+                ${escapeHtml(item.year || "1st Year")}
+            </span>
+
+            <p>
+                ${escapeHtml(item.description || "")}
+            </p>
+
+            <div class="actions">
 
                 ${
                     item.file_url
                     ?
-                    `
-
-                    <a
-                        href="${safe(item.file_url)}"
+                    `<a
+                        href="${item.file_url}"
                         target="_blank"
-                        rel="noopener">
-                        🔗 Open File
-                    </a>
-
-                    ${
-                        isImage(item.file_url)
-                        ?
-                        `
-                        <img
-                            src="${safe(item.file_url)}"
-                            alt="Practical Image"
-                            loading="lazy">
-                        `
-                        :
-                        ""
-                    }
-
-                    `
+                        class="small-btn">
+                        Open File
+                    </a>`
                     :
                     ""
                 }
 
-            </div>
 
-            <button
-                class="delete"
-                onclick="deleteItem('practicals','${safe(item.id)}',loadPracticals)">
-                Delete
-            </button>
+                <button
+                    class="small-btn btn-danger"
+                    onclick="deletePractical('${item.id}')">
+
+                    Delete
+
+                </button>
+
+            </div>
 
         </div>
 
-    `).join("");
+        `).join("")
+        :
+        "<p class='loading'>No practicals added yet.</p>";
+
+}
+
+
+/* =========================================
+   DELETE PRACTICAL
+========================================= */
+
+async function deletePractical(id){
+
+    if(!confirm("Delete this practical?")){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("practicals")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadPracticals();
 
 }
 
@@ -2547,140 +2978,138 @@ async function loadPracticals(){
 
 async function loadTests(){
 
-    const {data,error} =
-    await db
-    .from("tests")
-    .select("*");
+    const box =
+        document.getElementById("testsList");
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("tests")
+        .select("*")
+        .order("created_at",{ascending:false});
 
 
     if(error){
 
-        document.getElementById(
-            "testsList"
-        ).innerHTML =
-        `<p>❌ ${safe(error.message)}</p>`;
+        box.innerHTML =
+            "<p>Unable to load tests.</p>";
 
         return;
 
     }
 
 
-    const rows =
-        sortData(data || []);
+    if(!data.length){
 
-
-    document.getElementById(
-        "testCount"
-    ).textContent =
-        rows.length;
-
-
-    if(!rows.length){
-
-        document.getElementById(
-            "testsList"
-        ).innerHTML =
-        "<p>No tests yet.</p>";
+        box.innerHTML =
+            "<p class='loading'>No tests added yet.</p>";
 
         return;
 
     }
 
 
-    document.getElementById(
-        "testsList"
-    ).innerHTML =
+    box.innerHTML =
+        data.map(item=>{
 
-    rows.map(item=>{
+            let type="Test";
 
-        let questionCount=0;
+            let count=0;
 
 
-        if(
-            Array.isArray(item.questions)
-        ){
+            if(
+                item.questions &&
+                typeof item.questions==="object"
+            ){
 
-            questionCount =
-                item.questions.length;
+                type =
+                    item.questions.type === "mcq"
+                    ? "MCQs"
+                    : "Questions";
 
-        }
 
-        else if(
-            typeof item.questions === "number"
-        ){
-
-            questionCount =
-                item.questions;
-
-        }
-
-        else if(
-            typeof item.questions === "string"
-        ){
-
-            const n =
-                Number(item.questions);
-
-            if(!isNaN(n)){
-
-                questionCount=n;
+                count =
+                    Array.isArray(item.questions.items)
+                    ? item.questions.items.length
+                    : 0;
 
             }
 
-            else{
 
-                try{
+            return `
 
-                    const parsed =
-                        JSON.parse(item.questions);
-
-                    if(Array.isArray(parsed)){
-
-                        questionCount =
-                            parsed.length;
-
-                    }
-
-                }
-                catch(e){}
-
-            }
-
-        }
-
-
-        return `
-
-        <div class="item">
-
-            <div class="item-content">
+            <div class="item">
 
                 <h3>
-                    🎯 ${safe(item.title)}
+                    📋 ${escapeHtml(item.title)}
                 </h3>
 
-                <p>
-                    ${safe(questionCount)}
-                    Questions
-                </p>
+                <span class="badge">
+                    ${type}
+                </span>
+
+                <span class="badge">
+                    ${count} Items
+                </span>
 
                 <p>
-                    ${safe(item.description || "")}
+                    ${escapeHtml(item.description || "")}
                 </p>
+
+                <div class="actions">
+
+                    <button
+                        class="small-btn btn-danger"
+                        onclick="deleteTest('${item.id}')">
+
+                        Delete
+
+                    </button>
+
+                </div>
 
             </div>
 
-            <button
-                class="delete"
-                onclick="deleteItem('tests','${safe(item.id)}',loadTests)">
-                Delete
-            </button>
+            `;
 
-        </div>
+        }).join("");
 
-        `;
+}
 
-    }).join("");
+
+/* =========================================
+   DELETE TEST
+========================================= */
+
+async function deleteTest(id){
+
+    if(!confirm("Delete this test?")){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("tests")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadTests();
 
 }
 
@@ -2691,296 +3120,216 @@ async function loadTests(){
 
 async function loadPastPapers(){
 
-    const {data,error} =
-    await db
-    .from("past_papers")
-    .select("*");
+    const box =
+        document.getElementById("pastPapersList");
+
+
+    const {
+        data,
+        error
+    } = await db
+        .from("past_papers")
+        .select("*")
+        .order("created_at",{ascending:false});
 
 
     if(error){
 
-        document.getElementById(
-            "pastPapersList"
-        ).innerHTML =
-        `<p>❌ ${safe(error.message)}</p>`;
+        box.innerHTML =
+            "<p>Unable to load past papers.</p>";
 
         return;
 
     }
 
 
-    const rows =
-        sortData(data || []);
+    if(!data.length){
 
-
-    document.getElementById(
-        "pastPaperCount"
-    ).textContent =
-        rows.length;
-
-
-    if(!rows.length){
-
-        document.getElementById(
-            "pastPapersList"
-        ).innerHTML =
-        "<p>No past papers yet.</p>";
+        box.innerHTML =
+            "<p class='loading'>No past papers added yet.</p>";
 
         return;
 
     }
 
 
-    document.getElementById(
-        "pastPapersList"
-    ).innerHTML =
+    box.innerHTML =
+        data.map(item=>{
 
-    rows.map(item=>{
+            let pages = [];
 
-        let pages=[];
 
+            if(Array.isArray(item.pages)){
 
-        /* NEW MULTI PAGE */
+                pages=item.pages;
 
-        if(
-            Array.isArray(item.pages) &&
-            item.pages.length
-        ){
+            }
+            else if(item.file_url){
 
-            pages =
-                item.pages;
-
-        }
-
-
-        /* OLD SINGLE PAGE */
-
-        else if(item.file_url){
-
-            pages=[{
-
-                page:1,
-
-                url:item.file_url
-
-            }];
-
-        }
-
-
-        return `
-
-        <div class="item">
-
-            <div class="item-content">
-
-                <h3>
-                    📄 ${safe(item.title)}
-                </h3>
-
-                <p>
-                    Subject:
-                    ${safe(item.subject || "")}
-                </p>
-
-                <p>
-                    Year:
-                    ${safe(item.year || "")}
-                </p>
-
-                <p>
-                    ${safe(item.description || "")}
-                </p>
-
-
-                ${
-                    pages.length
-                    ?
-                    `
-
-                    <div class="page-list">
-
-                        <strong>
-                            📑 ${pages.length} Page(s)
-                        </strong>
-
-
-                        ${pages.map((page,index)=>`
-
-                            <div class="page-item">
-
-                                <div class="page-number">
-                                    ${index+1}
-                                </div>
-
-
-                                ${
-                                    isImage(page.url)
-                                    ?
-                                    `
-                                    <img
-                                        class="page-preview"
-                                        src="${safe(page.url)}"
-                                        alt="Page ${index+1}"
-                                        loading="lazy">
-                                    `
-                                    :
-                                    ""
-                                }
-
-
-                                <a
-                                    href="${safe(page.url)}"
-                                    target="_blank"
-                                    rel="noopener">
-
-                                    Open Page ${index+1}
-
-                                </a>
-
-                            </div>
-
-                        `).join("")}
-
-                    </div>
-
-                    `
-                    :
-                    ""
-                }
-
-            </div>
-
-
-            <button
-                class="delete"
-                onclick="deleteItem('past_papers','${safe(item.id)}',loadPastPapers)">
-                Delete
-            </button>
-
-        </div>
-
-        `;
-
-    }).join("");
-
-}
-
-
-/* =========================================
-   DELETE
-========================================= */
-
-async function deleteItem(
-    table,
-    id,
-    reload
-){
-
-    if(
-        !confirm(
-            "Are you sure you want to delete this item?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    const {error} =
-    await db
-    .from(table)
-    .delete()
-    .eq("id",id);
-
-
-    if(error){
-
-        alert(
-            "❌ " + error.message
-        );
-
-        return;
-
-    }
-
-
-    await reload();
-
-}
-
-
-/* =========================================
-   LOGOUT
-========================================= */
-
-async function logout(){
-
-    closeMenu();
-
-
-    try{
-
-        await db.auth.signOut();
-
-    }
-
-    catch(error){
-
-        console.error(
-            "Logout error:",
-            error
-        );
-
-    }
-
-
-    window.location.replace(
-        "login.html"
-    );
-
-}
-
-
-/* =========================================
-   SUPABASE AUTH STATE
-========================================= */
-
-db.auth.onAuthStateChange(
-    function(event){
-
-        if(event === "SIGNED_OUT"){
-
-            /*
-             * Agar logout kisi aur tab se ho
-             * to current admin page bhi login par
-             * chala jayega.
-             */
-
-            if(
-                !window.location.pathname
-                .toLowerCase()
-                .includes("login")
-            ){
-
-                window.location.replace(
-                    "login.html"
-                );
+                pages=[
+                    {
+                        page:1,
+                        url:item.file_url
+                    }
+                ];
 
             }
 
-        }
 
-    }
-);
+            return `
+
+            <div class="item">
+
+                <h3>
+                    📄 ${escapeHtml(item.title)}
+                </h3>
+
+                <span class="badge">
+                    ${escapeHtml(item.subject || "")}
+                </span>
+
+                <span class="badge">
+                    ${escapeHtml(item.year || "")}
+                </span>
+
+                <p>
+                    ${escapeHtml(item.description || "")}
+                </p>
+
+                <p>
+                    ${pages.length} Page/File(s)
+                </p>
+
+                <div class="actions">
+
+                    ${
+                        pages.length
+                        ?
+                        pages.map((p,i)=>`
+
+                            <a
+                                href="${p.url}"
+                                target="_blank"
+                                class="small-btn">
+
+                                Open ${i+1}
+
+                            </a>
+
+                        `).join("")
+                        :
+                        ""
+                    }
+
+
+                    <button
+                        class="small-btn btn-danger"
+                        onclick="deletePastPaper('${item.id}')">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
 
 
 /* =========================================
-   START
+   DELETE PAST PAPER
 ========================================= */
 
-checkAdmin();
+async function deletePastPaper(id){
+
+    if(!confirm("Delete this past paper?")){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } = await db
+        .from("past_papers")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
+
+
+    loadPastPapers();
+
+}
+
+
+/* =========================================
+   HTML ESCAPE
+========================================= */
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined){
+
+        return "";
+
+    }
+
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+async function init(){
+
+    await loadCourses();
+
+    await loadBooks();
+
+    await loadNotes();
+
+    await loadPracticals();
+
+    await loadTests();
+
+    await loadPastPapers();
+
+    await loadSocialLinks();
+
+
+    addSocialRow();
+
+    addMCQ();
+
+    changeTestType();
+
+}
+
+
+init();
 
 </script>
 
