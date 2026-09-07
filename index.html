@@ -1129,6 +1129,28 @@ footer h3{
     display:none!important;
 }
 
+
+/* STUDYHUB-HIERARCHY-FINAL */
+#shHierarchyPage{display:none;min-height:60vh}
+.sh-page{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
+.sh-head{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.sh-back{border:0;border-radius:12px;padding:10px 15px;cursor:pointer;font-weight:700}
+.sh-title{margin:0;font-size:28px}.sh-sub{margin:5px 0 0;opacity:.7}
+.sh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.sh-card{border:1px solid rgba(99,102,241,.20);border-radius:18px;padding:22px 18px;background:rgba(255,255,255,.92);box-shadow:0 8px 25px rgba(0,0,0,.06);cursor:pointer;transition:.2s}
+.sh-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(79,70,229,.14)}
+.sh-card.center{text-align:center}.sh-icon{font-size:35px;margin-bottom:10px}
+.sh-card h3{margin:0 0 6px}.sh-card p{margin:0;opacity:.7;font-size:14px}
+.sh-list{display:grid;gap:14px}
+.sh-item{border:1px solid rgba(99,102,241,.20);border-radius:16px;padding:17px;background:rgba(255,255,255,.92)}
+.sh-item h3{margin:0 0 7px}.sh-item p{margin:0 0 12px;opacity:.72}
+.sh-actions{display:flex;flex-wrap:wrap;gap:8px}.sh-actions a{display:inline-flex;padding:9px 13px;border-radius:10px;text-decoration:none;font-weight:700;background:#4f46e5;color:#fff}
+.sh-empty{text-align:center;padding:35px 18px;border:1px dashed rgba(99,102,241,.35);border-radius:16px;opacity:.72}
+@media(max-width:600px){.sh-grid{grid-template-columns:1fr 1fr}.sh-title{font-size:23px}}
+/* Tests are removed from public frontend */
+#testsSection,#testsDisplay,[data-material="tests"],[data-material="test"],.tests-material{display:none!important}
+
+/* SH-TEST-HIDE-FINAL */ #testsSection,#testsDisplay,[data-material="tests"],[data-material="test"]{display:none!important}
 </style>
 
 </head>
@@ -1190,35 +1212,35 @@ Categories
 
 <div class="category-menu">
 
-<a href="index.html?category=School" onclick="goToCategory('School'); closeMenu(); return false;">
+<a href="index.html?category=School">
 🎓 School
 </a>
 
-<a href="index.html?category=Computer" onclick="goToCategory('Computer'); closeMenu(); return false;">
+<a href="index.html?category=Computer">
 💻 Computer
 </a>
 
-<a href="index.html?category=CIT" onclick="goToCategory('CIT'); closeMenu(); return false;">
+<a href="index.html?category=CIT">
 💻 CIT
 </a>
 
-<a href="index.html?category=Mathematics" onclick="goToCategory('Mathematics'); closeMenu(); return false;">
+<a href="index.html?category=Mathematics">
 📐 Mathematics
 </a>
 
-<a href="index.html?category=English" onclick="goToCategory('English'); closeMenu(); return false;">
+<a href="index.html?category=English">
 📖 English
 </a>
 
-<a href="index.html?category=Physics" onclick="goToCategory('Physics'); closeMenu(); return false;">
+<a href="index.html?category=Physics">
 ⚡ Physics
 </a>
 
-<a href="index.html?category=Chemistry" onclick="goToCategory('Chemistry'); closeMenu(); return false;">
+<a href="index.html?category=Chemistry">
 🧪 Chemistry
 </a>
 
-<a href="index.html?category=Urdu" onclick="goToCategory('Urdu'); closeMenu(); return false;">
+<a href="index.html?category=Urdu">
 📝 Urdu
 </a>
 
@@ -1415,8 +1437,7 @@ Choose a category and explore complete study material
 
 <a
 class="category"
-href="index.html?category=School"
-onclick="goToCategory('School'); return false;">
+href="index.html?category=School" onclick="goToCategory(\'School\');return false;">
 
 <div class="category-icon">
 🎓
@@ -1433,8 +1454,7 @@ Classes 9th to 12th
 
 <a
 class="category"
-href="index.html?category=Computer"
-onclick="goToCategory('Computer'); return false;">
+href="index.html?category=Computer" onclick="goToCategory(\'Computer\');return false;">
 
 <div class="category-icon">
 💻
@@ -1451,8 +1471,7 @@ CIT, DIT & IT
 
 <a
 class="category"
-href="index.html?category=CIT"
-onclick="goToCategory('CIT'); return false;">
+href="index.html?category=CIT" onclick="goToCategory(\'CIT\');return false;">
 
 <div class="category-icon">
 💻
@@ -1469,8 +1488,7 @@ onclick="goToCategory('CIT'); return false;">
 
 <a
 class="category"
-href="index.html?category=Mathematics"
-onclick="goToCategory('Mathematics'); return false;">
+href="index.html?category=Mathematics" onclick="goToCategory(\'Mathematics\');return false;">
 
 <div class="category-icon">
 📐
@@ -1487,8 +1505,7 @@ Maths material
 
 <a
 class="category"
-href="index.html?category=English"
-onclick="goToCategory('English'); return false;">
+href="index.html?category=English" onclick="goToCategory(\'English\');return false;">
 
 <div class="category-icon">
 📖
@@ -1505,8 +1522,7 @@ English learning
 
 <a
 class="category"
-href="index.html?category=Physics"
-onclick="goToCategory('Physics'); return false;">
+href="index.html?category=Physics" onclick="goToCategory(\'Physics\');return false;">
 
 <div class="category-icon">
 ⚡
@@ -1523,8 +1539,7 @@ Physics material
 
 <a
 class="category"
-href="index.html?category=Chemistry"
-onclick="goToCategory('Chemistry'); return false;">
+href="index.html?category=Chemistry" onclick="goToCategory(\'Chemistry\');return false;">
 
 <div class="category-icon">
 🧪
@@ -1541,8 +1556,7 @@ Chemistry material
 
 <a
 class="category"
-href="index.html?category=Urdu"
-onclick="goToCategory('Urdu'); return false;">
+href="index.html?category=Urdu" onclick="goToCategory(\'Urdu\');return false;">
 
 <div class="category-icon">
 📝
@@ -5479,243 +5493,6 @@ block:"start"
 }
 
 
-
-/* =====================================================
-SOCIAL LINKS
-===================================================== */
-
-async function loadSocial(){
-
-    const containerHome =
-        document.getElementById("socialLinksHome");
-
-    const containerFooter =
-        document.getElementById("socialLinksFooter");
-
-    try{
-
-        const links = await loadSocialLinks();
-
-        if(!links.length){
-
-            if(containerHome){
-                containerHome.innerHTML =
-                    `<div class="empty">
-                        No contact links available yet.
-                    </div>`;
-            }
-
-            if(containerFooter){
-                containerFooter.innerHTML = "";
-            }
-
-            return;
-        }
-
-        const icons = {
-            facebook:"📘",
-            instagram:"📸",
-            twitter:"𝕏",
-            x:"𝕏",
-            youtube:"▶️",
-            whatsapp:"💬",
-            email:"✉️",
-            gmail:"✉️",
-            website:"🌐",
-            custom:"🔗"
-        };
-
-        const html = links.map(item => {
-
-            const platform =
-                String(item.platform || "custom").toLowerCase();
-
-            const icon =
-                icons[platform] || "🔗";
-
-            const url =
-                cleanUrl(item.url);
-
-            if(!url) return "";
-
-            return `
-                <a
-                    class="social-link"
-                    href="${safe(url)}"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    ${icon}
-                    ${safe(item.link_name || item.platform || "Link")}
-
-                </a>
-            `;
-
-        }).join("");
-
-        if(containerHome){
-            containerHome.innerHTML =
-                html ||
-                `<div class="empty">No contact links available yet.</div>`;
-        }
-
-        if(containerFooter){
-            containerFooter.innerHTML = html;
-        }
-
-    }catch(error){
-
-        console.log("Social links:",error);
-
-        if(containerHome){
-            containerHome.innerHTML =
-                `<div class="empty">
-                    Contact links could not be loaded.
-                </div>`;
-        }
-
-    }
-}
-
-
-/* =====================================================
-MATERIAL URL PARAMETER
-===================================================== */
-
-function materialKeyFromParam(value){
-
-    const v =
-        String(value || "")
-        .toLowerCase()
-        .trim();
-
-    const map = {
-
-        books:"books",
-        book:"books",
-
-        notes:"notes",
-        note:"notes",
-
-        practicals:"practicals",
-        practical:"practicals",
-
-        papers:"papers",
-        paper:"papers",
-        "past papers":"papers",
-        "past paper":"papers",
-
-        tests:"tests",
-        test:"tests",
-
-        courses:"notes",
-        course:"notes"
-
-    };
-
-    return map[v] || "";
-}
-
-
-/* =====================================================
-SAFE CATEGORY NAVIGATION
-===================================================== */
-
-function goToCategory(category){
-
-    if(!category) return;
-
-    window.location.href =
-        "index.html?category=" +
-        encodeURIComponent(category);
-
-}
-
-
-/* =====================================================
-FIXED SEARCH FOCUS
-===================================================== */
-
-function focusSection(type){
-
-    const material =
-        materialKeyFromParam(type);
-
-    if(!material) return;
-
-    if(!selectedCategory){
-
-        const params =
-            new URLSearchParams(location.search);
-
-        selectedCategory =
-            params.get("category") || "";
-
-    }
-
-    if(!selectedCategory) return;
-
-    if(!selectedYear){
-
-        const params =
-            new URLSearchParams(location.search);
-
-        selectedYear =
-            params.get("year") || "";
-
-    }
-
-    if(!selectedYear){
-
-        document.getElementById("materialChoiceSection")
-            ?.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
-
-        return;
-
-    }
-
-    selectMaterial(material);
-
-}
-
-
-/* =====================================================
-CATEGORY CLICK FALLBACK
-===================================================== */
-
-document.addEventListener("click",function(e){
-
-    const link =
-        e.target.closest(
-            '.category[href*="category="], .category-menu a[href*="category="]'
-        );
-
-    if(!link) return;
-
-    const href =
-        link.getAttribute("href");
-
-    if(!href) return;
-
-    const match =
-        href.match(/[?&]category=([^&]+)/);
-
-    if(!match) return;
-
-    e.preventDefault();
-
-    const category =
-        decodeURIComponent(match[1]);
-
-    goToCategory(category);
-
-});
-
-
-
 /* =====================================================
 START
 ===================================================== */
@@ -5923,5 +5700,336 @@ start();
 
 </script>
 
+
+<div id="shHierarchyPage">
+  <div class="sh-page">
+    <div class="sh-head">
+      <button class="sh-back" onclick="shBack()">← Back</button>
+      <div>
+        <h1 class="sh-title" id="shTitle">StudyHub Pakistan</h1>
+        <p class="sh-sub" id="shSubtitle">Choose an option</p>
+      </div>
+    </div>
+    <div id="shGrid" class="sh-grid"></div>
+  </div>
+</div>
+
+<script>
+/* STUDYHUB-HIERARCHY-JS-FINAL */
+
+const SH_YEARS = {
+  School:["9th","10th","11th","12th"],
+  Computer:["9th","10th","11th","12th"],
+  CIT:["1st Year","2nd Year","3rd Year"],
+  Mathematics:["9th","10th","11th","12th"],
+  English:["9th","10th","11th","12th"],
+  Physics:["9th","10th","11th","12th"],
+  Chemistry:["9th","10th","11th","12th"],
+  Urdu:["9th","10th","11th","12th"]
+};
+
+const SH_MATERIALS = {
+  normal:[
+    {key:"books",icon:"📚",title:"Books",desc:"Books and PDF files"},
+    {key:"notes",icon:"📝",title:"Notes",desc:"Notes, documents and images"},
+    {key:"papers",icon:"📄",title:"Past Papers",desc:"Previous examination papers"}
+  ],
+  cit:[
+    {key:"books",icon:"📚",title:"Books",desc:"CIT books and PDF files"},
+    {key:"notes",icon:"📝",title:"Notes",desc:"CIT notes, documents and images"},
+    {key:"practicals",icon:"🧪",title:"Practicals",desc:"CIT practicals and files"},
+    {key:"papers",icon:"📄",title:"Past Papers",desc:"CIT previous examination papers"}
+  ]
+};
+
+let SH_CATEGORY="";
+let SH_YEAR="";
+let SH_MATERIAL="";
+
+function shEsc(v){
+  if(typeof safe==="function") return safe(String(v ?? ""));
+  return String(v ?? "").replace(/[&<>"']/g,function(m){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m];
+  });
+}
+
+function shNorm(v){ return String(v ?? "").trim().toLowerCase(); }
+
+function shShow(){
+  const h=document.getElementById("homePage");
+  const c=document.getElementById("categoryPage");
+  const p=document.getElementById("shHierarchyPage");
+  if(h) h.style.display="none";
+  if(c) c.style.display="none";
+  if(p) p.style.display="block";
+  window.scrollTo(0,0);
+}
+
+function shCategory(category){
+  if(!SH_YEARS[category]) return;
+  SH_CATEGORY=category;
+  SH_YEAR="";
+  SH_MATERIAL="";
+  shShow();
+
+  document.getElementById("shTitle").textContent=category;
+  document.getElementById("shSubtitle").textContent="Choose your class or year";
+
+  const grid=document.getElementById("shGrid");
+  grid.className="sh-grid";
+  grid.innerHTML=SH_YEARS[category].map(function(year){
+    return `
+      <div class="sh-card" onclick="shYear('${shEsc(category)}','${shEsc(year)}')">
+        <div class="sh-icon">🎓</div>
+        <h3>${shEsc(year)}</h3>
+        <p>Open ${shEsc(year)} materials</p>
+      </div>`;
+  }).join("");
+
+  shUrl();
+}
+
+function shYear(category,year){
+  SH_CATEGORY=category;
+  SH_YEAR=year;
+  SH_MATERIAL="";
+  shShow();
+
+  document.getElementById("shTitle").textContent=category+" • "+year;
+  document.getElementById("shSubtitle").textContent="Choose material type";
+
+  const list=category==="CIT" ? SH_MATERIALS.cit : SH_MATERIALS.normal;
+  const grid=document.getElementById("shGrid");
+  grid.className="sh-grid";
+  grid.innerHTML=list.map(function(m){
+    return `
+      <div class="sh-card center" onclick="shMaterial('${m.key}')">
+        <div class="sh-icon">${m.icon}</div>
+        <h3>${m.title}</h3>
+        <p>${m.desc}</p>
+      </div>`;
+  }).join("");
+
+  shUrl();
+}
+
+function shUrl(){
+  const u=new URL(window.location.href);
+  if(SH_CATEGORY) u.searchParams.set("category",SH_CATEGORY);
+  else u.searchParams.delete("category");
+  if(SH_YEAR) u.searchParams.set("year",SH_YEAR);
+  else u.searchParams.delete("year");
+  if(SH_MATERIAL) u.searchParams.set("material",SH_MATERIAL);
+  else u.searchParams.delete("material");
+  history.pushState({}, "", u.toString());
+}
+
+function shCategoryMatch(item,category){
+  const wanted=shNorm(category);
+  const values=[
+    item.category,item.category_name,item.subject,item.department,
+    item.course,item.level
+  ].filter(Boolean).map(shNorm);
+
+  if(!wanted) return true;
+  return values.some(function(v){
+    return v===wanted || v.includes(wanted) || wanted.includes(v);
+  });
+}
+
+function shYearMatch(item,year){
+  const wanted=shNorm(year);
+  const values=[
+    item.year,item.class_year,item.class_name,item.class,
+    item.level,item.course
+  ].filter(Boolean).map(shNorm);
+
+  if(!wanted) return true;
+
+  const compact=wanted.replace(/\s+/g,"");
+  return values.some(function(v){
+    return v===wanted || v.replace(/\s+/g,"")===compact;
+  });
+}
+
+function shLink(url,label){
+  if(!url) return "";
+  let clean=url;
+  try{
+    if(typeof cleanUrl==="function") clean=cleanUrl(url);
+  }catch(e){}
+  if(!clean) return "";
+  return `<a href="${shEsc(clean)}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+}
+
+async function shMaterial(material){
+  SH_MATERIAL=material;
+  shShow();
+
+  const names={
+    books:"Books",
+    notes:"Notes",
+    practicals:"Practicals",
+    papers:"Past Papers"
+  };
+
+  document.getElementById("shTitle").textContent=
+    SH_CATEGORY+" • "+SH_YEAR+" • "+(names[material]||"Material");
+  document.getElementById("shSubtitle").textContent="Available content";
+
+  const grid=document.getElementById("shGrid");
+  grid.className="sh-list";
+  grid.innerHTML='<div class="sh-empty">Loading...</div>';
+
+  const table={
+    books:"books",
+    notes:"notes",
+    practicals:"practicals",
+    papers:"past_papers"
+  }[material];
+
+  if(!table){
+    grid.innerHTML='<div class="sh-empty">No content available.</div>';
+    return;
+  }
+
+  try{
+    const result=await db.from(table).select("*");
+    if(result.error) throw result.error;
+
+    const rows=(result.data||[]).filter(function(item){
+      return shCategoryMatch(item,SH_CATEGORY) &&
+             shYearMatch(item,SH_YEAR);
+    });
+
+    if(!rows.length){
+      grid.innerHTML=`
+        <div class="sh-empty">
+          No ${shEsc(names[material]||"content")} available for
+          ${shEsc(SH_CATEGORY)} - ${shEsc(SH_YEAR)} yet.
+        </div>`;
+      shUrl();
+      return;
+    }
+
+    grid.innerHTML=rows.map(function(item,index){
+      const title=item.title || item.name || (names[material]+" "+(index+1));
+      const description=item.description || "";
+      let actions="";
+
+      if(material==="papers"){
+        const pages=Array.isArray(item.pages) ? item.pages : [];
+        if(pages.length){
+          pages.forEach(function(page,i){
+            actions += shLink(
+              page.url,
+              i===0 ? "📖 Open Paper" : "📄 Page "+(page.page||i+1)
+            );
+          });
+        }else{
+          actions += shLink(item.file_url,"📖 Open Paper");
+        }
+      }else{
+        actions += shLink(
+          item.file_url || item.url,
+          material==="books" ? "📖 Read / Open" : "📂 Open"
+        );
+      }
+
+      return `
+        <div class="sh-item">
+          <h3>${shEsc(title)}</h3>
+          ${description ? `<p>${shEsc(description)}</p>` : ""}
+          <div class="sh-actions">
+            ${actions || "<span>No file or link available.</span>"}
+          </div>
+        </div>`;
+    }).join("");
+
+    shUrl();
+
+  }catch(error){
+    console.error("StudyHub hierarchy:",error);
+    grid.innerHTML=
+      '<div class="sh-empty">Unable to load content right now.</div>';
+  }
+}
+
+function shBack(){
+  if(SH_MATERIAL){
+    shYear(SH_CATEGORY,SH_YEAR);
+    return;
+  }
+
+  if(SH_YEAR){
+    shCategory(SH_CATEGORY);
+    return;
+  }
+
+  const p=document.getElementById("shHierarchyPage");
+  const h=document.getElementById("homePage");
+  if(p) p.style.display="none";
+  if(h) h.style.display="block";
+  SH_CATEGORY="";
+  SH_YEAR="";
+  SH_MATERIAL="";
+  history.pushState({}, "", "index.html");
+  window.scrollTo(0,0);
+}
+
+function goToCategory(category){
+  shCategory(category);
+}
+
+function materialKeyFromParam(value){
+  const v=shNorm(value);
+  if(v==="tests" || v==="test") return "";
+  if(v==="books" || v==="book") return "books";
+  if(v==="notes" || v==="note") return "notes";
+  if(v==="practicals" || v==="practical") return "practicals";
+  if(v==="papers" || v==="paper" || v==="past papers" || v==="past paper") return "papers";
+  return "";
+}
+
+/* Force existing category cards to use the new hierarchy. */
+document.addEventListener("click",function(e){
+  const card=e.target.closest(".category");
+  if(!card) return;
+  const href=card.getAttribute("href")||"";
+  const match=href.match(/[?&]category=([^&]+)/i);
+  if(match){
+    e.preventDefault();
+    goToCategory(decodeURIComponent(match[1]));
+  }
+});
+
+/* Restore hierarchy when browser Back/Forward is used. */
+window.addEventListener("popstate",function(){
+  const p=new URLSearchParams(location.search);
+  const c=p.get("category");
+  const y=p.get("year");
+  const m=p.get("material");
+
+  if(c && SH_YEARS[c]){
+    if(m && y){
+      SH_CATEGORY=c;SH_YEAR=y;SH_MATERIAL="";
+      shMaterial(m);
+    }else if(y){
+      shYear(c,y);
+    }else{
+      shCategory(c);
+    }
+  }
+});
+
+/* Public frontend: Tests are not available. */
+function focusSection(type){
+  const m=materialKeyFromParam(type);
+  if(!m) return;
+  if(SH_CATEGORY && SH_YEAR) shMaterial(m);
+}
+</script>
+
 </body>
     </html>
+
