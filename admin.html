@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>StudyHub Pakistan - Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -22,7 +20,7 @@
     --primary:#4f46e5;
     --secondary:#7c3aed;
     --bg:#f5f7ff;
-    --card:#ffffff;
+    --card:#fff;
     --text:#1f2937;
     --muted:#6b7280;
     --border:#e5e7eb;
@@ -38,10 +36,10 @@ body{
 header{
     height:65px;
     background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
-    padding:0 18px;
+    padding:0 16px;
     position:sticky;
     top:0;
     z-index:1000;
@@ -51,23 +49,23 @@ header{
 .menuBtn{
     border:0;
     background:transparent;
-    color:white;
-    font-size:30px;
+    color:#fff;
+    font-size:29px;
     cursor:pointer;
-    margin-right:15px;
+    margin-right:13px;
 }
 
 header h2{
-    font-size:20px;
+    font-size:19px;
 }
 
 .sidebar{
     position:fixed;
     top:0;
-    left:-280px;
-    width:280px;
+    left:-290px;
+    width:290px;
     height:100%;
-    background:white;
+    background:#fff;
     z-index:2000;
     box-shadow:5px 0 20px rgba(0,0,0,.15);
     transition:.3s;
@@ -83,12 +81,12 @@ header h2{
 .sidebar button{
     width:100%;
     display:block;
-    padding:16px 20px;
+    padding:15px 20px;
     border:0;
-    background:white;
+    background:#fff;
     text-align:left;
     color:#333;
-    font-size:16px;
+    font-size:15px;
     text-decoration:none;
     cursor:pointer;
 }
@@ -112,23 +110,23 @@ header h2{
 }
 
 .container{
-    width:100%;
     max-width:1100px;
+    width:100%;
     margin:auto;
-    padding:20px;
+    padding:18px;
 }
 
 .welcome{
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
-    color:white;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
     border-radius:20px;
-    padding:25px;
-    margin-bottom:20px;
+    padding:24px;
+    margin-bottom:18px;
 }
 
 .welcome h1{
     font-size:27px;
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .welcome p{
@@ -138,45 +136,45 @@ header h2{
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:25px;
+    gap:13px;
+    margin-bottom:20px;
 }
 
 .stat{
     background:var(--card);
     border-radius:15px;
-    padding:20px;
+    padding:18px;
     box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .stat h3{
-    font-size:27px;
     color:var(--primary);
+    font-size:26px;
 }
 
 .stat p{
     color:var(--muted);
-    margin-top:5px;
+    margin-top:4px;
 }
 
 .section{
     background:var(--card);
     border-radius:18px;
     padding:20px;
-    margin-bottom:25px;
+    margin-bottom:20px;
     box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .section h2{
     color:var(--primary);
-    margin-bottom:18px;
     font-size:21px;
+    margin-bottom:15px;
 }
 
 .form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    gap:14px;
 }
 
 .full{
@@ -186,7 +184,7 @@ header h2{
 label{
     display:block;
     font-weight:bold;
-    margin-bottom:7px;
+    margin-bottom:6px;
 }
 
 input,
@@ -197,12 +195,12 @@ select{
     border:1px solid var(--border);
     border-radius:10px;
     outline:none;
-    font-size:15px;
-    background:white;
+    font-size:14px;
+    background:#fff;
 }
 
 textarea{
-    min-height:100px;
+    min-height:90px;
     resize:vertical;
 }
 
@@ -215,15 +213,11 @@ select:focus{
 .btn{
     border:0;
     border-radius:10px;
-    padding:12px 18px;
-    color:white;
+    padding:12px 17px;
+    color:#fff;
     background:linear-gradient(135deg,var(--primary),var(--secondary));
     cursor:pointer;
     font-weight:bold;
-}
-
-.btn:hover{
-    opacity:.9;
 }
 
 .btn-danger{
@@ -236,103 +230,31 @@ select:focus{
 
 .small-btn{
     display:inline-block;
-    padding:8px 12px;
     border:0;
     border-radius:8px;
-    cursor:pointer;
-    color:white;
+    padding:8px 11px;
     background:var(--primary);
+    color:#fff;
     text-decoration:none;
+    cursor:pointer;
     font-size:13px;
-}
-
-.file-box{
-    background:#f8faff;
-    border:1px dashed #b8c1ff;
-    padding:14px;
-    border-radius:10px;
 }
 
 .help{
     color:var(--muted);
     font-size:13px;
-    margin-top:6px;
+    line-height:1.5;
 }
 
-.list{
-    margin-top:20px;
-}
-
-.item{
-    border:1px solid var(--border);
-    border-radius:13px;
-    padding:15px;
-    margin-bottom:12px;
-    background:#fafbff;
-}
-
-.item h3{
-    color:#333;
-    margin-bottom:7px;
-}
-
-.item p{
-    color:var(--muted);
-    font-size:14px;
-    margin:5px 0;
-}
-
-.badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    background:#e0e7ff;
-    color:#4338ca;
-    font-size:12px;
-    font-weight:bold;
-    margin:3px 3px 3px 0;
-}
-
-.actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-top:10px;
-}
-
-.builder{
-    margin-top:15px;
-}
-
-.builder-card{
-    border:1px solid var(--border);
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:12px;
-    background:#fafbff;
-}
-
-.builder-card h4{
-    margin-bottom:12px;
-    color:var(--primary);
-}
-
-.option-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.link-row{
-    border:1px solid var(--border);
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:12px;
-    background:#fafbff;
+.file-box{
+    border:1px dashed #aeb8ff;
+    background:#f8faff;
+    border-radius:10px;
+    padding:13px;
 }
 
 .hidden{
-    display:none;
+    display:none!important;
 }
 
 .loading{
@@ -341,18 +263,179 @@ select:focus{
     color:var(--muted);
 }
 
-.category-info{
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    margin:3px 3px 3px 0;
+    border-radius:20px;
+    background:#e0e7ff;
+    color:#4338ca;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.item{
+    background:#fafbff;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:14px;
+    margin-top:10px;
+}
+
+.item h3{
+    margin-bottom:7px;
+}
+
+.item p{
+    color:var(--muted);
+    font-size:13px;
+    margin:5px 0;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+/* HIERARCHY */
+
+#hierarchy{
+    display:block;
+}
+
+.breadcrumb{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.crumb{
+    border:0;
     background:#eef2ff;
     color:#4338ca;
-    padding:10px 12px;
-    border-radius:10px;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
     font-size:13px;
+}
+
+.crumb.current{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    cursor:default;
+}
+
+.hierarchy-title{
+    margin-bottom:15px;
+}
+
+.hierarchy-title h2{
+    margin-bottom:5px;
+}
+
+.hierarchy-title p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.category-grid,
+.year-grid,
+.material-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+}
+
+.nav-card{
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:15px;
+    padding:18px 12px;
+    cursor:pointer;
+    text-align:center;
+    transition:.2s;
+    box-shadow:0 3px 10px rgba(0,0,0,.04);
+}
+
+.nav-card:hover{
+    transform:translateY(-2px);
+    border-color:#a5b4fc;
+    box-shadow:0 7px 18px rgba(79,70,229,.12);
+}
+
+.nav-icon{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.nav-card h3{
+    color:#333;
+    font-size:15px;
+}
+
+.nav-card p{
+    color:var(--muted);
+    font-size:12px;
     margin-top:5px;
 }
 
-@media(max-width:800px){
+.material-card{
+    text-align:left;
+}
 
+.material-card .nav-icon{
+    font-size:26px;
+}
+
+.add-box{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+}
+
+.add-box h3{
+    margin-bottom:12px;
+    color:var(--primary);
+}
+
+.data-header{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+}
+
+.empty{
+    padding:20px;
+    text-align:center;
+    color:var(--muted);
+    background:#fafbff;
+    border-radius:12px;
+}
+
+.link-row{
+    border:1px solid var(--border);
+    padding:14px;
+    border-radius:12px;
+    background:#fafbff;
+    margin-bottom:10px;
+}
+
+@media(max-width:800px){
     .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .category-grid,
+    .year-grid,
+    .material-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
@@ -363,800 +446,269 @@ select:focus{
     .full{
         grid-column:auto;
     }
-
 }
 
 @media(max-width:500px){
-
     .container{
-        padding:12px;
+        padding:11px;
     }
 
     .welcome h1{
         font-size:22px;
     }
 
-    .stats{
-        gap:10px;
+    .category-grid,
+    .year-grid,
+    .material-grid{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
     }
 
-    .stat{
-        padding:15px;
+    .nav-card{
+        padding:14px 8px;
     }
 
-    .stat h3{
-        font-size:22px;
+    .nav-icon{
+        font-size:25px;
     }
 
+    .nav-card h3{
+        font-size:13px;
+    }
+
+    .section{
+        padding:14px;
+    }
+
+    header h2{
+        font-size:16px;
+    }
 }
-
 </style>
-
 </head>
 
 <body>
 
-
 <header>
-
-<button class="menuBtn" onclick="openMenu()">☰</button>
-
-<h2>StudyHub Pakistan - Admin</h2>
-
+    <button class="menuBtn" onclick="openMenu()">☰</button>
+    <h2>StudyHub Pakistan - Admin</h2>
 </header>
-
 
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-
 <div id="sidebar" class="sidebar">
 
-<a href="index.html">🏠 Home</a>
+    <a href="index.html">🏠 Frontend Home</a>
 
-<a href="#dashboard" onclick="closeMenu()">📊 Dashboard</a>
+    <a href="#dashboard" onclick="closeMenu()">📊 Dashboard</a>
 
-<a href="#books" onclick="closeMenu()">📚 Books</a>
+    <a href="#hierarchy" onclick="goHome();closeMenu()">📚 Manage Materials</a>
 
-<a href="#notes" onclick="closeMenu()">📝 Notes</a>
+    <a href="#courses" onclick="closeMenu()">🎓 Courses</a>
 
-<a href="#practicals" onclick="closeMenu()">🧪 Practicals</a>
+    <a href="#socialLinks" onclick="closeMenu()">🔗 Social & Contact Links</a>
 
-<a href="#tests" onclick="closeMenu()">📋 Tests</a>
-
-<a href="#pastPapers" onclick="closeMenu()">📄 Past Papers</a>
-
-<a href="#socialLinks" onclick="closeMenu()">🔗 Social & Contact Links</a>
-
-<button onclick="logout()">🚪 Logout</button>
+    <button onclick="logout()">🚪 Logout</button>
 
 </div>
-
 
 <div class="container">
 
-
-<!-- ================= DASHBOARD ================= -->
+<!-- DASHBOARD -->
 
 <div class="welcome" id="dashboard">
 
-<h1>Welcome to StudyHub Pakistan</h1>
+    <h1>Welcome to StudyHub Pakistan</h1>
 
-<p>
-Manage courses, books, notes, practicals, tests,
-past papers and social links.
-</p>
+    <p>
+        Manage your educational content from Category to Class/Year and Material.
+    </p>
 
 </div>
-
 
 <div class="stats">
 
-<div class="stat">
-<h3 id="courseCount">0</h3>
-<p>Courses</p>
+    <div class="stat">
+        <h3 id="courseCount">0</h3>
+        <p>Courses</p>
+    </div>
+
+    <div class="stat">
+        <h3 id="bookCount">0</h3>
+        <p>Books</p>
+    </div>
+
+    <div class="stat">
+        <h3 id="noteCount">0</h3>
+        <p>Notes</p>
+    </div>
+
+    <div class="stat">
+        <h3 id="practicalCount">0</h3>
+        <p>Practicals</p>
+    </div>
+
 </div>
 
-<div class="stat">
-<h3 id="noteCount">0</h3>
-<p>Notes</p>
-</div>
 
-<div class="stat">
-<h3 id="practicalCount">0</h3>
-<p>Practicals</p>
-</div>
+<!-- ================= MATERIAL HIERARCHY ================= -->
 
-<div class="stat">
-<h3 id="bookCount">0</h3>
-<p>Books</p>
-</div>
+<div class="section" id="hierarchy">
+
+    <div class="breadcrumb" id="breadcrumb"></div>
+
+    <div class="hierarchy-title">
+        <h2 id="hierarchyHeading">📚 Select Category</h2>
+        <p id="hierarchyDescription">
+            Select a category to manage its educational material.
+        </p>
+    </div>
+
+    <div id="categoryView">
+
+        <div class="category-grid">
+
+            <div class="nav-card" onclick="selectCategory('School')">
+                <div class="nav-icon">🏫</div>
+                <h3>School</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('Computer')">
+                <div class="nav-icon">💻</div>
+                <h3>Computer</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('CIT')">
+                <div class="nav-icon">🖥️</div>
+                <h3>CIT</h3>
+                <p>1st to 3rd Year</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('Mathematics')">
+                <div class="nav-icon">📐</div>
+                <h3>Mathematics</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('English')">
+                <div class="nav-icon">📖</div>
+                <h3>English</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('Physics')">
+                <div class="nav-icon">⚡</div>
+                <h3>Physics</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('Chemistry')">
+                <div class="nav-icon">🧪</div>
+                <h3>Chemistry</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+            <div class="nav-card" onclick="selectCategory('Urdu')">
+                <div class="nav-icon">📝</div>
+                <h3>Urdu</h3>
+                <p>Class 9 to 12</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="yearView" class="hidden">
+
+        <div class="year-grid" id="yearGrid"></div>
+
+    </div>
+
+
+    <div id="materialView" class="hidden">
+
+        <div class="material-grid" id="materialGrid"></div>
+
+    </div>
+
+
+    <div id="dataView" class="hidden">
+
+        <div class="data-header">
+
+            <div>
+                <h3 id="dataTitle"></h3>
+                <p class="help" id="dataDescription"></p>
+            </div>
+
+            <button class="small-btn" onclick="showAddForm()">
+                ➕ Add New
+            </button>
+
+        </div>
+
+        <div id="materialData"></div>
+
+        <div id="addFormBox" class="add-box hidden"></div>
+
+    </div>
 
 </div>
 
 
 <!-- ================= COURSES ================= -->
 
-<div class="section">
+<div class="section" id="courses">
 
-<h2>🎓 Add Course</h2>
+    <h2>🎓 Courses</h2>
 
-<form onsubmit="addCourse(event)">
+    <p class="help">
+        Courses are managed separately. Course content remains text-based.
+    </p>
 
-<div class="form-grid">
+    <br>
 
-<div>
+    <form onsubmit="addCourse(event)">
 
-<label>Course Title</label>
+        <div class="form-grid">
 
-<input id="courseTitle" required>
+            <div>
+                <label>Course Title</label>
+                <input id="courseTitle" required>
+            </div>
 
-</div>
+            <div>
+                <label>Level</label>
+                <input
+                    id="courseLevel"
+                    placeholder="Example: CIT 1st Year"
+                    required>
+            </div>
 
+            <div>
+                <label>Icon</label>
+                <input id="courseIcon" placeholder="📚">
+            </div>
 
-<div>
+            <div class="full">
+                <label>Description</label>
+                <textarea id="courseDescription"></textarea>
+            </div>
 
-<label>Level</label>
+        </div>
 
-<input
-id="courseLevel"
-placeholder="Example: CIT 1st Year"
-required>
+        <br>
 
-</div>
+        <button class="btn">
+            ➕ Add Course
+        </button>
 
+    </form>
 
-<div>
-
-<label>Icon</label>
-
-<input
-id="courseIcon"
-placeholder="📚">
-
-</div>
-
-
-<div class="full">
-
-<label>Description</label>
-
-<textarea id="courseDescription"></textarea>
-
-</div>
-
-</div>
-
-<br>
-
-<button class="btn">
-➕ Add Course
-</button>
-
-</form>
-
-<div id="coursesList" class="list"></div>
-
-</div>
-
-
-<!-- ================= BOOKS ================= -->
-
-<div class="section" id="books">
-
-<h2>📚 Add Book</h2>
-
-<form onsubmit="addBook(event)">
-
-<div class="form-grid">
-
-
-<div>
-
-<label>Category</label>
-
-<select
-id="bookCategory"
-onchange="updateYearOptions('book')">
-
-<option value="School">School</option>
-
-<option value="Computer">Computer</option>
-
-<option value="CIT">CIT</option>
-
-<option value="Mathematics">Mathematics</option>
-
-<option value="English">English</option>
-
-<option value="Physics">Physics</option>
-
-<option value="Chemistry">Chemistry</option>
-
-<option value="Urdu">Urdu</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Class / Year</label>
-
-<select id="bookYear"></select>
-
-<div class="category-info" id="bookYearInfo"></div>
-
-</div>
-
-
-<div class="full">
-
-<label>Book Name</label>
-
-<input
-id="bookTitle"
-placeholder="Example: CIT-114 Programming"
-required>
-
-</div>
-
-
-<div class="full">
-
-<label>Description</label>
-
-<textarea
-id="bookDescription"
-placeholder="Book description"></textarea>
-
-</div>
-
-
-<div>
-
-<label>Upload PDF</label>
-
-<div class="file-box">
-
-<input
-type="file"
-id="bookFile"
-accept=".pdf,application/pdf">
-
-</div>
-
-</div>
-
-
-<div>
-
-<label>OR PDF / Book Link</label>
-
-<input
-id="bookFileUrl"
-type="url"
-placeholder="https://example.com/book.pdf">
-
-</div>
-
-
-</div>
-
-<br>
-
-<button class="btn">
-➕ Add Book
-</button>
-
-</form>
-
-
-<div id="booksList" class="list">
-
-<div class="loading">
-Loading books...
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= NOTES ================= -->
-
-<div class="section" id="notes">
-
-<h2>📝 Add Note</h2>
-
-<form onsubmit="addNote(event)">
-
-<div class="form-grid">
-
-
-<div>
-
-<label>Category</label>
-
-<select
-id="noteCategory"
-onchange="updateYearOptions('note')">
-
-<option value="School">School</option>
-
-<option value="Computer">Computer</option>
-
-<option value="CIT">CIT</option>
-
-<option value="Mathematics">Mathematics</option>
-
-<option value="English">English</option>
-
-<option value="Physics">Physics</option>
-
-<option value="Chemistry">Chemistry</option>
-
-<option value="Urdu">Urdu</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Class / Year</label>
-
-<select id="noteYear"></select>
-
-<div class="category-info" id="noteYearInfo"></div>
-
-</div>
-
-
-<div>
-
-<label>Note Title</label>
-
-<input
-id="noteTitle"
-required>
-
-</div>
-
-
-<div>
-
-<label>Icon</label>
-
-<input
-id="noteIcon"
-placeholder="📝">
-
-</div>
-
-
-<div class="full">
-
-<label>Description</label>
-
-<textarea
-id="noteDescription"></textarea>
-
-</div>
-
-
-<div>
-
-<label>Upload Image / PDF / File</label>
-
-<div class="file-box">
-
-<input
-type="file"
-id="noteFile"
-accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
-
-</div>
-
-</div>
-
-
-<div>
-
-<label>OR Add URL / Link</label>
-
-<input
-id="noteFileUrl"
-type="url"
-placeholder="https://example.com/file">
-
-</div>
-
-
-</div>
-
-<br>
-
-<button class="btn">
-➕ Add Note
-</button>
-
-</form>
-
-
-<div id="notesList" class="list"></div>
-
-</div>
-
-
-<!-- ================= PRACTICALS ================= -->
-
-<div class="section" id="practicals">
-
-<h2>🧪 Add Practical</h2>
-
-<div class="category-info">
-
-Practicals are available only for CIT.
-
-</div>
-
-<br>
-
-<form onsubmit="addPractical(event)">
-
-<div class="form-grid">
-
-
-<div>
-
-<label>Category</label>
-
-<select id="practicalCategory">
-
-<option value="CIT">CIT</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Year</label>
-
-<select id="practicalYear">
-
-<option value="1st Year">1st Year</option>
-
-<option value="2nd Year">2nd Year</option>
-
-<option value="3rd Year">3rd Year</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Practical Title</label>
-
-<input
-id="practicalTitle"
-placeholder="Example: Practical 05 - If Else Condition"
-required>
-
-</div>
-
-
-<div>
-
-<label>Icon</label>
-
-<input
-id="practicalIcon"
-placeholder="🧪">
-
-</div>
-
-
-<div class="full">
-
-<label>Description</label>
-
-<textarea
-id="practicalDescription"></textarea>
-
-</div>
-
-
-<div>
-
-<label>Upload Image / PDF / File</label>
-
-<div class="file-box">
-
-<input
-type="file"
-id="practicalFile"
-accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
-
-</div>
-
-</div>
-
-
-<div>
-
-<label>OR Add URL / Link</label>
-
-<input
-id="practicalFileUrl"
-type="url"
-placeholder="https://example.com/file">
-
-</div>
-
-
-</div>
-
-<br>
-
-<button class="btn">
-➕ Add Practical
-</button>
-
-</form>
-
-
-<div id="practicalsList" class="list"></div>
-
-</div>
-
-
-<!-- ================= TESTS ================= -->
-
-<div class="section" id="tests">
-
-<h2>📋 Add Test</h2>
-
-<form onsubmit="addTest(event)">
-
-<div class="form-grid">
-
-
-<div>
-
-<label>Test Title</label>
-
-<input
-id="testTitle"
-required>
-
-</div>
-
-
-<div>
-
-<label>Test Type</label>
-
-<select
-id="testType"
-onchange="changeTestType()">
-
-<option value="mcq">MCQs</option>
-
-<option value="questions">Questions</option>
-
-</select>
-
-</div>
-
-
-<div class="full">
-
-<label>Description</label>
-
-<textarea
-id="testDescription"></textarea>
-
-</div>
-
-
-</div>
-
-
-<div id="mcqBuilder" class="builder">
-
-<h3>MCQs</h3>
-
-<div id="mcqItems"></div>
-
-<button
-type="button"
-class="btn"
-onclick="addMCQ()">
-
-➕ Add MCQ
-
-</button>
-
-</div>
-
-
-<div
-id="questionBuilder"
-class="builder hidden">
-
-<h3>Questions</h3>
-
-<div id="questionItems"></div>
-
-<button
-type="button"
-class="btn"
-onclick="addQuestion()">
-
-➕ Add Question
-
-</button>
-
-</div>
-
-
-<br>
-
-<button class="btn">
-💾 Save Test
-</button>
-
-</form>
-
-
-<div id="testsList" class="list"></div>
-
-</div>
-
-
-<!-- ================= PAST PAPERS ================= -->
-
-<div class="section" id="pastPapers">
-
-<h2>📄 Add Past Paper</h2>
-
-<form onsubmit="addPastPaper(event)">
-
-<div class="form-grid">
-
-
-<div>
-
-<label>Category</label>
-
-<select
-id="paperCategory"
-onchange="updateYearOptions('paper')">
-
-<option value="School">School</option>
-
-<option value="Computer">Computer</option>
-
-<option value="CIT">CIT</option>
-
-<option value="Mathematics">Mathematics</option>
-
-<option value="English">English</option>
-
-<option value="Physics">Physics</option>
-
-<option value="Chemistry">Chemistry</option>
-
-<option value="Urdu">Urdu</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Class / Year</label>
-
-<select id="paperClassYear"></select>
-
-<div
-class="category-info"
-id="paperYearInfo"></div>
-
-</div>
-
-
-<div>
-
-<label>Paper Title</label>
-
-<input
-id="paperTitle"
-placeholder="Example: Physics Past Paper"
-required>
-
-</div>
-
-
-<div>
-
-<label>Subject</label>
-
-<input
-id="paperSubject"
-required>
-
-</div>
-
-
-<div>
-
-<label>Exam Year</label>
-
-<input
-id="paperYear"
-placeholder="2026">
-
-</div>
-
-
-<div class="full">
-
-<label>Description</label>
-
-<textarea
-id="paperDescription"></textarea>
-
-</div>
-
-
-<div>
-
-<label>Upload Pages / PDF / Files</label>
-
-<div class="file-box">
-
-<input
-type="file"
-id="pastPaperFiles"
-multiple
-accept="image/*,.pdf,.doc,.docx">
-
-</div>
-
-</div>
-
-
-<div>
-
-<label>OR Add URLs</label>
-
-<textarea
-id="pastPaperPagesUrls"
-placeholder="Add one URL per line"></textarea>
-
-</div>
-
-
-</div>
-
-<br>
-
-<button class="btn">
-➕ Add Past Paper
-</button>
-
-</form>
-
-
-<div id="pastPapersList" class="list"></div>
+    <div id="coursesList"></div>
 
 </div>
 
@@ -1165,55 +717,48 @@ placeholder="Add one URL per line"></textarea>
 
 <div class="section" id="socialLinks">
 
-<h2>🔗 Social & Contact Links</h2>
+    <h2>🔗 Social & Contact Links</h2>
 
-<p class="help">
+    <p class="help">
+        Add unlimited social media, contact, website or custom links.
+    </p>
 
-Add unlimited social media, contact and website links.
-These links can be displayed automatically on the frontend.
+    <br>
 
-</p>
+    <div id="socialRows"></div>
 
-<br>
+    <button
+        type="button"
+        class="btn"
+        onclick="addSocialRow()">
 
-<div id="socialRows"></div>
+        ➕ Add Link
 
+    </button>
 
-<button
-type="button"
-class="btn"
-onclick="addSocialRow()">
+    <br><br>
 
-➕ Add Link
+    <button
+        type="button"
+        class="btn btn-success"
+        onclick="saveSocialLinks()">
 
-</button>
+        💾 Save All Links
 
-<br><br>
+    </button>
 
-
-<button
-type="button"
-class="btn btn-success"
-onclick="saveSocialLinks()">
-
-💾 Save All Links
-
-</button>
-
-
-<div id="socialLinksList" class="list"></div>
+    <div id="socialLinksList"></div>
 
 </div>
-
 
 </div>
 
 
 <script>
 
-/* =========================================
+/* =====================================================
    SUPABASE
-========================================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://kwkxdvevtxyvjywiqkcv.supabase.co";
@@ -1228,12 +773,11 @@ window.supabase.createClient(
 );
 
 
-/* =========================================
+/* =====================================================
    MENU
-========================================= */
+===================================================== */
 
 function openMenu(){
-
     document
     .getElementById("sidebar")
     .classList.add("open");
@@ -1241,12 +785,9 @@ function openMenu(){
     document
     .getElementById("overlay")
     .classList.add("show");
-
 }
 
-
 function closeMenu(){
-
     document
     .getElementById("sidebar")
     .classList.remove("open");
@@ -1254,111 +795,74 @@ function closeMenu(){
     document
     .getElementById("overlay")
     .classList.remove("show");
-
 }
 
 
-/* =========================================
-   ADMIN CHECK
-========================================= */
+/* =====================================================
+   AUTH
+===================================================== */
 
 async function checkAdmin(){
 
     const {
-        data:{
-            session
-        }
-    } =
-    await db.auth.getSession();
-
+        data:{session}
+    } = await db.auth.getSession();
 
     if(!session){
-
         location.href="login.html";
-
         return;
-
     }
-
 
     const {
         data:user,
         error:userError
-    } =
-    await db.auth.getUser();
-
+    } = await db.auth.getUser();
 
     if(userError || !user){
-
         location.href="login.html";
-
         return;
-
     }
-
 
     const {
         data:profile,
         error
-    } =
-    await db
+    } = await db
     .from("profiles")
     .select("role")
     .eq("id",user.user.id)
     .maybeSingle();
 
-
     if(error){
-
         console.error(error);
-
-        alert(
-            "Unable to verify admin access."
-        );
-
+        alert("Unable to verify admin access.");
         location.href="login.html";
-
         return;
-
     }
 
-
-    if(
-        !profile ||
-        profile.role !== "admin"
-    ){
-
+    if(!profile || profile.role !== "admin"){
         alert("Admin access required.");
-
         location.href="index.html";
-
         return;
-
     }
-
 }
 
-
-/* =========================================
-   LOGOUT
-========================================= */
 
 async function logout(){
 
     await db.auth.signOut();
 
     location.href="login.html";
-
 }
 
 
-/* =========================================
-   CATEGORY / YEAR SYSTEM
-========================================= */
+/* =====================================================
+   CATEGORY / YEAR
+===================================================== */
 
-const normalCategories = [
+const categories = [
     "School",
     "Computer",
+    "CIT",
     "Mathematics",
     "English",
     "Physics",
@@ -1366,19 +870,15 @@ const normalCategories = [
     "Urdu"
 ];
 
-
 function getYears(category){
 
     if(category === "CIT"){
-
         return [
             "1st Year",
             "2nd Year",
             "3rd Year"
         ];
-
     }
-
 
     return [
         "Class 9",
@@ -1386,537 +886,637 @@ function getYears(category){
         "Class 11",
         "Class 12"
     ];
-
 }
 
 
-function updateYearOptions(type){
+/* =====================================================
+   MATERIAL TYPES
+===================================================== */
 
-    let categoryId;
-    let yearId;
-    let infoId;
+function getMaterials(category){
 
+    if(category === "CIT"){
 
-    if(type === "book"){
-
-        categoryId="bookCategory";
-        yearId="bookYear";
-        infoId="bookYearInfo";
+        return [
+            {
+                key:"books",
+                title:"Books",
+                icon:"📚",
+                description:"Manage CIT books."
+            },
+            {
+                key:"notes",
+                title:"Notes",
+                icon:"📝",
+                description:"Manage CIT notes."
+            },
+            {
+                key:"practicals",
+                title:"Practicals",
+                icon:"🧪",
+                description:"Manage CIT practicals."
+            },
+            {
+                key:"pastPapers",
+                title:"Past Papers",
+                icon:"📄",
+                description:"Manage CIT past papers."
+            }
+        ];
 
     }
 
-
-    if(type === "note"){
-
-        categoryId="noteCategory";
-        yearId="noteYear";
-        infoId="noteYearInfo";
-
-    }
-
-
-    if(type === "paper"){
-
-        categoryId="paperCategory";
-        yearId="paperClassYear";
-        infoId="paperYearInfo";
-
-    }
-
-
-    const category =
-        document
-        .getElementById(categoryId)
-        .value;
+    return [
+        {
+            key:"books",
+            title:"Books",
+            icon:"📚",
+            description:"Manage books."
+        },
+        {
+            key:"notes",
+            title:"Notes",
+            icon:"📝",
+            description:"Manage notes."
+        },
+        {
+            key:"pastPapers",
+            title:"Past Papers",
+            icon:"📄",
+            description:"Manage past papers."
+        }
+    ];
+}
 
 
-    const yearSelect =
-        document
-        .getElementById(yearId);
+/* =====================================================
+   HIERARCHY STATE
+===================================================== */
+
+let selectedCategory = "";
+let selectedYear = "";
+let selectedMaterial = "";
 
 
-    const years =
-        getYears(category);
+function goHome(){
 
-
-    yearSelect.innerHTML =
-        years
-        .map(year =>
-            `<option value="${escapeHtml(year)}">
-                ${escapeHtml(year)}
-            </option>`
-        )
-        .join("");
-
+    selectedCategory = "";
+    selectedYear = "";
+    selectedMaterial = "";
 
     document
-    .getElementById(infoId)
+    .getElementById("categoryView")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("yearView")
+    .classList.add("hidden");
+
+    document
+    .getElementById("materialView")
+    .classList.add("hidden");
+
+    document
+    .getElementById("dataView")
+    .classList.add("hidden");
+
+    document
+    .getElementById("addFormBox")
+    .classList.add("hidden");
+
+    updateBreadcrumb();
+
+    document
+    .getElementById("hierarchyHeading")
+    .textContent="📚 Select Category";
+
+    document
+    .getElementById("hierarchyDescription")
+    .textContent=
+        "Select a category to manage its educational material.";
+}
+
+
+function selectCategory(category){
+
+    selectedCategory = category;
+    selectedYear = "";
+    selectedMaterial = "";
+
+    document
+    .getElementById("categoryView")
+    .classList.add("hidden");
+
+    document
+    .getElementById("yearView")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("materialView")
+    .classList.add("hidden");
+
+    document
+    .getElementById("dataView")
+    .classList.add("hidden");
+
+    const grid =
+        document.getElementById("yearGrid");
+
+    grid.innerHTML =
+        getYears(category)
+        .map(year => `
+
+            <div class="nav-card"
+                 onclick="selectYear('${escapeJs(year)}')">
+
+                <div class="nav-icon">
+                    ${category==="CIT" ? "🎓" : "📘"}
+                </div>
+
+                <h3>
+                    ${escapeHtml(year)}
+                </h3>
+
+                <p>
+                    Manage ${escapeHtml(category)} material
+                </p>
+
+            </div>
+
+        `)
+        .join("");
+
+    document
+    .getElementById("hierarchyHeading")
     .textContent =
-        category === "CIT"
-        ?
-        "CIT uses 1st Year, 2nd Year and 3rd Year."
-        :
-        "School/subject categories use Class 9 to Class 12.";
+        "📚 " + category;
 
+    document
+    .getElementById("hierarchyDescription")
+    .textContent =
+        "Select class/year.";
+
+    updateBreadcrumb();
 }
 
 
-/* =========================================
-   FILE UPLOAD
-========================================= */
+function selectYear(year){
 
-async function uploadFile(file){
+    selectedYear = year;
+    selectedMaterial = "";
 
-    if(!file){
+    document
+    .getElementById("yearView")
+    .classList.add("hidden");
 
-        return null;
+    document
+    .getElementById("materialView")
+    .classList.remove("hidden");
 
-    }
+    document
+    .getElementById("dataView")
+    .classList.add("hidden");
 
+    const grid =
+        document.getElementById("materialGrid");
 
-    const maxSize =
-        25 * 1024 * 1024;
+    grid.innerHTML =
+        getMaterials(selectedCategory)
+        .map(material => `
 
+            <div
+                class="nav-card material-card"
+                onclick="
+                    selectMaterial(
+                        '${escapeJs(material.key)}'
+                    )">
 
-    if(file.size > maxSize){
+                <div class="nav-icon">
+                    ${material.icon}
+                </div>
 
-        throw new Error(
-            "File size must be 25MB or less."
-        );
+                <h3>
+                    ${escapeHtml(material.title)}
+                </h3>
 
-    }
+                <p>
+                    ${escapeHtml(material.description)}
+                </p>
 
+            </div>
 
-    const safeName =
-        file.name
-        .replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-        );
+        `)
+        .join("");
 
+    document
+    .getElementById("hierarchyHeading")
+    .textContent =
+        selectedCategory +
+        " → " +
+        selectedYear;
 
-    const fileName =
-        Date.now() +
-        "_" +
-        Math.random()
-        .toString(36)
-        .substring(2,8) +
-        "_" +
-        safeName;
+    document
+    .getElementById("hierarchyDescription")
+    .textContent =
+        "Select material type.";
 
-
-    const path =
-        "studyhub/" + fileName;
-
-
-    const {
-        error
-    } =
-    await db.storage
-    .from("studyhub-files")
-    .upload(
-        path,
-        file,
-        {
-            upsert:false
-        }
-    );
-
-
-    if(error){
-
-        throw error;
-
-    }
-
-
-    const {
-        data
-    } =
-    db.storage
-    .from("studyhub-files")
-    .getPublicUrl(path);
-
-
-    return data.publicUrl;
-
+    updateBreadcrumb();
 }
 
 
-/* =========================================
-   COURSES
-========================================= */
+function selectMaterial(material){
 
-async function addCourse(event){
+    selectedMaterial = material;
 
-    event.preventDefault();
+    document
+    .getElementById("materialView")
+    .classList.add("hidden");
 
+    document
+    .getElementById("dataView")
+    .classList.remove("hidden");
 
-    const title =
-        document
-        .getElementById("courseTitle")
-        .value.trim();
+    const info =
+        getMaterials(selectedCategory)
+        .find(x=>x.key===material);
 
+    document
+    .getElementById("dataTitle")
+    .textContent =
+        info.icon +
+        " " +
+        info.title;
 
-    const level =
-        document
-        .getElementById("courseLevel")
-        .value.trim();
+    document
+    .getElementById("dataDescription")
+    .textContent =
+        selectedCategory +
+        " • " +
+        selectedYear;
 
+    updateBreadcrumb();
 
-    const icon =
-        document
-        .getElementById("courseIcon")
-        .value.trim();
-
-
-    const description =
-        document
-        .getElementById("courseDescription")
-        .value.trim();
-
-
-    const {
-        error
-    } =
-    await db
-    .from("courses")
-    .insert({
-        title,
-        level,
-        icon,
-        description
-    });
-
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-
-    }
-
-
-    alert("Course added successfully.");
-
-    event.target.reset();
-
-    loadCourses();
-
+    loadSelectedMaterial();
 }
 
 
-/* =========================================
-   BOOKS
-========================================= */
+/* =====================================================
+   BREADCRUMB
+===================================================== */
+
+function updateBreadcrumb(){
+
+    const box =
+        document.getElementById("breadcrumb");
+
+    let html = "";
+
+    html += `
+        <button
+            class="crumb ${!selectedCategory?"current":""}"
+            onclick="goHome()">
+            Categories
+        </button>
+    `;
+
+    if(selectedCategory){
+
+        html += `
+            <span>›</span>
+
+            <button
+                class="crumb ${!selectedYear?"current":""}"
+                onclick="selectCategory('${escapeJs(selectedCategory)}')">
+                ${escapeHtml(selectedCategory)}
+            </button>
+        `;
+    }
+
+    if(selectedYear){
+
+        html += `
+            <span>›</span>
+
+            <button
+                class="crumb ${!selectedMaterial?"current":""}"
+                onclick="selectYear('${escapeJs(selectedYear)}')">
+                ${escapeHtml(selectedYear)}
+            </button>
+        `;
+    }
+
+    if(selectedMaterial){
+
+        const info =
+            getMaterials(selectedCategory)
+            .find(x=>x.key===selectedMaterial);
+
+        html += `
+            <span>›</span>
+
+            <button class="crumb current">
+                ${info ? info.icon : ""}
+                ${info ? escapeHtml(info.title) : ""}
+            </button>
+        `;
+    }
+
+    box.innerHTML = html;
+}
+
+
+/* =====================================================
+   SELECTED MATERIAL
+===================================================== */
+
+async function loadSelectedMaterial(){
+
+    if(selectedMaterial === "books"){
+        await loadBooks();
+    }
+
+    else if(selectedMaterial === "notes"){
+        await loadNotes();
+    }
+
+    else if(selectedMaterial === "practicals"){
+        await loadPracticals();
+    }
+
+    else if(selectedMaterial === "pastPapers"){
+        await loadPastPapers();
+    }
+}
+
+
+/* =====================================================
+   SHOW ADD FORM
+===================================================== */
+
+function showAddForm(){
+
+    const box =
+        document.getElementById("addFormBox");
+
+    box.classList.remove("hidden");
+
+    if(selectedMaterial === "books"){
+        renderBookForm();
+    }
+
+    else if(selectedMaterial === "notes"){
+        renderNoteForm();
+    }
+
+    else if(selectedMaterial === "practicals"){
+        renderPracticalForm();
+    }
+
+    else if(selectedMaterial === "pastPapers"){
+        renderPastPaperForm();
+    }
+}
+
+
+/* =====================================================
+   HIDE FORM
+===================================================== */
+
+function hideAddForm(){
+
+    document
+    .getElementById("addFormBox")
+    .classList.add("hidden");
+}
+
+
+/* =====================================================
+   BOOK FORM
+===================================================== */
+
+function renderBookForm(){
+
+    document
+    .getElementById("addFormBox")
+    .innerHTML = `
+
+        <h3>➕ Add Book</h3>
+
+        <form onsubmit="addBook(event)">
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Book Name</label>
+
+                    <input
+                        id="bookTitle"
+                        required
+                        placeholder="Example: CIT Programming Book">
+                </div>
+
+                <div>
+                    <label>Category</label>
+
+                    <input
+                        value="${escapeHtml(selectedCategory)}"
+                        readonly>
+                </div>
+
+                <div>
+                    <label>Class / Year</label>
+
+                    <input
+                        value="${escapeHtml(selectedYear)}"
+                        readonly>
+                </div>
+
+                <div class="full">
+                    <label>Description</label>
+
+                    <textarea
+                        id="bookDescription"
+                        placeholder="Book description"></textarea>
+                </div>
+
+                <div>
+                    <label>Upload PDF</label>
+
+                    <div class="file-box">
+
+                        <input
+                            type="file"
+                            id="bookFile"
+                            accept=".pdf,application/pdf">
+
+                    </div>
+                </div>
+
+                <div>
+                    <label>OR PDF / Book Link</label>
+
+                    <input
+                        type="url"
+                        id="bookFileUrl"
+                        placeholder="https://example.com/book.pdf">
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn">
+                ➕ Add Book
+            </button>
+
+        </form>
+    `;
+}
+
+
+/* =====================================================
+   ADD BOOK
+===================================================== */
 
 async function addBook(event){
 
     event.preventDefault();
 
-
     const title =
-        document
-        .getElementById("bookTitle")
+        document.getElementById("bookTitle")
         .value.trim();
-
-
-    const category =
-        document
-        .getElementById("bookCategory")
-        .value;
-
-
-    const year =
-        document
-        .getElementById("bookYear")
-        .value;
-
 
     const description =
-        document
-        .getElementById("bookDescription")
+        document.getElementById("bookDescription")
         .value.trim();
-
 
     const file =
-        document
-        .getElementById("bookFile")
+        document.getElementById("bookFile")
         .files[0];
 
-
     const manualUrl =
-        document
-        .getElementById("bookFileUrl")
+        document.getElementById("bookFileUrl")
         .value.trim();
-
 
     if(!file && !manualUrl){
 
-        alert(
-            "Please upload a PDF or add a book link."
-        );
+        alert("Please upload a PDF or add a book link.");
 
         return;
-
     }
-
 
     try{
 
-        let fileUrl =
-            manualUrl;
-
+        let url = manualUrl;
 
         if(file){
 
             if(
-                file.type !==
-                "application/pdf" &&
-                !file.name
-                .toLowerCase()
-                .endsWith(".pdf")
+                file.type !== "application/pdf" &&
+                !file.name.toLowerCase().endsWith(".pdf")
             ){
 
-                alert(
-                    "Only PDF files are allowed for books."
-                );
+                alert("Only PDF files are allowed for books.");
 
                 return;
-
             }
 
-
-            fileUrl =
-                await uploadFile(file);
-
+            url = await uploadFile(file);
         }
 
+        const {error} =
+            await db
+            .from("books")
+            .insert({
 
-        const {
-            error
-        } =
-        await db
-        .from("books")
-        .insert({
-            title,
-            description,
-            category,
-            year,
-            file_url:fileUrl
-        });
+                title,
+                description,
 
+                category:selectedCategory,
 
-        if(error){
+                year:selectedYear,
 
-            throw error;
+                file_url:url
 
-        }
+            });
 
+        if(error) throw error;
 
-        alert(
-            "Book added successfully."
-        );
+        alert("Book added successfully.");
 
+        hideAddForm();
 
-        event.target.reset();
-
-        updateYearOptions("book");
-
-        loadBooks();
+        await loadBooks();
 
     }
 
     catch(error){
 
         alert(
-            "Book upload failed: " +
+            "Unable to add book: " +
             error.message
         );
-
     }
-
 }
 
 
-/* =========================================
-   REPLACE BOOK
-========================================= */
-
-async function replaceBookFile(
-    id,
-    inputId
-){
-
-    const input =
-        document
-        .getElementById(inputId);
-
-
-    const file =
-        input.files[0];
-
-
-    if(!file){
-
-        alert(
-            "Please select a PDF file."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        file.type !==
-        "application/pdf" &&
-        !file.name
-        .toLowerCase()
-        .endsWith(".pdf")
-    ){
-
-        alert(
-            "Only PDF files are allowed."
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        const url =
-            await uploadFile(file);
-
-
-        const {
-            error
-        } =
-        await db
-        .from("books")
-        .update({
-            file_url:url
-        })
-        .eq("id",id);
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        alert(
-            "Book PDF replaced successfully."
-        );
-
-
-        loadBooks();
-
-    }
-
-    catch(error){
-
-        alert(
-            "Unable to replace PDF: " +
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =========================================
+/* =====================================================
    LOAD BOOKS
-========================================= */
+===================================================== */
 
 async function loadBooks(){
 
-    const list =
-        document
-        .getElementById("booksList");
+    const box =
+        document.getElementById("materialData");
 
+    box.innerHTML =
+        "<div class='loading'>Loading books...</div>";
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("books")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
+    const {data,error} =
+        await db
+        .from("books")
+        .select("*")
+        .eq("category",selectedCategory)
+        .eq("year",selectedYear)
+        .order("created_at",{ascending:false});
 
     if(error){
 
-        list.innerHTML =
-            "<p>Unable to load books.</p>";
+        box.innerHTML =
+            "<div class='empty'>Unable to load books.<br>" +
+            escapeHtml(error.message) +
+            "</div>";
 
         return;
-
     }
-
-
-    document
-    .getElementById("bookCount")
-    .textContent =
-        data.length;
-
 
     if(!data.length){
 
-        list.innerHTML =
-            "<p class='loading'>No books added yet.</p>";
+        box.innerHTML =
+            "<div class='empty'>No books added for this class/year yet.</div>";
 
         return;
-
     }
 
-
-    list.innerHTML =
-        data
-        .map(book => {
-
-            const inputId =
-                "replace_" +
-                book.id;
-
-
-            return `
+    box.innerHTML =
+        data.map(book=>`
 
             <div class="item">
 
                 <h3>
-                    📚
-                    ${escapeHtml(book.title)}
+                    📚 ${escapeHtml(book.title)}
                 </h3>
 
                 <span class="badge">
-                    ${escapeHtml(
-                        book.category || "CIT"
-                    )}
+                    ${escapeHtml(book.category || "")}
                 </span>
 
                 <span class="badge">
-                    ${escapeHtml(
-                        book.year || "1st Year"
-                    )}
+                    ${escapeHtml(book.year || "")}
                 </span>
 
                 <p>
-                    ${escapeHtml(
-                        book.description || ""
-                    )}
+                    ${escapeHtml(book.description || "")}
                 </p>
 
                 <div class="actions">
@@ -1927,196 +1527,268 @@ async function loadBooks(){
                         `
                         <a
                             class="small-btn"
-                            href="${book.file_url}"
+                            href="${safeUrl(book.file_url)}"
                             target="_blank">
-
                             📖 Open PDF
-
                         </a>
                         `
                         :
                         ""
                     }
 
-
                     <button
                         class="small-btn"
-                        onclick="
-                        document
-                        .getElementById('${inputId}')
-                        .click()">
-
+                        onclick="replaceBook('${escapeJs(book.id)}')">
                         🔄 Replace PDF
-
                     </button>
-
-
-                    <input
-                        id="${inputId}"
-                        type="file"
-                        accept=".pdf,application/pdf"
-                        style="display:none"
-                        onchange="
-                        replaceBookFile(
-                            '${book.id}',
-                            '${inputId}'
-                        )">
-
 
                     <button
                         class="small-btn btn-danger"
-                        onclick="
-                        deleteBook(
-                            '${book.id}'
-                        )">
-
+                        onclick="deleteBook('${escapeJs(book.id)}')">
                         Delete
-
                     </button>
 
                 </div>
 
             </div>
 
-            `;
-
-        })
-        .join("");
-
+        `).join("");
 }
 
 
-/* =========================================
+/* =====================================================
+   REPLACE BOOK
+===================================================== */
+
+async function replaceBook(id){
+
+    const input =
+        document.createElement("input");
+
+    input.type="file";
+    input.accept=".pdf,application/pdf";
+
+    input.onchange = async()=>{
+
+        const file=input.files[0];
+
+        if(!file) return;
+
+        if(
+            file.type !== "application/pdf" &&
+            !file.name.toLowerCase().endsWith(".pdf")
+        ){
+
+            alert("Only PDF files are allowed.");
+
+            return;
+        }
+
+        try{
+
+            const url =
+                await uploadFile(file);
+
+            const {error} =
+                await db
+                .from("books")
+                .update({
+                    file_url:url
+                })
+                .eq("id",id);
+
+            if(error) throw error;
+
+            alert("Book PDF replaced successfully.");
+
+            loadBooks();
+
+        }
+
+        catch(error){
+
+            alert(
+                "Unable to replace PDF: " +
+                error.message
+            );
+        }
+    };
+
+    input.click();
+}
+
+
+/* =====================================================
    DELETE BOOK
-========================================= */
+===================================================== */
 
 async function deleteBook(id){
 
-    if(
-        !confirm(
-            "Delete this book?"
-        )
-    ){
+    if(!confirm("Delete this book?")) return;
 
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("books")
-    .delete()
-    .eq("id",id);
-
+    const {error} =
+        await db
+        .from("books")
+        .delete()
+        .eq("id",id);
 
     if(error){
 
         alert(error.message);
 
         return;
-
     }
 
-
     loadBooks();
-
 }
 
 
-/* =========================================
-   NOTES
-========================================= */
+/* =====================================================
+   NOTE FORM
+===================================================== */
+
+function renderNoteForm(){
+
+    document
+    .getElementById("addFormBox")
+    .innerHTML = `
+
+        <h3>➕ Add Note</h3>
+
+        <form onsubmit="addNote(event)">
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Note Title</label>
+
+                    <input
+                        id="noteTitle"
+                        required>
+                </div>
+
+                <div>
+                    <label>Icon</label>
+
+                    <input
+                        id="noteIcon"
+                        value="📝">
+                </div>
+
+                <div>
+                    <label>Category</label>
+
+                    <input
+                        value="${escapeHtml(selectedCategory)}"
+                        readonly>
+                </div>
+
+                <div>
+                    <label>Class / Year</label>
+
+                    <input
+                        value="${escapeHtml(selectedYear)}"
+                        readonly>
+                </div>
+
+                <div class="full">
+                    <label>Description</label>
+
+                    <textarea
+                        id="noteDescription"></textarea>
+                </div>
+
+                <div>
+                    <label>Upload Image / PDF / File</label>
+
+                    <div class="file-box">
+
+                        <input
+                            type="file"
+                            id="noteFile"
+                            accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
+
+                    </div>
+                </div>
+
+                <div>
+                    <label>OR Add URL / Link</label>
+
+                    <input
+                        type="url"
+                        id="noteFileUrl"
+                        placeholder="https://example.com/file">
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn">
+                ➕ Add Note
+            </button>
+
+        </form>
+    `;
+}
+
+
+/* =====================================================
+   ADD NOTE
+===================================================== */
 
 async function addNote(event){
 
     event.preventDefault();
 
-
-    const category =
-        document
-        .getElementById("noteCategory")
-        .value;
-
-
-    const year =
-        document
-        .getElementById("noteYear")
-        .value;
-
-
     const title =
-        document
-        .getElementById("noteTitle")
+        document.getElementById("noteTitle")
         .value.trim();
-
 
     const icon =
-        document
-        .getElementById("noteIcon")
+        document.getElementById("noteIcon")
         .value.trim();
-
 
     const description =
-        document
-        .getElementById("noteDescription")
+        document.getElementById("noteDescription")
         .value.trim();
-
 
     const file =
-        document
-        .getElementById("noteFile")
+        document.getElementById("noteFile")
         .files[0];
 
-
     let url =
-        document
-        .getElementById("noteFileUrl")
+        document.getElementById("noteFileUrl")
         .value.trim();
-
 
     try{
 
         if(file){
-
-            url =
-                await uploadFile(file);
-
+            url=await uploadFile(file);
         }
 
+        const {error} =
+            await db
+            .from("notes")
+            .insert({
 
-        const {
-            error
-        } =
-        await db
-        .from("notes")
-        .insert({
-            title,
-            icon,
-            description,
-            category,
-            year,
-            file_url:url || null
-        });
+                title,
+                icon,
+                description,
 
+                category:selectedCategory,
 
-        if(error){
+                year:selectedYear,
 
-            throw error;
+                file_url:url || null
 
-        }
+            });
 
+        if(error) throw error;
 
-        alert(
-            "Note added successfully."
-        );
+        alert("Note added successfully.");
 
-
-        event.target.reset();
-
-        updateYearOptions("note");
+        hideAddForm();
 
         loadNotes();
 
@@ -2128,263 +1800,266 @@ async function addNote(event){
             "Unable to add note: " +
             error.message
         );
-
     }
-
 }
 
 
-/* =========================================
+/* =====================================================
    LOAD NOTES
-========================================= */
+===================================================== */
 
 async function loadNotes(){
 
     const box =
-        document
-        .getElementById("notesList");
+        document.getElementById("materialData");
 
+    box.innerHTML =
+        "<div class='loading'>Loading notes...</div>";
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("notes")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
+    const {data,error} =
+        await db
+        .from("notes")
+        .select("*")
+        .eq("category",selectedCategory)
+        .eq("year",selectedYear)
+        .order("created_at",{ascending:false});
 
     if(error){
 
         box.innerHTML =
-            "<p>Unable to load notes.</p>";
+            "<div class='empty'>Unable to load notes.<br>" +
+            escapeHtml(error.message) +
+            "</div>";
 
         return;
-
     }
-
-
-    document
-    .getElementById("noteCount")
-    .textContent =
-        data.length;
-
 
     if(!data.length){
 
         box.innerHTML =
-            "<p class='loading'>No notes added yet.</p>";
+            "<div class='empty'>No notes added for this class/year yet.</div>";
 
         return;
-
     }
 
-
     box.innerHTML =
-        data
-        .map(item => `
+        data.map(item=>`
 
-        <div class="item">
+            <div class="item">
 
-            <h3>
-                ${escapeHtml(
-                    item.icon || "📝"
-                )}
+                <h3>
+                    ${escapeHtml(item.icon || "📝")}
+                    ${escapeHtml(item.title)}
+                </h3>
 
-                ${escapeHtml(
-                    item.title
-                )}
-            </h3>
+                <span class="badge">
+                    ${escapeHtml(item.category || "")}
+                </span>
 
+                <span class="badge">
+                    ${escapeHtml(item.year || "")}
+                </span>
 
-            <span class="badge">
-                ${escapeHtml(
-                    item.category || "School"
-                )}
-            </span>
+                <p>
+                    ${escapeHtml(item.description || "")}
+                </p>
 
+                <div class="actions">
 
-            <span class="badge">
-                ${escapeHtml(
-                    item.year || "Class 9"
-                )}
-            </span>
+                    ${
+                        item.file_url
+                        ?
+                        `
+                        <a
+                            class="small-btn"
+                            href="${safeUrl(item.file_url)}"
+                            target="_blank">
+                            📂 Open File
+                        </a>
+                        `
+                        :
+                        ""
+                    }
 
+                    <button
+                        class="small-btn btn-danger"
+                        onclick="deleteNote('${escapeJs(item.id)}')">
+                        Delete
+                    </button>
 
-            <p>
-                ${escapeHtml(
-                    item.description || ""
-                )}
-            </p>
-
-
-            <div class="actions">
-
-                ${
-                    item.file_url
-                    ?
-                    `
-                    <a
-                        href="${item.file_url}"
-                        target="_blank"
-                        class="small-btn">
-
-                        Open File
-
-                    </a>
-                    `
-                    :
-                    ""
-                }
-
-
-                <button
-                    class="small-btn btn-danger"
-                    onclick="
-                    deleteNote(
-                        '${item.id}'
-                    )">
-
-                    Delete
-
-                </button>
+                </div>
 
             </div>
 
-        </div>
-
-        `)
-        .join("");
-
+        `).join("");
 }
 
 
-/* =========================================
+/* =====================================================
    DELETE NOTE
-========================================= */
+===================================================== */
 
 async function deleteNote(id){
 
-    if(
-        !confirm(
-            "Delete this note?"
-        )
-    ){
+    if(!confirm("Delete this note?")) return;
 
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("notes")
-    .delete()
-    .eq("id",id);
-
+    const {error} =
+        await db
+        .from("notes")
+        .delete()
+        .eq("id",id);
 
     if(error){
 
         alert(error.message);
 
         return;
-
     }
 
-
     loadNotes();
-
 }
 
 
-/* =========================================
-   PRACTICALS
-========================================= */
+/* =====================================================
+   PRACTICAL FORM
+===================================================== */
+
+function renderPracticalForm(){
+
+    document
+    .getElementById("addFormBox")
+    .innerHTML = `
+
+        <h3>➕ Add CIT Practical</h3>
+
+        <div class="category-info">
+            Practicals are available only for CIT.
+        </div>
+
+        <br>
+
+        <form onsubmit="addPractical(event)">
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Practical Title</label>
+
+                    <input
+                        id="practicalTitle"
+                        required
+                        placeholder="Example: Practical 05 - If Else Condition">
+                </div>
+
+                <div>
+                    <label>Category</label>
+
+                    <input
+                        value="CIT"
+                        readonly>
+                </div>
+
+                <div>
+                    <label>Year</label>
+
+                    <input
+                        value="${escapeHtml(selectedYear)}"
+                        readonly>
+                </div>
+
+                <div class="full">
+                    <label>Description</label>
+
+                    <textarea
+                        id="practicalDescription"></textarea>
+                </div>
+
+                <div>
+                    <label>Upload Image / PDF / File</label>
+
+                    <div class="file-box">
+
+                        <input
+                            type="file"
+                            id="practicalFile"
+                            accept="image/*,.pdf,.doc,.docx,.ppt,.pptx">
+
+                    </div>
+                </div>
+
+                <div>
+                    <label>OR Add URL / Link</label>
+
+                    <input
+                        type="url"
+                        id="practicalFileUrl"
+                        placeholder="https://example.com/file">
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn">
+                ➕ Add Practical
+            </button>
+
+        </form>
+    `;
+}
+
+
+/* =====================================================
+   ADD PRACTICAL
+===================================================== */
 
 async function addPractical(event){
 
     event.preventDefault();
 
-
     const title =
-        document
-        .getElementById("practicalTitle")
+        document.getElementById("practicalTitle")
         .value.trim();
-
-
-    const category =
-        "CIT";
-
-
-    const year =
-        document
-        .getElementById("practicalYear")
-        .value;
-
 
     const description =
-        document
-        .getElementById("practicalDescription")
+        document.getElementById("practicalDescription")
         .value.trim();
-
 
     const file =
-        document
-        .getElementById("practicalFile")
+        document.getElementById("practicalFile")
         .files[0];
 
-
     let url =
-        document
-        .getElementById("practicalFileUrl")
+        document.getElementById("practicalFileUrl")
         .value.trim();
-
 
     try{
 
         if(file){
-
-            url =
-                await uploadFile(file);
-
+            url=await uploadFile(file);
         }
 
+        const {error} =
+            await db
+            .from("practicals")
+            .insert({
 
-        const {
-            error
-        } =
-        await db
-        .from("practicals")
-        .insert({
-            title,
-            description,
-            file_url:url || null,
-            category,
-            year
-        });
+                title,
+                description,
 
+                category:"CIT",
 
-        if(error){
+                year:selectedYear,
 
-            throw error;
+                file_url:url || null
 
-        }
+            });
 
+        if(error) throw error;
 
-        alert(
-            "Practical added successfully."
-        );
+        alert("Practical added successfully.");
 
-
-        event.target.reset();
+        hideAddForm();
 
         loadPracticals();
 
@@ -2396,890 +2071,304 @@ async function addPractical(event){
             "Unable to add practical: " +
             error.message
         );
-
     }
-
 }
 
 
-/* =========================================
+/* =====================================================
    LOAD PRACTICALS
-========================================= */
+===================================================== */
 
 async function loadPracticals(){
 
     const box =
-        document
-        .getElementById("practicalsList");
+        document.getElementById("materialData");
 
+    box.innerHTML =
+        "<div class='loading'>Loading practicals...</div>";
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("practicals")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
+    const {data,error} =
+        await db
+        .from("practicals")
+        .select("*")
+        .eq("category","CIT")
+        .eq("year",selectedYear)
+        .order("created_at",{ascending:false});
 
     if(error){
 
         box.innerHTML =
-            "<p>Unable to load practicals.</p>";
+            "<div class='empty'>Unable to load practicals.<br>" +
+            escapeHtml(error.message) +
+            "</div>";
 
         return;
-
     }
-
-
-    document
-    .getElementById("practicalCount")
-    .textContent =
-        data.length;
-
 
     if(!data.length){
 
         box.innerHTML =
-            "<p class='loading'>No practicals added yet.</p>";
+            "<div class='empty'>No practicals added for this year yet.</div>";
 
         return;
-
     }
-
 
     box.innerHTML =
-        data
-        .map(item => `
-
-        <div class="item">
-
-            <h3>
-                🧪
-                ${escapeHtml(
-                    item.title
-                )}
-            </h3>
-
-
-            <span class="badge">
-                CIT
-            </span>
-
-
-            <span class="badge">
-                ${escapeHtml(
-                    item.year || "1st Year"
-                )}
-            </span>
-
-
-            <p>
-                ${escapeHtml(
-                    item.description || ""
-                )}
-            </p>
-
-
-            <div class="actions">
-
-                ${
-                    item.file_url
-                    ?
-                    `
-                    <a
-                        href="${item.file_url}"
-                        target="_blank"
-                        class="small-btn">
-
-                        Open File
-
-                    </a>
-                    `
-                    :
-                    ""
-                }
-
-
-                <button
-                    class="small-btn btn-danger"
-                    onclick="
-                    deletePractical(
-                        '${item.id}'
-                    )">
-
-                    Delete
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `)
-        .join("");
-
-}
-
-
-/* =========================================
-   DELETE PRACTICAL
-========================================= */
-
-async function deletePractical(id){
-
-    if(
-        !confirm(
-            "Delete this practical?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("practicals")
-    .delete()
-    .eq("id",id);
-
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-
-    }
-
-
-    loadPracticals();
-
-}
-
-
-/* =========================================
-   TEST BUILDER
-========================================= */
-
-let mcqItems = [];
-
-let questionItems = [];
-
-
-function changeTestType(){
-
-    const type =
-        document
-        .getElementById("testType")
-        .value;
-
-
-    document
-    .getElementById("mcqBuilder")
-    .classList.toggle(
-        "hidden",
-        type !== "mcq"
-    );
-
-
-    document
-    .getElementById("questionBuilder")
-    .classList.toggle(
-        "hidden",
-        type !== "questions"
-    );
-
-}
-
-
-function addMCQ(){
-
-    mcqItems.push({
-
-        question:"",
-        A:"",
-        B:"",
-        C:"",
-        D:"",
-        answer:"A"
-
-    });
-
-
-    renderMCQs();
-
-}
-
-
-function removeMCQ(index){
-
-    mcqItems.splice(
-        index,
-        1
-    );
-
-    renderMCQs();
-
-}
-
-
-function renderMCQs(){
-
-    const box =
-        document
-        .getElementById("mcqItems");
-
-
-    box.innerHTML =
-        mcqItems
-        .map(
-        (item,index)=>`
-
-        <div class="builder-card">
-
-            <h4>
-                MCQ ${index+1}
-            </h4>
-
-
-            <label>
-                Question
-            </label>
-
-
-            <textarea
-                onchange="
-                mcqItems[${index}]
-                .question=this.value"
-                placeholder="Enter question">
-            </textarea>
-
-
-            <div class="option-grid">
-
-                <div>
-
-                    <label>
-                        Option A
-                    </label>
-
-                    <input
-                        onchange="
-                        mcqItems[${index}]
-                        .A=this.value">
-
-                </div>
-
-
-                <div>
-
-                    <label>
-                        Option B
-                    </label>
-
-                    <input
-                        onchange="
-                        mcqItems[${index}]
-                        .B=this.value">
-
-                </div>
-
-
-                <div>
-
-                    <label>
-                        Option C
-                    </label>
-
-                    <input
-                        onchange="
-                        mcqItems[${index}]
-                        .C=this.value">
-
-                </div>
-
-
-                <div>
-
-                    <label>
-                        Option D
-                    </label>
-
-                    <input
-                        onchange="
-                        mcqItems[${index}]
-                        .D=this.value">
-
-                </div>
-
-            </div>
-
-
-            <br>
-
-
-            <label>
-                Correct Answer
-            </label>
-
-
-            <select
-                onchange="
-                mcqItems[${index}]
-                .answer=this.value">
-
-                <option value="A">
-                    A
-                </option>
-
-                <option value="B">
-                    B
-                </option>
-
-                <option value="C">
-                    C
-                </option>
-
-                <option value="D">
-                    D
-                </option>
-
-            </select>
-
-
-            <br><br>
-
-
-            <button
-                type="button"
-                class="small-btn btn-danger"
-                onclick="
-                removeMCQ(${index})">
-
-                Remove
-
-            </button>
-
-        </div>
-
-        `
-        )
-        .join("");
-
-}
-
-
-function addQuestion(){
-
-    questionItems.push({
-
-        question:"",
-        answer:""
-
-    });
-
-
-    renderQuestions();
-
-}
-
-
-function removeQuestion(index){
-
-    questionItems.splice(
-        index,
-        1
-    );
-
-    renderQuestions();
-
-}
-
-
-function renderQuestions(){
-
-    const box =
-        document
-        .getElementById(
-            "questionItems"
-        );
-
-
-    box.innerHTML =
-        questionItems
-        .map(
-        (item,index)=>`
-
-        <div class="builder-card">
-
-            <h4>
-                Question ${index+1}
-            </h4>
-
-
-            <label>
-                Question
-            </label>
-
-
-            <textarea
-                onchange="
-                questionItems[${index}]
-                .question=this.value"
-                placeholder="Enter question">
-            </textarea>
-
-
-            <label>
-                Answer
-            </label>
-
-
-            <textarea
-                onchange="
-                questionItems[${index}]
-                .answer=this.value"
-                placeholder="Enter answer">
-            </textarea>
-
-
-            <br>
-
-
-            <button
-                type="button"
-                class="small-btn btn-danger"
-                onclick="
-                removeQuestion(${index})">
-
-                Remove
-
-            </button>
-
-        </div>
-
-        `
-        )
-        .join("");
-
-}
-
-
-/* =========================================
-   ADD TEST
-========================================= */
-
-async function addTest(event){
-
-    event.preventDefault();
-
-
-    const title =
-        document
-        .getElementById("testTitle")
-        .value.trim();
-
-
-    const type =
-        document
-        .getElementById("testType")
-        .value;
-
-
-    const description =
-        document
-        .getElementById("testDescription")
-        .value.trim();
-
-
-    let items =
-        type === "mcq"
-        ?
-        mcqItems
-        :
-        questionItems;
-
-
-    if(!items.length){
-
-        alert(
-            "Please add at least one question."
-        );
-
-        return;
-
-    }
-
-
-    const questions = {
-
-        type:type,
-
-        items:items
-
-    };
-
-
-    const {
-        error
-    } =
-    await db
-    .from("tests")
-    .insert({
-
-        title,
-        description,
-        questions
-
-    });
-
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-
-    }
-
-
-    alert(
-        "Test added successfully."
-    );
-
-
-    event.target.reset();
-
-    mcqItems = [];
-
-    questionItems = [];
-
-    renderMCQs();
-
-    renderQuestions();
-
-    changeTestType();
-
-    loadTests();
-
-}
-
-
-/* =========================================
-   LOAD TESTS
-========================================= */
-
-async function loadTests(){
-
-    const box =
-        document
-        .getElementById("testsList");
-
-
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("tests")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
-
-    if(error){
-
-        box.innerHTML =
-            "<p>Unable to load tests.</p>";
-
-        return;
-
-    }
-
-
-    if(!data.length){
-
-        box.innerHTML =
-            "<p class='loading'>No tests added yet.</p>";
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-        data
-        .map(item=>{
-
-            let type =
-                "Test";
-
-
-            let count =
-                0;
-
-
-            if(
-                item.questions &&
-                typeof item.questions ===
-                "object"
-            ){
-
-                type =
-                    item.questions.type ===
-                    "mcq"
-                    ?
-                    "MCQs"
-                    :
-                    "Questions";
-
-
-                count =
-                    Array.isArray(
-                        item.questions.items
-                    )
-                    ?
-                    item.questions.items.length
-                    :
-                    0;
-
-            }
-
-
-            return `
+        data.map(item=>`
 
             <div class="item">
 
                 <h3>
-                    📋
-                    ${escapeHtml(
-                        item.title
-                    )}
+                    🧪 ${escapeHtml(item.title)}
                 </h3>
 
-
                 <span class="badge">
-                    ${type}
+                    CIT
                 </span>
 
-
                 <span class="badge">
-                    ${count} Items
+                    ${escapeHtml(item.year || "")}
                 </span>
-
 
                 <p>
-                    ${escapeHtml(
-                        item.description || ""
-                    )}
+                    ${escapeHtml(item.description || "")}
                 </p>
-
 
                 <div class="actions">
 
+                    ${
+                        item.file_url
+                        ?
+                        `
+                        <a
+                            class="small-btn"
+                            href="${safeUrl(item.file_url)}"
+                            target="_blank">
+                            📂 Open File
+                        </a>
+                        `
+                        :
+                        ""
+                    }
+
                     <button
                         class="small-btn btn-danger"
-                        onclick="
-                        deleteTest(
-                            '${item.id}'
-                        )">
-
+                        onclick="deletePractical('${escapeJs(item.id)}')">
                         Delete
-
                     </button>
 
                 </div>
 
             </div>
 
-            `;
-
-        })
-        .join("");
-
+        `).join("");
 }
 
 
-/* =========================================
-   DELETE TEST
-========================================= */
+/* =====================================================
+   DELETE PRACTICAL
+===================================================== */
 
-async function deleteTest(id){
+async function deletePractical(id){
 
-    if(
-        !confirm(
-            "Delete this test?"
-        )
-    ){
+    if(!confirm("Delete this practical?")) return;
 
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("tests")
-    .delete()
-    .eq("id",id);
-
+    const {error} =
+        await db
+        .from("practicals")
+        .delete()
+        .eq("id",id);
 
     if(error){
 
         alert(error.message);
 
         return;
-
     }
 
-
-    loadTests();
-
+    loadPracticals();
 }
 
 
-/* =========================================
-   PAST PAPERS
-========================================= */
+/* =====================================================
+   PAST PAPER FORM
+===================================================== */
+
+function renderPastPaperForm(){
+
+    document
+    .getElementById("addFormBox")
+    .innerHTML = `
+
+        <h3>➕ Add Past Paper</h3>
+
+        <form onsubmit="addPastPaper(event)">
+
+            <div class="form-grid">
+
+                <div>
+                    <label>Paper Title</label>
+
+                    <input
+                        id="paperTitle"
+                        required
+                        placeholder="Example: Physics Past Paper">
+                </div>
+
+                <div>
+                    <label>Subject</label>
+
+                    <input
+                        id="paperSubject"
+                        required
+                        placeholder="Physics">
+                </div>
+
+                <div>
+                    <label>Category</label>
+
+                    <input
+                        value="${escapeHtml(selectedCategory)}"
+                        readonly>
+                </div>
+
+                <div>
+                    <label>Class / Year</label>
+
+                    <input
+                        value="${escapeHtml(selectedYear)}"
+                        readonly>
+                </div>
+
+                <div>
+                    <label>Exam Year</label>
+
+                    <input
+                        id="paperYear"
+                        placeholder="2026">
+                </div>
+
+                <div class="full">
+                    <label>Description</label>
+
+                    <textarea
+                        id="paperDescription"></textarea>
+                </div>
+
+                <div>
+                    <label>Upload Pages / PDF / Files</label>
+
+                    <div class="file-box">
+
+                        <input
+                            type="file"
+                            id="pastPaperFiles"
+                            multiple
+                            accept="image/*,.pdf,.doc,.docx">
+
+                    </div>
+
+                    <p class="help">
+                        You can select multiple pages/files.
+                    </p>
+                </div>
+
+                <div>
+                    <label>OR Add URLs</label>
+
+                    <textarea
+                        id="pastPaperPagesUrls"
+                        placeholder="Add one URL per line"></textarea>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn">
+                ➕ Add Past Paper
+            </button>
+
+        </form>
+    `;
+}
+
+
+/* =====================================================
+   ADD PAST PAPER
+===================================================== */
 
 async function addPastPaper(event){
 
     event.preventDefault();
 
-
-    const category =
-        document
-        .getElementById("paperCategory")
-        .value;
-
-
-    const classYear =
-        document
-        .getElementById("paperClassYear")
-        .value;
-
-
     const title =
-        document
-        .getElementById("paperTitle")
+        document.getElementById("paperTitle")
         .value.trim();
-
 
     const subject =
-        document
-        .getElementById("paperSubject")
+        document.getElementById("paperSubject")
         .value.trim();
 
-
-    const year =
-        document
-        .getElementById("paperYear")
+    const examYear =
+        document.getElementById("paperYear")
         .value.trim();
-
 
     const description =
-        document
-        .getElementById("paperDescription")
+        document.getElementById("paperDescription")
         .value.trim();
-
 
     const files =
         Array.from(
-            document
-            .getElementById(
-                "pastPaperFiles"
-            )
+            document.getElementById("pastPaperFiles")
             .files
         );
 
-
     const urls =
-        document
-        .getElementById(
-            "pastPaperPagesUrls"
-        )
+        document.getElementById("pastPaperPagesUrls")
         .value
         .split("\n")
         .map(x=>x.trim())
         .filter(Boolean);
 
-
-    if(
-        !files.length &&
-        !urls.length
-    ){
+    if(!files.length && !urls.length){
 
         alert(
             "Please upload at least one page/file or add a URL."
         );
 
         return;
-
     }
-
 
     try{
 
-        const pages = [];
+        const pages=[];
 
+        for(let i=0;i<files.length;i++){
 
-        for(
-            let i=0;
-            i<files.length;
-            i++
-        ){
+            const url =
+                await uploadFile(files[i]);
 
-            const uploadedUrl =
-                await uploadFile(
-                    files[i]
-                );
+            pages.push({
+                page:i+1,
+                url:url
+            });
+        }
 
+        urls.forEach((url,index)=>{
 
             pages.push({
 
-                page:i+1,
+                page:
+                    files.length +
+                    index +
+                    1,
 
-                url:uploadedUrl
+                url:url
 
             });
 
-        }
-
-
-        urls.forEach(
-            (url,index)=>{
-
-                pages.push({
-
-                    page:
-                        files.length +
-                        index +
-                        1,
-
-                    url:url
-
-                });
-
-            }
-        );
-
+        });
 
         const firstUrl =
             pages.length
@@ -3288,45 +2377,33 @@ async function addPastPaper(event){
             :
             null;
 
+        const {error} =
+            await db
+            .from("past_papers")
+            .insert({
 
-        const {
-            error
-        } =
-        await db
-        .from("past_papers")
-        .insert({
+                title,
+                subject,
 
-            title,
-            subject,
-            year,
-            description,
+                year:examYear,
 
-            category,
+                description,
 
-            class_year:classYear,
+                category:selectedCategory,
 
-            file_url:firstUrl,
+                class_year:selectedYear,
 
-            pages
+                file_url:firstUrl,
 
-        });
+                pages:pages
 
+            });
 
-        if(error){
+        if(error) throw error;
 
-            throw error;
+        alert("Past paper added successfully.");
 
-        }
-
-
-        alert(
-            "Past paper added successfully."
-        );
-
-
-        event.target.reset();
-
-        updateYearOptions("paper");
+        hideAddForm();
 
         loadPastPapers();
 
@@ -3338,192 +2415,340 @@ async function addPastPaper(event){
             "Unable to add past paper: " +
             error.message
         );
-
     }
-
 }
 
 
-/* =========================================
+/* =====================================================
    LOAD PAST PAPERS
-========================================= */
+===================================================== */
 
 async function loadPastPapers(){
 
     const box =
-        document
-        .getElementById(
-            "pastPapersList"
-        );
+        document.getElementById("materialData");
 
+    box.innerHTML =
+        "<div class='loading'>Loading past papers...</div>";
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("past_papers")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
+    const {data,error} =
+        await db
+        .from("past_papers")
+        .select("*")
+        .eq("category",selectedCategory)
+        .eq("class_year",selectedYear)
+        .order("created_at",{ascending:false});
 
     if(error){
 
         box.innerHTML =
-            "<p>Unable to load past papers.</p>";
+            "<div class='empty'>Unable to load past papers.<br>" +
+            escapeHtml(error.message) +
+            "</div>";
 
         return;
-
     }
-
 
     if(!data.length){
 
         box.innerHTML =
-            "<p class='loading'>No past papers added yet.</p>";
+            "<div class='empty'>No past papers added for this class/year yet.</div>";
 
         return;
-
     }
 
-
     box.innerHTML =
-        data
-        .map(item=>{
+        data.map(item=>{
 
-            let pages = [];
+            let pages=[];
 
-
-            if(
-                Array.isArray(
-                    item.pages
-                )
-            ){
-
-                pages =
-                    item.pages;
-
+            if(Array.isArray(item.pages)){
+                pages=item.pages;
             }
 
-            else if(
-                item.file_url
-            ){
+            else if(item.file_url){
 
-                pages = [
-
+                pages=[
                     {
                         page:1,
                         url:item.file_url
                     }
-
                 ];
-
             }
-
 
             return `
 
-            <div class="item">
+                <div class="item">
 
-                <h3>
-                    📄
-                    ${escapeHtml(
-                        item.title
-                    )}
-                </h3>
+                    <h3>
+                        📄
+                        ${escapeHtml(item.title)}
+                    </h3>
 
+                    <span class="badge">
+                        ${escapeHtml(item.category || "")}
+                    </span>
 
-                <span class="badge">
+                    <span class="badge">
+                        ${escapeHtml(item.class_year || "")}
+                    </span>
 
-                    ${escapeHtml(
-                        item.category ||
-                        "School"
-                    )}
-
-                </span>
-
-
-                <span class="badge">
-
-                    ${escapeHtml(
-                        item.class_year ||
-                        "Class 9"
-                    )}
-
-                </span>
-
-
-                <span class="badge">
-
-                    ${escapeHtml(
-                        item.subject ||
-                        ""
-                    )}
-
-                </span>
-
-
-                <span class="badge">
-
-                    ${escapeHtml(
-                        item.year ||
-                        ""
-                    )}
-
-                </span>
-
-
-                <p>
-                    ${escapeHtml(
-                        item.description ||
-                        ""
-                    )}
-                </p>
-
-
-                <p>
-                    ${pages.length}
-                    Page/File(s)
-                </p>
-
-
-                <div class="actions">
+                    <span class="badge">
+                        ${escapeHtml(item.subject || "")}
+                    </span>
 
                     ${
-                        pages.length
+                        item.year
                         ?
-                        pages
-                        .map(
-                        (p,i)=>`
-
-                        <a
-                            href="${p.url}"
-                            target="_blank"
-                            class="small-btn">
-
-                            Open ${i+1}
-
-                        </a>
-
                         `
-                        )
-                        .join("")
+                        <span class="badge">
+                            ${escapeHtml(item.year)}
+                        </span>
+                        `
                         :
                         ""
                     }
 
+                    <p>
+                        ${escapeHtml(item.description || "")}
+                    </p>
+
+                    <p>
+                        ${pages.length} Page/File(s)
+                    </p>
+
+                    <div class="actions">
+
+                        ${
+                            pages.map((p,i)=>`
+
+                                <a
+                                    class="small-btn"
+                                    href="${safeUrl(p.url)}"
+                                    target="_blank">
+
+                                    Open ${i+1}
+
+                                </a>
+
+                            `).join("")
+                        }
+
+                        <button
+                            class="small-btn btn-danger"
+                            onclick="deletePastPaper('${escapeJs(item.id)}')">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =====================================================
+   DELETE PAST PAPER
+===================================================== */
+
+async function deletePastPaper(id){
+
+    if(!confirm("Delete this past paper?")) return;
+
+    const {error} =
+        await db
+        .from("past_papers")
+        .delete()
+        .eq("id",id);
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+    loadPastPapers();
+}
+
+
+/* =====================================================
+   FILE UPLOAD
+===================================================== */
+
+async function uploadFile(file){
+
+    if(!file){
+        return null;
+    }
+
+    const maxSize =
+        25 * 1024 * 1024;
+
+    if(file.size > maxSize){
+
+        throw new Error(
+            "File size must be 25MB or less."
+        );
+    }
+
+    const safeName =
+        file.name
+        .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+        );
+
+    const fileName =
+        Date.now() +
+        "_" +
+        Math.random()
+        .toString(36)
+        .substring(2,8) +
+        "_" +
+        safeName;
+
+    const path =
+        "studyhub/" +
+        fileName;
+
+    const {error} =
+        await db
+        .storage
+        .from("studyhub-files")
+        .upload(
+            path,
+            file,
+            {
+                upsert:false
+            }
+        );
+
+    if(error){
+        throw error;
+    }
+
+    const {data} =
+        db
+        .storage
+        .from("studyhub-files")
+        .getPublicUrl(path);
+
+    return data.publicUrl;
+}
+
+
+/* =====================================================
+   COURSES
+===================================================== */
+
+async function addCourse(event){
+
+    event.preventDefault();
+
+    const title =
+        document.getElementById("courseTitle")
+        .value.trim();
+
+    const level =
+        document.getElementById("courseLevel")
+        .value.trim();
+
+    const icon =
+        document.getElementById("courseIcon")
+        .value.trim();
+
+    const description =
+        document.getElementById("courseDescription")
+        .value.trim();
+
+    const {error} =
+        await db
+        .from("courses")
+        .insert({
+
+            title,
+            level,
+            icon,
+            description
+
+        });
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+    }
+
+    alert("Course added successfully.");
+
+    event.target.reset();
+
+    loadCourses();
+}
+
+
+async function loadCourses(){
+
+    const box =
+        document.getElementById("coursesList");
+
+    const {data,error} =
+        await db
+        .from("courses")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+    if(error){
+
+        box.innerHTML =
+            "<div class='empty'>Unable to load courses.</div>";
+
+        return;
+    }
+
+    document
+    .getElementById("courseCount")
+    .textContent =
+        data.length;
+
+    if(!data.length){
+
+        box.innerHTML =
+            "<div class='empty'>No courses added yet.</div>";
+
+        return;
+    }
+
+    box.innerHTML =
+        data.map(item=>`
+
+            <div class="item">
+
+                <h3>
+                    ${escapeHtml(item.icon || "🎓")}
+                    ${escapeHtml(item.title)}
+                </h3>
+
+                <span class="badge">
+                    ${escapeHtml(item.level || "")}
+                </span>
+
+                <p>
+                    ${escapeHtml(item.description || "")}
+                </p>
+
+                <div class="actions">
 
                     <button
                         class="small-btn btn-danger"
-                        onclick="
-                        deletePastPaper(
-                            '${item.id}'
-                        )">
+                        onclick="deleteCourse('${escapeJs(item.id)}')">
 
                         Delete
 
@@ -3533,139 +2758,76 @@ async function loadPastPapers(){
 
             </div>
 
-            `;
-
-        })
-        .join("");
-
+        `).join("");
 }
 
 
-/* =========================================
-   DELETE PAST PAPER
-========================================= */
+async function deleteCourse(id){
 
-async function deletePastPaper(id){
+    if(!confirm("Delete this course?")) return;
 
-    if(
-        !confirm(
-            "Delete this past paper?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("past_papers")
-    .delete()
-    .eq("id",id);
-
+    const {error} =
+        await db
+        .from("courses")
+        .delete()
+        .eq("id",id);
 
     if(error){
 
         alert(error.message);
 
         return;
-
     }
 
-
-    loadPastPapers();
-
+    loadCourses();
 }
 
 
-/* =========================================
+/* =====================================================
    SOCIAL LINKS
-========================================= */
+===================================================== */
 
-let socialRowNumber = 0;
+let socialRowNumber=0;
 
 
 function addSocialRow(){
 
     socialRowNumber++;
 
-
     const id =
         "social_" +
         socialRowNumber;
 
-
     const row =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
+    row.className="link-row";
 
-    row.className =
-        "link-row";
+    row.id=id;
 
+    row.innerHTML=`
 
-    row.id =
-        id;
+        <label>Platform / Link Name</label>
 
+        <select class="social-platform"
+                onchange="toggleCustomName(this)">
 
-    row.innerHTML = `
-
-        <label>
-            Platform / Link Name
-        </label>
-
-
-        <select
-            class="social-platform"
-            onchange="
-            toggleCustomName(this)">
-
-            <option value="Facebook">
-                Facebook
-            </option>
-
-            <option value="Instagram">
-                Instagram
-            </option>
-
-            <option value="Twitter/X">
-                Twitter/X
-            </option>
-
-            <option value="YouTube">
-                YouTube
-            </option>
-
-            <option value="WhatsApp">
-                WhatsApp
-            </option>
-
-            <option value="Gmail/Email">
-                Gmail/Email
-            </option>
-
-            <option value="Website">
-                Website
-            </option>
-
-            <option value="Custom Link">
-                Custom Link
-            </option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Twitter/X">Twitter/X</option>
+            <option value="YouTube">YouTube</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Gmail/Email">Gmail/Email</option>
+            <option value="Website">Website</option>
+            <option value="Custom Link">Custom Link</option>
 
         </select>
-
 
         <div
             class="custom-name-box hidden"
             style="margin-top:10px">
 
-            <label>
-                Custom Link Name
-            </label>
+            <label>Custom Link Name</label>
 
             <input
                 class="custom-name"
@@ -3673,14 +2835,9 @@ function addSocialRow(){
 
         </div>
 
-
         <br>
 
-
-        <label>
-            Link / URL
-        </label>
-
+        <label>Link / URL</label>
 
         <input
             class="social-url"
@@ -3688,31 +2845,21 @@ function addSocialRow(){
             placeholder="https://example.com"
             required>
 
-
         <br><br>
-
 
         <button
             type="button"
             class="small-btn btn-danger"
-            onclick="
-            removeSocialRow(
-                '${id}'
-            )">
+            onclick="removeSocialRow('${id}')">
 
             Remove
 
         </button>
-
     `;
 
-
     document
-    .getElementById(
-        "socialRows"
-    )
+    .getElementById("socialRows")
     .appendChild(row);
-
 }
 
 
@@ -3721,46 +2868,25 @@ function toggleCustomName(select){
     const box =
         select
         .parentElement
-        .querySelector(
-            ".custom-name-box"
-        );
+        .querySelector(".custom-name-box");
 
-
-    if(
-        select.value ===
-        "Custom Link"
-    ){
-
-        box.classList.remove(
-            "hidden"
-        );
-
+    if(select.value==="Custom Link"){
+        box.classList.remove("hidden");
     }
-
     else{
-
-        box.classList.add(
-            "hidden"
-        );
-
+        box.classList.add("hidden");
     }
-
 }
 
 
 function removeSocialRow(id){
 
     const row =
-        document
-        .getElementById(id);
-
+        document.getElementById(id);
 
     if(row){
-
         row.remove();
-
     }
-
 }
 
 
@@ -3768,85 +2894,55 @@ async function saveSocialLinks(){
 
     const rows =
         Array.from(
-            document
-            .querySelectorAll(
-                ".link-row"
-            )
+            document.querySelectorAll(".link-row")
         );
-
 
     if(!rows.length){
 
-        alert(
-            "Please add at least one link."
-        );
+        alert("Please add at least one link.");
 
         return;
-
     }
-
 
     try{
 
-        const records = [];
+        const records=[];
 
-
-        for(
-            const row of rows
-        ){
+        for(const row of rows){
 
             const platform =
                 row
-                .querySelector(
-                    ".social-platform"
-                )
+                .querySelector(".social-platform")
                 .value;
-
 
             const url =
                 row
-                .querySelector(
-                    ".social-url"
-                )
+                .querySelector(".social-url")
                 .value
                 .trim();
 
-
-            const customNameInput =
+            const custom =
                 row
-                .querySelector(
-                    ".custom-name"
-                );
+                .querySelector(".custom-name");
 
-
-            let linkName =
-                platform;
-
+            let linkName=platform;
 
             if(
-                platform ===
-                "Custom Link" &&
-                customNameInput
+                platform==="Custom Link" &&
+                custom
             ){
 
                 linkName =
-                    customNameInput
-                    .value
-                    .trim();
+                    custom.value.trim();
 
             }
-
 
             if(!url){
-
                 continue;
-
             }
 
-
             if(
-                platform ===
-                "Custom Link" &&
+                platform==="Custom Link" &&
                 !linkName
             ){
 
@@ -3855,66 +2951,40 @@ async function saveSocialLinks(){
                 );
 
                 return;
-
             }
-
 
             records.push({
 
                 platform,
-
                 link_name:linkName,
-
                 url
 
             });
-
         }
-
 
         if(!records.length){
 
-            alert(
-                "Please enter valid links."
-            );
+            alert("Please enter valid links.");
 
             return;
-
         }
 
+        const {error} =
+            await db
+            .from("social_links")
+            .insert(records);
 
-        const {
-            error
-        } =
-        await db
-        .from("social_links")
-        .insert(records);
+        if(error) throw error;
 
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        alert(
-            "Links saved successfully."
-        );
-
+        alert("Links saved successfully.");
 
         document
-        .getElementById(
-            "socialRows"
-        )
-        .innerHTML = "";
+        .getElementById("socialRows")
+        .innerHTML="";
 
-
-        socialRowNumber = 0;
-
+        socialRowNumber=0;
 
         addSocialRow();
-
 
         loadSocialLinks();
 
@@ -3926,400 +2996,214 @@ async function saveSocialLinks(){
             "Unable to save links: " +
             error.message
         );
-
     }
-
 }
 
-
-/* =========================================
-   LOAD SOCIAL LINKS
-========================================= */
 
 async function loadSocialLinks(){
 
     const box =
-        document
-        .getElementById(
-            "socialLinksList"
-        );
+        document.getElementById("socialLinksList");
 
-
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("social_links")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
+    const {data,error} =
+        await db
+        .from("social_links")
+        .select("*")
+        .order("created_at",{ascending:false});
 
     if(error){
 
         box.innerHTML =
-            "<p>Unable to load links.</p>";
+            "<div class='empty'>Unable to load links.</div>";
 
         return;
-
     }
-
 
     if(!data.length){
 
         box.innerHTML =
-            "<p class='loading'>No links added yet.</p>";
+            "<div class='empty'>No links added yet.</div>";
 
         return;
-
     }
 
-
     box.innerHTML =
-        data
-        .map(item=>`
+        data.map(item=>`
 
-        <div class="item">
+            <div class="item">
 
-            <h3>
-                🔗
-                ${escapeHtml(
-                    item.link_name
-                )}
-            </h3>
+                <h3>
+                    🔗
+                    ${escapeHtml(item.link_name)}
+                </h3>
 
+                <span class="badge">
+                    ${escapeHtml(item.platform)}
+                </span>
 
-            <p>
-                ${escapeHtml(
-                    item.url
-                )}
-            </p>
+                <p>
+                    ${escapeHtml(item.url)}
+                </p>
 
+                <div class="actions">
 
-            <span class="badge">
-                ${escapeHtml(
-                    item.platform
-                )}
-            </span>
+                    <a
+                        class="small-btn"
+                        href="${safeUrl(item.url)}"
+                        target="_blank">
 
+                        Open Link
 
-            <div class="actions">
+                    </a>
 
-                <a
-                    class="small-btn"
-                    href="${item.url}"
-                    target="_blank">
+                    <button
+                        class="small-btn btn-danger"
+                        onclick="deleteSocialLink('${escapeJs(item.id)}')">
 
-                    Open Link
+                        Delete
 
-                </a>
+                    </button>
 
-
-                <button
-                    class="small-btn btn-danger"
-                    onclick="
-                    deleteSocialLink(
-                        '${item.id}'
-                    )">
-
-                    Delete
-
-                </button>
+                </div>
 
             </div>
 
-        </div>
-
-        `)
-        .join("");
-
+        `).join("");
 }
 
-
-/* =========================================
-   DELETE SOCIAL LINK
-========================================= */
 
 async function deleteSocialLink(id){
 
-    if(
-        !confirm(
-            "Delete this link?"
-        )
-    ){
+    if(!confirm("Delete this link?")) return;
 
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("social_links")
-    .delete()
-    .eq("id",id);
-
+    const {error} =
+        await db
+        .from("social_links")
+        .delete()
+        .eq("id",id);
 
     if(error){
 
         alert(error.message);
 
         return;
-
     }
-
 
     loadSocialLinks();
-
 }
 
 
-/* =========================================
-   LOAD COURSES
-========================================= */
+/* =====================================================
+   COUNTS
+===================================================== */
 
-async function loadCourses(){
+async function loadCounts(){
 
-    const box =
+    try{
+
+        const books =
+            await db
+            .from("books")
+            .select("*",{count:"exact",head:true});
+
+        const notes =
+            await db
+            .from("notes")
+            .select("*",{count:"exact",head:true});
+
+        const practicals =
+            await db
+            .from("practicals")
+            .select("*",{count:"exact",head:true});
+
         document
-        .getElementById(
-            "coursesList"
-        );
+        .getElementById("bookCount")
+        .textContent =
+            books.count || 0;
 
+        document
+        .getElementById("noteCount")
+        .textContent =
+            notes.count || 0;
 
-    const {
-        data,
-        error
-    } =
-    await db
-    .from("courses")
-    .select("*")
-    .order(
-        "created_at",
-        {
-            ascending:false
-        }
-    );
-
-
-    if(error){
-
-        box.innerHTML =
-            "<p>Unable to load courses.</p>";
-
-        return;
+        document
+        .getElementById("practicalCount")
+        .textContent =
+            practicals.count || 0;
 
     }
-
-
-    document
-    .getElementById(
-        "courseCount"
-    )
-    .textContent =
-        data.length;
-
-
-    if(!data.length){
-
-        box.innerHTML =
-            "<p class='loading'>No courses added yet.</p>";
-
-        return;
-
+    catch(error){
+        console.log(error);
     }
-
-
-    box.innerHTML =
-        data
-        .map(item=>`
-
-        <div class="item">
-
-            <h3>
-
-                ${escapeHtml(
-                    item.icon ||
-                    "🎓"
-                )}
-
-                ${escapeHtml(
-                    item.title
-                )}
-
-            </h3>
-
-
-            <span class="badge">
-
-                ${escapeHtml(
-                    item.level ||
-                    ""
-                )}
-
-            </span>
-
-
-            <p>
-
-                ${escapeHtml(
-                    item.description ||
-                    ""
-                )}
-
-            </p>
-
-
-            <div class="actions">
-
-                <button
-                    class="small-btn btn-danger"
-                    onclick="
-                    deleteCourse(
-                        '${item.id}'
-                    )">
-
-                    Delete
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `)
-        .join("");
-
 }
 
 
-/* =========================================
-   DELETE COURSE
-========================================= */
-
-async function deleteCourse(id){
-
-    if(
-        !confirm(
-            "Delete this course?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    const {
-        error
-    } =
-    await db
-    .from("courses")
-    .delete()
-    .eq("id",id);
-
-
-    if(error){
-
-        alert(error.message);
-
-        return;
-
-    }
-
-
-    loadCourses();
-
-}
-
-
-/* =========================================
-   HTML ESCAPE
-========================================= */
+/* =====================================================
+   ESCAPE
+===================================================== */
 
 function escapeHtml(value){
 
     if(
-        value === null ||
-        value === undefined
+        value===null ||
+        value===undefined
     ){
-
         return "";
-
     }
-
 
     return String(value)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
 
-/* =========================================
-   INITIAL LOAD
-========================================= */
+function escapeJs(value){
+
+    return String(value || "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'");
+}
+
+
+function safeUrl(url){
+
+    if(!url) return "#";
+
+    const value=String(url).trim();
+
+    if(
+        value.startsWith("https://") ||
+        value.startsWith("http://") ||
+        value.startsWith("mailto:") ||
+        value.startsWith("tel:")
+    ){
+
+        return value;
+    }
+
+    return "#";
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
 async function init(){
 
-    updateYearOptions("book");
-
-    updateYearOptions("note");
-
-    updateYearOptions("paper");
-
-
-    await loadCourses();
-
-    await loadBooks();
-
-    await loadNotes();
-
-    await loadPracticals();
-
-    await loadTests();
-
-    await loadPastPapers();
-
-    await loadSocialLinks();
-
+    goHome();
 
     addSocialRow();
 
-    addMCQ();
+    await loadCourses();
 
-    changeTestType();
+    await loadCounts();
 
+    await loadSocialLinks();
 }
 
 
